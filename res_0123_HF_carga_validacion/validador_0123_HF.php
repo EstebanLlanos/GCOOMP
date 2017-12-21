@@ -305,7 +305,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -362,7 +362,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -418,7 +418,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -475,7 +475,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alpha($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -532,7 +532,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alpha($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -548,7 +548,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 			if( $campos[$numero_campo]!="RC" &&  $campos[$numero_campo]!="TI" &&  $campos[$numero_campo]!="CC" &&  $campos[$numero_campo]!="CE" &&  $campos[$numero_campo]!="PA" &&  $campos[$numero_campo]!="MS" &&  $campos[$numero_campo]!="AS" &&  $campos[$numero_campo]!="CD")
 			{
 				if($errores_campos!="")
@@ -605,7 +605,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -691,7 +691,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if( !formato_fecha_valida_quick_val($campos[$numero_campo]) )
 			{
 				if($errores_campos!="")
@@ -707,7 +707,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido		
+			//Validaciones Valor Permitido		
 			$array_campo_fecha=explode("-",$campos[$numero_campo]);
 			$fecha_1900_01_01="1900-01-01";
 			$fecha_1900_12_31="1900-12-31";
@@ -809,7 +809,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 			
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alpha($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -825,7 +825,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( $campos[$numero_campo]!="M" &&  $campos[$numero_campo]!="F"  )
 		    {
 			    if($errores_campos!="")
@@ -883,7 +883,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -899,7 +899,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_ciou WHERE codigo_ciou_88='".$campos[$numero_campo]."' OR codigo_ciou_08='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -962,7 +962,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alpha($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -978,7 +978,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido regimen
+		    //Validaciones Valor Permitido regimen
 		    if(trim($campos[$numero_campo])!="C" && trim($campos[$numero_campo])!="S" && trim($campos[$numero_campo])!="P" && trim($campos[$numero_campo])!="E" && trim($campos[$numero_campo])!="N")
 		    {
 			    if($errores_campos!="")
@@ -988,7 +988,7 @@ function validar_HF($campos,
 			    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
 				$var_numero_codigo="0103021";
 			    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
-			    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0102,".$array_grupo_validacion["0102"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+			    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0103,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
@@ -1036,7 +1036,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1052,7 +1052,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gios_entidad_administradora WHERE cod_entidad_administradora='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -1112,7 +1112,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1128,7 +1128,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>6)
 		    {
 			    if($errores_campos!="")
@@ -1185,7 +1185,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1201,7 +1201,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( (intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>16)
 		       && (intval($campos[$numero_campo])<31 || intval($campos[$numero_campo])>39)
 		       && (intval($campos[$numero_campo])<50 || intval($campos[$numero_campo])>61)
@@ -1262,7 +1262,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1278,7 +1278,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gios_mpio WHERE cod_municipio='".$campos[$numero_campo]."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -1355,7 +1355,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }
 		    
-			//formato de campo
+			//Validaciones Formato de Campo
 		    if(!ctype_alnum(str_replace('-', '', $campos[$numero_campo])))
 		    {
 			    if($errores_campos!="")
@@ -1412,7 +1412,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if( !formato_fecha_valida_quick_val($campos[$numero_campo]) )
 			{
 				if($errores_campos!="")
@@ -1428,7 +1428,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido	
+			//Validaciones Valor Permitido	
 			$array_campo_fecha=explode("-",$campos[$numero_campo]);
 			$fecha_1900="1900-12-31";
 			$fecha_1995="1995-01-01";
@@ -1529,7 +1529,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1545,7 +1545,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( (intval($campos[$numero_campo])!= 0 && intval($campos[$numero_campo]) != 1 && intval($campos[$numero_campo]) != 3) )
 		    {
 			    if($errores_campos!="")
@@ -1559,7 +1559,49 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
-		    }//fin if
+		    }else {
+		    	
+		    	//Validaciones Calidad
+		    	$campo_n8 = trim($campos[7]);
+		    	if ( intval($campos[$numero_campo]) != 0 && $campo_n8 == 'M' ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0103015";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0103,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+
+		    	if ( intval($campos[$numero_campo]) != 0 && $campo_n8 == 'F' && ($edad < 10 || $edad >= 60) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0103015";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0103,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( intval($campos[$numero_campo]) == 0 && $campo_n8 == 'F' && ($edad >= 10 || $edad < 60) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0103015";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0103,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    }//fin if-else
+
 		}
 	}//if si existe campo
 	
@@ -1601,7 +1643,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1617,7 +1659,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( (intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>4) )
 		    {
 			    if($errores_campos!="")
@@ -1631,10 +1673,37 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	//Validaciones Calidad
+
+		    	if ( intval($campos[$numero_campo]) != 3 && ($edad < 10 || $edad >= 60) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105013";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( intval($campos[$numero_campo]) == 3 && ($edad >= 10 || $edad < 60) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105014";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 	}//if si existe campo
-	
 	
 	//numero_orden 18  numero campo 19 
 	$numero_campo=18;
@@ -1674,7 +1743,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1690,7 +1759,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>100) && intval($campos[$numero_campo])!=9998)
 		    {
 			    if($errores_campos!="")
@@ -1704,6 +1773,21 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	// Validaciones Calidad
+		    	if ( intval($campos[$numero_campo]) > $edad ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105014";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 	}//if si existe campo
@@ -1748,7 +1832,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1764,7 +1848,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( (intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>4) )
 		    {
 			    if($errores_campos!="")
@@ -1821,7 +1905,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if(!formato_fecha_valida_quick_val($campos[$numero_campo]) )
 			{
 				if($errores_campos!="")
@@ -1837,7 +1921,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido		
+			//Validaciones Valor Permitido		
 			
 			$array_campo_fecha=explode("-",$campos[$numero_campo]);
 			$fecha_1900="1900-12-31";
@@ -1895,8 +1979,23 @@ function validar_HF($campos,
 					$hubo_errores=true;
 				}//fin if
 
+			} else {
+
+				// Validaciones Calidad
+				$campo_n64 = trim($campos[92]);
+		    	if ( ( (trim($campos[$numero_campo]) == '1800-01-01') || (trim($campos[$numero_campo]) == '1822-01-01') ) && $campo_n64 == 2 ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105017";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 			}//fin if
-			
 			
 		}
 	}//if si existe campo
@@ -1939,7 +2038,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -1955,7 +2054,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -2015,7 +2114,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2031,7 +2130,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>11)
 		    {
 			    if($errores_campos!="")
@@ -2045,6 +2144,100 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	// Validaciones Calidad
+		    	$campo_n24 = trim($campos[23]);
+		    	if ( ( intval($campos[$numero_campo]) == 0 || intval($campos[$numero_campo]) == 1 ) && 
+		    		 ( intval($campo_n24) != 0 || intval($campo_n24) != 1 || intval($campo_n24) != 2 ) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105017";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n24) != 9999) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105018";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n40_1 = trim($campos[44]);
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n40_1) != 0) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105019";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n40_2 = trim($campos[45]);
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n40_2) != 0) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105020";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n47_1 = trim($campos[52]);
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n47_1) != 0) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105021";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n47_2 = trim($campos[53]);
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n47_2) != 0) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105022";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n47_3 = trim($campos[54]);
+		    	if ( ( intval($campos[$numero_campo]) >= 2 && intval($campos[$numero_campo]) <= 11 ) && ( intval($campo_n47_3) != 0) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105023";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 	}//if si existe campo
@@ -2088,7 +2281,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2104,7 +2297,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>3) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2118,6 +2311,60 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	// Validaciones Calidad
+
+		    	$campo_n25 = trim($campos[24]);
+		    	if ( intval($campos[$numero_campo]) == 1 && intval($campo_n25) != 1) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105024";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( intval($campos[$numero_campo]) == 2 && intval($campo_n25) != 0) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105025";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( intval($campos[$numero_campo]) == 0 && intval($campo_n25) != 2) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105026";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n31 = trim($campos[30]);
+		    	if ( intval($campos[$numero_campo]) == 9999 && intval($campo_n31) != 9999) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105027";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 		
@@ -2162,7 +2409,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2178,7 +2425,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>2) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2192,6 +2439,49 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	// Validaciones Calidad
+
+		    	$campo_n23 = trim($campos[22]);
+		    	if ( intval($campos[$numero_campo]) == 9999 && ( intval($campo_n23) != 0 || intval($campo_n23) != 1) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105028";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( ( intval($campos[$numero_campo]) == 0 || intval($campos[$numero_campo]) == 1 || intval($campos[$numero_campo]) == 2) && 
+		    		( intval($campo_n23) != 0 || intval($campo_n23) != 1) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105029";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	$campo_n31 = trim($campos[30]);
+		    	if ( intval($campos[$numero_campo]) == 9999 && intval($campo_n31) != 9999 ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105027";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 		
@@ -2236,7 +2526,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2252,7 +2542,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>24) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2266,6 +2556,35 @@ function validar_HF($campos,
 			    $consecutivo_errores++;
 			    
 			    $hubo_errores=true;
+		    } else {
+
+		    	// Validaciones Calidad
+
+		    	$campo_n23 = trim($campos[22]);
+		    	if ( intval($campos[$numero_campo]) == 9999 && ( intval($campo_n23) != 0 || intval($campo_n23) != 1) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105028";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
+		    	if ( intval($campos[$numero_campo]) != 9999 && ( intval($campo_n23) >= 2 && intval($campo_n23) <= 11) ) {
+		    		if($errores_campos!="")
+				    {
+					    $errores_campos.="|";
+				    }
+				    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105030";
+				    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				    $consecutivo_errores++;
+		    	}
+
 		    }//fin if
 		}
 	}//if si existe campo
@@ -2309,7 +2628,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2325,7 +2644,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>5) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2382,7 +2701,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2398,7 +2717,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>6) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2455,7 +2774,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if(!formato_fecha_valida_quick_val($campos[$numero_campo]) )
 			{
 				if($errores_campos!="")
@@ -2471,7 +2790,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido		
+			//Validaciones Valor Permitido		
 			$array_campo_fecha=explode("-",$campos[$numero_campo]);
 			$fecha_1900="1900-12-31";
 			$verificacion_con_1900=diferencia_dias_entre_fechas(trim($campos[$numero_campo]), $fecha_1900);
@@ -2494,7 +2813,7 @@ function validar_HF($campos,
 					$hubo_errores=true;
 				}//fin if
 
-				$campo_n7 = $campos[6];
+				$campo_n7 = trim($campos[6]);
 				$verificacion_con_campo_n7=diferencia_dias_entre_fechas(trim($campos[$numero_campo]), $campo_n7);
 				if( $verificacion_con_1900<0 && $verificacion_con_campo_n7>0)
 				{
@@ -2575,7 +2894,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2591,7 +2910,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>7) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2649,7 +2968,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2665,7 +2984,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>5) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2723,7 +3042,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    $array_campo_decimal=explode(".",$campos[$numero_campo]);
 		    $bool_tiene_decimal=false;
 		    $len_parte_decimal=0;
@@ -2755,14 +3074,14 @@ function validar_HF($campos,
 			}		
 			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
 				$var_numero_codigo="0102006";
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0102,".$array_grupo_validacion["0102"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
+				$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+				$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0102,".$array_grupo_validacion["0102"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				$consecutivo_errores++;
+				
+				$hubo_errores=true;
 		    }
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(floatval($campos[$numero_campo])<2.0|| floatval($campos[$numero_campo])>250.0)
 		    {
 			    if($errores_campos!="")
@@ -2819,7 +3138,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2835,7 +3154,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>9000) && intval($campos[$numero_campo])!=9998 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2892,7 +3211,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2908,7 +3227,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>5) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -2966,7 +3285,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -2982,7 +3301,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>999900) && intval($campos[$numero_campo]) != 999998 && intval($campos[$numero_campo]) != 999999)
 		    {
 			    if($errores_campos!="")
@@ -3040,7 +3359,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3056,7 +3375,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>500) && intval($campos[$numero_campo]) != 9998 && intval($campos[$numero_campo]) != 9999)
 		    {
 			    if($errores_campos!="")
@@ -3113,7 +3432,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3129,7 +3448,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>3) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -3186,7 +3505,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3202,7 +3521,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -3259,7 +3578,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3275,7 +3594,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3336,7 +3655,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3352,7 +3671,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3413,7 +3732,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3429,7 +3748,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3489,7 +3808,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3505,7 +3824,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3565,7 +3884,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3581,7 +3900,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3642,7 +3961,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3658,7 +3977,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -3715,7 +4034,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3731,7 +4050,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo]) > 60)
 		    {
 			    if($errores_campos!="")
@@ -3789,7 +4108,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3805,7 +4124,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>60)
 		    {
 			    if($errores_campos!="")
@@ -3863,7 +4182,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3879,7 +4198,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -3936,7 +4255,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -3952,7 +4271,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4009,7 +4328,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4025,7 +4344,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4083,7 +4402,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4099,7 +4418,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4117,7 +4436,6 @@ function validar_HF($campos,
 		}
 		
 	}//if si existe campo
-	
 	
 	//numero_orden 50  numero campo 45
 	$numero_campo=50;
@@ -4157,7 +4475,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4173,7 +4491,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4230,7 +4548,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4246,7 +4564,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4303,7 +4621,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4319,7 +4637,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>60)
 		    {
 			    if($errores_campos!="")
@@ -4377,7 +4695,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4393,7 +4711,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>60)
 		    {
 			    if($errores_campos!="")
@@ -4451,7 +4769,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4467,7 +4785,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>60)
 		    {
 			    if($errores_campos!="")
@@ -4524,7 +4842,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4540,7 +4858,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>4) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4597,7 +4915,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if(!formato_fecha_valida_quick_val($campos[$numero_campo]) )		
 			{
 				if($errores_campos!="")
@@ -4613,7 +4931,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido		
+			//Validaciones Valor Permitido		
 			$array_campo_fecha=explode("-",$campos[$numero_campo]);
 			$fecha_1900="1900-12-31";
 			$verificacion_con_1900=diferencia_dias_entre_fechas(trim($campos[$numero_campo]), $fecha_1900);
@@ -4713,7 +5031,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4729,7 +5047,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4786,7 +5104,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4802,7 +5120,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if( (intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>2) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -4859,7 +5177,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4875,7 +5193,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>365) && intval($campos[$numero_campo]) != 9998 && intval($campos[$numero_campo]) != 9999)
 		    {
 			    if($errores_campos!="")
@@ -4932,7 +5250,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -4948,7 +5266,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5006,7 +5324,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5022,7 +5340,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>100) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5079,7 +5397,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5095,7 +5413,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5152,7 +5470,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5168,7 +5486,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5226,7 +5544,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5242,7 +5560,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5300,7 +5618,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5316,7 +5634,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5373,7 +5691,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5389,7 +5707,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5447,7 +5765,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5463,7 +5781,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5520,7 +5838,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5536,7 +5854,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    $consulta="";
 		    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -5597,7 +5915,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5613,7 +5931,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5672,7 +5990,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5688,7 +6006,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5746,7 +6064,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5762,7 +6080,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>4) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5820,7 +6138,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5836,7 +6154,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30)
 		    {
 			    if($errores_campos!="")
@@ -5893,7 +6211,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5909,7 +6227,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -5966,7 +6284,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -5982,7 +6300,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1 && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6040,7 +6358,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6056,7 +6374,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6114,7 +6432,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6130,7 +6448,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6188,7 +6506,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6204,7 +6522,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6261,7 +6579,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6277,7 +6595,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6334,7 +6652,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6350,7 +6668,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6407,7 +6725,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6423,7 +6741,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1  && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6479,7 +6797,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6495,7 +6813,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])!=0 && intval($campos[$numero_campo])!=1  && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6552,7 +6870,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6609,7 +6927,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6667,7 +6985,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6725,7 +7043,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_alnum($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6783,7 +7101,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6799,7 +7117,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6856,7 +7174,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -6872,7 +7190,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>30) && intval($campos[$numero_campo])!=9999)
 		    {
 			    if($errores_campos!="")
@@ -6918,7 +7236,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    $array_campo_decimal=explode(".",$campos[$numero_campo]);
 		    $bool_tiene_decimal=false;
 		    $len_parte_decimal=0;
@@ -6957,7 +7275,7 @@ function validar_HF($campos,
 			$hubo_errores=true;
 		    }
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(floatval($campos[$numero_campo])<0.0 || floatval($campos[$numero_campo])>9000000000.0)
 		    {
 			    if($errores_campos!="")
@@ -7001,7 +7319,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    $array_campo_decimal=explode(".",$campos[$numero_campo]);
 		    $bool_tiene_decimal=false;
 		    $len_parte_decimal=0;
@@ -7040,7 +7358,7 @@ function validar_HF($campos,
 			$hubo_errores=true;
 		    }
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(floatval($campos[$numero_campo])<0.0 || floatval($campos[$numero_campo])>9000000000.0)
 		    {
 			    if($errores_campos!="")
@@ -7083,7 +7401,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    $array_campo_decimal=explode(".",$campos[$numero_campo]);
 		    $bool_tiene_decimal=false;
 		    $len_parte_decimal=0;
@@ -7122,7 +7440,7 @@ function validar_HF($campos,
 			$hubo_errores=true;
 		    }
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(floatval($campos[$numero_campo])<0.0 || floatval($campos[$numero_campo])>9000000000.0)
 		    {
 			    if($errores_campos!="")
@@ -7166,7 +7484,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -7182,7 +7500,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if((floatval($campos[$numero_campo])<0.0 || floatval($campos[$numero_campo])>100000000.0) && $campos[$numero_campo]!="9999")
 		    {
 			    if($errores_campos!="")
@@ -7225,7 +7543,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -7241,7 +7559,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    if(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10)
 		    {
 			    if($errores_campos!="")
@@ -7298,7 +7616,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //formato de campo
+		    //Validaciones Formato de Campo
 		    if(!ctype_digit($campos[$numero_campo]))
 		    {
 			    if($errores_campos!="")
@@ -7314,7 +7632,7 @@ function validar_HF($campos,
 			    $hubo_errores=true;
 		    }//fin if
 		    
-		    //valor permitido
+		    //Validaciones Valor Permitido
 		    
 		    if((intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>6) 
 		    	&& intval($campos[$numero_campo])!=98 
@@ -7375,7 +7693,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if 
 			
-			//formato de campo
+			//Validaciones Formato de Campo
 			if( !formato_fecha_valida_quick_val($campo_fix) )
 			{
 				if($errores_campos!="")
@@ -7391,7 +7709,7 @@ function validar_HF($campos,
 				$hubo_errores=true;
 			}//fin if
 			
-			//valor permitido		
+			//Validaciones Valor Permitido		
 			$array_campo_fecha=explode("-",$campo_fix);
 			$fecha_1900="1900-12-31";
 			$verificacion_con_1900=diferencia_dias_entre_fechas(trim($campo_fix), $fecha_1900);
@@ -7452,14 +7770,6 @@ function validar_HF($campos,
 		}
 		
 	}//if si existe campo
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);
 }//fin funcion  validarVIH
