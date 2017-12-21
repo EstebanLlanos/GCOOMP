@@ -1306,6 +1306,94 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$campos[2]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['primer_apellido']) );
 						$campos[3]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['segundo_apellido']) );
 						$se_modifico_nombres_o_apellidos=true;
+
+						//coloca none ya que puede venir desde la tabla de afiliados en blanco y ser calificado como incorrecto
+						if($campos[0]==""){$campos[0]="NONE";}
+						if($campos[1]==""){$campos[1]="NONE";}
+						if($campos[2]==""){$campos[2]="NONE";}
+						if($campos[3]==""){$campos[3]="NONE";}
+
+						//PARTE VERIFICA SI EL AFILIADO CORRESPONDE A UNO DE LOS AFILIADOS DUPLICADOS ENTRE SI POR SOLO NUMERO ID
+						//en caso de que si corresponda, reemplaza el tipo de identificacion por el almacenado en
+						// la tabla unicos_de_tabla_duplicados_afiliados_mp
+						$campo_n7_fecha_nacimiento=trim($campos[6]);
+						$campo_n8_sexo=trim($campos[7]);
+						$campo_n6_numero_identificacion=trim($campos[5]);
+
+						$numero_campo_tipo_id=4;//campo 5 numero orden 4
+
+						$numero_campo_primer_nombre=0;
+						$numero_campo_segundo_nombre=1;
+						$numero_campo_primer_apellido=2;
+						$numero_campo_segundo_apellido=3;
+						$error_bd_pertenece="";
+						$query_pertenece_a_un_afiliado_duplicado="SELECT * FROM unicos_de_tabla_duplicados_afiliados_mp where numero_id='".$campo_n6_numero_identificacion."' and sexo='".$campo_n8_sexo."' and fecha_de_nacimiento='".$campo_n7_fecha_nacimiento."' ;";
+						$resultados_pertenece_a_un_afiliado_duplicado=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($query_pertenece_a_un_afiliado_duplicado,$error_bd_pertenece);
+						if(is_array($resultados_pertenece_a_un_afiliado_duplicado) && count($resultados_pertenece_a_un_afiliado_duplicado)>0 )
+						{
+							foreach ($resultados_pertenece_a_un_afiliado_duplicado as $key => $datosAfiliadoDuplicadoEnTablaPrincipal) 
+							{
+								if(
+									$campo_n7_fecha_nacimiento==$datosAfiliadoDuplicadoEnTablaPrincipal['fecha_de_nacimiento']
+									&& $campo_n8_sexo==$datosAfiliadoDuplicadoEnTablaPrincipal['sexo']
+									&& ($campos[$numero_campo_primer_apellido]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']
+										|| $campos[$numero_campo_primer_apellido]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']
+										|| $campos[$numero_campo_primer_apellido]=="NONE"
+										|| $campos[$numero_campo_primer_apellido]=="NOAP"
+										)//fin primer apellido
+									&& ($campos[$numero_campo_primer_nombre]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']
+										|| $campos[$numero_campo_primer_nombre]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']
+										|| $campos[$numero_campo_primer_nombre]=="NONE"
+										|| $campos[$numero_campo_primer_nombre]=="NOAP"
+										)//fin primer nombre
+									)//fin condicion
+								{
+									$campos[$numero_campo_tipo_id]=$datosAfiliadoDuplicadoEnTablaPrincipal['tipo_id'];
+
+									
+									if(
+										$campos[$numero_campo_segundo_apellido]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_segundo_apellido]=$datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_segundo_nombre]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_segundo_nombre]=$datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_primer_apellido]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_primer_apellido]=$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_primer_nombre]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_primer_nombre]=$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre'];
+									}//fin if
+								}//fin if
+							}//fin foreach
+						}//fin if encontro que pertenece a un afiliado duplicado en la tabl principal
+						//FIN PARTE VERIFICA SI EL AFILIADO CORRESPONDE A UNO DE LOS AFILIADOS DUPLICADOS ENTRE SI POR SOLO NUMERO ID 
+						
 					}//fin if hay concidencia en bd					
 
 					//FIN PARTE PRE CORRECCION SEXO Y FECHA NACIMIENTO DE ACUERDO A TABLAS DE REGIMEN
