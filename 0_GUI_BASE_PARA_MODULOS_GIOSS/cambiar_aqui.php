@@ -142,13 +142,14 @@ $smarty->assign("nombre", $nombre, true);
 $smarty->assign("menu", $menu, true);
 $smarty->display('cambiar_aqui.html.tpl');
 
-//INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('212','10','cambiar_aqui','',FALSE,'..|cambiar_aqui|cambiar_aqui.php','33.02');
+/*
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('212','10','cambiar_aqui','',FALSE,'..|cambiar_aqui|cambiar_aqui.php','33.02');
 
-//INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','5'); //admin sistema
-//INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','4'); //admin eapb
-//INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','3'); //usuario normal eapb
-//INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','2'); //admin ips
-//INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','1'); //usuario normal ips
-
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','5'); --admin sistema
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','4'); --admin eapb
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','3'); --usuario normal eapb
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','2'); --admin ips
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('212','1'); --usuario normal ips
+*/
 $coneccionBD->cerrar_conexion();
 ?>

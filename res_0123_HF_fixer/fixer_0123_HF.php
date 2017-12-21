@@ -318,7 +318,7 @@ else if($TIPO_ENTIDAD_DE_LA_VERSION=="IPS")
 //FIN TIPO ENTIDAD
 
 //SELECTOR PERIODO
-$query_periodos_rips="SELECT * FROM gioss_periodo_reporte_2463_erc ORDER BY codigo_periodo;";
+$query_periodos_rips="SELECT * FROM gioss_periodo_reporte_0123_hf ORDER BY codigo_periodo;";
 $resultado_query_periodos=$coneccionBD->consultar2_no_crea_cierra($query_periodos_rips);
 
 $selector_periodo="";
@@ -348,6 +348,16 @@ $smarty->assign("nombre", $nombre, true);
 $smarty->assign("menu", $menu, true);
 $smarty->display('fixer_0123_HF.html.tpl');
 
+/*
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('177','171','Reparacion HF','',FALSE,'..|res_0123_HF_fixer|fixer_0123_HF.php','47.1');
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('177','5'); --admin sistema
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('177','4'); --admin eapb
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('177','3'); --usuario normal eapb
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('177','2'); --admin ips
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('177','1'); --usuario normal ips
+*/
+
 //PARTE PARA LA VALIDACION DEL ARCHIVO
 
 //cargar errores desde bd y meterlos en arrays con keys que corresponden a la llave primaria de estos
@@ -367,7 +377,7 @@ foreach($resultado_query2_grupo_validacion as $grupo_validacion)
 {
 	$array_grupo_validacion[$grupo_validacion["grupo_validacion"]]=$grupo_validacion["descripcion_grupo_validacion"];
 }
-$query3_detalle_validacion="SELECT * FROM gioss_detalle_inconsistencia_2463_erc;";
+$query3_detalle_validacion="SELECT * FROM gioss_detalle_inconsistencia_0123_hf;";
 $resultado_query3_detalle_validacion=$coneccionBD->consultar2_no_crea_cierra($query3_detalle_validacion);
 if(count($resultado_query3_detalle_validacion)>0)
 {
@@ -389,7 +399,7 @@ $fecha_y_hora_para_view=substr($fecha_y_hora_para_view,0,4);
 $rutaTemporal = '../TEMPORALES/';
 $error_mensaje="";
 
-$ruta_archivo_inconsistencias_ERC="";
+$ruta_archivo_inconsistencias_HF="";
 $se_genero_archivo_de_inconsistencias=false;
 $verificacion_es_diferente_prestador_en_ct=false;
 $verificacion_fecha_diferente_en_ct=false;
@@ -404,7 +414,7 @@ $mensaje_advertencia_tiempo .="Estimado usuario, se ha iniciado el proceso de va
 $mensaje_advertencia_tiempo .="Una vez validado, se genera el Logs de errores, el cual se enviar&aacute a su Correo electr&oacutenico o puede descargarlo directamente del aplicat&iacutevo.<br>";
 $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se cargar&aacuten en la base de datos y se dar&aacute por aceptada la informaci&oacuten reportada<br>";
 
-if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463_ERC_file"]) && $_FILES["2463_ERC_file"]["error"]==0)
+if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HF_file"]) && $_FILES["0123_HF_file"]["error"]==0)
 {
 	if(connection_aborted()==false)
 	{
@@ -419,9 +429,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 	
 	
 	
-	$nombre_archivo_registrado=explode(".",$_FILES["2463_ERC_file"]["name"])[0];	
+	$nombre_archivo_registrado=explode(".",$_FILES["0123_HF_file"]["name"])[0];	
 	$numero_de_remision=$_POST["numero_de_remision"];
-	$archivo_erc=$_FILES["2463_ERC_file"];
+	$archivo_hf=$_FILES["0123_HF_file"];
 	$cod_prestador=$_POST["prestador"];
 	$cod_eapb=$_POST["eapb"];	
 	$codigo_periodo=explode("::",$_POST["periodo"])[0];
@@ -438,17 +448,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		$cod_prestador=$_POST["prestador"];
 	}
 	
-	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
-	$fecha_inferior_pv="";
-	$query_periodo_variado="SELECT * FROM gioss_periodo_variados_2463_erc WHERE year_corte_periodo='".trim($_POST["year_de_corte"])."' ;";
-	$resultado_query_periodo_variado=$coneccionBD->consultar2_no_crea_cierra($query_periodo_variado);
-	if(count($resultado_query_periodo_variado)>0 && is_array($resultado_query_periodo_variado))
-	{		
-		$fecha_inferior_pv=$resultado_query_periodo_variado[0]["fecha_limite_inferior"];
-		$fecha_de_corte=$resultado_query_periodo_variado[0]["fecha_limite_superior"];
-	}//fin if
-	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
-	
+		
 	$error_mostrar_bd="";
 	
 	$bool_esta_siendo_reparado=false;
@@ -457,20 +457,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 	$mensaje_perm_estado_reg_dupl="";
 	$mensaje_perm_estado_reg_recuperados="";
 	
-	//abre o crea el archivo dodne se escribiran las inconsistencias
-	$ruta_archivo_inconsistencias_ERC=$rutaTemporal."iERC_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string.".csv";
-	if(file_exists($ruta_archivo_inconsistencias_ERC))
-	{
-		unlink($ruta_archivo_inconsistencias_ERC);
-	}
-	$file_inconsistencias_r2463_ERC = fopen($ruta_archivo_inconsistencias_ERC, "w") or die("fallo la creacion del archivo");
-	$titulos="";
-	$titulos.="consecutivo,nombre archivo,codigo tipo inconsistencia,tipo inconsistencia,codigo grupo inconsistencia,grupo inconsistencia,";
-	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo";
-	fwrite($file_inconsistencias_r2463_ERC,$titulos."\n");
+	
 	
 	//DIRECTORIO DE LOS ARCHIVOS
-	$ruta_carpeta_del_reparado=$rutaTemporal."rERC_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string;
+	$ruta_carpeta_del_reparado=$rutaTemporal."rHF_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string;
 	if(!file_exists($ruta_carpeta_del_reparado))
 	{
 		mkdir($ruta_carpeta_del_reparado, 0777);
@@ -487,6 +477,43 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		}
 	}
 	//FIN DIRECTORIO DE LOS ARCHIVOS
+
+	//parte verifica si es mayor de 03-31 del mismo year
+	$year_corte_inferior=trim($_POST["year_de_corte"]);
+	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-03-31";
+	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
+	if($diferencia_dias_con_mitad_year<0)
+	{
+		$year_corte_para_buscar="".(intval(trim($_POST["year_de_corte"]))+1);
+	}//fin if
+	else
+	{
+		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
+	}
+	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
+	//fin parte verifica si es mayor de 03-31 del mismo year
+
+	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
+	$fecha_inferior_pv="";
+	$fecha_inferior_pv=$year_corte_inferior."-04-01";
+	$fecha_de_corte=$year_corte_para_buscar."-03-31";
+	//no tabla variados que contiene algunos rangos de years
+	//revisar esto en ERC	
+	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+
+	//abre o crea el archivo dodne se escribiran las inconsistencias
+	$ruta_archivo_inconsistencias_HF=$ruta_carpeta_del_reparado."/"."iHF_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string.".csv";
+	if(file_exists($ruta_archivo_inconsistencias_HF))
+	{
+		unlink($ruta_archivo_inconsistencias_HF);
+	}
+	$file_inconsistencias_r0123_HF = fopen($ruta_archivo_inconsistencias_HF, "w") or die("fallo la creacion del archivo");
+	$titulos="";
+	$titulos.="consecutivo,nombre archivo,codigo tipo inconsistencia,tipo inconsistencia,codigo grupo inconsistencia,grupo inconsistencia,";
+	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo";
+	fwrite($file_inconsistencias_r0123_HF,$titulos."\n");
 	
 	//CREACION DEL ARCHIVO DE CAMBIOS PARA DUPLICADOS
 	$fecha_para_archivo= date('Y-m-d-H-i-s');
@@ -495,46 +522,117 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 	$file_cambios_duplicados_registro = fopen($ruta_cambios_duplicados_campos, "w") or die("fallo la creacion del archivo");		    
 	fclose($file_cambios_duplicados_registro);		    
 	//FIN CREACION DEL ARCHIVO DE CAMBIOS PARA DUPLICADOS
+
+	//CREACION ARCHIVO LOG CAMBIOS CAMPOS CORRECCION NORMA
+	//archivo cambios correccion pre duplicados
+	$ruta_cambios_campos_correccion_norma_pre=$ruta_carpeta_del_reparado."/"."cambios_campos_correccion_norma_pre.txt";
+	$file_cambios_campos_correccion_norma_pre= fopen($ruta_cambios_campos_correccion_norma_pre, "w") or die("fallo la creacion del archivo");
+	fwrite($file_cambios_campos_correccion_norma_pre, "LOG CAMBIOS CORRECCION CAMPOS PRE sobre todos los registros antes de correccion de duplicados o coincidentes"); 						  
+	fclose($file_cambios_campos_correccion_norma_pre);
+	//archivo cambios correcion pos correccion duplicados
+	$ruta_cambios_campos_correccion_norma_pos=$ruta_carpeta_del_reparado."/"."cambios_campos_correccion_norma_pos.txt";
+	$file_cambios_campos_correccion_norma_pos= fopen($ruta_cambios_campos_correccion_norma_pos, "w") or die("fallo la creacion del archivo");
+	fwrite($file_cambios_campos_correccion_norma_pos, "LOG CAMBIOS CORRECCION CAMPOS POS Sobre unificados"); 						  
+	fclose($file_cambios_campos_correccion_norma_pos);
+	//FIN CREACION ARCHIVO LOG CAMBIOS CAMPOS CORRECCION NORMA 
+
+	//CREACION ARCHIVOS AFILIADO NO EXISTE
+	//archivo afiliado no existe
+	$ruta_archivo_afiliado_no_existe=$ruta_carpeta_del_reparado."/"."afiliados_no_existentes.txt";
+	$file_archivo_afiliado_no_existe= fopen($ruta_archivo_afiliado_no_existe, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_afiliado_no_existe, "ARCHIVO AFILIADOS INEXISTENTES EN EL SISTEMA"); 						  
+	fclose($file_archivo_afiliado_no_existe);
+	//FIN CREACION ARCHIVOS AFILIADO NO EXISTE
+
+	//CREACION ARCHIVOS AFILIADO EXISTE CAMBIOS SEXO FECHA NACIMIENTO
+	//archivo afiliado existe CAMBIO SEXO
+	$ruta_archivo_afiliado_existe_cambio_sexo=$ruta_carpeta_del_reparado."/"."afiliados_existe_cambio_sexo.txt";
+	$file_archivo_afiliado_existe_cambio_sexo= fopen($ruta_archivo_afiliado_existe_cambio_sexo, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_afiliado_existe_cambio_sexo, "ARCHIVO AFILIADOS EXISTE, SE REALIZO CAMBIO EN EL ARCHIVO POR EL SEXO DEL AFILIADO ENCONTRADO EN EL SISTEMA"); 						  
+	fclose($file_archivo_afiliado_existe_cambio_sexo);
+
+	//archivo afiliado existe CAMBIO FECHA NACIMIENTO
+	$ruta_archivo_afiliado_existe_cambio_fecha_nacimiento=$ruta_carpeta_del_reparado."/"."afiliados_existe_cambio_fecha_nacimiento.txt";
+	$file_archivo_afiliado_existe_cambio_fecha_nacimiento= fopen($ruta_archivo_afiliado_existe_cambio_fecha_nacimiento, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_afiliado_existe_cambio_fecha_nacimiento, "ARCHIVO AFILIADOS EXISTE, SE REALIZO CAMBIO EN EL ARCHIVO POR LA FECHA DE NACIMIENTO DEL AFILIADO ENCONTRADO EN EL SISTEMA"); 						  
+	fclose($file_archivo_afiliado_existe_cambio_fecha_nacimiento);
+	//FIN CREACION ARCHIVOS AFILIADO EXISTE CAMBIOS SEXO FECHA NACIMIENTO
+
+	//ARCHIVO REGISTROS EXCLUIDOS FECHA NACIMIENTO INVALIDA
+	$ruta_archivo_registros_excluidos_fecha_nacimiento_invalida=$ruta_carpeta_del_reparado."/"."registros_excluidos_fecha_nacimiento_invalida.txt";
+	$file_archivo_registros_excluidos_fecha_nacimiento_invalida= fopen($ruta_archivo_registros_excluidos_fecha_nacimiento_invalida, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_registros_excluidos_fecha_nacimiento_invalida, "ARCHIVO REGISTROS EXCLUIDOS POR FECHA DE NACIMIENTO INVALIDA"); 						  
+	fclose($file_archivo_registros_excluidos_fecha_nacimiento_invalida);
+	//FIN ARCHIVO REGISTROS EXCLUIDOS FECHA NACIMIENTO INVALIDA
+
+	//ARCHIVO REGISTROS EXCLUIDOS NO AFILIADOS
+	$ruta_archivo_registros_excluidos_no_afiliados=$ruta_carpeta_del_reparado."/"."registros_excluidos_no_afiliados.txt";
+	$file_archivo_registros_excluidos_no_afiliados= fopen($ruta_archivo_registros_excluidos_no_afiliados, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_registros_excluidos_no_afiliados, "ARCHIVO REGISTROS EXCLUIDOS POR NO AFILIADOS -- NO APLICA FUNDACION"); 						  
+	fclose($file_archivo_registros_excluidos_no_afiliados);
+	//FIN ARCHIVO REGISTROS EXCLUIDOS NO AFILIADOS
 	
 	//ABRE O CREA EL ARCHIVO DONDE SE REPARARA EL ARCHIVO
-	$ruta_archivo_reparado_ERC=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado."_dupl.txt";
-	if(file_exists($ruta_archivo_reparado_ERC))
+	$ruta_archivo_reparado_HF=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado."_dupl.txt";
+	if(file_exists($ruta_archivo_reparado_HF))
 	{
-		unlink($ruta_archivo_reparado_ERC);
+		unlink($ruta_archivo_reparado_HF);
 	}
 	
-	$ruta_archivo_excluido_ERC=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado."_excluido.txt";
-	if(file_exists($ruta_archivo_excluido_ERC))
+	$ruta_archivo_excluido_HF=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado."_excluido.txt";
+	if(file_exists($ruta_archivo_excluido_HF))
 	{
-		unlink($ruta_archivo_excluido_ERC);
+		unlink($ruta_archivo_excluido_HF);
 	}
 	
-	$ruta_archivo_reparado_sin_duplicados_ERC=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado.".txt";
-	if(file_exists($ruta_archivo_reparado_sin_duplicados_ERC))
+	$ruta_archivo_reparado_sin_duplicados_HF=$ruta_carpeta_del_reparado."/".$nombre_archivo_registrado.".txt";
+	if(file_exists($ruta_archivo_reparado_sin_duplicados_HF))
 	{
-		unlink($ruta_archivo_reparado_sin_duplicados_ERC);
+		unlink($ruta_archivo_reparado_sin_duplicados_HF);
 	}
 	
-	$file_reparado_r2463_ERC = fopen($ruta_archivo_reparado_ERC, "w") or die("fallo la creacion del archivo");
-	fclose($file_reparado_r2463_ERC);
+	$file_reparado_r0123_HF = fopen($ruta_archivo_reparado_HF, "w") or die("fallo la creacion del archivo");
+	fclose($file_reparado_r0123_HF);
 	
-	$file_excluido_r2463_ERC = fopen($ruta_archivo_excluido_ERC, "w") or die("fallo la creacion del archivo");
-	fclose($file_excluido_r2463_ERC);
+	$file_excluido_r0123_HF = fopen($ruta_archivo_excluido_HF, "w") or die("fallo la creacion del archivo");
+	fclose($file_excluido_r0123_HF);
 	
-	$file_reparado_r2463_sin_dupl_ERC = fopen($ruta_archivo_reparado_sin_duplicados_ERC, "w") or die("fallo la creacion del archivo");
-	fclose($file_reparado_r2463_sin_dupl_ERC);
+	$file_reparado_r0123_sin_dupl_HF = fopen($ruta_archivo_reparado_sin_duplicados_HF, "w") or die("fallo la creacion del archivo");
+	fclose($file_reparado_r0123_sin_dupl_HF);
 	//FIN ABRE O CREA EL ARCHIVO DONDE SE REPARARA EL ARCHIVO
+
+
+	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+	$query_consulta_estructura_numero_campos="";
+	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
+	$query_consulta_estructura_numero_campos.=" WHERE ";
+	$query_consulta_estructura_numero_campos.=" codigo_tipo_norma_obligatoria='07' ";
+	$query_consulta_estructura_numero_campos.=" AND ";
+	$query_consulta_estructura_numero_campos.=" codigo_tipo_archivo='0701' ORDER BY numero_de_orden ";
+	$query_consulta_estructura_numero_campos.=" ; ";
+	$resultado_query_estructura_campos=$coneccionBD->consultar2_no_crea_cierra($query_consulta_estructura_numero_campos);
+	
+	$array_numero_campo_bd=array();
+	if(count($resultado_query_estructura_campos)>0)
+	{
+		foreach($resultado_query_estructura_campos as $estructura_campo)
+		{
+			$array_numero_campo_bd[intval($estructura_campo["numero_de_orden"])]=$estructura_campo["numero_de_campo"];
+		}
+	}
+	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+
 	
 	$errores="";
 	$exitos="";
 	$tipo_regimen_archivo="";
 	
-	//PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO ERC
+	//PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO HF
 	$es_valido_nombre_archivo=true;
 	
 	$exitos="Archivo $nombre_archivo_registrado. <br>";
 	
-	if ($archivo_erc['size'] > 250000000)
+	if ($archivo_hf['size'] > 250000000)
 	{
 		$es_valido_nombre_archivo=false;
 		$errores.="EL tama&ntildeo no es valido. <br>";
@@ -543,14 +641,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 	{
 		if($nombre_archivo_registrado!="")
 		{
-			$ruta_archivo_erc = $rutaTemporal.$archivo_erc['name'];
-			move_uploaded_file($archivo_erc['tmp_name'], $ruta_archivo_erc);
+			$ruta_archivo_hf = $rutaTemporal.$archivo_hf['name'];
+			move_uploaded_file($archivo_hf['tmp_name'], $ruta_archivo_hf);
 			
-			$array_nombre_sin_sigla=explode("ERC",$archivo_erc['name']);
+			$array_nombre_sin_sigla=explode("HF",$archivo_hf['name']);
 			if(count($array_nombre_sin_sigla)!=2)
 			{
 				$es_valido_nombre_archivo=false;
-				$errores.="El encabezado del archivo $nombre_archivo_registrado no corresponde a un archivo ERC. <br>";
+				$errores.="El encabezado del archivo $nombre_archivo_registrado no corresponde a un archivo HF. <br>";
 			}
 			else
 			{
@@ -577,8 +675,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				}
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
-					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_erc['name']);
-					if("0000AGRUPADO"!=$prestador_del_nombre_archivo && strlen($nombre_sin_txt_para_verificacion)==32 )//para erc y vih es 32
+					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_hf['name']);
+					if("0000AGRUPADO"!=$prestador_del_nombre_archivo && strlen($nombre_sin_txt_para_verificacion)==31 )//para hf es 31
 					{
 						$es_valido_nombre_archivo=false;
 						$errores.="La parte del nombre para el  archivo que indica si esta agrupado( $prestador_del_nombre_archivo ), no corresponde a la especificacion 0000AGRUPADO. <br>";
@@ -588,42 +686,42 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$regimen_nombre=substr($nombre_archivo_fecha_prestador,20,1);
-					if($regimen_nombre!="C" && $regimen_nombre!="S" && $regimen_nombre!="P" && $regimen_nombre!="N" && $regimen_nombre!="E")
+					if($regimen_nombre!="C" && $regimen_nombre!="S" && $regimen_nombre!="P" && $regimen_nombre!="N" && $regimen_nombre!="E" && $regimen_nombre!="O")
 					{
 						$es_valido_nombre_archivo=false;
-						$errores.="El regimen ($regimen_nombre) no corresponde a C-S-P-N-E. <br>";
+						$errores.="El regimen ($regimen_nombre) no corresponde a C-S-P-N-E-O. <br>";
 					}
 				}//fin if
 				//echo "<script>alert('$regimen_nombre');</script>";
 				
-				//LONGITUD INCORRECTA para erc y vih
-				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_erc['name']);
-				if(strlen($nombre_sin_txt_para_verificacion)!=32 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				//LONGITUD INCORRECTA para hf
+				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_hf['name']);
+				if(strlen($nombre_sin_txt_para_verificacion)!=31 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="La longitud del archivo sin incluir el .txt debe ser de 32 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+					$errores.="La longitud del archivo sin incluir el .txt debe ser de 31 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 				}
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
-					if(strlen($nombre_sin_txt_para_verificacion)!=32
-					   && strlen($nombre_sin_txt_para_verificacion)!=19
-					   && strlen($nombre_sin_txt_para_verificacion)!=22
+					if(strlen($nombre_sin_txt_para_verificacion)!=31
+					   && strlen($nombre_sin_txt_para_verificacion)!=18
+					   && strlen($nombre_sin_txt_para_verificacion)!=21
 					   )
 					{
-						if(strlen($nombre_sin_txt_para_verificacion)<19
-						   || (strlen($nombre_sin_txt_para_verificacion)>19 && strlen($nombre_sin_txt_para_verificacion)<22)
+						if(strlen($nombre_sin_txt_para_verificacion)<18
+						   || (strlen($nombre_sin_txt_para_verificacion)>18 && strlen($nombre_sin_txt_para_verificacion)<21)
 						   )
 						{
 							$es_valido_nombre_archivo=false;
-							$errores.="La longitud del archivo sin incluir el .txt debe ser de 19 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+							$errores.="La longitud del archivo sin incluir el .txt debe ser de 18 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 						}
 						else if(
-						(strlen($nombre_sin_txt_para_verificacion)>22 && strlen($nombre_sin_txt_para_verificacion)<32)
-						|| strlen($nombre_sin_txt_para_verificacion)>32
+						(strlen($nombre_sin_txt_para_verificacion)>21 && strlen($nombre_sin_txt_para_verificacion)<31)
+						|| strlen($nombre_sin_txt_para_verificacion)>31
 						)
 						{
 							$es_valido_nombre_archivo=false;
-							$errores.="La longitud del archivo sin incluir el .txt debe ser de 32 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+							$errores.="La longitud del archivo sin incluir el .txt debe ser de 31 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 						}
 					}//fin if
 				}//fin else if				
@@ -649,12 +747,12 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				}
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
-					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_erc['name']);
-					if(strlen($nombre_sin_txt_para_verificacion)==32)
+					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_hf['name']);
+					if(strlen($nombre_sin_txt_para_verificacion)==31)
 					{
 						$eapb_del_nombre_del_archivo=substr($nombre_archivo_fecha_prestador,21,6);
 					}
-					else if(strlen($nombre_sin_txt_para_verificacion)==19 || strlen($nombre_sin_txt_para_verificacion)==22)
+					else if(strlen($nombre_sin_txt_para_verificacion)==18 || strlen($nombre_sin_txt_para_verificacion)==21)
 					{
 						$barra_al_piso=substr($nombre_archivo_fecha_prestador,8,1);
 						if($barra_al_piso=="_")
@@ -666,7 +764,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 							$eapb_del_nombre_del_archivo=substr($nombre_archivo_fecha_prestador,8,6);
 						}
 					}
-				}//fin else if agrupado para erc y vih
+				}//fin else if agrupado para hf
 				$cod_eapb_temporal=$cod_eapb;
 				while(strlen($cod_eapb_temporal)<6)
 				{
@@ -689,37 +787,40 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					$es_valido_nombre_archivo=false;
 					$errores.="El codigo de la EAPB indicada en el nombre del archivo ( $eapb_del_nombre_del_archivo ), no corresponde al codigo de la EAPB a reportar ( $cod_eapb ). <br>";
 				}
+				//echo $fecha_de_corte."<br>";
 				$array_fecha_de_corte=explode("-",$fecha_de_corte);
-				if($year!=$array_fecha_de_corte[0])
+				//echo $fecha_corte_anterior_registrada_nombre."<br>";
+				$array_fecha_de_corte_anterior_registrada_nombre=explode("-",$fecha_corte_anterior_registrada_nombre);
+				if($year!=$array_fecha_de_corte_anterior_registrada_nombre[0])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El a&ntildeo indicado en el nombre del archivo ( $year ), no corresponde al a&ntildeo registrado ( ".$array_fecha_de_corte[0]." ). <br>";
+					$errores.="El a&ntildeo indicado en el nombre del archivo ( $year ), no corresponde al a&ntildeo registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[0]." ). <br>";
 				}
-				if($mes!=$array_fecha_de_corte[1])
+				if($mes!=$array_fecha_de_corte_anterior_registrada_nombre[1])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El mes indicado en el nombre del archivo ( $mes ), no corresponde al mes registrado ( ".$array_fecha_de_corte[1]." ). <br>";
+					$errores.="El mes indicado en el nombre del archivo ( $mes ), no corresponde al mes registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[1]." ). <br>";
 				}
-				if($dia!=$array_fecha_de_corte[2])
+				if($dia!=$array_fecha_de_corte_anterior_registrada_nombre[2])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El dia indicado en el nombre del archivo ( $dia ), no corresponde al dia registrado ( ".$array_fecha_de_corte[2]." ). <br>";
+					$errores.="El dia indicado en el nombre del archivo ( $dia ), no corresponde al dia registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[2]." ). <br>";
 				}
 			}//fin if contiene la sigla
 		}//fin if nombre del archivo no es vacio
 		else
 		{
 			$es_valido_nombre_archivo=false;
-			$errores.="El nombre del archivo para ERC es invalido. <br>";
+			$errores.="El nombre del archivo para HF es invalido. <br>";
 		}
 	}//fin else
-	//FIN PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO ERC
+	//FIN PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO HF
 	
 	//VERIFICA SI EL ARCHIVO YA ESTA SIENDO VALIDADO ACTUALMENTE
         $bool_esta_siendo_reparado=false;
         
         $query_verificacion_esta_siendo_procesado="";
-        $query_verificacion_esta_siendo_procesado.=" SELECT * FROM gioss_2463_esta_reparando_ar_actualmente ";
+        $query_verificacion_esta_siendo_procesado.=" SELECT * FROM gioss_0123_esta_reparando_ar_actualmente ";
         $query_verificacion_esta_siendo_procesado.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
         $query_verificacion_esta_siendo_procesado.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";
         $query_verificacion_esta_siendo_procesado.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
@@ -743,7 +844,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 	
 	//VERIFICA SI FUE VALIDADO PREVIAMENTE
 	$sql_query_verificar="";
-	$sql_query_verificar.=" SELECT * FROM gioss_tabla_estado_informacion_r2463_erc ";
+	$sql_query_verificar.=" SELECT * FROM gioss_tabla_estado_informacion_r0123_hf ";
 	$sql_query_verificar.=" WHERE fecha_corte='".$fecha_de_corte."' ";
 	$sql_query_verificar.=" AND codigo_eapb='".$cod_eapb."' ";
 	$sql_query_verificar.=" AND codigo_prestador_servicios='".$cod_prestador."' ";
@@ -769,7 +870,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		//SE BORRA SI HABIA ALGO ANTES EN LA TABLA TEMPORAL DE CORREGIDOS PARA EL USUARIO
 		/*
 		$sql_delete_corregidos_temp="";
-		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_con_duplicados_erc2463 ";
+		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_con_duplicados_hf0123 ";
 		$sql_delete_corregidos_temp.=" WHERE ";
 		$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
 		$sql_delete_corregidos_temp.=" AND ";
@@ -786,7 +887,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		}
 		
 		$sql_delete_corregidos_temp="";
-		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_solo_duplicados_erc2463 ";
+		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_solo_duplicados_hf0123 ";
 		$sql_delete_corregidos_temp.=" WHERE ";
 		$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
 		$sql_delete_corregidos_temp.=" AND ";
@@ -803,7 +904,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		}
 		
 		$sql_delete_corregidos_temp="";
-		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_sin_duplicados_erc2463 ";
+		$sql_delete_corregidos_temp.=" DELETE FROM corregidos_sin_duplicados_hf0123 ";
 		$sql_delete_corregidos_temp.=" WHERE ";
 		$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
 		$sql_delete_corregidos_temp.=" AND ";
@@ -823,7 +924,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		//INICIO LA EJECUCION		
 		$query_insert_esta_siendo_procesado="";
-		$query_insert_esta_siendo_procesado.=" INSERT INTO gioss_2463_esta_reparando_ar_actualmente ";
+		$query_insert_esta_siendo_procesado.=" INSERT INTO gioss_0123_esta_reparando_ar_actualmente ";
 		$query_insert_esta_siendo_procesado.=" ( ";
 		$query_insert_esta_siendo_procesado.=" codigo_entidad_reportadora,";
 		$query_insert_esta_siendo_procesado.=" nombre_archivo,";
@@ -854,7 +955,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		{
 			if(connection_aborted()==false)
 			{
-				echo "<script>alert('error al iniciar el estado actual de validacion en tiempo real  2463 ');</script>";
+				echo "<script>alert('error al iniciar el estado actual de validacion en tiempo real  0123 ');</script>";
 			}
 		}
 		//FIN INICIO LA EJECUCION
@@ -871,7 +972,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		$numero_lineas_campos_incorrectos=0;
 		
 		//PARTE CORRIGE ARCHIVO, IDENTIFICA E INDEXA DUPLICADOS 
-		$hubo_inconsistencias_en_ERC=false;
+		$hubo_inconsistencias_en_HF=false;
 		
 		//estas listas no se usan debido al cambio del metodo
 		$diccionario_identificacion=array();
@@ -892,16 +993,18 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		if($es_valido_nombre_archivo)
 		{
-			$mensaje_errores_ERC="";
-			$lineas_del_archivo = contar_lineas_archivo($ruta_archivo_erc); 
-			$file_ERC = fopen($ruta_archivo_erc, 'r') or exit("No se pudo abrir el archivo");
+			$mensaje_errores_HF="";
+			$lineas_del_archivo = contar_lineas_archivo($ruta_archivo_hf); 
+			$file_HF = fopen($ruta_archivo_hf, 'r') or exit("No se pudo abrir el archivo");
 			
 			
 			
 			$cont_linea=0;
+
+			$cont_linea_para_indexador=0;//solo pone las lineas que fueron aprobadas en estructura, fehca de nacimiento o si es prepagada en afiliados existentes
 			
 			$fue_cerrada_la_gui=false;
-			while (!feof($file_ERC)) 
+			while (!feof($file_HF)) 
 			{
 				if($fue_cerrada_la_gui==false)
 				{
@@ -930,7 +1033,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de registros duplicados:</td><td style=text-align:left>".$acumulador_para_contar_duplicados.".</tr>";
 				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero registros unicos:</td><td style=text-align:left>".$personas_insertadas_hasta_el_momento."</td></tr>";
 				$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de personas con registros duplicados:</td><td style=text-align:left>".$personas_con_duplicados_hasta_el_momento."</td></tr>";
-				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 119):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
+				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 95):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
 				$mensaje_estado_registros.="</table><br>";
 				
 				$mensaje_perm_estado=$mensaje_estado_registros;
@@ -967,7 +1070,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					//UPDATE MENSAJE
 					
 					$query_update_esta_siendo_procesado="";
-					$query_update_esta_siendo_procesado.=" UPDATE gioss_2463_esta_reparando_ar_actualmente ";
+					$query_update_esta_siendo_procesado.=" UPDATE gioss_0123_esta_reparando_ar_actualmente ";
 					$query_update_esta_siendo_procesado.=" SET mensaje_estado_registros='$mensaje_estado_registros' ";
 					$query_update_esta_siendo_procesado.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
 					$query_update_esta_siendo_procesado.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";
@@ -982,14 +1085,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					{
 						if($fue_cerrada_la_gui==false)
 						{
-							echo "<script>alert('error al actualizar el estado actual de reparacion en tiempo real  2463 ');</script>";
+							echo "<script>alert('error al actualizar el estado actual de reparacion en tiempo real  0123 ');</script>";
 						}
 					}
 					//FIN UPDATE MENSAJE
 					
 					//CANCELA EJECUCION DEL ARCHIVO			    
 					$verificar_si_ejecucion_fue_cancelada="";
-					$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_2463_esta_reparando_ar_actualmente ";
+					$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_0123_esta_reparando_ar_actualmente ";
 					$verificar_si_ejecucion_fue_cancelada.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
 					$verificar_si_ejecucion_fue_cancelada.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";	    
 					$verificar_si_ejecucion_fue_cancelada.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
@@ -1018,17 +1121,17 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					//FIN CANCELA EJECUCION DEL ARCHIVO
 				}//fin if muestra mensaje o cancela ejecucion
 				
-				$linea_tmp = fgets($file_ERC);
+				$linea_tmp = fgets($file_HF);
 				$linea= explode("\n", $linea_tmp)[0];
 				$linea=str_replace(",",".",$linea);
 				$campos = explode("\t", $linea);
 				
 								
 				//pasa a validar los campos
-				if(count($campos)==119)
+				if(count($campos)==95)
 				{
 					$cont_pre_fix_campos=0;
-					while($cont_pre_fix_campos<119)
+					while($cont_pre_fix_campos<95)
 					{
 						$campos[$cont_pre_fix_campos] = str_replace("á","a",$campos[$cont_pre_fix_campos]);
 						$campos[$cont_pre_fix_campos] = str_replace("é","e",$campos[$cont_pre_fix_campos]);
@@ -1052,7 +1155,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					$campos[count($campos)-1]=procesar_mensaje3($campos[count($campos)-1]);
 						
 					$cont_campos_ver_vacios=0;
-					while($cont_campos_ver_vacios<119)
+					while($cont_campos_ver_vacios<95)
 					{
 						
 						if(trim($campos[$cont_campos_ver_vacios])!="")
@@ -1062,490 +1165,761 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						}
 						$cont_campos_ver_vacios++;
 					}
-					
-					//validar_ERC($campos,$cont_linea,&$consecutivo_errores,$array_tipo_validacion,$array_grupo_validacion,$array_detalle_validacion,$nombre_archivo,$fecha_remision,$fecha_de_corte,$cod_prestador,$cod_eapb)
-					$array_resultados_validacion=reparacion_campo_en_blanco_ERC($campos,
-										$cod_eapb,
-										 $cont_linea,
-										 $consecutivo_errores,
-										 $array_tipo_validacion,
-										 $array_grupo_validacion,
-										 $array_detalle_validacion,
-										 $nombre_archivo_registrado,
-										 $fecha_de_corte,
-										 $cod_prestador,
-										 $cod_eapb,
-										 $diccionario_identificacion,
-										 $diccionario_identificacion_lineas,
-										 $coneccionBD);
-					
-					$array_resultados_validacion=reparacion_formato_ERC($campos,
-										 $cont_linea,
-										 $consecutivo_errores,
-										 $array_tipo_validacion,
-										 $array_grupo_validacion,
-										 $array_detalle_validacion,
-										 $nombre_archivo_registrado,
-										 $fecha_de_corte,
-										 $cod_prestador,
-										 $cod_eapb,
-										 $diccionario_identificacion,
-										 $diccionario_identificacion_lineas,
-										 $coneccionBD);
-					
-					$array_resultados_validacion=reparacion_valor_permitido_ERC($campos,
-										 $cont_linea,
-										 $consecutivo_errores,
-										 $array_tipo_validacion,
-										 $array_grupo_validacion,
-										 $array_detalle_validacion,
-										 $nombre_archivo_registrado,
-										 $fecha_de_corte,
-										 $cod_prestador,
-										 $cod_eapb,
-										 $diccionario_identificacion,
-										 $diccionario_identificacion_lineas,
-										 $coneccionBD);
-					
-					$array_resultados_validacion_2=reparacion_criterios_de_calidad_ERC($campos,
-										 $cont_linea,
-										 $consecutivo_errores,
-										 $array_tipo_validacion,
-										 $array_grupo_validacion,
-										 $array_detalle_validacion,
-										 $nombre_archivo_registrado,
-										 $fecha_de_corte,
-										 $cod_prestador,
-										 $cod_eapb,
-										 $diccionario_identificacion,
-										 $diccionario_identificacion_lineas,
-										 $coneccionBD);
-							
-					
-					
-					//proceso de indexacion de duplicados y subida a las tablas de sin duplicados (para registros unicos detectados previamente)
-					//y a la tabla de corregidos con duplicados con motivos de log
-					
-					if(count($campos)==119)
+
+					$array_pre_campos=array();
+					$array_pos_campos=array();
+
+					$array_pre_campos=$campos;
+
+					//PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
+					//gioss_afiliados_eapb_rc, id_afiliado, tipo_id_afiliado,$tipo_de_regimen_de_la_informacion_reportada
+					$query_bd_existe_afiliado_en_tabla_regimen="";
+					$resultados_query_existe_afiliado_tablas_regimen=array();
+					$nombre_tabla_afiliado_hallado="";
+					$campo_n5_ti=preg_replace("/[^a-zA-Z0-9]+/", "", trim($campos[4]) );//TIPO IDENTIFICACION 
+					$campo_n5_ti=strtoupper($campo_n5_ti);
+					$campos[4]=$campo_n5_ti;//se reasigna para que quede corregido en caso de que no exista el afiliado
+					$campo_n6_ni=preg_replace("/[^a-zA-Z0-9]+/", "",trim($campos[5]) );//NUMERO IDENTIFICACION
+					$campos[5]=$campo_n6_ni;//se reasigna para que quede corregido en caso de que no exista el afiliado
+					$tipo_de_regimen_de_la_informacion_reportada=trim($campos[9]);//REGIMEN	
+					$tipo_de_regimen_de_la_informacion_reportada=strtoupper($tipo_de_regimen_de_la_informacion_reportada);
+					$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+					$cod_eapb_global=$cod_eapb;//se reasigna para que quede semi corregido 
+					if($tipo_de_regimen_de_la_informacion_reportada=="C")
 					{
-						//INDEXADOR DE DUPLICADOS
-						//FASE 1 consulta por el campo 4 y 5 (tipo id,  numero id afiliado) si existe duplicado
-						$existe_afiliado=false;
-						$lista_lineas_duplicados="".$cont_linea;
-						$query_consultar_en_indexador="";
-						$query_consultar_en_indexador.=" SELECT lista_lineas_donde_hay_duplicados FROM  ";
-						$query_consultar_en_indexador.=" gioss_indexador_duplicados_del_reparador_2463 ";
-						$query_consultar_en_indexador.=" WHERE  ";
-						$query_consultar_en_indexador.="tipo_id_usuario='".$tipo_id."'";				
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="id_usuario='".$identificacion."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="nick_usuario='".$nick_user."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="fecha_corte_reporte='".$fecha_de_corte."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="fecha_de_generacion='".$fecha_actual."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="hora_generacion='".$tiempo_actual."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="codigo_entidad_prestadora='".$cod_prestador."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="nombre_archivo='".$nombre_archivo_registrado."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="campo_erc_de_numero_orden_4_tipo_id='".$campos[4]."'";
-						$query_consultar_en_indexador.=" AND ";
-						$query_consultar_en_indexador.="campo_erc_de_numero_orden_5_numero_id='".$campos[5]."'";
-						$query_consultar_en_indexador.=" ; ";
-						$error_bd_seq="";		
-						$resultado_esta_afiliado_en_indexador=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($query_consultar_en_indexador, $error_bd_seq);
-						if($error_bd_seq!="")
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rc";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="S")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_regimen_subsidiado";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="E" || $tipo_de_regimen_de_la_informacion_reportada=="O")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_mp";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="P")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rp";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="N")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_nv";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}//fin if
+					//contador filas
+					$num_filas_resultado_existe_tablas_regimen=count($resultados_query_existe_afiliado_tablas_regimen);
+					//FIN PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
+
+					//PARTE PRE CORRECCION SEXO Y FECHA NACIMIENTO DE ACUERDO A TABLAS DE REGIMEN
+					$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=false;
+					$se_modifico_sexo=false;
+					$se_modifico_fecha_nacimiento=false;
+					$se_modifico_nombres_o_apellidos=false;
+					$si_existe=false;
+
+					$sexo_anterior="";
+					$fecha_anterior="";
+
+					$sexo_posterior="";
+					$fecha_posterior="";
+
+					if($num_filas_resultado_existe_tablas_regimen>0 
+						&& is_array($resultados_query_existe_afiliado_tablas_regimen)
+						)
+					{
+						$si_existe=true;
+						//verifica el sexo y fecha registrado en bd
+						$numero_campo_sexo=7;//campo 8 norma cancer
+						$sexo_en_registro_archivo=strtoupper(trim($campos[$numero_campo_sexo]) );
+						$sexo_anterior=$sexo_en_registro_archivo;
+						$numero_campo_fecha_nacimiento=6;//campo  7 norma cancer
+						$fecha_nacimiento_en_registro_archivo=trim($campos[$numero_campo_fecha_nacimiento]);
+						$fecha_anterior=$fecha_nacimiento_en_registro_archivo;
+						$sexo_en_bd=strtoupper(trim($resultados_query_existe_afiliado_tablas_regimen[0]['sexo']) );
+						$fecha_nacimiento_en_bd=trim($resultados_query_existe_afiliado_tablas_regimen[0]['fecha_nacimiento']);
+
+						if($sexo_en_bd!="" && $fecha_nacimiento_en_bd!="")
 						{
-						    $mensajes_error_bd.=" ERROR Al consultar en la tabla gioss_indexador_duplicados_del_reparador_2463 ".procesar_mensaje($error_bd_seq).".<br>";
-						    
-						    if($fue_cerrada_la_gui==false)
-						    {
-							    echo "<script>alert('ERROR Al consultar en la tabla gioss_indexador_duplicados_del_reparador_2463 ".procesar_mensaje($error_bd_seq)."');</script>";
-						    }
+							//si el sexo registrado en la tabla regimen
+							//esta bien escrito y es diferente de lo registrado en 
+							//el archivo(independiente si este esta bien escrito o no)
+							//lo remplaza por el nuevo sexo
+							if($sexo_en_bd=="F" 
+								|| $sexo_en_bd=="M"
+								)
+							{
+								if($sexo_en_bd!=$sexo_en_registro_archivo)
+								{
+									$campos[$numero_campo_sexo]=$sexo_en_bd;
+									$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+									$se_modifico_sexo=true;
+								}//fin if
+							}//fin if
+
+							//echo "<script>alert('$fecha_nacimiento_en_registro_archivo $campo_n5_ti $campo_n6_ni');</script>";
+
+							$fecha_nacimiento_en_registro_archivo=corrector_formato_fecha($fecha_nacimiento_en_registro_archivo,$fecha_de_corte,true);
+							$campos[$numero_campo_fecha_nacimiento]=$fecha_nacimiento_en_registro_archivo;
+							if(formato_fecha_valida_quick($fecha_nacimiento_en_bd) )
+							{
+								$campos[$numero_campo_fecha_nacimiento]=$fecha_nacimiento_en_bd;
+								$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+								$se_modifico_fecha_nacimiento=true;
+								
+							}//fin if fecha nacimeinto es valida
+							else
+							{
+								$fecha_nacimiento_en_bd=corrector_formato_fecha($fecha_nacimiento_en_bd,$fecha_de_corte,true);
+								if(formato_fecha_valida_quick($fecha_nacimiento_en_bd) )
+								{
+									if($fecha_nacimiento_en_bd!=$fecha_nacimiento_en_registro_archivo)
+									{
+										$campos[$numero_campo_fecha_nacimiento]=$fecha_nacimiento_en_bd;
+										$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+										$se_modifico_fecha_nacimiento=true;
+									}//fin if
+								}//fin if fecha nacimeinto es valida
+
+							}//fin else
+
+							$sexo_posterior=$sexo_en_bd;
+							$fecha_posterior=$fecha_nacimiento_en_bd;
+						}//fin if datos de bd no estan vacios
+
+						//se modifica nombres						
+						$campos[0]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['primer_nombre']) );
+						$campos[1]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['segundo_nombre']) );
+						$campos[2]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['primer_apellido']) );
+						$campos[3]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['segundo_apellido']) );
+						$se_modifico_nombres_o_apellidos=true;
+					}//fin if hay concidencia en bd					
+
+					//FIN PARTE PRE CORRECCION SEXO Y FECHA NACIMIENTO DE ACUERDO A TABLAS DE REGIMEN
+
+					$primer_nombre="".$campos[0];
+					$segundo_nombre="".$campos[1];
+					$primer_apellido="".$campos[2];
+					$segundo_apellido="".$campos[3];
+
+					//PARTE AFILIADO NO EXISTE (escribe en archivo)
+
+					$linea_mod_depende_afiliados=implode("\t", $campos);
+					
+					
+					if($si_existe==false)
+					{
+						$linea_datos_afiliado_no_existe="El afiliado $campo_n5_ti $campo_n6_ni NO EXISTE";
+						//si el afiliado no existe
+						$file_archivo_afiliado_no_existe= fopen($ruta_archivo_afiliado_no_existe, "a") or die("fallo la creacion del archivo");
+						fwrite($file_archivo_afiliado_no_existe, "\n".$linea_datos_afiliado_no_existe); 						  
+						fclose($file_archivo_afiliado_no_existe);
+
+						//excluidos
+						$file_archivo_registros_excluidos_no_afiliados= fopen($ruta_archivo_registros_excluidos_no_afiliados, "a") or die("fallo la creacion del archivo");
+						fwrite($file_archivo_registros_excluidos_no_afiliados, "\n".$linea_mod_depende_afiliados);
+						fclose($file_archivo_registros_excluidos_no_afiliados);
+					}//fin else
+					//PARTE AFILIADO NO EXISTE (escribe en archivo)
+
+					if($se_modifico_sexo==true)
+					{
+						$linea_se_modifico_sexo_afiliado="=\"$campo_n5_ti\";=\"$campo_n6_ni\";=\"Al afiliado $campo_n5_ti $campo_n6_ni se le cambio el sexo ( $sexo_anterior ) por ( $sexo_posterior )\"";
+						$file_archivo_afiliado_existe_cambio_sexo= fopen($ruta_archivo_afiliado_existe_cambio_sexo, "a") or die("fallo la creacion del archivo");
+						fwrite($file_archivo_afiliado_existe_cambio_sexo, "\n".$linea_se_modifico_sexo_afiliado);
+						fclose($file_archivo_afiliado_existe_cambio_sexo);
+					}//fin if
+
+					if($se_modifico_fecha_nacimiento==true)
+					{
+						$linea_se_modifico_fecha_nacimiento_afiliado="=\"$campo_n5_ti\";=\"$campo_n6_ni\";=\"Al afiliado $campo_n5_ti $campo_n6_ni se le cambio la fecha de nacimiento ( $fecha_anterior) por ( $fecha_posterior )\"";
+						$file_archivo_afiliado_existe_cambio_fecha_nacimiento= fopen($ruta_archivo_afiliado_existe_cambio_fecha_nacimiento, "a") or die("fallo la creacion del archivo");
+						fwrite($file_archivo_afiliado_existe_cambio_fecha_nacimiento, "\n".$linea_se_modifico_fecha_nacimiento_afiliado);
+						fclose($file_archivo_afiliado_existe_cambio_fecha_nacimiento);
+					}//fin if
+
+					//VERIFICACION FECHA NACIMIENTO ES MENOR 1900-12-31 O EXCEDE LA FECHA DE CORTE Y DE FORMATO VALIDO
+					$numero_campo_fecha_nacimiento=6;//campo  7 norma cancer
+					$fecha_nacimiento_a_verificar=trim($campos[$numero_campo_fecha_nacimiento]);
+
+					$fecha_nacimiento= explode("-",$fecha_nacimiento_a_verificar);
+					$bool_fecha_nacimiento_valida=true;
+					if(count($fecha_nacimiento)!=3
+					   || !(ctype_digit($fecha_nacimiento[0]) && ctype_digit($fecha_nacimiento[1]) && ctype_digit($fecha_nacimiento[2]) )
+					   || !checkdate($fecha_nacimiento[1],$fecha_nacimiento[2],$fecha_nacimiento[0]))
+					{			
+						$bool_fecha_nacimiento_valida=false;
+					}//verificacion formato fecha
+
+					
+					if($bool_fecha_nacimiento_valida==true)
+					{
+						//diferencia_dias_entre_fechas esta en reparadorCANCER.php ya esta importado al principio
+						$es_menor_a_1900_12_31=diferencia_dias_entre_fechas(trim($fecha_nacimiento_a_verificar),"1900-12-31");
+						if($es_menor_a_1900_12_31>0)
+						{
+							$bool_fecha_nacimiento_valida=false;
 							
 						}//fin if
-						if(is_array($resultado_esta_afiliado_en_indexador) && count($resultado_esta_afiliado_en_indexador)>0)
+
+						$fecha_nacimiento_excede_fecha_corte=diferencia_dias_entre_fechas(trim($fecha_nacimiento_a_verificar),$fecha_de_corte);
+						if($fecha_nacimiento_excede_fecha_corte<0)
 						{
-						    $existe_afiliado=true;
-						    $array_check_is_list=array();
-						    $string_res_en_indexador=$resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"];
-						    $array_check_is_list=explode(";;",$string_res_en_indexador);
-						    if(count($array_check_is_list)<2)
-						    {
-							//echo "<script>alert('adiciona el primero $string_res_en_indexador acc $acumulador_para_contar_duplicados');</script>";
-							$acumulador_para_contar_duplicados+=1;
-						    }
-						    $lista_lineas_duplicados=$resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"].";;".$cont_linea;
-						    //si haya duplicado, suma 1
-						    $acumulador_para_contar_duplicados+=1;
-						    //echo "<script>alert('antes $string_res_en_indexador despues $lista_lineas_duplicados acc $acumulador_para_contar_duplicados');</script>";
+							$bool_fecha_nacimiento_valida=false;
+						}//fin if
+					}//fin if verifica si es menor a 1900-12-31 y marca como invalida
+
+					if($bool_fecha_nacimiento_valida==false)
+					{
+						$file_archivo_registros_excluidos_fecha_nacimiento_invalida= fopen($ruta_archivo_registros_excluidos_fecha_nacimiento_invalida, "a") or die("fallo la creacion del archivo");
+						fwrite($file_archivo_registros_excluidos_fecha_nacimiento_invalida, "\n".$linea_mod_depende_afiliados);
+						fclose($file_archivo_registros_excluidos_fecha_nacimiento_invalida);
+					}//fin if
+					//FIN VERIFICACION FECHA NACIMIENTO ES MENOR 1900-12-31 O EXCEDE LA FECHA DE CORTE Y DE FORMATO VALIDO
+
+					$es_linea_valida_para_reparar=true;
+					if($bool_fecha_nacimiento_valida==false){$es_linea_valida_para_reparar=false;}
+					if($si_existe==false){$es_linea_valida_para_reparar=false;}//solo aplica prepagada
+
+					if($es_linea_valida_para_reparar==true)//si la linea cumple con las condiciones prevas es valida para reparar
+					{
+						//validar_HF($campos,$cont_linea,&$consecutivo_errores,$array_tipo_validacion,$array_grupo_validacion,$array_detalle_validacion,$nombre_archivo,$fecha_remision,$fecha_de_corte,$cod_prestador,$cod_eapb)
+						$array_resultados_validacion=reparacion_campo_en_blanco_HF($campos,
+											$cod_eapb,
+											 $cont_linea_para_indexador,
+											 $consecutivo_errores,
+											 $array_tipo_validacion,
+											 $array_grupo_validacion,
+											 $array_detalle_validacion,
+											 $nombre_archivo_registrado,
+											 $fecha_de_corte,
+											 $cod_prestador,
+											 $cod_eapb,
+											 $diccionario_identificacion,
+											 $diccionario_identificacion_lineas,
+											 $coneccionBD);
+						
+						$array_resultados_validacion=reparacion_formato_HF($campos,
+											 $cont_linea_para_indexador,
+											 $consecutivo_errores,
+											 $array_tipo_validacion,
+											 $array_grupo_validacion,
+											 $array_detalle_validacion,
+											 $nombre_archivo_registrado,
+											 $fecha_de_corte,
+											 $cod_prestador,
+											 $cod_eapb,
+											 $diccionario_identificacion,
+											 $diccionario_identificacion_lineas,
+											 $coneccionBD);
+						
+						$array_resultados_validacion=reparacion_valor_permitido_HF($campos,
+											 $cont_linea_para_indexador,
+											 $consecutivo_errores,
+											 $array_tipo_validacion,
+											 $array_grupo_validacion,
+											 $array_detalle_validacion,
+											 $nombre_archivo_registrado,
+											 $fecha_de_corte,
+											 $cod_prestador,
+											 $cod_eapb,
+											 $diccionario_identificacion,
+											 $diccionario_identificacion_lineas,
+											 $coneccionBD);
+						
+						$array_resultados_validacion_2=reparacion_criterios_de_calidad_HF($campos,
+											 $cont_linea_para_indexador,
+											 $consecutivo_errores,
+											 $array_tipo_validacion,
+											 $array_grupo_validacion,
+											 $array_detalle_validacion,
+											 $nombre_archivo_registrado,
+											 $fecha_de_corte,
+											 $cod_prestador,
+											 $cod_eapb,
+											 $diccionario_identificacion,
+											 $diccionario_identificacion_lineas,
+											 $coneccionBD);
+							
+					
+						$array_pos_campos=$campos;
+
+						//parte LOG cmabios correccion pre
+						if(count($array_pre_campos)==count($array_pos_campos) )
+						{
+							$cont_comparacion_antes_despues=0;
+							while ($cont_comparacion_antes_despues<count($array_pre_campos) )
+							{
+								$antes=$array_pre_campos[$cont_comparacion_antes_despues];
+								$despues=$array_pos_campos[$cont_comparacion_antes_despues];
+								if($antes!=$despues)
+								{
+
+									$numero_campo_actual_de_acuerdo_norma=$array_numero_campo_bd[$cont_comparacion_antes_despues];
+									$linea_a_escribir_log="El campo numero ( $numero_campo_actual_de_acuerdo_norma ) tenia el valor ( $antes )  y fue cambiado por el valor ( $despues ) En la linea Numero $cont_linea.";
+									
+									$file_cambios_campos_correccion_norma_pre= fopen($ruta_cambios_campos_correccion_norma_pre, "a") or die("fallo la creacion del archivo");
+									fwrite($file_cambios_campos_correccion_norma_pre, "\n".$linea_a_escribir_log); 						  
+									fclose($file_cambios_campos_correccion_norma_pre);
+								}//fin if
+								$cont_comparacion_antes_despues++;
+							}//fin while
+						}//fin if
+						//FIN parte LOG cmabios correccion pre
+
+						//proceso de indexacion de duplicados y subida a las tablas de sin duplicados (para registros unicos detectados previamente)
+						//y a la tabla de corregidos con duplicados con motivos de log
+					
+						if(count($campos)==95)
+						{
+							//INDEXADOR DE DUPLICADOS
+							//FASE 1 consulta por el campo 4 y 5 (tipo id,  numero id afiliado) si existe duplicado
+							$existe_afiliado=false;
+							$lista_lineas_duplicados="".$cont_linea_para_indexador;
+							$query_consultar_en_indexador="";
+							$query_consultar_en_indexador.=" SELECT lista_lineas_donde_hay_duplicados FROM  ";
+							$query_consultar_en_indexador.=" gioss_indexador_duplicados_del_reparador_0123 ";
+							$query_consultar_en_indexador.=" WHERE  ";
+							$query_consultar_en_indexador.="tipo_id_usuario='".$tipo_id."'";				
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="id_usuario='".$identificacion."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="nick_usuario='".$nick_user."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="fecha_corte_reporte='".$fecha_de_corte."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="fecha_de_generacion='".$fecha_actual."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="hora_generacion='".$tiempo_actual."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="codigo_entidad_prestadora='".$cod_prestador."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="nombre_archivo='".$nombre_archivo_registrado."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="campo_hf_de_numero_orden_4_tipo_id='".$campos[4]."'";
+							$query_consultar_en_indexador.=" AND ";
+							$query_consultar_en_indexador.="campo_hf_de_numero_orden_5_numero_id='".$campos[5]."'";
+							$query_consultar_en_indexador.=" ; ";
+							$error_bd_seq="";		
+							$resultado_esta_afiliado_en_indexador=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($query_consultar_en_indexador, $error_bd_seq);
+							if($error_bd_seq!="")
+							{
+							    $mensajes_error_bd.=" ERROR Al consultar en la tabla gioss_indexador_duplicados_del_reparador_0123 ".procesar_mensaje($error_bd_seq).".<br>";
+							    
+							    if($fue_cerrada_la_gui==false)
+							    {
+								    echo "<script>alert('ERROR Al consultar en la tabla gioss_indexador_duplicados_del_reparador_0123 ".procesar_mensaje($error_bd_seq)."');</script>";
+							    }
+								
+							}//fin if
+							if(is_array($resultado_esta_afiliado_en_indexador) && count($resultado_esta_afiliado_en_indexador)>0)
+							{
+							    $existe_afiliado=true;
+							    $array_check_is_list=array();
+							    $string_res_en_indexador=$resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"];
+							    $array_check_is_list=explode(";;",$string_res_en_indexador);
+							    if(count($array_check_is_list)<2)
+							    {
+								//echo "<script>alert('adiciona el primero $string_res_en_indexador acc $acumulador_para_contar_duplicados');</script>";
+								$acumulador_para_contar_duplicados+=1;
+							    }
+							    $lista_lineas_duplicados=$resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"].";;".$cont_linea_para_indexador;
+							    //si haya duplicado, suma 1
+							    $acumulador_para_contar_duplicados+=1;
+							    //echo "<script>alert('antes $string_res_en_indexador despues $lista_lineas_duplicados acc $acumulador_para_contar_duplicados');</script>";
+							}
+							else
+							{
+							    //si no haya duplicado, suma cero
+							    $acumulador_para_contar_duplicados+=0;
+							}
+							//FIN FASE 1
+							
+							
+							//FASE 2 inserta en indexador de duplicado si no habia
+							if($existe_afiliado==false)
+							{
+							    $query_insert_updt_en_indexador="";
+							    $query_insert_updt_en_indexador.=" INSERT INTO ";
+							    $query_insert_updt_en_indexador.=" gioss_indexador_duplicados_del_reparador_0123 ";				
+							    $query_insert_updt_en_indexador.=" ( ";	
+							    $query_insert_updt_en_indexador.=" tipo_id_usuario, ";
+							    $query_insert_updt_en_indexador.=" id_usuario, ";
+							    $query_insert_updt_en_indexador.=" nick_usuario, ";
+							    $query_insert_updt_en_indexador.=" fecha_corte_reporte, ";
+							    $query_insert_updt_en_indexador.=" fecha_de_generacion, ";
+							    $query_insert_updt_en_indexador.=" hora_generacion, ";
+							    $query_insert_updt_en_indexador.=" codigo_entidad_eapb_generadora, ";
+							    $query_insert_updt_en_indexador.=" codigo_entidad_prestadora, ";
+							    $query_insert_updt_en_indexador.=" nombre_archivo, ";
+							    $query_insert_updt_en_indexador.=" campo_hf_de_numero_orden_4_tipo_id, ";
+							    $query_insert_updt_en_indexador.=" campo_hf_de_numero_orden_5_numero_id, ";
+							    $query_insert_updt_en_indexador.=" contiene_filas_coincidentes, ";
+							    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados ";
+							    $query_insert_updt_en_indexador.=" ) ";
+							    $query_insert_updt_en_indexador.=" VALUES ";
+							    $query_insert_updt_en_indexador.=" ( ";
+							    $query_insert_updt_en_indexador.="'".$tipo_id."',";
+							    $query_insert_updt_en_indexador.="'".$identificacion."',";
+							    $query_insert_updt_en_indexador.="'".$nick_user."',";							
+							    $query_insert_updt_en_indexador.="'".$fecha_de_corte."',";
+							    $query_insert_updt_en_indexador.="'".$fecha_actual."',";
+							    $query_insert_updt_en_indexador.="'".$tiempo_actual."',";
+							    $query_insert_updt_en_indexador.="'".$cod_eapb."',";
+							    $query_insert_updt_en_indexador.="'".$cod_prestador."',";
+							    $query_insert_updt_en_indexador.="'".$nombre_archivo_registrado."',";
+							    $query_insert_updt_en_indexador.="'".$campos[4]."',";
+							    $query_insert_updt_en_indexador.="'".$campos[5]."',";
+							    $query_insert_updt_en_indexador.="'NO',";
+							    $query_insert_updt_en_indexador.="'".$cont_linea_para_indexador."'";
+							    $query_insert_updt_en_indexador.=" ) ";
+							    $query_insert_updt_en_indexador.=" ; ";
+							    $error_bd_seq="";		
+							    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
+							    if($error_bd_seq!="")
+							    {
+								$mensajes_error_bd.=" ERROR Al subir en la tabla gioss_indexador_duplicados_del_reparador_0123 ".procesar_mensaje($error_bd_seq).".<br>";
+								
+								if($fue_cerrada_la_gui==false)
+								{
+									echo "<script>alert('ERROR Al subir en la tabla gioss_indexador_duplicados_del_reparador_0123  ".procesar_mensaje($error_bd_seq)."');</script>";
+								}
+							    }
+							    else
+							    {
+									$personas_insertadas_hasta_el_momento+=1;
+									//echo "se inserto el numero linea $cont_linea_para_indexador lista_lineas_duplicados $lista_lineas_duplicados<br>";
+							    }
+							    
+							    //sube a corregidos_sin_duplicados_hf0123
+							    $query_subir_registro_corregido="";
+							    $query_subir_registro_corregido.=" INSERT INTO ";
+							    $query_subir_registro_corregido.=" corregidos_sin_duplicados_hf0123 ";				
+							    $query_subir_registro_corregido.=" ( ";				
+							    $numero_actual_campo_registro_corregido=0;
+							    while($numero_actual_campo_registro_corregido<95)
+							    {
+								    $query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
+								    $numero_actual_campo_registro_corregido++;
+							    }//fin while para nombres columnas de bd correspondientes a los campos de La_Norma_Actual a insertar
+							    $query_subir_registro_corregido.=" tipo_id_usuario, ";
+							    $query_subir_registro_corregido.=" id_usuario, ";
+							    $query_subir_registro_corregido.=" nick_usuario, ";
+							    $query_subir_registro_corregido.=" numero_registro, ";
+							    $query_subir_registro_corregido.=" fecha_corte_reporte, ";
+							    $query_subir_registro_corregido.=" fecha_de_generacion, ";
+							    $query_subir_registro_corregido.=" hora_generacion, ";
+							    $query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
+							    $query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
+							    $query_subir_registro_corregido.=" nombre_archivo_hf ";
+							    $query_subir_registro_corregido.=" ) ";
+							    $query_subir_registro_corregido.=" VALUES ";
+							    $query_subir_registro_corregido.=" ( ";				
+							    $numero_actual_campo_registro_corregido=0;
+							    while($numero_actual_campo_registro_corregido<95)
+							    {
+								    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
+								    $numero_actual_campo_registro_corregido++;
+							    }//fin while con los valores de los campos La_Norma_Actual a insertar en la tabla
+							    $query_subir_registro_corregido.="'".$tipo_id."',";
+							    $query_subir_registro_corregido.="'".$identificacion."',";
+							    $query_subir_registro_corregido.="'".$nick_user."',";	
+							    $query_subir_registro_corregido.="'".($cont_linea_para_indexador+1)."',";					
+							    $query_subir_registro_corregido.="'".$fecha_de_corte."',";
+							    $query_subir_registro_corregido.="'".$fecha_actual."',";
+							    $query_subir_registro_corregido.="'".$tiempo_actual."',";
+							    $query_subir_registro_corregido.="'".$cod_eapb."',";
+							    $query_subir_registro_corregido.="'".$cod_prestador."',";
+							    $query_subir_registro_corregido.="'".$nombre_archivo_registrado."'";
+							    $query_subir_registro_corregido.=" ) ";
+							    $query_subir_registro_corregido.=" ; ";
+							    $error_bd_seq="";		
+							    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_subir_registro_corregido, $error_bd_seq);
+							    if($error_bd_seq!="")
+							    {
+								    $mensajes_error_bd.=" ERROR Al subir en la tabla temporal de registros corregidos pre correccion duplicados  para corrector ".procesar_mensaje($error_bd_seq).".<br>";
+								    
+							    }
+							    //fin sube a corregidos_sin_duplicados_hf0123
+							    
+							}//fin if
+							//o actualiza si ya habia concatenando a la lista de numero de filas
+							else if($existe_afiliado==true)
+							{
+							    $array_check_tiene_2_filas_coincidentes=explode(";;",$lista_lineas_duplicados);
+							    
+							    //borra el que estaba en corregidos_sin_duplicados_hf0123
+							    //entrea si el nuemro de filas es igual a dos
+							    if(count($array_check_tiene_2_filas_coincidentes)==2)
+							    {
+									//BORRANDO el afiliado duplicado de corregidos_sin_duplicados_hf0123
+									$sql_delete_corregidos_temp="";
+									$sql_delete_corregidos_temp.=" DELETE FROM corregidos_sin_duplicados_hf0123  ";
+									$sql_delete_corregidos_temp.=" WHERE fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" fecha_corte_reporte='".$fecha_de_corte."'  ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" codigo_entidad_prestadora='".$cod_prestador."'  ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" codigo_entidad_eapb_generadora='".$cod_eapb."'  ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" nombre_archivo_hf='".$nombre_archivo_registrado."'  ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" id_usuario='$identificacion' ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" nick_usuario='$nick_user' ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" campo_hf_de_numero_orden_4='".$campos[4]."' ";
+									$sql_delete_corregidos_temp.=" AND ";
+									$sql_delete_corregidos_temp.=" campo_hf_de_numero_orden_5='".$campos[5]."' ";
+									$sql_delete_corregidos_temp.=" ; ";
+									$error_bd_seq="";		
+									$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_delete_corregidos_temp, $error_bd_seq);
+									if($error_bd_seq!="")
+									{
+										$mensajes_error_bd.=" ERROR Al eliminar en la tabla corregidos_sin_duplicados_hf0123 ".procesar_mensaje($error_bd_seq).".<br>";
+										
+									}
+									//FIN BORRANDO el afiliado duplicado de corregidos_sin_duplicados_hf0123
+							    }
+							    //fin borra el que estaba en corregidos_sin_duplicados_hf0123
+							    
+							    $query_insert_updt_en_indexador="";
+							    $query_insert_updt_en_indexador.=" UPDATE  ";
+							    $query_insert_updt_en_indexador.=" gioss_indexador_duplicados_del_reparador_0123 ";				
+							    $query_insert_updt_en_indexador.=" SET ";
+							    $query_insert_updt_en_indexador.=" contiene_filas_coincidentes='SI', ";
+							    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados='".$lista_lineas_duplicados."' ";
+							    $query_insert_updt_en_indexador.=" WHERE  ";
+							    $query_insert_updt_en_indexador.="tipo_id_usuario='".$tipo_id."'";				
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="id_usuario='".$identificacion."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="nick_usuario='".$nick_user."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="fecha_corte_reporte='".$fecha_de_corte."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="fecha_de_generacion='".$fecha_actual."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="hora_generacion='".$tiempo_actual."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="codigo_entidad_prestadora='".$cod_prestador."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="nombre_archivo='".$nombre_archivo_registrado."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="campo_hf_de_numero_orden_4_tipo_id='".$campos[4]."'";
+							    $query_insert_updt_en_indexador.=" AND ";
+							    $query_insert_updt_en_indexador.="campo_hf_de_numero_orden_5_numero_id='".$campos[5]."'";						    
+							    $query_insert_updt_en_indexador.=" ; ";
+							    $error_bd_seq="";		
+							    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
+							    if($error_bd_seq!="")
+							    {
+									$mensajes_error_bd.=" ERROR Al actualizar en la tabla gioss_indexador_duplicados_del_reparador_0123 ".procesar_mensaje($error_bd_seq).".<br>";
+									
+									if($fue_cerrada_la_gui==false)
+									{
+										echo "<script>alert('ERROR Al actualizar en la tabla gioss_indexador_duplicados_del_reparador_0123  ".procesar_mensaje($error_bd_seq)."');</script>";
+									}
+							    }
+							    
+							    if(count($array_check_tiene_2_filas_coincidentes)==2)
+							    {
+									$personas_con_duplicados_hasta_el_momento+=1;
+							    }
+							}//fin if actualizar
+							//FIN FASE 2
+							//FIN INDEXADOR DE DUPLICADOS
+							
+							//SUBE A BD EL REGISTRO PARA EL PROCESO DE CORRECCION DE DUPLICADOS
+							$query_subir_registro_corregido="";
+							$query_subir_registro_corregido.=" INSERT INTO ";
+							$query_subir_registro_corregido.=" corregidos_con_duplicados_hf0123 ";				
+							$query_subir_registro_corregido.=" ( ";				
+							$numero_actual_campo_registro_corregido=0;
+							while($numero_actual_campo_registro_corregido<95)
+							{
+								$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
+								$numero_actual_campo_registro_corregido++;
+							}//fin while para nombres columnas de bd correspondientes a los campos de 0123 a insertar
+							$query_subir_registro_corregido.=" tipo_id_usuario, ";
+							$query_subir_registro_corregido.=" id_usuario, ";
+							$query_subir_registro_corregido.=" nick_usuario, ";
+							$query_subir_registro_corregido.=" numero_registro, ";
+							$query_subir_registro_corregido.=" fecha_corte_reporte, ";
+							$query_subir_registro_corregido.=" fecha_de_generacion, ";
+							$query_subir_registro_corregido.=" hora_generacion, ";
+							$query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
+							$query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
+							$query_subir_registro_corregido.=" nombre_archivo_hf ";
+							$query_subir_registro_corregido.=" ) ";
+							$query_subir_registro_corregido.=" VALUES ";
+							$query_subir_registro_corregido.=" ( ";				
+							$numero_actual_campo_registro_corregido=0;
+							while($numero_actual_campo_registro_corregido<95)
+							{						
+							    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
+							    $numero_actual_campo_registro_corregido++;
+							}//fin while con los valores de los campos 0123 a insertar en la tabla
+							$query_subir_registro_corregido.="'".$tipo_id."',";
+							$query_subir_registro_corregido.="'".$identificacion."',";
+							$query_subir_registro_corregido.="'".$nick_user."',";	
+							$query_subir_registro_corregido.="'".($cont_linea_para_indexador+1)."',";						
+							$query_subir_registro_corregido.="'".$fecha_de_corte."',";
+							$query_subir_registro_corregido.="'".$fecha_actual."',";
+							$query_subir_registro_corregido.="'".$tiempo_actual."',";
+							$query_subir_registro_corregido.="'".$cod_eapb."',";
+							$query_subir_registro_corregido.="'".$cod_prestador."',";
+							$query_subir_registro_corregido.="'".$nombre_archivo_registrado."'";
+							$query_subir_registro_corregido.=" ) ";
+							$query_subir_registro_corregido.=" ; ";
+							$error_bd_seq="";		
+							$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_subir_registro_corregido, $error_bd_seq);
+							if($error_bd_seq!="")
+							{
+								$mensajes_error_bd.=" ERROR Al subir en la tabla temporal de registros <br> corregidos pre correccion duplicados  para corrector .<br> $error_bd_seq ";
+								
+							}
+							//FIN SUBE A BD EL REGISTRO PARA EL PROCESO DE CORRECCION DE DUPLICADOS
+						}//fin if numero de campos correcto
+					
+					
+						//ESCRIBE LINEA REPARADA	
+						$linea_reparada="";
+						$cont_campo_reparado=0;
+						while($cont_campo_reparado<95)
+						{
+							if($linea_reparada!=""){$linea_reparada.="\t";}
+							$linea_reparada.=$campos[$cont_campo_reparado];
+							$cont_campo_reparado++;
+						}
+						
+						$file_reparado_r0123_HF = fopen($ruta_archivo_reparado_HF, "a") or die("fallo la creacion del archivo");
+						if($es_primera_linea==false)
+						{
+							fwrite($file_reparado_r0123_HF,$linea_reparada);
+							$es_primera_linea=true;
 						}
 						else
 						{
-						    //si no haya duplicado, suma cero
-						    $acumulador_para_contar_duplicados+=0;
+							fwrite($file_reparado_r0123_HF,"\n".$linea_reparada);
 						}
-						//FIN FASE 1
+						fclose($file_reparado_r0123_HF);
+						//FIN ESCRIBE LINEA REPARADA
 						
-						
-						//FASE 2 inserta en indexador de duplicado si no habia
-						if($existe_afiliado==false)
+						if($hubo_inconsistencias_en_HF==false)
 						{
-						    $query_insert_updt_en_indexador="";
-						    $query_insert_updt_en_indexador.=" INSERT INTO ";
-						    $query_insert_updt_en_indexador.=" gioss_indexador_duplicados_del_reparador_2463 ";				
-						    $query_insert_updt_en_indexador.=" ( ";	
-						    $query_insert_updt_en_indexador.=" tipo_id_usuario, ";
-						    $query_insert_updt_en_indexador.=" id_usuario, ";
-						    $query_insert_updt_en_indexador.=" nick_usuario, ";
-						    $query_insert_updt_en_indexador.=" fecha_corte_reporte, ";
-						    $query_insert_updt_en_indexador.=" fecha_de_generacion, ";
-						    $query_insert_updt_en_indexador.=" hora_generacion, ";
-						    $query_insert_updt_en_indexador.=" codigo_entidad_eapb_generadora, ";
-						    $query_insert_updt_en_indexador.=" codigo_entidad_prestadora, ";
-						    $query_insert_updt_en_indexador.=" nombre_archivo, ";
-						    $query_insert_updt_en_indexador.=" campo_erc_de_numero_orden_4_tipo_id, ";
-						    $query_insert_updt_en_indexador.=" campo_erc_de_numero_orden_5_numero_id, ";
-						    $query_insert_updt_en_indexador.=" contiene_filas_coincidentes, ";
-						    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados ";
-						    $query_insert_updt_en_indexador.=" ) ";
-						    $query_insert_updt_en_indexador.=" VALUES ";
-						    $query_insert_updt_en_indexador.=" ( ";
-						    $query_insert_updt_en_indexador.="'".$tipo_id."',";
-						    $query_insert_updt_en_indexador.="'".$identificacion."',";
-						    $query_insert_updt_en_indexador.="'".$nick_user."',";							
-						    $query_insert_updt_en_indexador.="'".$fecha_de_corte."',";
-						    $query_insert_updt_en_indexador.="'".$fecha_actual."',";
-						    $query_insert_updt_en_indexador.="'".$tiempo_actual."',";
-						    $query_insert_updt_en_indexador.="'".$cod_eapb."',";
-						    $query_insert_updt_en_indexador.="'".$cod_prestador."',";
-						    $query_insert_updt_en_indexador.="'".$nombre_archivo_registrado."',";
-						    $query_insert_updt_en_indexador.="'".$campos[4]."',";
-						    $query_insert_updt_en_indexador.="'".$campos[5]."',";
-						    $query_insert_updt_en_indexador.="'NO',";
-						    $query_insert_updt_en_indexador.="'".$cont_linea."'";
-						    $query_insert_updt_en_indexador.=" ) ";
-						    $query_insert_updt_en_indexador.=" ; ";
-						    $error_bd_seq="";		
-						    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
-						    if($error_bd_seq!="")
-						    {
-							$mensajes_error_bd.=" ERROR Al subir en la tabla gioss_indexador_duplicados_del_reparador_2463 ".procesar_mensaje($error_bd_seq).".<br>";
+							$hubo_inconsistencias_en_HF=$array_resultados_validacion["error"];
+						}
+						if($hubo_inconsistencias_en_HF==false)
+						{
+							$hubo_inconsistencias_en_HF=$array_resultados_validacion_2["error"];
+						}
+					
+						//escribe los errores
+						/*
+						$mensaje_errores_HF=$array_resultados_validacion["mensaje"];
+						$array_mensajes_errores_campos=explode("|",$mensaje_errores_HF);
+						
+						foreach($array_mensajes_errores_campos as $msg_error)
+						{	
+							fwrite($file_inconsistencias_r0123_HF, $msg_error."\n");
 							
-							if($fue_cerrada_la_gui==false)
-							{
-								echo "<script>alert('ERROR Al subir en la tabla gioss_indexador_duplicados_del_reparador_2463  ".procesar_mensaje($error_bd_seq)."');</script>";
-							}
-						    }
-						    else
-						    {
-							$personas_insertadas_hasta_el_momento+=1;
-						    }
-						    
-						    //sube a corregidos_sin_duplicados_erc2463
-						    $query_subir_registro_corregido="";
-						    $query_subir_registro_corregido.=" INSERT INTO ";
-						    $query_subir_registro_corregido.=" corregidos_sin_duplicados_erc2463 ";				
-						    $query_subir_registro_corregido.=" ( ";				
-						    $numero_actual_campo_registro_corregido=0;
-						    while($numero_actual_campo_registro_corregido<119)
-						    {
-							    $query_subir_registro_corregido.=" campo_erc_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
-							    $numero_actual_campo_registro_corregido++;
-						    }//fin while para nombres columnas de bd correspondientes a los campos de La_Norma_Actual a insertar
-						    $query_subir_registro_corregido.=" tipo_id_usuario, ";
-						    $query_subir_registro_corregido.=" id_usuario, ";
-						    $query_subir_registro_corregido.=" nick_usuario, ";
-						    $query_subir_registro_corregido.=" numero_registro, ";
-						    $query_subir_registro_corregido.=" fecha_corte_reporte, ";
-						    $query_subir_registro_corregido.=" fecha_de_generacion, ";
-						    $query_subir_registro_corregido.=" hora_generacion, ";
-						    $query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
-						    $query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
-						    $query_subir_registro_corregido.=" nombre_archivo_erc ";
-						    $query_subir_registro_corregido.=" ) ";
-						    $query_subir_registro_corregido.=" VALUES ";
-						    $query_subir_registro_corregido.=" ( ";				
-						    $numero_actual_campo_registro_corregido=0;
-						    while($numero_actual_campo_registro_corregido<119)
-						    {
-							    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
-							    $numero_actual_campo_registro_corregido++;
-						    }//fin while con los valores de los campos La_Norma_Actual a insertar en la tabla
-						    $query_subir_registro_corregido.="'".$tipo_id."',";
-						    $query_subir_registro_corregido.="'".$identificacion."',";
-						    $query_subir_registro_corregido.="'".$nick_user."',";	
-						    $query_subir_registro_corregido.="'".($cont_linea+1)."',";							
-						    $query_subir_registro_corregido.="'".$fecha_de_corte."',";
-						    $query_subir_registro_corregido.="'".$fecha_actual."',";
-						    $query_subir_registro_corregido.="'".$tiempo_actual."',";
-						    $query_subir_registro_corregido.="'".$cod_eapb."',";
-						    $query_subir_registro_corregido.="'".$cod_prestador."',";
-						    $query_subir_registro_corregido.="'".$nombre_archivo_registrado."'";
-						    $query_subir_registro_corregido.=" ) ";
-						    $query_subir_registro_corregido.=" ; ";
-						    $error_bd_seq="";		
-						    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_subir_registro_corregido, $error_bd_seq);
-						    if($error_bd_seq!="")
-						    {
-							    $mensajes_error_bd.=" ERROR Al subir en la tabla temporal de registros corregidos pre correccion duplicados  para corrector ".procesar_mensaje($error_bd_seq).".<br>";
-							    
-						    }
-						    //fin sube a corregidos_sin_duplicados_erc2463
-						    
-						}//fin if
-						//o actualiza si ya habia concatenando a la lista de numero de filas
-						else if($existe_afiliado==true)
-						{
-						    $array_check_tiene_2_filas_coincidentes=explode(";;",$lista_lineas_duplicados);
-						    
-						    //borra el que estaba en corregidos_sin_duplicados_erc2463
-						    //entrea si el nuemro de filas es igual a dos
-						    if(count($array_check_tiene_2_filas_coincidentes)==2)
-						    {
-							//BORRANDO el afiliado duplicado de corregidos_sin_duplicados_erc2463
-							$sql_delete_corregidos_temp="";
-							$sql_delete_corregidos_temp.=" DELETE FROM corregidos_sin_duplicados_erc2463  ";
-							$sql_delete_corregidos_temp.=" WHERE fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" fecha_corte_reporte='".$fecha_de_corte."'  ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" codigo_entidad_prestadora='".$cod_prestador."'  ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" codigo_entidad_eapb_generadora='".$cod_eapb."'  ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" nombre_archivo_erc='".$nombre_archivo_registrado."'  ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" id_usuario='$identificacion' ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" nick_usuario='$nick_user' ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" campo_erc_de_numero_orden_4='".$campos[4]."' ";
-							$sql_delete_corregidos_temp.=" AND ";
-							$sql_delete_corregidos_temp.=" campo_erc_de_numero_orden_5='".$campos[5]."' ";
-							$sql_delete_corregidos_temp.=" ; ";
-							$error_bd_seq="";		
-							$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_delete_corregidos_temp, $error_bd_seq);
-							if($error_bd_seq!="")
-							{
-								$mensajes_error_bd.=" ERROR Al eliminar en la tabla corregidos_sin_duplicados_erc2463 ".procesar_mensaje($error_bd_seq).".<br>";
-								
-							}
-							//FIN BORRANDO el afiliado duplicado de corregidos_sin_duplicados_erc2463
-						    }
-						    //fin borra el que estaba en corregidos_sin_duplicados_erc2463
-						    
-						    $query_insert_updt_en_indexador="";
-						    $query_insert_updt_en_indexador.=" UPDATE  ";
-						    $query_insert_updt_en_indexador.=" gioss_indexador_duplicados_del_reparador_2463 ";				
-						    $query_insert_updt_en_indexador.=" SET ";
-						    $query_insert_updt_en_indexador.=" contiene_filas_coincidentes='SI', ";
-						    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados='".$lista_lineas_duplicados."' ";
-						    $query_insert_updt_en_indexador.=" WHERE  ";
-						    $query_insert_updt_en_indexador.="tipo_id_usuario='".$tipo_id."'";				
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="id_usuario='".$identificacion."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="nick_usuario='".$nick_user."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="fecha_corte_reporte='".$fecha_de_corte."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="fecha_de_generacion='".$fecha_actual."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="hora_generacion='".$tiempo_actual."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="codigo_entidad_prestadora='".$cod_prestador."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="nombre_archivo='".$nombre_archivo_registrado."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="campo_erc_de_numero_orden_4_tipo_id='".$campos[4]."'";
-						    $query_insert_updt_en_indexador.=" AND ";
-						    $query_insert_updt_en_indexador.="campo_erc_de_numero_orden_5_numero_id='".$campos[5]."'";						    
-						    $query_insert_updt_en_indexador.=" ; ";
-						    $error_bd_seq="";		
-						    $bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
-						    if($error_bd_seq!="")
-						    {
-							$mensajes_error_bd.=" ERROR Al actualizar en la tabla gioss_indexador_duplicados_del_reparador_2463 ".procesar_mensaje($error_bd_seq).".<br>";
+							$columnas_inconsistencias_para_bd=array();
+							$columnas_inconsistencias_para_bd=explode(",",$msg_error);
 							
-							if($fue_cerrada_la_gui==false)
-							{
-								echo "<script>alert('ERROR Al actualizar en la tabla gioss_indexador_duplicados_del_reparador_2463  ".procesar_mensaje($error_bd_seq)."');</script>";
-							}
-						    }
-						    
-						    if(count($array_check_tiene_2_filas_coincidentes)==2)
-						    {
-							$personas_con_duplicados_hasta_el_momento+=1;
-						    }
-						}//fin if actualizar
-						//FIN FASE 2
-						//FIN INDEXADOR DE DUPLICADOS
-						
-						//SUBE A BD EL REGISTRO PARA EL PROCESO DE CORRECCION DE DUPLICADOS
-						$query_subir_registro_corregido="";
-						$query_subir_registro_corregido.=" INSERT INTO ";
-						$query_subir_registro_corregido.=" corregidos_con_duplicados_erc2463 ";				
-						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
-						{
-							$query_subir_registro_corregido.=" campo_erc_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
-							$numero_actual_campo_registro_corregido++;
-						}//fin while para nombres columnas de bd correspondientes a los campos de 2463 a insertar
-						$query_subir_registro_corregido.=" tipo_id_usuario, ";
-						$query_subir_registro_corregido.=" id_usuario, ";
-						$query_subir_registro_corregido.=" nick_usuario, ";
-						$query_subir_registro_corregido.=" numero_registro, ";
-						$query_subir_registro_corregido.=" fecha_corte_reporte, ";
-						$query_subir_registro_corregido.=" fecha_de_generacion, ";
-						$query_subir_registro_corregido.=" hora_generacion, ";
-						$query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
-						$query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
-						$query_subir_registro_corregido.=" nombre_archivo_erc ";
-						$query_subir_registro_corregido.=" ) ";
-						$query_subir_registro_corregido.=" VALUES ";
-						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
-						{						
-						    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
-						    $numero_actual_campo_registro_corregido++;
-						}//fin while con los valores de los campos 2463 a insertar en la tabla
-						$query_subir_registro_corregido.="'".$tipo_id."',";
-						$query_subir_registro_corregido.="'".$identificacion."',";
-						$query_subir_registro_corregido.="'".$nick_user."',";	
-						$query_subir_registro_corregido.="'".($cont_linea+1)."',";							
-						$query_subir_registro_corregido.="'".$fecha_de_corte."',";
-						$query_subir_registro_corregido.="'".$fecha_actual."',";
-						$query_subir_registro_corregido.="'".$tiempo_actual."',";
-						$query_subir_registro_corregido.="'".$cod_eapb."',";
-						$query_subir_registro_corregido.="'".$cod_prestador."',";
-						$query_subir_registro_corregido.="'".$nombre_archivo_registrado."'";
-						$query_subir_registro_corregido.=" ) ";
-						$query_subir_registro_corregido.=" ; ";
-						$error_bd_seq="";		
-						$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_subir_registro_corregido, $error_bd_seq);
-						if($error_bd_seq!="")
-						{
-							$mensajes_error_bd.=" ERROR Al subir en la tabla temporal de registros <br> corregidos pre correccion duplicados  para corrector .<br> $error_bd_seq ";
+							
 							
 						}
-						//FIN SUBE A BD EL REGISTRO PARA EL PROCESO DE CORRECCION DE DUPLICADOS
-					}//fin if numero de campos correcto
+						*/
+						//fin escribe los errores
 					
-					
-					//ESCRIBE LINEA REPARADA	
-					$linea_reparada="";
-					$cont_campo_reparado=0;
-					while($cont_campo_reparado<119)
-					{
-						if($linea_reparada!=""){$linea_reparada.="\t";}
-						$linea_reparada.=$campos[$cont_campo_reparado];
-						$cont_campo_reparado++;
-					}
-					
-					$file_reparado_r2463_ERC = fopen($ruta_archivo_reparado_ERC, "a") or die("fallo la creacion del archivo");
-					if($es_primera_linea==false)
-					{
-						fwrite($file_reparado_r2463_ERC,$linea_reparada);
-						$es_primera_linea=true;
-					}
-					else
-					{
-						fwrite($file_reparado_r2463_ERC,"\n".$linea_reparada);
-					}
-					fclose($file_reparado_r2463_ERC);
-					//FIN ESCRIBE LINEA REPARADA
-					
-					if($hubo_inconsistencias_en_ERC==false)
-					{
-						$hubo_inconsistencias_en_ERC=$array_resultados_validacion["error"];
-					}
-					if($hubo_inconsistencias_en_ERC==false)
-					{
-						$hubo_inconsistencias_en_ERC=$array_resultados_validacion_2["error"];
-					}
-					
-					//escribe los errores
-					$mensaje_errores_ERC=$array_resultados_validacion["mensaje"];
-					$array_mensajes_errores_campos=explode("|",$mensaje_errores_ERC);
-					
-					foreach($array_mensajes_errores_campos as $msg_error)
-					{	
-						fwrite($file_inconsistencias_r2463_ERC, $msg_error."\n");
-						
-						$columnas_inconsistencias_para_bd=array();
-						$columnas_inconsistencias_para_bd=explode(",",$msg_error);
-						
-						
-						
-					}
-					//fin escribe los errores
+						//fin escribe los errores NO USA
+
+						//echo $cont_linea_para_indexador." y mas uno ".($cont_linea_para_indexador+1)." afiliado $campo_n5_ti $campo_n6_ni ".$campos[16]."  <br>";
+
+						$cont_linea_para_indexador++;//solo se incrementa cuando la linea ha cumplido con las indicaciones de que es valida para reparar
+
+					}//fin if es linea valida para reparar
 					
 				}//fin if verifica longitud
 				else
 				{
 					$numero_lineas_campos_incorrectos++;
 					
+					//NO USA
+					/*
 					//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
 					$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0301001"])[1];
 					$error_longitud=$consecutivo_errores.",".$nombre_archivo_registrado.",03,".$array_tipo_validacion["03"].",0301,".$array_grupo_validacion["0301"].",0301001,$cadena_descripcion_inconsistencia ".count($campos).",".($cont_linea+1).","."-1";
 					$consecutivo_errores++;
 					
-					if($hubo_inconsistencias_en_ERC==false)
+					if($hubo_inconsistencias_en_HF==false)
 					{
-						$hubo_inconsistencias_en_ERC=true;
+						$hubo_inconsistencias_en_HF=true;
 					}
-					fwrite($file_inconsistencias_r2463_ERC, $error_longitud."\n");
+					fwrite($file_inconsistencias_r0123_HF, $error_longitud."\n");
 					
 					$columnas_inconsistencias_para_bd=array();
 					$columnas_inconsistencias_para_bd=explode(",",$error_longitud);
+					*/
+					//FIN NO USA
 					
 					//escribe en el archivo excluido los registros con campos incorrectos
 					$linea_original=explode("\n", $linea_tmp)[0];
 					
-					$file_excluido_r2463_ERC = fopen($ruta_archivo_excluido_ERC, "a") or die("fallo la creacion del archivo");
+					$file_excluido_r0123_HF = fopen($ruta_archivo_excluido_HF, "a") or die("fallo la creacion del archivo");
 					if($es_primera_linea_exc==false)
 					{
-						fwrite($file_excluido_r2463_ERC,$linea_original);
+						fwrite($file_excluido_r0123_HF,$linea_original);
 						$es_primera_linea_exc=true;
 					}
 					else
 					{
-						fwrite($file_excluido_r2463_ERC,"\n".$linea_original);
+						fwrite($file_excluido_r0123_HF,"\n".$linea_original);
 					}
-					fclose($file_excluido_r2463_ERC);
+					fclose($file_excluido_r0123_HF);
 					//fin escribe en el archivo excluido los registros con campos incorrectos
 					
+					/*
 					//ESCRIBE NO SUBIO EN EL CORREGIDO CON DUPLICADOS
-					$file_reparado_r2463_ERC = fopen($ruta_archivo_reparado_ERC, "a") or die("fallo la creacion del archivo");
+					$file_reparado_r0123_HF = fopen($ruta_archivo_reparado_HF, "a") or die("fallo la creacion del archivo");
 					if($es_primera_linea==false)
 					{
-						fwrite($file_reparado_r2463_ERC,"NO_SUBIO");
+						fwrite($file_reparado_r0123_HF,"NO_SUBIO");
 						$es_primera_linea=true;
 					}
 					else
 					{
-						fwrite($file_reparado_r2463_ERC,"\n"."NO_SUBIO");
+						fwrite($file_reparado_r0123_HF,"\n"."NO_SUBIO");
 					}
-					fclose($file_reparado_r2463_ERC);
+					fclose($file_reparado_r0123_HF);
 					//ESCRIBE NO SUBIO EN EL CORREGIDO CON DUPLICADOS
+					*/
 					
 				}//fin else longitud no apropiada
 				$cont_linea++;
 			}
-			fclose($file_ERC);
+			fclose($file_HF);
 			
 			//despues del while
 			
@@ -1558,7 +1932,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 			$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de registros duplicados:</td><td style=text-align:left>".$acumulador_para_contar_duplicados.".</tr>";
 			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero registros unicos:</td><td style=text-align:left>".$personas_insertadas_hasta_el_momento."</td></tr>";
 			$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de personas con registros duplicados:</td><td style=text-align:left>".$personas_con_duplicados_hasta_el_momento."</td></tr>";
-			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 119):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
+			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 95):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
 			$mensaje_estado_registros.="</table><br>";
 			
 			$mensaje_perm_estado=$mensaje_estado_registros;
@@ -1567,17 +1941,17 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		//fin if el nombre del archivo es valido
 		
 		//cierra el archivo donde se escriben las inconsistencias
-		fclose($file_inconsistencias_r2463_ERC);
+		fclose($file_inconsistencias_r0123_HF);
 		
 		//FIN PARTE CORRIGE ARCHIVO, IDENTIFICA E INDEXA DUPLICADOS
 		
 		//ARREGLO DE DUPLICADOS EN UNO SOLO
-		$nombre_vista_index_duplicados="indxd2463".$nombre_archivo_registrado.$nick_user.$fecha_y_hora_para_view;
+		$nombre_vista_index_duplicados="indxd0123".$nombre_archivo_registrado.$nick_user.$fecha_y_hora_para_view;
 		
 		$sql_vista_duplicados_reporte_obligatorio ="";
 		$sql_vista_duplicados_reporte_obligatorio.="CREATE OR REPLACE VIEW $nombre_vista_index_duplicados ";
 		$sql_vista_duplicados_reporte_obligatorio.=" AS  ";					
-		$sql_vista_duplicados_reporte_obligatorio .="SELECT * from gioss_indexador_duplicados_del_reparador_2463  ";	
+		$sql_vista_duplicados_reporte_obligatorio .="SELECT * from gioss_indexador_duplicados_del_reparador_0123  ";	
 		$sql_vista_duplicados_reporte_obligatorio.=" WHERE fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
 		$sql_vista_duplicados_reporte_obligatorio.=" AND ";
 		$sql_vista_duplicados_reporte_obligatorio.=" codigo_entidad_prestadora='".$cod_prestador."'  ";
@@ -1593,7 +1967,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		$sql_vista_duplicados_reporte_obligatorio.=" nick_usuario='$nick_user' ";
 		$sql_vista_duplicados_reporte_obligatorio.=" AND ";
 		$sql_vista_duplicados_reporte_obligatorio.=" contiene_filas_coincidentes='SI' ";
-		$sql_vista_duplicados_reporte_obligatorio.=" ORDER BY campo_erc_de_numero_orden_4_tipo_id asc,campo_erc_de_numero_orden_5_numero_id asc  ";
+		$sql_vista_duplicados_reporte_obligatorio.=" ORDER BY campo_hf_de_numero_orden_4_tipo_id asc,campo_hf_de_numero_orden_5_numero_id asc  ";
 		$sql_vista_duplicados_reporte_obligatorio.=";";
 		$error_bd_seq="";		
 		$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_vista_duplicados_reporte_obligatorio, $error_bd_seq);
@@ -1643,7 +2017,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 			
 			//CANCELA EJECUCION DEL ARCHIVO			    
 			$verificar_si_ejecucion_fue_cancelada="";
-			$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_2463_esta_reparando_ar_actualmente ";
+			$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_0123_esta_reparando_ar_actualmente ";
 			$verificar_si_ejecucion_fue_cancelada.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
 			$verificar_si_ejecucion_fue_cancelada.=" AND codigo_entidad_reportadora='".$cod_eapb."' ";					    
 			$verificar_si_ejecucion_fue_cancelada.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
@@ -1681,21 +2055,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 			$sql_query_busqueda_personas_bloques="";
 			$sql_query_busqueda_personas_bloques.="SELECT * FROM $nombre_vista_index_duplicados LIMIT $limite_personas OFFSET $contador_offset_personas;  ";
 			$error_bd_seq="";
-			$resultados_query_erc2463_duplicados=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($sql_query_busqueda_personas_bloques,$error_bd_seq);
+			$resultados_query_hf0123_duplicados=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($sql_query_busqueda_personas_bloques,$error_bd_seq);
 			if($error_bd_seq!="")
 			{
 				$mensajes_error_bd.="ERROR AL CONSULTAR de vista de las personas: ".$error_bd_seq."<br>";
 			}
 			
-			if(count($resultados_query_erc2463_duplicados)>0 && is_array($resultados_query_erc2463_duplicados))
+			if(count($resultados_query_hf0123_duplicados)>0 && is_array($resultados_query_hf0123_duplicados))
 			{
-				foreach($resultados_query_erc2463_duplicados as $duplicado_actual)
+				foreach($resultados_query_hf0123_duplicados as $duplicado_actual)
 				{
-					//echo "<script>alert('entro ".count($resultados_query_erc2463_duplicados)."');</script>";
+					//echo "<script>alert('entro ".count($resultados_query_hf0123_duplicados)."');</script>";
 			
 				    //TOMA LOS DATOS DEL DUPLICADO ACTUAL DE LA VISTA DE LA TABLA DEL INDEXADOR
-				    $tipo_id_duplicado_actual=trim($duplicado_actual["campo_erc_de_numero_orden_4_tipo_id"]);
-				    $numero_id_duplicado_actual=trim($duplicado_actual["campo_erc_de_numero_orden_5_numero_id"]);
+				    $tipo_id_duplicado_actual=trim($duplicado_actual["campo_hf_de_numero_orden_4_tipo_id"]);
+				    $numero_id_duplicado_actual=trim($duplicado_actual["campo_hf_de_numero_orden_5_numero_id"]);
 				    
 				    $lista_string_filas_donde_esta_duplicado=trim($duplicado_actual["lista_lineas_donde_hay_duplicados"]);
 				    $array_filas_correspondientes_al_duplicado_actual=explode(";;",$lista_string_filas_donde_esta_duplicado);
@@ -1715,13 +2089,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				    {
 					//lee el archivo de texto en la linea especifica
 					$linea_act = intval($numero_linea_dupl) ; 
-					$fileHandler = new SplFileObject($ruta_archivo_reparado_ERC);		
+					$fileHandler = new SplFileObject($ruta_archivo_reparado_HF);		
 					$fileHandler->seek($linea_act);
 					$linea_duplicada_del_afiliado=$fileHandler->current();
 					$array_campos_del_duplicado_del_afiliado=explode("\t",$linea_duplicada_del_afiliado);
 					//fin lee el archivo de texto en la linea especifica
 					
-					//echo "<script>alert('entro ".count($resultados_query_erc2463_duplicados)."');</script>";
+					//echo "<script>alert('entro ".count($resultados_query_hf0123_duplicados)."');</script>";
 					
 					//PARTE ESCRIBE LOG REPARACION DE DUPLICADOS PARTE 1
 					//se abre con modo a para que adicione que no subio
@@ -1733,7 +2107,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					$identificadores_de_cambios_duplicados_registro.=$tiempo_actual."||";//hora correcion
 					$identificadores_de_cambios_duplicados_registro.="DUPLICADO"."||";//identificador si es duplicado, unico, final
 					$identificadores_de_cambios_duplicados_registro.=$fecha_de_corte."||";//fecha de corte
-					$identificadores_de_cambios_duplicados_registro.="ERC"."||";//tipo reporte
+					$identificadores_de_cambios_duplicados_registro.="HF"."||";//tipo reporte
 					$identificadores_de_cambios_duplicados_registro.=$cod_eapb."||";
 					$identificadores_de_cambios_duplicados_registro.=$cod_prestador."||";//codigo prestador del registro en el archivo
 					$identificadores_de_cambios_duplicados_registro.="REPARACION"."||";//reparacion o consolidado
@@ -1752,8 +2126,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					fclose($file_cambios_duplicados_registro);
 					//FIN PARTE ESCRIBE LOG REPARACION DE DUPLICADOS PARTE 1
 					
-					//if mira que la linea contega los 119 campos
-					if(count($array_campos_del_duplicado_del_afiliado)==119)
+					//if mira que la linea contega los 95 campos
+					if(count($array_campos_del_duplicado_del_afiliado)==95)
 					{
 						//echo "<script>alert('entro ".count($array_filas_correspondientes_al_duplicado_actual)."');</script>";
 					    //if en caso de que solo haya un elemento en la lista de filas de duplicados
@@ -1766,18 +2140,18 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					    }//fin if solo habia una fila en la lista por ende no tenia duplicados
 					    else if($numero_filas_donde_esta_afiliado_actual>1)
 					    {
-						//sube a gioss_temp_dupl_afiliado_actual_reparador_erc2463
+						//sube a gioss_temp_dupl_afiliado_actual_reparador_hf0123
 						//para agrupar solo los registros duplicados para dicho afiliado
 						$query_subir_registro_corregido="";
 						$query_subir_registro_corregido.=" INSERT INTO ";
-						$query_subir_registro_corregido.=" gioss_temp_dupl_afiliado_actual_reparador_erc2463 ";				
+						$query_subir_registro_corregido.=" gioss_temp_dupl_afiliado_actual_reparador_hf0123 ";				
 						$query_subir_registro_corregido.=" ( ";				
 						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
+						while($numero_actual_campo_registro_corregido<95)
 						{
-							$query_subir_registro_corregido.=" campo_erc_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
+							$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 							$numero_actual_campo_registro_corregido++;
-						}//fin while para nombres columnas de bd correspondientes a los campos de 2463 a insertar
+						}//fin while para nombres columnas de bd correspondientes a los campos de 0123 a insertar
 						$query_subir_registro_corregido.=" tipo_id_usuario, ";
 						$query_subir_registro_corregido.=" id_usuario, ";
 						$query_subir_registro_corregido.=" nick_usuario, ";
@@ -1787,12 +2161,12 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$query_subir_registro_corregido.=" hora_generacion, ";
 						$query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
 						$query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
-						$query_subir_registro_corregido.=" nombre_archivo_erc ";
+						$query_subir_registro_corregido.=" nombre_archivo_hf ";
 						$query_subir_registro_corregido.=" ) ";
 						$query_subir_registro_corregido.=" VALUES ";
 						$query_subir_registro_corregido.=" ( ";				
 						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
+						while($numero_actual_campo_registro_corregido<95)
 						{
 						    if($numero_actual_campo_registro_corregido!=4 &&  $numero_actual_campo_registro_corregido!=5 )
 						    {
@@ -1840,21 +2214,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						if($error_bd_seq!="")
 						{
 						    echo "<script>alert('ERROR al subir $tipo_id_duplicado_actual $numero_id_duplicado_actual, numero registro ".$linea_act."');</script>";
-						    $mensajes_error_bd.=" ERROR Al subir en la tabla gioss_temp_dupl_afiliado_actual_reparador_erc2463 ".procesar_mensaje($error_bd_seq).".<br>";
+						    $mensajes_error_bd.=" ERROR Al subir en la tabla gioss_temp_dupl_afiliado_actual_reparador_hf0123 ".procesar_mensaje($error_bd_seq).".<br>";
 							
 						}
-						//fin sube a gioss_temp_dupl_afiliado_actual_reparador_erc2463
+						//fin sube a gioss_temp_dupl_afiliado_actual_reparador_hf0123
 						
 						
-						//sube a corregidos_solo_duplicados_erc2463 para reportes futuros
+						//sube a corregidos_solo_duplicados_hf0123 para reportes futuros
 						$query_subir_registro_corregido="";
 						$query_subir_registro_corregido.=" INSERT INTO ";
-						$query_subir_registro_corregido.=" corregidos_solo_duplicados_erc2463 ";				
+						$query_subir_registro_corregido.=" corregidos_solo_duplicados_hf0123 ";				
 						$query_subir_registro_corregido.=" ( ";				
 						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
+						while($numero_actual_campo_registro_corregido<95)
 						{
-							$query_subir_registro_corregido.=" campo_erc_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
+							$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 							$numero_actual_campo_registro_corregido++;
 						}//fin while para nombres columnas de bd correspondientes a los campos  a insertar
 						$query_subir_registro_corregido.=" tipo_id_usuario, ";
@@ -1866,12 +2240,12 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$query_subir_registro_corregido.=" hora_generacion, ";
 						$query_subir_registro_corregido.=" codigo_entidad_eapb_generadora, ";
 						$query_subir_registro_corregido.=" codigo_entidad_prestadora, ";
-						$query_subir_registro_corregido.=" nombre_archivo_erc ";
+						$query_subir_registro_corregido.=" nombre_archivo_hf ";
 						$query_subir_registro_corregido.=" ) ";
 						$query_subir_registro_corregido.=" VALUES ";
 						$query_subir_registro_corregido.=" ( ";				
 						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<119)
+						while($numero_actual_campo_registro_corregido<95)
 						{
 							$query_subir_registro_corregido.="'".trim(procesar_mensaje3($array_campos_del_duplicado_del_afiliado[$numero_actual_campo_registro_corregido]))."',";
 							$numero_actual_campo_registro_corregido++;
@@ -1892,34 +2266,34 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_subir_registro_corregido, $error_bd_seq);
 						if($error_bd_seq!="")
 						{
-						    echo "<script>alert('ERROR Al subir en la tabla corregidos_solo_duplicados_erc2463 ".procesar_mensaje($error_bd_seq)." ');</script>";
-						    $mensajes_error_bd.=" ERROR Al subir en la tabla corregidos_solo_duplicados_erc2463 ".procesar_mensaje($error_bd_seq).".<br>";
+						    echo "<script>alert('ERROR Al subir en la tabla corregidos_solo_duplicados_hf0123 ".procesar_mensaje($error_bd_seq)." ');</script>";
+						    $mensajes_error_bd.=" ERROR Al subir en la tabla corregidos_solo_duplicados_hf0123 ".procesar_mensaje($error_bd_seq).".<br>";
 							
 						}
-						//fin sube a corregidos_solo_duplicados_erc2463 para reportes futuros
+						//fin sube a corregidos_solo_duplicados_hf0123 para reportes futuros
 						
 						
 					    }//fin else if si habian varias filas en la lista por ende tiene duplicados el afiliado 
-					}//fin if si la linea posee 119 campos
+					}//fin if si la linea posee 95 campos
 					
 				    }//fin foreach							
 				    //FIN LEE EL ARCHIVO CORREGIDO PARA CADA LINEA Y LO SUBE A BD
 				    
 				    if($bool_ya_se_proceso==false)
 				    {
-					$nombre_vista_con_los_duplicados_del_afiliado_actual="duppa2463".$nombre_archivo_registrado.$nick_user.$fecha_y_hora_para_view;
+					$nombre_vista_con_los_duplicados_del_afiliado_actual="duppa0123".$nombre_archivo_registrado.$nick_user.$fecha_y_hora_para_view;
 					
 					$sql_vista_duplicados_de_la_persona_actual ="";
 					$sql_vista_duplicados_de_la_persona_actual.="CREATE OR REPLACE VIEW $nombre_vista_con_los_duplicados_del_afiliado_actual ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AS  ";					
-					$sql_vista_duplicados_de_la_persona_actual .="SELECT * from gioss_temp_dupl_afiliado_actual_reparador_erc2463  ";	
+					$sql_vista_duplicados_de_la_persona_actual .="SELECT * from gioss_temp_dupl_afiliado_actual_reparador_hf0123  ";	
 					$sql_vista_duplicados_de_la_persona_actual.=" WHERE fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
 					$sql_vista_duplicados_de_la_persona_actual.=" codigo_entidad_prestadora='".$cod_prestador."'  ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
 					$sql_vista_duplicados_de_la_persona_actual.=" codigo_entidad_eapb_generadora='".$cod_eapb."'  ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
-					$sql_vista_duplicados_de_la_persona_actual.=" nombre_archivo_erc='".$nombre_archivo_registrado."'  ";
+					$sql_vista_duplicados_de_la_persona_actual.=" nombre_archivo_hf='".$nombre_archivo_registrado."'  ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
 					$sql_vista_duplicados_de_la_persona_actual.=" tipo_id_usuario='$tipo_id' ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
@@ -1927,9 +2301,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
 					$sql_vista_duplicados_de_la_persona_actual.=" nick_usuario='$nick_user' ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
-					$sql_vista_duplicados_de_la_persona_actual.=" campo_erc_de_numero_orden_4='$tipo_id_duplicado_actual' ";
+					$sql_vista_duplicados_de_la_persona_actual.=" campo_hf_de_numero_orden_4='$tipo_id_duplicado_actual' ";
 					$sql_vista_duplicados_de_la_persona_actual.=" AND ";
-					$sql_vista_duplicados_de_la_persona_actual.=" campo_erc_de_numero_orden_5='$numero_id_duplicado_actual' ";
+					$sql_vista_duplicados_de_la_persona_actual.=" campo_hf_de_numero_orden_5='$numero_id_duplicado_actual' ";
 					$sql_vista_duplicados_de_la_persona_actual.=" ORDER BY numero_registro asc ";
 					$sql_vista_duplicados_de_la_persona_actual.=";";
 					$error_bd_seq="";		
@@ -1989,7 +2363,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					//insertando registro procesado
 					if($bool_fueron_procesados_duplicados_en_un_registro==true)
 					{						
-						if(count($array_campos_procesados_de_los_duplicados_del_duplicado)!=119)
+						if(count($array_campos_procesados_de_los_duplicados_del_duplicado)!=95)
 						{
 							echo "<script>alert(' el numero de campos es incorrecto en el arreglo');</script>";
 						}
@@ -1998,19 +2372,24 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion="";
 							    
 						$cont_orden_campo_a_string=0;									
-						while($cont_orden_campo_a_string<119)
+						while($cont_orden_campo_a_string<95)
 						{
 						    if($string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion!=""){$string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion.="\t";}
 						    $string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion.=$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_a_string];
 						    $cont_orden_campo_a_string++;
 						}//fin while
 						//FIN CONVERSION CAMPOS A LINEA A RESULTANTE UNICO DE DUPLICADOS POS CORRECCION CRITERIOS
+
+						$array_pre_campos=array();
+						$array_pos_campos=array();
+
+						$array_pre_campos=$array_campos_procesados_de_los_duplicados_del_duplicado;
 						
 						//pasar corrector aca
 						$array_errores=array();
 						//PD: el array con los campos pasa por referencia por lo tanto si se necesitan lso campos no necesita el return, el return devuelve
 						// los mensajes de error no los campos
-						$array_errores=reparacion_campo_en_blanco_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
+						$array_errores=reparacion_campo_en_blanco_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											$cod_eapb,
 											 $numero_registro_para_procesado,
 											 $consecutivo_errores,
@@ -2025,7 +2404,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $diccionario_identificacion_lineas,
 											 $coneccionBD);
 						
-						$array_errores=reparacion_formato_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
+						$array_errores=reparacion_formato_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
 											 $consecutivo_errores,
 											 $array_tipo_validacion,
@@ -2039,7 +2418,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $diccionario_identificacion_lineas,
 											 $coneccionBD);
 						
-						$array_errores=reparacion_valor_permitido_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
+						$array_errores=reparacion_valor_permitido_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
 											 $consecutivo_errores,
 											 $array_tipo_validacion,
@@ -2053,7 +2432,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $diccionario_identificacion_lineas,
 											 $coneccionBD);
 						
-						$array_errores=reparacion_criterios_de_calidad_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
+						$array_errores=reparacion_criterios_de_calidad_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
 											 $consecutivo_errores,
 											 $array_tipo_validacion,
@@ -2068,6 +2447,31 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $coneccionBD);
 								
 						//fin pasar corrector aca
+
+						$array_pos_campos=$array_campos_procesados_de_los_duplicados_del_duplicado;
+
+						//PARTE escribe segundo log
+						if(count($array_pre_campos)==count($array_pos_campos) )
+						{
+							$cont_comparacion_antes_despues=0;
+							while ($cont_comparacion_antes_despues<count($array_pre_campos) )
+							{
+								$antes=$array_pre_campos[$cont_comparacion_antes_despues];
+								$despues=$array_pos_campos[$cont_comparacion_antes_despues];
+								if($antes!=$despues)
+								{
+
+									$numero_campo_actual_de_acuerdo_norma=$array_numero_campo_bd[$cont_comparacion_antes_despues];
+									$linea_a_escribir_log="El campo numero ( $numero_campo_actual_de_acuerdo_norma ) tenia el valor ( $antes )  y fue cambiado por el valor ( $despues ) en el registro U-$numero_registro_para_procesado ";
+									
+									$file_cambios_campos_correccion_norma_pos= fopen($ruta_cambios_campos_correccion_norma_pos, "a") or die("fallo la creacion del archivo");
+									fwrite($file_cambios_campos_correccion_norma_pos, "\n".$linea_a_escribir_log); 						  
+									fclose($file_cambios_campos_correccion_norma_pos);
+								}//fin if
+								$cont_comparacion_antes_despues++;
+							}//fin while
+						}//fin if
+						//FIN PARTE escribe segundo log
 						
 						//PARTE ESCRIBE LOG REPARACION DE DUPLICADOS PARTE 2
 						
@@ -2075,7 +2479,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$linea_duplicado_resultante_pos_reparacion="";
 							    
 						$cont_orden_campo_a_string=0;									
-						while($cont_orden_campo_a_string<119)
+						while($cont_orden_campo_a_string<95)
 						{
 						    if($linea_duplicado_resultante_pos_reparacion!=""){$linea_duplicado_resultante_pos_reparacion.="\t";}
 						    $linea_duplicado_resultante_pos_reparacion.=$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_a_string];
@@ -2092,7 +2496,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$identificadores_de_cambios_duplicados_registro.=$tiempo_actual."||";//hora correcion
 						$identificadores_de_cambios_duplicados_registro.="--UNICO--"."||";//identificador si es duplicado, unico, final
 						$identificadores_de_cambios_duplicados_registro.=$fecha_de_corte."||";//fecha de corte
-						$identificadores_de_cambios_duplicados_registro.="ERC"."||";//tipo reporte
+						$identificadores_de_cambios_duplicados_registro.="HF"."||";//tipo reporte
 						$identificadores_de_cambios_duplicados_registro.=$cod_eapb."||";							    
 						$identificadores_de_cambios_duplicados_registro.=$cod_prestador."||";//codigo prestador del registro en el archivo
 						$identificadores_de_cambios_duplicados_registro.="REPARACION"."||";//reparacion o consolidado
@@ -2117,7 +2521,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$identificadores_de_cambios_duplicados_registro.=$tiempo_actual."||";//hora correcion
 						$identificadores_de_cambios_duplicados_registro.="--FINAL--"."||";//identificador si es duplicado, unico, final
 						$identificadores_de_cambios_duplicados_registro.=$fecha_de_corte."||";//fecha de corte
-						$identificadores_de_cambios_duplicados_registro.="ERC"."||";//tipo reporte
+						$identificadores_de_cambios_duplicados_registro.="HF"."||";//tipo reporte
 						$identificadores_de_cambios_duplicados_registro.=$cod_eapb."||";							    
 						$identificadores_de_cambios_duplicados_registro.=$cod_prestador."||";//codigo prestador del registro en el archivo
 						$identificadores_de_cambios_duplicados_registro.="REPARACION"."||";//reparacion o consolidado
@@ -2149,14 +2553,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						
 						$sql_insert_procesado_en_reporte_obligatorio="";
 						$sql_insert_procesado_en_reporte_obligatorio.=" INSERT INTO ";
-						$sql_insert_procesado_en_reporte_obligatorio.=" corregidos_sin_duplicados_erc2463 ";									    
+						$sql_insert_procesado_en_reporte_obligatorio.=" corregidos_sin_duplicados_hf0123 ";									    
 						$sql_insert_procesado_en_reporte_obligatorio.=" ( ";				
-						$cont_orden_campo_erc=0;
-						while($cont_orden_campo_erc<119)
+						$cont_orden_campo_hf=0;
+						while($cont_orden_campo_hf<95)
 						{
-							$sql_insert_procesado_en_reporte_obligatorio.=" campo_erc_de_numero_orden_".$cont_orden_campo_erc." , ";
-							$cont_orden_campo_erc++;
-						}//fin while para nombres columnas de bd correspondientes a los campos de 2463 a insertar
+							$sql_insert_procesado_en_reporte_obligatorio.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
+							$cont_orden_campo_hf++;
+						}//fin while para nombres columnas de bd correspondientes a los campos de 0123 a insertar
 						$sql_insert_procesado_en_reporte_obligatorio.=" tipo_id_usuario, ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" id_usuario, ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" nick_usuario, ";
@@ -2166,17 +2570,17 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						$sql_insert_procesado_en_reporte_obligatorio.=" hora_generacion, ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" codigo_entidad_eapb_generadora, ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" codigo_entidad_prestadora, ";
-						$sql_insert_procesado_en_reporte_obligatorio.=" nombre_archivo_erc ";
+						$sql_insert_procesado_en_reporte_obligatorio.=" nombre_archivo_hf ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" ) ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" VALUES ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" ( ";
 						//aqui si viene desde cero porque es el campo procesado
-						$cont_orden_campo_erc=0;
-						while($cont_orden_campo_erc<119)
+						$cont_orden_campo_hf=0;
+						while($cont_orden_campo_hf<95)
 						{
-							$sql_insert_procesado_en_reporte_obligatorio.="'".$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_erc]."',";
-							$cont_orden_campo_erc++;
-						}//fin while con los valores de los campos 2463 a insertar en la tabla de reporte obligatorio
+							$sql_insert_procesado_en_reporte_obligatorio.="'".$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_hf]."',";
+							$cont_orden_campo_hf++;
+						}//fin while con los valores de los campos 0123 a insertar en la tabla de reporte obligatorio
 						$sql_insert_procesado_en_reporte_obligatorio.="'".$tipo_id."',";
 						$sql_insert_procesado_en_reporte_obligatorio.="'".$identificacion."',";
 						$sql_insert_procesado_en_reporte_obligatorio.="'".$nick_user."',";
@@ -2195,7 +2599,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						{
 							$mensajes_error_bd.=" ERROR Al subir en la tabla reporte obligatorio: ".$error_bd_seq."<br>";
 						}
-					}//fin if si fueron procesados duplicados inserta el porcesado en la tabla de archivos reportados obligatorios exitosos de 2463
+					}//fin if si fueron procesados duplicados inserta el porcesado en la tabla de archivos reportados obligatorios exitosos de 0123
 					//fin insertando registro procesado
 								
 								
@@ -2217,14 +2621,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					    
 					//BORRANDO INFORMACION DE LA TABLA TEMPORAL CON LOS DUPLICADOS DEL AFILIADO
 					$sql_delete_corregidos_temp="";
-					$sql_delete_corregidos_temp.=" DELETE FROM gioss_temp_dupl_afiliado_actual_reparador_erc2463  ";
+					$sql_delete_corregidos_temp.=" DELETE FROM gioss_temp_dupl_afiliado_actual_reparador_hf0123  ";
 					$sql_delete_corregidos_temp.=" WHERE fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
 					$sql_delete_corregidos_temp.=" AND ";
 					$sql_delete_corregidos_temp.=" codigo_entidad_prestadora='".$cod_prestador."'  ";
 					$sql_delete_corregidos_temp.=" AND ";
 					$sql_delete_corregidos_temp.=" codigo_entidad_eapb_generadora='".$cod_eapb."'  ";
 					$sql_delete_corregidos_temp.=" AND ";
-					$sql_delete_corregidos_temp.=" nombre_archivo_erc='".$nombre_archivo_registrado."'  ";
+					$sql_delete_corregidos_temp.=" nombre_archivo_hf='".$nombre_archivo_registrado."'  ";
 					$sql_delete_corregidos_temp.=" AND ";
 					$sql_delete_corregidos_temp.=" tipo_id_usuario='$tipo_id' ";
 					$sql_delete_corregidos_temp.=" AND ";
@@ -2266,7 +2670,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					{
 						//echo "<script>alert('$msg_a_bd');</script>";
 						$query_update_esta_siendo_procesado="";
-						$query_update_esta_siendo_procesado.=" UPDATE gioss_2463_esta_reparando_ar_actualmente ";
+						$query_update_esta_siendo_procesado.=" UPDATE gioss_0123_esta_reparando_ar_actualmente ";
 						$query_update_esta_siendo_procesado.=" SET mensaje_estado_registros='$msg_a_bd' ";
 						$query_update_esta_siendo_procesado.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
 						$query_update_esta_siendo_procesado.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";
@@ -2281,7 +2685,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						{
 							if($fue_cerrada_la_gui2==false)
 							{
-							    echo "<script>alert('error al actualizar el estado actual de reparacion en tiempo real  2463 ');</script>";
+							    echo "<script>alert('error al actualizar el estado actual de reparacion en tiempo real  0123 ');</script>";
 							}
 						}
 						else
@@ -2291,7 +2695,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						
 						//CANCELA EJECUCION DEL ARCHIVO			    
 						$verificar_si_ejecucion_fue_cancelada="";
-						$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_2463_esta_reparando_ar_actualmente ";
+						$verificar_si_ejecucion_fue_cancelada.=" SELECT esta_ejecutando FROM gioss_0123_esta_reparando_ar_actualmente ";
 						$verificar_si_ejecucion_fue_cancelada.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
 						$verificar_si_ejecucion_fue_cancelada.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";	    
 						$verificar_si_ejecucion_fue_cancelada.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
@@ -2357,18 +2761,18 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		
 		//PARTE ESCRIBE CSV
-		$nombre_vista_consulta_definitiva_corregidos="vcroerc2463_".$nick_user."_".$tipo_id."_".$identificacion;
+		$nombre_vista_consulta_definitiva_corregidos="vcrohf0123_".$nick_user."_".$tipo_id."_".$identificacion;
 		
 		$numero_registros_bloque=1000;
 		$sql_vista_consulta_reporte_obligatorio="";
 		$sql_vista_consulta_reporte_obligatorio.="CREATE OR REPLACE VIEW $nombre_vista_consulta_definitiva_corregidos ";
-		$sql_vista_consulta_reporte_obligatorio.=" AS SELECT * FROM corregidos_sin_duplicados_erc2463 ";
+		$sql_vista_consulta_reporte_obligatorio.=" AS SELECT * FROM corregidos_sin_duplicados_hf0123 ";
 		$sql_vista_consulta_reporte_obligatorio.=" WHERE ";
 		$sql_vista_consulta_reporte_obligatorio.=" fecha_de_generacion='$fecha_actual'  AND hora_generacion='$tiempo_actual' ";
 		$sql_vista_consulta_reporte_obligatorio.=" AND ";
 		$sql_vista_consulta_reporte_obligatorio.=" codigo_entidad_eapb_generadora='".$cod_eapb."'  ";
 		$sql_vista_consulta_reporte_obligatorio.=" AND ";
-		$sql_vista_consulta_reporte_obligatorio.=" nombre_archivo_erc='".$nombre_archivo_registrado."'  ";
+		$sql_vista_consulta_reporte_obligatorio.=" nombre_archivo_hf='".$nombre_archivo_registrado."'  ";
 		$sql_vista_consulta_reporte_obligatorio.=" AND ";
 		$sql_vista_consulta_reporte_obligatorio.=" tipo_id_usuario='$tipo_id' ";
 		$sql_vista_consulta_reporte_obligatorio.=" AND ";
@@ -2425,13 +2829,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 			{
 				
 				
-				$file_reparado_r2463_sin_dupl_ERC= fopen($ruta_archivo_reparado_sin_duplicados_ERC, "a") or die("fallo la creacion del archivo");
+				$file_reparado_r0123_sin_dupl_HF= fopen($ruta_archivo_reparado_sin_duplicados_HF, "a") or die("fallo la creacion del archivo");
 						    
 				foreach($resultado_query_reporte_obligatoria as $resultado)
 				{
 					$cadena_escribir_linea="";
-					$cont_orden_campo_erc=0;
-					while($cont_orden_campo_erc<119)
+					$cont_orden_campo_hf=0;
+					while($cont_orden_campo_hf<95)
 					{
 						if($cadena_escribir_linea!="")
 						{
@@ -2440,9 +2844,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						
 						/*
 						//el -777 indica un campo en blanco, si no hay escribe el valor del campo
-						if($resultado["campo_erc_de_numero_orden_".$cont_orden_campo_erc]!="-777")
+						if($resultado["campo_hf_de_numero_orden_".$cont_orden_campo_hf]!="-777")
 						{
-							$cadena_escribir_linea.=$resultado["campo_erc_de_numero_orden_".$cont_orden_campo_erc];
+							$cadena_escribir_linea.=$resultado["campo_hf_de_numero_orden_".$cont_orden_campo_hf];
 						}
 						else
 						{
@@ -2451,18 +2855,18 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 						//fin el -777 indica un campo en blanco, si no hay escribe el valor del campo
 						*/
 						
-						$cadena_escribir_linea.=$resultado["campo_erc_de_numero_orden_".$cont_orden_campo_erc];
+						$cadena_escribir_linea.=$resultado["campo_hf_de_numero_orden_".$cont_orden_campo_hf];
 						
-						$cont_orden_campo_erc++;
+						$cont_orden_campo_hf++;
 					}
 					if($flag_para_salto_linea_inicial==false)
 					{
-						fwrite($file_reparado_r2463_sin_dupl_ERC, $cadena_escribir_linea);
+						fwrite($file_reparado_r0123_sin_dupl_HF, $cadena_escribir_linea);
 						$flag_para_salto_linea_inicial=true;
 					}
 					else
 					{
-						fwrite($file_reparado_r2463_sin_dupl_ERC, "\n".$cadena_escribir_linea);
+						fwrite($file_reparado_r0123_sin_dupl_HF, "\n".$cadena_escribir_linea);
 					}
 					
 					
@@ -2487,7 +2891,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					$cont_resultados++;
 					$cont_linea++;
 				}//fin foreach
-				fclose($file_reparado_r2463_sin_dupl_ERC);
+				fclose($file_reparado_r0123_sin_dupl_HF);
 				
 				
 				
@@ -2527,7 +2931,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 					echo "<script>alert('No hubo duplicados');</script>";
 				}
 				echo "<script>document.getElementById('mensaje').style.textAlign='center';</script>";
-				echo "<script>document.getElementById('mensaje').innerHTML='$mensaje_perm_estado $mensaje_perm_estado_reg_dupl $mensaje_perm_estado_reg_recuperados Se ha terminado de corregir ERC<br> lineas con numero de campos incorrectos, que no permitieron corregir: $numero_lineas_campos_incorrectos';</script>";
+				echo "<script>document.getElementById('mensaje').innerHTML='$mensaje_perm_estado $mensaje_perm_estado_reg_dupl $mensaje_perm_estado_reg_recuperados Se ha terminado de corregir HF<br> lineas con numero de campos incorrectos, que no permitieron corregir: $numero_lineas_campos_incorrectos';</script>";
 				
 				echo "<script>document.getElementById('tabla_estado_1').style.position='relative';</script>";
 				ob_flush();
@@ -2538,21 +2942,28 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		}//fin if nombre archivo valido
 		
-		if($hubo_inconsistencias_en_ERC)
+		if($hubo_inconsistencias_en_HF)
 		{
 			$se_genero_archivo_de_inconsistencias=true;		
-			$errores.="Se corrigieron los errores a corregir en el archivo ERC.<br>";
+			$errores.="Se corrigieron los errores a corregir en el archivo HF.<br>";
 			
 		}
 		
 		//CREAR ZIP
 		$archivos_a_comprimir=array();		
-		//$archivos_a_comprimir[]=$ruta_archivo_inconsistencias_ERC;
-		$archivos_a_comprimir[]=$ruta_archivo_reparado_ERC;
-		$archivos_a_comprimir[]=$ruta_archivo_reparado_sin_duplicados_ERC;
-		$archivos_a_comprimir[]=$ruta_archivo_excluido_ERC;
+		//$archivos_a_comprimir[]=$ruta_archivo_inconsistencias_HF;
+		$archivos_a_comprimir[]=$ruta_archivo_reparado_HF;
+		$archivos_a_comprimir[]=$ruta_archivo_reparado_sin_duplicados_HF;
+		$archivos_a_comprimir[]=$ruta_archivo_excluido_HF;
 		$archivos_a_comprimir[]=$ruta_cambios_duplicados_campos;
-		$ruta_zip=$rutaTemporal."rERC_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string.'.zip';
+		$archivos_a_comprimir[]=$ruta_cambios_campos_correccion_norma_pre;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_cambios_campos_correccion_norma_pos;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_archivo_afiliado_no_existe;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_archivo_afiliado_existe_cambio_sexo;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_archivo_afiliado_existe_cambio_fecha_nacimiento;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_archivo_registros_excluidos_no_afiliados;//agregado 03 10 2017
+		$archivos_a_comprimir[]=$ruta_archivo_registros_excluidos_fecha_nacimiento_invalida;//agregado 03 10 2017
+		$ruta_zip=$rutaTemporal."reparado0123HF_".$nombre_archivo_registrado."_".$fecha_actual."_".$tiempo_actual_string.'.zip';
 		if(file_exists($ruta_zip))
 		{
 			unlink($ruta_zip);
@@ -2564,7 +2975,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		//BOTONES DESCARGA
 		$botones="";
-		$botones.=" <input type=\'button\' value=\'Descargar archivo reparado para ERC\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
+		$botones.=" <input type=\'button\' value=\'Descargar archivo reparado para HF\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
 		
 		//FIN BOTONES DESCARGA
 		
@@ -2608,7 +3019,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		$query_delete_log_dupl_anterior.=" AND ";
 		$query_delete_log_dupl_anterior.=" codigo_entidad_eapb_generadora='".$cod_eapb."' ";
 		$query_delete_log_dupl_anterior.=" AND ";
-		$query_delete_log_dupl_anterior.=" tipo_reporte='ERC' ";
+		$query_delete_log_dupl_anterior.=" tipo_reporte='HF' ";
 		$query_delete_log_dupl_anterior.=" AND ";
 		$query_delete_log_dupl_anterior.=" reparacion_o_consolidado='REPARACION' ";
 		if($cod_prestador=="AGRUP_EAPB")
@@ -2716,7 +3127,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		
 		//YA NO ESTA EN USO EL ARCHIVO
 		$query_update_esta_siendo_procesado="";
-		$query_update_esta_siendo_procesado.=" UPDATE gioss_2463_esta_reparando_ar_actualmente ";
+		$query_update_esta_siendo_procesado.=" UPDATE gioss_0123_esta_reparando_ar_actualmente ";
 		$query_update_esta_siendo_procesado.=" SET esta_ejecutando='NO',";
 		$query_update_esta_siendo_procesado.=" ruta_archivo_descarga='$ruta_zip' ";
 		$query_update_esta_siendo_procesado.=" WHERE fecha_corte_archivo_en_reparacion='".$fecha_de_corte."' ";
@@ -2732,7 +3143,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		{
 			if(connection_aborted()==false)
 			{
-				echo "<script>alert('error al actualizar el estado actual de validacion en tiempo real  2463 ');</script>";
+				echo "<script>alert('error al actualizar el estado actual de validacion en tiempo real  0123 ');</script>";
 			}
 		}
 		//FIN YA NO ESTA EN USO EL ARCHIVO
@@ -2764,7 +3175,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 				}//fin if usa ../utiles/configuracion_global_email.php
 				$mail->From = "sistemagioss@gmail.com";
 				$mail->FromName = "GIOSS";
-				$mail->Subject = "Reparacion ERC 2463 ";
+				$mail->Subject = "Reparacion HF 0123 ";
 				$mail->AltBody = "Cordial saludo,\n El sistema ha reparado su archivo )";
 		    
 				$mail->MsgHTML("Cordial saludo,\n El sistema ha realizado las correciones necesarias para la calidad de su archivo para la EAPB $cod_eapb .<strong>GIOSS</strong>.");
@@ -2817,7 +3228,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 			if(connection_aborted()==false)
 			{
 				echo "<script>document.getElementById('div_mensaje_error').style.display='inline';</script>";
-				echo "<script>document.getElementById('parrafo_mensaje_error').innerHTML='<br>El archivo 2463 esta siendo reparado actualmente.';</script>";
+				echo "<script>document.getElementById('parrafo_mensaje_error').innerHTML='<br>El archivo 0123 esta siendo reparado actualmente.';</script>";
 				ob_flush();
 				flush();
 			}
@@ -2827,13 +3238,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 else if(isset($_POST["accion"]) && $_POST["accion"]=="validar" )
 {
 	$ultimo_error="";
-	if(!( isset($_FILES["2463_ERC_file"])))
+	if(!( isset($_FILES["0123_HF_file"])))
 	{
 		$ultimo_error="El archivo no se cargo ";
 	}
-	else if(!($_FILES["2463_ERC_file"]["error"]==0))
+	else if(!($_FILES["0123_HF_file"]["error"]==0))
 	{
-		$ultimo_error="Error con el archivo de tipo ".$_FILES["2463_ERC_file"]["error"];
+		$ultimo_error="Error con el archivo de tipo ".$_FILES["0123_HF_file"]["error"];
 	}
 	
 	if(connection_aborted()==false)

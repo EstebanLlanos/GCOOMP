@@ -31,7 +31,7 @@ function reparacion_campos_duplicados($tipo_id_duplicado_actual,
     
     $arreglo_campos_reparados=array();
     $cont_campos_reparados_pre_fix=0;
-    while($cont_campos_reparados_pre_fix<119)
+    while($cont_campos_reparados_pre_fix<95)
     {
         $arreglo_campos_reparados[$cont_campos_reparados_pre_fix]="NO_VALOR_1024488856";
         $cont_campos_reparados_pre_fix++;
