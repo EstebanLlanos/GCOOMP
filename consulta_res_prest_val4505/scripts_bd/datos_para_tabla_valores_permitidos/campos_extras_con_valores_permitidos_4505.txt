@@ -1,0 +1,5 @@
+119,Edad Simple en Anos,0 - 120;Edad Simple Anos;999;Sin dato
+120,Edad Quiquenio,1;Menor de 1 ano;2;de 1 a 4 anos;3;De 5 a 9 Anos;4;De 10 a 14 Anos;5;De 15 a 19 Anos;6;De 20 a 24 Anos;7;De 25 a 29 Anos;8;De 30 a 34 Anos;9;De 35 a 39 Anos;10;De 40 a 44 Anos;11;De 45 a 49 Anos;12;De 50 a 54 Anos;13;De 55 A 59 Anos;14;De 60 a 64 Anos;15;De 65 a 69 Anos;16;De 70 a 74 Anos;17;De 75 a 79 Anos;18;De 80 a 84 Anos;19;De 85 a 89 Anos;20;De 90 y mas anos;999;Sin Dato
+121,Edad Etarea ,1;Menor de 1 ano;2;de 1 a 4 anos;3;De 5 a 14 Anos;4;De 10 a 14 Anos;5;De 15 a 44 Anos;6;De 45 a 59 Anos;7;De 60 y mas anos;999;Sin Dato
+122,Edad en Dias,0 - 45000;Dias de Ead;999;Sin dato
+123,Regional,1;Caribe;2;Centro Oriente;3;Eje Cafetero;4;Exterior;5;Nor Occidente;6;Nor Oriente;7;Sur Occidente;999;Sin Dato

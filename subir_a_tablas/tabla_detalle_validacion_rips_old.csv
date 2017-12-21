@@ -1,0 +1,94 @@
+01,0101,010101,El valor registrado excede los 20 caracteres
+01,0101,010102,El valor registrado es diferente de 12 caracteres
+01,0101,010103,El valor registrado es diferente de 2 caracteres
+01,0101,010104,El valor registrado es diferente de 10 caracteres
+01,0101,010105,El valor registrado es diferente de 6 caracteres
+01,0101,010106,El valor registrado es diferente de 4 caracteres
+01,0101,010107,El valor registrado es diferente de 1 carácter
+01,0101,010108,El valor registrado excede los 15 caracteres
+01,0101,010109,El valor registrado excede los 60 caracteres
+01,0101,010110,El valor registrado excede los 30 caracteres
+01,0101,010111,El valor registrado es diferente de 5 caracteres
+01,0101,010112,El valor registrado es diferente de 8 caracteres
+01,0101,010113,El valor registrado excede los 10 caracteres
+01,0101,010114,El valor registrado excede los 3 caracteres
+01,0101,010115,El valor registrado es diferente de 3 caracteres
+01,0101,010116,El valor registrado excede los 2 caracteres
+01,0101,010117,El valor registrado excede los 4 caracteres
+01,0102,010201,Formato de Campo Invalido no correponde a   fecha : dd/mm/aaaa
+01,0102,010202,Formato de Campo Invalido no correponde a  formato Hora:  hh:mm
+01,0102,010203,Formato de Campo Invalido no correponde debe ser numerico entero
+01,0102,010204,Formato de Campo Invalido no correponde debe utilizar el punto (.) como separador de miles
+01,0103,010301,Valor permitido invalido -  Codigo del Prestador de Servicios No corresponde al usuario (Usuario de logueo)
+01,0103,010302,Valor permitido invalido - Codigo del tipo de archivo no existe
+01,0103,010303,Valor permitido invalido - Tipo de identificacion del prestador no existe
+01,0103,010304,Valor permitido invalido - Codigo de le entidad administradora EAPB no existe
+01,0103,010305,Valor permitido invalido - Codigo del tipo de servicio no existe
+01,0103,010306,Valor permitido invalido - Tipo de identificacion del usuario no es permitido
+01,0103,010307,Valor permitido invalido - Codigo tipo de usuario no existe
+01,0103,010308,Valor permitido invalido - Codigo unidad de medida de la edad no existe
+01,0103,010309,Valor permitido invalido - Codigo sexo no existe
+01,0103,010310,Valor permitido invalido - Codigo Departamento de residencia no existe 
+01,0103,010311,Valor permitido invalido - Codigo Municipio de residencia no existe 
+01,0103,010312,Valor permitido invalido - Codigo Zona de residencia no existe 
+01,0103,010313,Valor permitido invalido -  Codigo de actividad (CUPS) no existe
+01,0103,010314,Valor permitido invalido - Código del Diangostico no existe (Cie X)
+01,0103,010315,Valor permitido invalido - Código de causa externa no existe
+01,0103,010316,Valor permitido invalido - Codigo de finalidad de consulta no existe
+01,0103,010317,Valor permitido invalido - Codigo de finalidad de procedimiento no existe
+01,0103,010318,Valor permitido invalido - Código tipo de diagnostico principal
+01,0103,010319,Valor permitido invalido - Código via de ingreso a la institucion no existe
+01,0103,010320,Valor permitido invalido - Código estado a la salida no existe
+01,0103,010321,Valor permitido invalido - Codigo destino a la salida no existe
+01,0103,010322,Valor permitido invalido - Código tipo de servicio no existe
+01,0103,010323,Valor permitido invalido - Código control prenatal no existe 
+01,0103,010324,Valor permitido invalido - Código ambito de realizacion no existe
+01,0103,010325,Valor permitido invalido - Código personal que atiende no existe
+01,0103,010326,Valor permitido invalido - Código realizacion procedimiento Qx no existe
+01,0104,010401,Campo de registro obligatorio en Blanco
+01,0104,010402,"Campo obligatorio en blanco (Estados a la salida igual ""2""  Muerto)"
+01,0104,010403,Campo obligatorio en blanco (Valor del campo Tipo de Medicamento = 2 NO POS)
+01,0104,010404,"Campo obligatorio en blanco ( Valor del campo N° 4 es igual a ""3"" Vinculado)"
+01,0104,010405,Campo obligatorio en blanco ( Valor del campo N° 7 corresponde a Atencion del Parto)
+01,0104,010406,"Campo obligatorio en blanco ( Valor del campo N° 14 estado a la salida es ""2"" Muerte)"
+01,0104,010407,"Campo obligatorio en blanco ( Valor del campo N° 7 tipo Medicamento es ""1"" POS)"
+01,0104,010408,Campo obligatorio en blanco ( Valor del campo N° 12 registra Diagnostico de Muerte)
+01,0104,010409,"Campo obligatorio en blanco ( Valor del campo N° 6 es igual a ""2"" o ""3"" Estancia o traslado"
+01,0105,010501,Valor de la Fecha invalido - Excede la fecha actual
+01,0105,010502,Campo Invalido - Archivo registrado duplicado
+01,0105,010503,Código del Diagnostico principal requerido - la actividad corresponde a un evento quirurgico
+01,0105,010504,El código de la EAPB registrado no corresponde con el permitido al Usuario
+01,0105,010506,Valor de la Fecha de Inicio es Mayor que el valor de la Fecha Final para el archivo AF
+01,0105,010507,Valor de la Fecha Final es menor que el valor de la Fecha de Inicio para el archivo AF
+01,0105,010508,Valor del campo no permitido - no debe se negativo
+01,0105,010509,Valor del Numero de Factura esta duplicado en el archivo AF
+01,0105,010510,El valor de la edad en Años  excede el limite permitido ( 120)
+01,0105,010511,El valor de la edad en Meses  excede el limite permitido ( 11 )
+01,0105,010512,El valor de la edad en Dias  excede el limite permitido ( 29 )
+01,0105,010513,El valor de la fecha de la Actividad es superior a la Fecha de Remisión del Archivo CT
+01,0105,010514,El valor registrado de Fecha de Salida es Menor que el valor de la Fecha de Ingreso
+01,0105,010515,El valor de la Fecha de Muerte es menor al valor de la fecha de Nacimiento
+01,0105,010516,El valor del codigo de la Consulta registrado no es permitido ( CUPS del 890101 al 890704)
+01,0105,010517,"Diagnostico Principal no permitido para el tipo de finalidad ""10"" (no debe iniciar por ""Z"")"
+01,0105,010518,"Diagnostico Principal no permitido para tipo de finalidad diferente de ""10"" (debe iniciar por ""Z"")"
+01,0105,010519,Codigo del Diagnostico no permitido para la edad y/o sexo del usuaro
+01,0105,010520,"Valor del campo ""Personal que atiende"" no corresponde ala actividad atencion del Parto Normal"
+01,0105,010521,Codigo del Diagnostico a la salida de Urgencias no Permitido (no debe iniciar por V. W. X. Y)
+01,0105,010522,Codigo del Diagnostico Relacionado 1 Requerido - Causa externa es 01 al 12  (Diagnostico Debe iniciar por V. W. X. Y)
+01,0105,010523,"Codigo Causa de la Muerte es requerido - Valor del esatdo a la salida es: Muerte ""2"""
+01,0105,010524,"Valor registrado como Causa de Muerte es Invalido - Valor del estado a la salida es: Vivo ""1"""
+01,0105,010525,Valor registrado de hora invalido - Excede de 23
+01,0105,010526,Valor registrado de Minutos invalido - Excede de 59
+01,0105,010527,Hora de Ingreso Invalido - es igual o excede el valor de la Hora de salida ( para Fechas de Ingreso y salida iguales)
+01,0105,010528,Hora de Egreso Invalido - es igual o menor al valor de la Hora de ingreso ( para Fechas de Ingreso y salida iguales)
+01,0106,010602,Nombre de archivo relacionado en el CT - no corresponde a los archivos a validar
+01,0106,010603,Archivo relacionado en el Archivo CT no existe en los archivoa a Validar
+01,0106,010604,Numero de registros de archivo relacionado en el CT - no corresponde con la cantidad de registros del archivo a validar
+01,0106,010605,Código del Prestador de Servicios de Salud relacionado en el AF NO corresponde al registrado en el CT
+01,0106,010606,Numero de Factura - no corresponde o no existe en los archivos de servicios
+01,0106,010607,Usuario relacionado en archivo US no existe en los Archivos de Servicios
+01,0106,010608,Código de la EAPB del Archivo de Usuarios  US - no corresponde con la EAPB del archivo AF
+01,0106,010609,Código de la EAPB del Archivo de Facturas AF - no corresponde con la EAPB del archivo de Usuarios US
+01,0106,010610,Numero de Factura registrada no existe en el Archivo  de Factura AF
+01,0106,010612,Usuario registrado en el Archivo no existe en el archivo de Usuarios US
+01,0106,010613,Usuario remitido de Urgencias a Hospitalizacion no existe en el Archivo de AH

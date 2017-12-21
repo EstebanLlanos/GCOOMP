@@ -1,0 +1,12 @@
+Estos archivos se usaran como base para mantener consistencia en la interfaz de usuario de los modulos del sistema
+los modulos del sistema seran tenidos en cuenta de acuerdo a la informacion de dicho modulo almacenada y asignada en la base de datos
+
+COMO USAR:
+
+para adicionar un nuevo modulo cree la carpeta al mismo nivel que los demas modulos, luego copie y pegue en la nueva carpeta 
+los archivos y  cambie el nombre de estos("cambiar_aqui") por el nombre de su modulo(ej. "mi_modulo") luego entre a los archivos con extension
+.php y .html.tpl y cambie donde diga ("cambiar_aqui") por el nuevo nombre de los archivos de su modulo.
+
+Nota: mientras cambie los archivos asegurese de haberlos copiado antes a la nueva carpeta y no desde esta,  también asegurese de 
+no cambiar la extension .html.tpl por solo .tpl mientras remplaza por el nuevo nombre(en caso de que lo camie asegurese de que los archivos que llevan.html.tpl 
+queden en solo .tpl...no se recomienda). 
