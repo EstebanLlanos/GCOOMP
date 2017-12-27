@@ -5,7 +5,7 @@ ini_set('memory_limit', '900M');
 
 include_once ('../utiles/clase_coneccion_bd.php');
 include_once ('../utiles/funciones_crear_menu.php');
-//cancer
+//hf
 function reparacion_campos_duplicados($tipo_id_duplicado_actual,
                                       $numero_id_duplicado_actual,
                                       $fecha_actual,
