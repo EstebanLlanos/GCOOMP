@@ -139,7 +139,7 @@ function convert_to_standard_notation($floatAsString)
     return number_format($norm, -intval(substr($e, 1)));
 }
 
-function corrige_longitud_fecha($array_fecha_corregida,$fecha_corte,$fase=0)
+function corrige_longitud_fecha_rep($array_fecha_corregida,$fecha_corte,$fase=0)
 {
     if(is_array($array_fecha_corregida) && is_array($fecha_corte))
     {    
@@ -324,7 +324,7 @@ function corrige_longitud_fecha($array_fecha_corregida,$fecha_corte,$fase=0)
     }//fin if son array los parametros
 }//fin funcion corrige_longitud_fecha
 
-function corrector_formato_fecha($campo_fecha,$fecha_corte_param,$es_fecha_nacimiento=false,$campo_especial=-1,$campo_debug=0)
+function corrector_formato_fecha_rep($campo_fecha,$fecha_corte_param,$es_fecha_nacimiento=false,$campo_especial=-1,$campo_debug=0)
 {
     date_default_timezone_set ("America/Bogota");
     
@@ -589,7 +589,7 @@ function corrector_formato_fecha($campo_fecha,$fecha_corte_param,$es_fecha_nacim
     return $fecha_corregida;
 }//fin funcion
 
-function reparacion_campo_en_blanco_ERC(&$campos,
+function reparacion_campo_en_blanco_HF(&$campos,
 					$cod_eapb,
 					     $nlinea,
 					     &$consecutivo_errores,
@@ -2839,10 +2839,10 @@ function reparacion_campo_en_blanco_ERC(&$campos,
 	
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);
-}//fin funcion  validarERC
+}//fin funcion  validarHF
 
 
-function reparacion_formato_ERC(&$campos,
+function reparacion_formato_HF(&$campos,
 					     $nlinea,
 					     &$consecutivo_errores,
 					     $array_tipo_validacion,
@@ -4651,9 +4651,9 @@ function reparacion_formato_ERC(&$campos,
 	
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);
-}//fin funcion  validarERC
+}//fin funcion  validarHF
 
-function reparacion_valor_permitido_ERC(&$campos,
+function reparacion_valor_permitido_HF(&$campos,
 					     $nlinea,
 					     &$consecutivo_errores,
 					     $array_tipo_validacion,
@@ -6739,10 +6739,10 @@ function reparacion_valor_permitido_ERC(&$campos,
 	
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);
-}//fin funcion  validarERC
+}//fin funcion  validarHF
 
 
-function reparacion_criterios_de_calidad_ERC(&$campos,
+function reparacion_criterios_de_calidad_HF(&$campos,
 					     $nlinea,
 					     &$consecutivo_errores,
 					     $array_tipo_validacion,
@@ -9399,7 +9399,7 @@ function reparacion_criterios_de_calidad_ERC(&$campos,
 	
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);
-}//fin funcion  reparacion criterios calidad ERC
+}//fin funcion  reparacion criterios calidad HF
 
 
 
