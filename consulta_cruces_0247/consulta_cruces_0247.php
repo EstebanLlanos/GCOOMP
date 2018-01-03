@@ -385,7 +385,7 @@ if(isset($_REQUEST['comprobante_submit'])
 	else if($tipo_periodo_tiempo=="mensual")
 	{
 	    $consultar_periodo_informacion_0247="";
-	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_informacion_0247_mensual WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_reporte_0247_cancer WHERE codigo_periodo='".$codigo_periodo."'; ";
 	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 
@@ -402,7 +402,20 @@ if(isset($_REQUEST['comprobante_submit'])
 	    $fecha_corte_bd=$year_de_corte."-".$array_fecha_final_periodo_bd[1]."-".$array_fecha_final_periodo_bd[2];
 
 	}//fin if verificacion fecha inicial con fecha inicial del periodo
+	else if($tipo_periodo_tiempo=="anual")
+	{
+		$fecha_inicio_periodo_bd="AAAA-01-02";
+	    $array_fecha_inicio_periodo_bd=explode("-",$fecha_inicio_periodo_bd);
+	    $fecha_inicio_bd=(intval($year_de_corte)-1 )."-".$array_fecha_inicio_periodo_bd[1]."-".$array_fecha_inicio_periodo_bd[2];
 
+	    $fecha_final_periodo_bd="AAAA-01-01";
+	    $array_fecha_final_periodo_bd=explode("-",$fecha_final_periodo_bd);
+	    $fecha_corte_bd=$year_de_corte."-".$array_fecha_final_periodo_bd[1]."-".$array_fecha_final_periodo_bd[2];
+	}
+	else if($tipo_periodo_tiempo=="semestral")
+	{
+
+	}//fin else
 
 
 	/*

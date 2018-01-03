@@ -29,7 +29,7 @@ if(isset($_REQUEST['periodo'])
 	else if($tipo_periodo_tiempo=="mensual")
 	{
 	    $consultar_periodo_informacion_0247="";
-	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_reporte_0247_cancer WHERE cod_periodo='".$codigo_periodo."'; ";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_reporte_0247_cancer WHERE codigo_periodo='".$codigo_periodo."'; ";
 	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 
