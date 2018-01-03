@@ -261,7 +261,7 @@ function acomodar_tipo_periodo_tiempo(valor_selector)
     periodo_html="";
     periodo_html+="<select style='width:230px;' id='periodo' name='periodo' class='campo_azul' onchange='consultar_archivos_subidos_para_periodo_year();'>";
     periodo_html+="<option value='none'>Seleccione un Periodo</option>";
-    periodo_html+="<option value='1'>Anual  (AAAA anterior)-01-02 hasta (AAAA actual)-01-01</option>";
+    periodo_html+="<option value='1'>Anual  (AAAA anterior)-07-01 hasta (AAAA actual)-06-30</option>";
     periodo_html+="</select>";
     document.getElementById("mod_campo_periodo").innerHTML=periodo_html;
 
