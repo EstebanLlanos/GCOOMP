@@ -158,7 +158,7 @@ $prestador.="</select>";
 //FIN SELECTOR PRESTADOR
 
 /*
-$sql_prestadores_asociados_al_archivo="SELECT * FROM gioss_archivo_para_analisis_4505 
+$sql_prestadores_asociados_al_archivo="SELECT * FROM gioss_archivo_para_analisis_0247 
  WHERE nombre_archivo='' AND fecha_y_hora_validacion='' AND fecha_de_corte=''
  ;
  ";
@@ -193,7 +193,7 @@ $selector_periodo.="</select>";
 $prestador.="</select>";
 //FIN PRESTADOR-ASOCIADO-USUARIO
 
-$sql_query_valores_permitidos="SELECT * FROM valores_permitidos_4505 order by numero_campo_norma::numeric asc; ";
+$sql_query_valores_permitidos="SELECT * FROM valores_permitidos_0247 order by numero_campo_norma::numeric asc; ";
 $resultado_query_valores_permitidos=$coneccionBD->consultar2_no_crea_cierra($sql_query_valores_permitidos);
 
 $opciones_selector_campos="";
@@ -213,7 +213,7 @@ if(is_array($resultado_query_valores_permitidos) && count($resultado_query_valor
 else
 {
 	$cont_c1=0;
-	while($cont_c1<119)
+	while($cont_c1<210)
 	{
 		$opciones_selector_campos.="<option value='$cont_c1'>Campo Numero $cont_c1 </option>";
 		$cont_c1++;
@@ -228,7 +228,7 @@ $selector_archivos_subidos.="<option value='none'>...</option>";
 
 /*
 $query_archivos_subidos_para_analisis="";
-$query_archivos_subidos_para_analisis.=" SELECT * FROM gioss_indice_archivo_para_analisis_4505 ORDER BY fecha_y_hora_validacion asc ; ";
+$query_archivos_subidos_para_analisis.=" SELECT * FROM gioss_indice_archivo_para_analisis_0247 ORDER BY fecha_y_hora_validacion asc ; ";
 $resultado_query_archivos_subidos_para_analisis=$coneccionBD->consultar2_no_crea_cierra($query_archivos_subidos_para_analisis);
 if(is_array($resultado_query_archivos_subidos_para_analisis) && count($resultado_query_archivos_subidos_para_analisis)>0 )
 {
@@ -259,16 +259,16 @@ $smarty->assign("mensaje_proceso", $mensaje, true);
 $smarty->assign("mostrarResultado", $mostrarResultado, true);
 $smarty->assign("nombre", $nombre, true);
 $smarty->assign("menu", $menu, true);
-$smarty->display('consulta_razonabilidad_4505.html.tpl');
+$smarty->display('consulta_cruces_0247.html.tpl');
 
 /*
-INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('215','91','Consulta Cruces','',FALSE,'..|consulta_cruces_4505|consulta_razonabilidad_4505.php','33.02');
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('223','113','Consulta Cruces','',FALSE,'..|consulta_cruces_0247|consulta_cruces_0247.php','33.02');
 
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('215','5'); 
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('215','4'); 
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('215','3'); 
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('215','2'); 
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('215','1'); 
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('223','5'); 
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('223','4'); 
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('223','3'); 
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('223','2'); 
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('223','1'); 
 */
 
 //admin sistema
@@ -375,29 +375,29 @@ if(isset($_REQUEST['comprobante_submit'])
 	$fecha_inicio_bd="";
 	$fecha_corte_bd="";
 
-	$resultados_consulta_periodo_informacion_4505=array();
+	$resultados_consulta_periodo_informacion_0247=array();
 	if($tipo_periodo_tiempo=="trimestral")
 	{
-	    $consultar_periodo_informacion_4505="";
-	    $consultar_periodo_informacion_4505.=" SELECT * FROM gioss_periodo_informacion WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
-	    $resultados_consulta_periodo_informacion_4505=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_4505);
+	    $consultar_periodo_informacion_0247="";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_informacion WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
+	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 	else if($tipo_periodo_tiempo=="mensual")
 	{
-	    $consultar_periodo_informacion_4505="";
-	    $consultar_periodo_informacion_4505.=" SELECT * FROM gioss_periodo_informacion_4505_mensual WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
-	    $resultados_consulta_periodo_informacion_4505=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_4505);
+	    $consultar_periodo_informacion_0247="";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_informacion_0247_mensual WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
+	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 
-	if(count($resultados_consulta_periodo_informacion_4505)>0
-	   && is_array($resultados_consulta_periodo_informacion_4505)
+	if(count($resultados_consulta_periodo_informacion_0247)>0
+	   && is_array($resultados_consulta_periodo_informacion_0247)
 	   )
 	{				    
-	    $fecha_inicio_periodo_bd=$resultados_consulta_periodo_informacion_4505[0]["fec_inicio_periodo"];
+	    $fecha_inicio_periodo_bd=$resultados_consulta_periodo_informacion_0247[0]["fec_inicio_periodo"];
 	    $array_fecha_inicio_periodo_bd=explode("-",$fecha_inicio_periodo_bd);
 	    $fecha_inicio_bd=$year_de_corte."-".$array_fecha_inicio_periodo_bd[1]."-".$array_fecha_inicio_periodo_bd[2];
 
-	    $fecha_final_periodo_bd=$resultados_consulta_periodo_informacion_4505[0]["fec_final_periodo"];
+	    $fecha_final_periodo_bd=$resultados_consulta_periodo_informacion_0247[0]["fec_final_periodo"];
 	    $array_fecha_final_periodo_bd=explode("-",$fecha_final_periodo_bd);
 	    $fecha_corte_bd=$year_de_corte."-".$array_fecha_final_periodo_bd[1]."-".$array_fecha_final_periodo_bd[2];
 
@@ -433,11 +433,11 @@ if(isset($_REQUEST['comprobante_submit'])
 		flush();
 
 		$cont_campos=0;
-		while($cont_campos<119)
+		while($cont_campos<210)
 		{
 			$query_conteo_campo="";
 			$query_conteo_campo.="SELECT campo".$cont_campos.", COUNT(*) as ocurrencias_c".$cont_campos."
-			 from gioss_archivo_para_analisis_4505  
+			 from gioss_archivo_para_analisis_0247  
 			WHERE 
 			nombre_archivo='$nombre_archivo_identificador'
 			AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -599,11 +599,11 @@ if(isset($_REQUEST['comprobante_submit'])
 			flush();
 
 			$cont_campos=intval($campo_seleccionado);
-			if($cont_campos<119)
+			if($cont_campos<210)
 			{
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT campo".$cont_campos.", COUNT(*) as ocurrencias_c".$cont_campos."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -716,15 +716,15 @@ if(isset($_REQUEST['comprobante_submit'])
 				//$cont_campos++; // no es un while
 			}//fin if
 
-			if($cont_campos==119)
+			if($cont_campos==210)
 			{
 				//parte campos extra edad_years
 				$nombre_campo='edad_years';
-				$numero_campo=119;
+				$numero_campo=210;
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -736,7 +736,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -796,7 +796,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -808,7 +808,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -896,7 +896,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -908,7 +908,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -996,7 +996,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1008,7 +1008,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1067,7 +1067,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1079,7 +1079,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1191,7 +1191,7 @@ if(isset($_REQUEST['comprobante_submit'])
 			flush();
 
 			$cont_campos=intval($campo_seleccionado);
-			if($cont_campos<119)
+			if($cont_campos<210)
 			{
 				$titulos_campos=array();
 				$query_conteo_campo="";
@@ -1207,7 +1207,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$titulos_campos[]="Campo ".$cont_campos;
 				if($es_un_rango==false && $es_una_fecha==false)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1217,7 +1217,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				}//fin if
 				else if($es_un_rango==true)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1228,7 +1228,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				}//fin else if
 				else if($es_una_fecha==true)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1309,11 +1309,11 @@ if(isset($_REQUEST['comprobante_submit'])
 		flush();
 
 		$cont_campos=0;
-		while($cont_campos<119)
+		while($cont_campos<210)
 		{
 			$query_conteo_campo="";
 			$query_conteo_campo.="SELECT campo".$cont_campos.", COUNT(*) as ocurrencias_c".$cont_campos."
-			 from gioss_archivo_para_analisis_4505  
+			 from gioss_archivo_para_analisis_0247  
 			WHERE 
 			nombre_archivo='$nombre_archivo_identificador'
 			AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1475,11 +1475,11 @@ if(isset($_REQUEST['comprobante_submit'])
 			flush();
 
 			$cont_campos=intval($campo_seleccionado);
-			if($cont_campos<119)
+			if($cont_campos<210)
 			{
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT campo".$cont_campos.", COUNT(*) as ocurrencias_c".$cont_campos."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1593,15 +1593,15 @@ if(isset($_REQUEST['comprobante_submit'])
 				//$cont_campos++; // no es while
 			}//fin if
 
-			if($cont_campos==119)
+			if($cont_campos==210)
 			{
 				//parte campos extra edad_years
 				$nombre_campo='edad_years';
-				$numero_campo=119;
+				$numero_campo=210;
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1614,7 +1614,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1673,7 +1673,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1686,7 +1686,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1774,7 +1774,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1787,7 +1787,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1875,7 +1875,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1888,7 +1888,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -1947,7 +1947,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 				$query_conteo_campo="";
 				$query_conteo_campo.="SELECT ".$nombre_campo.", COUNT(*) as ocurrencias_".$nombre_campo."
-				 from gioss_archivo_para_analisis_4505  
+				 from gioss_archivo_para_analisis_0247  
 				WHERE 
 				nombre_archivo='$nombre_archivo_identificador'
 				AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -1960,7 +1960,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				$html_tabla="";
 				if(is_array($resultado_query_conteo_campo) && count($resultado_query_conteo_campo) )
 				{
-					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//119 edad years
+					$array_resultado=lista_valores_permitidos_campo($numero_campo,$coneccionBD);//210 edad years
 					$descripcion_campo=$array_resultado['descripcion_campo'];
 					$array_valores_permitidos=$array_resultado['valores_permitidos'];
 					$keys_valores_permitidos=array_keys($array_valores_permitidos);
@@ -2072,7 +2072,7 @@ if(isset($_REQUEST['comprobante_submit'])
 			flush();
 
 			$cont_campos=intval($campo_seleccionado);
-			if($cont_campos<119)
+			if($cont_campos<210)
 			{
 				$titulos_campos=array();
 				$query_conteo_campo="";
@@ -2089,7 +2089,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				
 				if($es_un_rango==false && $es_una_fecha==false)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2100,7 +2100,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				}//fin if
 				else if($es_un_rango==true)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2112,7 +2112,7 @@ if(isset($_REQUEST['comprobante_submit'])
 				}//fin else if
 				else if($es_una_fecha==true)
 				{
-					$query_conteo_campo.=" from gioss_archivo_para_analisis_4505  
+					$query_conteo_campo.=" from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2191,7 +2191,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 		$query_conteo_registros="";
 		$query_conteo_registros.="SELECT COUNT(*) as numero_registros
-		 from gioss_archivo_para_analisis_4505  
+		 from gioss_archivo_para_analisis_0247  
 		WHERE 
 		nombre_archivo='$nombre_archivo_identificador'
 		AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2215,7 +2215,7 @@ if(isset($_REQUEST['comprobante_submit'])
 		{
 			$string_campos="";
 			$cont_campos=0;
-			while($cont_campos<119)
+			while($cont_campos<210)
 			{
 				if($string_campos!=""){$string_campos.=",";}
 				$string_campos.="campo".$cont_campos;
@@ -2224,7 +2224,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 			$query_registros="";
 			$query_registros.="SELECT $string_campos
-			 from gioss_archivo_para_analisis_4505  
+			 from gioss_archivo_para_analisis_0247  
 			WHERE 
 			nombre_archivo='$nombre_archivo_identificador'
 			AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2395,7 +2395,7 @@ if(isset($_REQUEST['comprobante_submit'])
 					foreach ($array_campos_cruzados_seleccionados as $key => $numero_campo_cruzado) 
 					{
 						if($complemento_query_campos_seleccionados_p1!=""){$complemento_query_campos_seleccionados_p1.=",";}
-						if(intval($numero_campo_cruzado)<119)
+						if(intval($numero_campo_cruzado)<210)
 						{
 							$complemento_query_campos_seleccionados_p1.="campo".$numero_campo_cruzado;
 							if($asigno_nombre_campo_orden==false)
@@ -2404,7 +2404,7 @@ if(isset($_REQUEST['comprobante_submit'])
 								$asigno_nombre_campo_orden=true;
 							}//fin if asigno nombre campo orden
 						}//fin if
-						else if(intval($numero_campo_cruzado)==119)
+						else if(intval($numero_campo_cruzado)==210)
 						{
 							$complemento_query_campos_seleccionados_p1.="edad_years";
 							if($asigno_nombre_campo_orden==false)
@@ -2462,7 +2462,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 					$query_conteo_campos_cruzados="";
 					$query_conteo_campos_cruzados.="SELECT $complemento_query_campos_seleccionados_p1 , COUNT(*) as ocurrencias
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -2641,20 +2641,20 @@ if(isset($_REQUEST['comprobante_submit'])
 										$es_rango_campo_cruzado_base_res=false;	
 
 										$nombre_campo_base="";
-										if(intval($numero_campo_base)<119)
+										if(intval($numero_campo_base)<210)
 										{
 											$nombre_campo_base='campo'.$numero_campo_base;
 										}//fin if
-										else if(intval($numero_campo_base)>=119)
+										else if(intval($numero_campo_base)>=210)
 										{
 											$nombre_campo_base=$array_llaves[0];
 										}//fin if
 										$nombre_campo_cruzado="";	
-										if(intval($numero_campo_cruzado)<119)
+										if(intval($numero_campo_cruzado)<210)
 										{
 											$nombre_campo_cruzado='campo'.$numero_campo_cruzado;
 										}//fin if
-										else if(intval($numero_campo_cruzado)>=119)
+										else if(intval($numero_campo_cruzado)>=210)
 										{
 											$nombre_campo_cruzado=$array_llaves[1];
 										}//fin if								
@@ -3090,7 +3090,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 					$query_conteo_campos_cruzados="";
 					$query_conteo_campos_cruzados.="SELECT  COUNT(*) as ocurrencias
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -3215,7 +3215,7 @@ if(isset($_REQUEST['comprobante_submit'])
 					$query_conteo_campos_cruzados_cantidad="";
 					$query_conteo_campos_cruzados_cantidad.="SELECT ";
 					$query_conteo_campos_cruzados_cantidad.="  COUNT(*) as numero_registros
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -3254,7 +3254,7 @@ if(isset($_REQUEST['comprobante_submit'])
 						$titulos_campos[]="Campo ".$numero_campo_base;
 						$titulos_campos[]="Campo ".$numero_campo_secundario;
 						$query_conteo_campos_cruzados.="  $complemento_query_campos_seleccionados_p1
-						 from gioss_archivo_para_analisis_4505  
+						 from gioss_archivo_para_analisis_0247  
 						WHERE 
 						nombre_archivo='$nombre_archivo_identificador'
 						AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -3476,7 +3476,7 @@ if(isset($_REQUEST['comprobante_submit'])
 					foreach ($array_campos_cruzados_seleccionados as $key => $numero_campo_cruzado) 
 					{
 						if($complemento_query_campos_seleccionados_p1!=""){$complemento_query_campos_seleccionados_p1.=",";}
-						if(intval($numero_campo_cruzado)<119)
+						if(intval($numero_campo_cruzado)<210)
 						{
 							$complemento_query_campos_seleccionados_p1.="campo".$numero_campo_cruzado;
 							if($asigno_nombre_campo_orden==false)
@@ -3485,7 +3485,7 @@ if(isset($_REQUEST['comprobante_submit'])
 								$asigno_nombre_campo_orden=true;
 							}//fin if asigno nombre campo orden
 						}//fin if
-						else if(intval($numero_campo_cruzado)==119)
+						else if(intval($numero_campo_cruzado)==210)
 						{
 							$complemento_query_campos_seleccionados_p1.="edad_years";
 							if($asigno_nombre_campo_orden==false)
@@ -3542,7 +3542,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 					$query_conteo_campos_cruzados="";
 					$query_conteo_campos_cruzados.="SELECT $complemento_query_campos_seleccionados_p1 , COUNT(*) as ocurrencias
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -3684,20 +3684,20 @@ if(isset($_REQUEST['comprobante_submit'])
 										$es_rango_campo_cruzado_base_res=false;
 
 										$nombre_campo_base="";
-										if(intval($numero_campo_base)<119)
+										if(intval($numero_campo_base)<210)
 										{
 											$nombre_campo_base='campo'.$numero_campo_base;
 										}//fin if
-										else if(intval($numero_campo_base)>=119)
+										else if(intval($numero_campo_base)>=210)
 										{
 											$nombre_campo_base=$array_llaves[0];
 										}//fin if
 										$nombre_campo_cruzado="";	
-										if(intval($numero_campo_cruzado)<119)
+										if(intval($numero_campo_cruzado)<210)
 										{
 											$nombre_campo_cruzado='campo'.$numero_campo_cruzado;
 										}//fin if
-										else if(intval($numero_campo_cruzado)>=119)
+										else if(intval($numero_campo_cruzado)>=210)
 										{
 											$nombre_campo_cruzado=$array_llaves[1];
 										}//fin if											
@@ -4130,7 +4130,7 @@ if(isset($_REQUEST['comprobante_submit'])
 
 					$query_conteo_campos_cruzados="";
 					$query_conteo_campos_cruzados.="SELECT  COUNT(*) as ocurrencias
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -4258,7 +4258,7 @@ if(isset($_REQUEST['comprobante_submit'])
 					$query_conteo_campos_cruzados_cantidad="";
 					$query_conteo_campos_cruzados_cantidad.="SELECT ";
 					$query_conteo_campos_cruzados_cantidad.="  COUNT(*) as numero_registros
-					 from gioss_archivo_para_analisis_4505  
+					 from gioss_archivo_para_analisis_0247  
 					WHERE 
 					nombre_archivo='$nombre_archivo_identificador'
 					AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'
@@ -4298,7 +4298,7 @@ if(isset($_REQUEST['comprobante_submit'])
 						$titulos_campos[]="Campo ".$numero_campo_base;
 						$titulos_campos[]="Campo ".$numero_campo_secundario;
 						$query_conteo_campos_cruzados.="  $complemento_query_campos_seleccionados_p1
-						 from gioss_archivo_para_analisis_4505  
+						 from gioss_archivo_para_analisis_0247  
 						WHERE 
 						nombre_archivo='$nombre_archivo_identificador'
 						AND fecha_y_hora_validacion='$fecha_y_hora_validacion_identificador'

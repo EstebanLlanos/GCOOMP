@@ -253,7 +253,36 @@ function acomodar_tipo_periodo_tiempo(valor_selector)
 {
   var valor_selector_tipo_periodo= valor_selector.value;
   
-  if (valor_selector_tipo_periodo=="trimestral")
+  if (valor_selector_tipo_periodo=="anual")
+  {
+    //code
+    
+    
+    periodo_html="";
+    periodo_html+="<select style='width:230px;' id='periodo' name='periodo' class='campo_azul' onchange='consultar_archivos_subidos_para_periodo_year();'>";
+    periodo_html+="<option value='none'>Seleccione un Periodo</option>";
+    periodo_html+="<option value='1'>Anual  (AAAA anterior)-01-02 hasta (AAAA actual)-01-01</option>";
+    periodo_html+="</select>";
+    document.getElementById("mod_campo_periodo").innerHTML=periodo_html;
+
+    
+  }
+  else if (valor_selector_tipo_periodo=="semestral")
+  {
+    //code
+    
+    
+    periodo_html="";
+    periodo_html+="<select style='width:230px;' id='periodo' name='periodo' class='campo_azul' onchange='consultar_archivos_subidos_para_periodo_year();'>";
+    periodo_html+="<option value='none'>Seleccione un Periodo</option>";
+    periodo_html+="<option value='1'>Semestre 1</option>";
+    periodo_html+="<option value='2'>Semestre 2</option>";
+    periodo_html+="</select>";
+    document.getElementById("mod_campo_periodo").innerHTML=periodo_html;
+
+    
+  }
+  else if (valor_selector_tipo_periodo=="trimestral")
   {
     //code
     

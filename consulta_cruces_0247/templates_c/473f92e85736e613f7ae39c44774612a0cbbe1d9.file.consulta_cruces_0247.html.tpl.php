@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-02 11:07:04
-         compiled from "consulta_razonabilidad_0247.html.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:8739493545a4ba97a8016f8-07116525%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-03 11:08:47
+         compiled from "consulta_cruces_0247.html.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:5197980675a4cff981dc5f3-21086126%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '6c681795697affb530cc087b5370bed8728a57b8' => 
+    '473f92e85736e613f7ae39c44774612a0cbbe1d9' => 
     array (
-      0 => 'consulta_razonabilidad_0247.html.tpl',
-      1 => 1514909169,
+      0 => 'consulta_cruces_0247.html.tpl',
+      1 => 1514995723,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8739493545a4ba97a8016f8-07116525',
+  'nocache_hash' => '5197980675a4cff981dc5f3-21086126',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.17',
-  'unifunc' => 'content_5a4ba97a8883b1_13375790',
+  'unifunc' => 'content_5a4cff981fdbd4_48164820',
   'variables' => 
   array (
     'menu' => 1,
@@ -29,19 +29,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a4ba97a8883b1_13375790')) {function content_5a4ba97a8883b1_13375790($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a4cff981fdbd4_48164820')) {function content_5a4cff981fdbd4_48164820($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="consulta_razonabilidad_0247.js?v=1.592"></script>
+        <script type="text/javascript" src="consulta_cruces_0247.js?v=1.593"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="consulta_razonabilidad_0247.css?v=1.0" rel="stylesheet" />
-       <title>Consulta Razonabilidad 0247</title>
+        <link type="text/css" href="consulta_cruces_0247.css?v=1.0" rel="stylesheet" />
+       <title>Consulta Cruces 0247</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>
     <body>
@@ -95,7 +95,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 					    <tr>
 							<td style="text-align:left;">
-								<h5 id='sub_titulo_1' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Consulta Razonabilidad:</h5>
+								<h5 id='sub_titulo_1' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Consulta Cruces:</h5>
 							</td>
 						</tr>
 
@@ -111,12 +111,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							<td style="text-align:left;">
 								<select id='selector_rango_conteo' name='selector_rango_conteo' class='campo_azul' onchange='mostrar_opciones_correspondientes_al_caso()' >
 									<option value='none' selected>Seleccione el rango del conteo</option>
-									<option value='all_allips'>Todos los Campos, todas las IPS del archivo</option>									
+									<!--<option value='all_allips'>Todos los Campos, todas las IPS del archivo</option>									
 									<option value='all_oneips'>Todos los Campos, una IPS especifica del archivo</option>
 									<option value='specific_allips'>Campo Especifico, todas las IPS del archivo</option>
-									<option value='specific_oneips'>Campo Especifico, una IPS especifica del archivo</option>							
-									<!--<option value='cross_allips'>Consulta Campos Cruzados, todas las IPS del archivo</option>
-									<option value='cross_oneips'>Consulta Campos Cruzados, una IPS especifica del archivo</option>-->
+									<option value='specific_oneips'>Campo Especifico, una IPS especifica del archivo</option>-->							
+									<option value='cross_allips'>Consulta Campos Cruzados, todas las IPS del archivo</option>
+									<option value='cross_oneips'>Consulta Campos Cruzados, una IPS especifica del archivo</option>
 									<option value='clone'>Descarga de copia del archivo almacenado para las consultas</option>
 								</select>
 							</td>
@@ -148,7 +148,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<option value='mensual' selected>Mensual</option>
 								<!--<option value='trimestral'>Trimestral</option>-->
 								<!--<option value='semestral'>Semestral</option>-->
-								<option value='anual'>Anual</option>						
+								<option value='anual'>Anual</option>	
 							    </select>
 							</td>
 						</tr>

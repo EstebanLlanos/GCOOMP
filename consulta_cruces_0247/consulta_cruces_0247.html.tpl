@@ -5,12 +5,12 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="consulta_razonabilidad_4505.js?v=1.592"></script>
+        <script type="text/javascript" src="consulta_cruces_0247.js?v=1.593"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="consulta_razonabilidad_4505.css?v=1.0" rel="stylesheet" />
-       <title>Consulta Cruces 4505</title>
+        <link type="text/css" href="consulta_cruces_0247.css?v=1.0" rel="stylesheet" />
+       <title>Consulta Cruces 0247</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>
     <body>
@@ -56,7 +56,7 @@
 
 						<tr>
 						    <td style="text-align:left;">
-						    	<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Analisis para 4505 PyP</h4>
+						    	<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Analisis para 0247 Cancer</h4>
 						    </td>
 					    </tr>
 
@@ -113,7 +113,9 @@
 							<td style="text-align:left;">
 							    <select class='campo_azul' id='tipo_periodo_tiempo' name='tipo_periodo_tiempo' onchange='acomodar_tipo_periodo_tiempo(this);' style='width:230px;'>
 								<option value='mensual' selected>Mensual</option>
-								<option value='trimestral'>Trimestral</option>						
+								<!--<option value='trimestral'>Trimestral</option>-->
+								<!--<option value='semestral'>Semestral</option>-->
+								<option value='anual'>Anual</option>	
 							    </select>
 							</td>
 						</tr>
