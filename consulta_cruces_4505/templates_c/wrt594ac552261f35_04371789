@@ -1,12 +1,12 @@
 <?php /* Smarty version Smarty-3.1.17, created on 2017-06-21 14:13:22
-         compiled from "consulta_razonabilidad_4505.html.tpl" */ ?>
+         compiled from "consulta_cruces_4505.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:7806594a9818ed48f1-94058559%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5760d42ea08369d5e4564ad3f25c5c1524aafc67' => 
     array (
-      0 => 'consulta_razonabilidad_4505.html.tpl',
+      0 => 'consulta_cruces_4505.html.tpl',
       1 => 1498072401,
       2 => 'file',
     ),
@@ -36,11 +36,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="consulta_razonabilidad_4505.js?v=1.2"></script>
+        <script type="text/javascript" src="consulta_cruces_4505.js?v=1.2"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="consulta_razonabilidad_4505.css" rel="stylesheet" />
+        <link type="text/css" href="consulta_cruces_4505.css" rel="stylesheet" />
        <title>Consulta Razonabilidad 4505</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>

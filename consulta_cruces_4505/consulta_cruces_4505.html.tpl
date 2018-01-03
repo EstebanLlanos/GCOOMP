@@ -1,35 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2017-06-30 15:18:43
-         compiled from "consulta_cruces_4505.html.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31048594ac565eef356-84300311%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-$_valid = $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
-  array (
-    '5760d42ea08369d5e4564ad3f25c5c1524aafc67' => 
-    array (
-      0 => 'consulta_cruces_4505.html.tpl',
-      1 => 1498853092,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '31048594ac565eef356-84300311',
-  'function' => 
-  array (
-  ),
-  'version' => 'Smarty-3.1.17',
-  'unifunc' => 'content_594ac565f3df78_74999203',
-  'variables' => 
-  array (
-    'menu' => 1,
-    'nombre' => 1,
-    'campo_periodo' => 1,
-    'campo_archivo_analizar' => 1,
-    'campo_prestador' => 1,
-    'campo_selector_campos' => 1,
-    'mensaje_proceso' => 1,
-  ),
-  'has_nocache_code' => false,
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_594ac565f3df78_74999203')) {function content_594ac565f3df78_74999203($_smarty_tpl) {?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
@@ -58,12 +27,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							</div>
 							</td>
 							<td>
-							<div id='menu_div'><?php echo $_smarty_tpl->tpl_vars['menu']->value;?>
-</div>
+							<div id='menu_div'>{$menu}</div>
 							</td>
 							<td id='nombre'>
-							<?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
-
+							{$nombre}
 							</td>
 							<td>
 							<div id="clockbox"></div>
@@ -160,8 +127,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<tr>
 							<td style="text-align:left;">
 							    <div id='mod_campo_periodo'>
-								<?php echo $_smarty_tpl->tpl_vars['campo_periodo']->value;?>
-
+								{$campo_periodo}
 							    </div>
 							</td>
 						</tr>
@@ -174,8 +140,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 						<tr>
 						    <td style="text-align:left;">
-								<div id='div_archivos_subidos'><?php echo $_smarty_tpl->tpl_vars['campo_archivo_analizar']->value;?>
-</div>						    
+								<div id='div_archivos_subidos'>{$campo_archivo_analizar}</div>						    
 						    </td>
 					    </tr>
 
@@ -187,8 +152,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 						<tr>
 						    <td style="text-align:left;">
-								<div id='div_entidades_prestadoras_archivo'><?php echo $_smarty_tpl->tpl_vars['campo_prestador']->value;?>
-</div>						    
+								<div id='div_entidades_prestadoras_archivo'>{$campo_prestador}</div>						    
 						    </td>
 					    </tr>
 
@@ -205,8 +169,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<div onmousemove="consultar_valor_permitido_campo_especifico();" id='mod_campo_1'>
 									<select id='selector_campo_especifico' name='selector_campo_especifico' class='campo_azul' onchange="">
 										<option value='none' selected>Seleccione Campo</option>
-										<?php echo $_smarty_tpl->tpl_vars['campo_selector_campos']->value;?>
-
+										{$campo_selector_campos}
 									</select>
 									<input type='hidden' id='copy_selector_campo_especifico' name='copy_selector_campo_especifico'>
 								</div>
@@ -270,8 +233,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 													<h6  style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Campo 1 para consulta cruzada:</h6>
 													<select id='campocross_1' name='campocross_1' class='campo_azul' onchange="consultar_valor_permitido_campo_cruzado('divcampocrossvp_1','1');">
 														<option value='none' selected>Seleccione Campo</option>
-														<?php echo $_smarty_tpl->tpl_vars['campo_selector_campos']->value;?>
-
+														{$campo_selector_campos}
 													</select>
 													<input type='hidden' id='copycampocross_1' name='copycampocross_1'>
 												</div>
@@ -293,8 +255,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 													<h6  style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Campo 2 para consulta cruzada:</h6>
 													<select id='campocross_2' name='campocross_2' class='campo_azul' onchange="consultar_valor_permitido_campo_cruzado('divcampocrossvp_2','2');">
 														<option value='none' selected>Seleccione Campo</option>
-														<?php echo $_smarty_tpl->tpl_vars['campo_selector_campos']->value;?>
-
+														{$campo_selector_campos}
 													</select>
 													<input type='hidden' id='copycampocross_2' name='copycampocross_2'>
 												</div>
@@ -353,8 +314,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<tr>
 						<td style="text-align:center;" colspan='100'>
 							<div  id="mensaje">
-								<?php echo $_smarty_tpl->tpl_vars['mensaje_proceso']->value;?>
-
+								{$mensaje_proceso}
 							</div>
 							
 							<div id='mensaje_div' style='text-align:center;'></div>
@@ -426,4 +386,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			inicializador_javascript();
 		</script>
     </body>
-</html><?php }} ?>
+</html>

@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2017-06-30 15:18:43
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-03 09:51:38
          compiled from "consulta_cruces_4505.html.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:31048594ac565eef356-84300311%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11063207815a4cedfa236b48-57562936%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '5760d42ea08369d5e4564ad3f25c5c1524aafc67' => 
+    'd6afb2e402cb9d7627c653486e1ff0a66ac0483a' => 
     array (
       0 => 'consulta_cruces_4505.html.tpl',
-      1 => 1498853092,
+      1 => 1514990744,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '31048594ac565eef356-84300311',
+  'nocache_hash' => '11063207815a4cedfa236b48-57562936',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.17',
-  'unifunc' => 'content_594ac565f3df78_74999203',
   'variables' => 
   array (
     'menu' => 1,
@@ -28,8 +26,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'mensaje_proceso' => 1,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.17',
+  'unifunc' => 'content_5a4cedfa2b9856_66655905',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_594ac565f3df78_74999203')) {function content_594ac565f3df78_74999203($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5a4cedfa2b9856_66655905')) {function content_5a4cedfa2b9856_66655905($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
