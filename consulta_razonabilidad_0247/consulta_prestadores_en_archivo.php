@@ -18,7 +18,7 @@ if(isset($_REQUEST['identificador_archivo'])
 
 		$query_verificar_ips_del_archivo="";
 		$query_verificar_ips_del_archivo.="SELECT distinct(gaa.campo2) , gent.nombre_de_la_entidad
-		 from gioss_archivo_para_analisis_4505 gaa LEFT JOIN gioss_entidades_sector_salud gent on (gent.codigo_entidad=gaa.campo2)
+		 from gioss_archivo_para_analisis_0247 gaa LEFT JOIN gioss_entidades_sector_salud gent on (gent.codigo_entidad=gaa.campo2)
 		WHERE 
 		gaa.nombre_archivo='$nombre_archivo' 
 		AND gaa.fecha_y_hora_validacion='$fecha_y_hora_validacion'

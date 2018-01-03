@@ -374,33 +374,47 @@ if(isset($_REQUEST['comprobante_submit'])
 	$fecha_inicio_bd="";
 	$fecha_corte_bd="";
 
-	$resultados_consulta_periodo_informacion_4505=array();
+	$resultados_consulta_periodo_informacion_0247=array();
 	if($tipo_periodo_tiempo=="trimestral")
 	{
-	    $consultar_periodo_informacion_4505="";
-	    $consultar_periodo_informacion_4505.=" SELECT * FROM gioss_periodo_informacion WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
-	    $resultados_consulta_periodo_informacion_4505=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_4505);
+	    $consultar_periodo_informacion_0247="";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_informacion WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
+	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 	else if($tipo_periodo_tiempo=="mensual")
 	{
-	    $consultar_periodo_informacion_4505="";
-	    $consultar_periodo_informacion_4505.=" SELECT * FROM gioss_periodo_informacion_4505_mensual WHERE cod_periodo_informacion='".$codigo_periodo."'; ";
-	    $resultados_consulta_periodo_informacion_4505=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_4505);
+	    $consultar_periodo_informacion_0247="";
+	    $consultar_periodo_informacion_0247.=" SELECT * FROM gioss_periodo_reporte_0247_cancer WHERE codigo_periodo='".$codigo_periodo."'; ";
+	    $resultados_consulta_periodo_informacion_0247=$coneccionBD->consultar2_no_crea_cierra($consultar_periodo_informacion_0247);
 	}//fin if
 
-	if(count($resultados_consulta_periodo_informacion_4505)>0
-	   && is_array($resultados_consulta_periodo_informacion_4505)
+	if(count($resultados_consulta_periodo_informacion_0247)>0
+	   && is_array($resultados_consulta_periodo_informacion_0247)
 	   )
 	{				    
-	    $fecha_inicio_periodo_bd=$resultados_consulta_periodo_informacion_4505[0]["fec_inicio_periodo"];
+	    $fecha_inicio_periodo_bd=$resultados_consulta_periodo_informacion_0247[0]["fec_inicio_periodo"];
 	    $array_fecha_inicio_periodo_bd=explode("-",$fecha_inicio_periodo_bd);
 	    $fecha_inicio_bd=$year_de_corte."-".$array_fecha_inicio_periodo_bd[1]."-".$array_fecha_inicio_periodo_bd[2];
 
-	    $fecha_final_periodo_bd=$resultados_consulta_periodo_informacion_4505[0]["fec_final_periodo"];
+	    $fecha_final_periodo_bd=$resultados_consulta_periodo_informacion_0247[0]["fec_final_periodo"];
 	    $array_fecha_final_periodo_bd=explode("-",$fecha_final_periodo_bd);
 	    $fecha_corte_bd=$year_de_corte."-".$array_fecha_final_periodo_bd[1]."-".$array_fecha_final_periodo_bd[2];
 
 	}//fin if verificacion fecha inicial con fecha inicial del periodo
+	else if($tipo_periodo_tiempo=="anual")
+	{
+		$fecha_inicio_periodo_bd="AAAA-01-02";
+	    $array_fecha_inicio_periodo_bd=explode("-",$fecha_inicio_periodo_bd);
+	    $fecha_inicio_bd=(intval($year_de_corte)-1 )."-".$array_fecha_inicio_periodo_bd[1]."-".$array_fecha_inicio_periodo_bd[2];
+
+	    $fecha_final_periodo_bd="AAAA-01-01";
+	    $array_fecha_final_periodo_bd=explode("-",$fecha_final_periodo_bd);
+	    $fecha_corte_bd=$year_de_corte."-".$array_fecha_final_periodo_bd[1]."-".$array_fecha_final_periodo_bd[2];
+	}
+	else if($tipo_periodo_tiempo=="semestral")
+	{
+
+	}//fin else
 
 
 
