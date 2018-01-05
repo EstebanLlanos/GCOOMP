@@ -17,7 +17,7 @@ if(isset($_REQUEST["perfil_id"]))
 	
 	$query_all_menus="";
 	$query_all_menus.="SELECT * FROM gios_menus_opciones_sistema 
-	ORDER BY id_padre asc , prioridad_jerarquica asc, id_principal asc
+	ORDER BY id_principal asc , id_padre asc , prioridad_jerarquica asc
 	;
 	";
 	$resultados_all_menus=$coneccionBD->consultar2_no_crea_cierra($query_all_menus);
@@ -103,12 +103,13 @@ if(isset($_REQUEST["perfil_id"]))
 				if(is_array($resultados_menu_padre) && count($resultados_menu_padre)>0)
 				{
 					$nombre_menu_padre=$resultados_menu_padre[0]["nombre_opcion"];
+					$id_padre=$resultados_menu_padre[0]["id_principal"];
 					$prioridad_padre=$resultados_menu_padre[0]["prioridad_jerarquica"];
 					
 					$string_para_prioridad_color="";
 					if(floatval($prioridad_hijo)>floatval($prioridad_padre))
 					{
-						$string_para_prioridad_color.="<b style='color:green;'>$prioridad_padre</b>";
+						$string_para_prioridad_color.="<b style='color:green;'>$prioridad_padre</b> Id: <b> $id_padre </b> ";
 						if($jerarquia_esta_bien!="R" && $jerarquia_esta_bien!="B")
 						{
 							$jerarquia_esta_bien="G";
