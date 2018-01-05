@@ -47,7 +47,7 @@ if(
 	&& $_SESSION['tipo_perfil']!='5'
 	)
 {
-	header ("Location: ../index.php?no_tiene_permiso=true");
+	//header ("Location: ../index.php?no_tiene_permiso=true");
 }//fin if
 
 
