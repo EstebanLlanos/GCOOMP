@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2016-05-26 09:13:45
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-04 09:45:07
          compiled from "carga_val_CANCER.html.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2985053a1ed8b8223a3-00211374%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15977223515a4e67e55ea0b8-35203907%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'ebbbf5beed0a9b6069c99c900a13d5e6d1a412dc' => 
     array (
       0 => 'carga_val_CANCER.html.tpl',
-      1 => 1464251744,
+      1 => 1515087903,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2985053a1ed8b8223a3-00211374',
+  'nocache_hash' => '15977223515a4e67e55ea0b8-35203907',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.17',
-  'unifunc' => 'content_53a1ed8b86e824_10647989',
+  'unifunc' => 'content_5a4e67e565d2b4_85022532',
   'variables' => 
   array (
     'menu' => 1,
@@ -29,7 +29,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53a1ed8b86e824_10647989')) {function content_53a1ed8b86e824_10647989($_smarty_tpl) {?><!DOCANCERYPE html>
+<?php if ($_valid && !is_callable('content_5a4e67e565d2b4_85022532')) {function content_5a4e67e565d2b4_85022532($_smarty_tpl) {?><!DOCANCERYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
@@ -165,7 +165,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								
 								<tr>
 								<td style="text-align:left;">
-								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Fecha/Periodo de corte:</h5>
+								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -01-01 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5>
 								</td>
 								</tr>
 								<tr>
