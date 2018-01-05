@@ -1194,7 +1194,7 @@ if(isset($_REQUEST['comprobante_submit'])
 			{
 				$complemento_where_query="";
 
-				if($es_un_rango==false && $es_una_fecha==false)
+				if($es_un_rango==false && $es_una_fecha==false && $selector_valor_permitido_campo!="Codigo")
 				{
 					$complemento_where_query.=" AND campo".$cont_campos."='$selector_valor_permitido_campo' ";
 				}//fin if
