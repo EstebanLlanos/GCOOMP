@@ -54,7 +54,7 @@ $prestador="";
 $prestador.="<select id='prestador' name='prestador' class='campo_azul' onchange='consultar_eapb(\"".$tipo_id."\",\"".$identificacion."\");validar_antes_seleccionar_archivos();'>";
 $prestador.="<option value='none'>Seleccione un prestador de salud</option>";
 
-if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==3)
+if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==3)
    && (intval($tipo_entidad)!=6 && intval($tipo_entidad)!=7 && intval($tipo_entidad)!=8 && intval($tipo_entidad)!=10)
    )
 {
@@ -72,7 +72,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==4 || in
 		}
 	}
 }//si el tipo entidad es diferente de 6,7,8,10 aka eapb busca las entidades relacionadas a esta(aparece lista entidades asociadas sin importar tipo)
-else if((intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2 || intval($perfil_usuario_actual)==5)
+else if((intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2 || intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13)
 	&& (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10)
 	)
 {
@@ -99,7 +99,7 @@ $eapb.="<select id='eapb' name='eapb' class='campo_azul' onchange='validar_antes
 $eapb.="<option value='none'>Seleccione un EAPB</option>";
 
 //si el tipo de la entidad es 6,7,8,10 aka ips prestador
-if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2)
+if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2)
    && (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10)
    )
 {
@@ -119,7 +119,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==1 || in
 		}
 	}
 }//fin if si el usuario es administrador y la entidad asociada es prestadora, por lo tanto busca la informacion las entidades asociadas(sin importar tipo) a la entidad(aparece lista eapb)
-else if((intval($perfil_usuario_actual)==3 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==5)
+else if((intval($perfil_usuario_actual)==3 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13)
 	&& (intval($tipo_entidad)!=6 && intval($tipo_entidad)!=7 && intval($tipo_entidad)!=8 && intval($tipo_entidad)!=10)
 	)
 {

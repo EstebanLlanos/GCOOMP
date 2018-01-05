@@ -734,7 +734,7 @@ $prestador="";
 $prestador.="<div id='div_prestador'>";
 $prestador.="<select id='prestador' name='prestador' class='campo_azul' onchange='validar_antes_seleccionar_archivos();' >";
 $prestador.="<option value='none'>Seleccione un prestador de salud</option>";
-if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==3)
+if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==3)
    && (intval($tipo_entidad)!=6 && intval($tipo_entidad)!=7 && intval($tipo_entidad)!=8 && intval($tipo_entidad)!=10) )
 {
 	$sql_consulta_prestadores_asociados_eapb="SELECT ea.codigo_entidad,ea.nombre_de_la_entidad FROM ";
@@ -750,7 +750,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==4 || in
 		}
 	}
 }//si el tipo entidad es diferente de 6,7,8,10
-else if((intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2 || intval($perfil_usuario_actual)==5) && (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10) )
+else if((intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2 || intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13) && (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10) )
 {
 	$sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
 	$resultado_query_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query_tipo_entidad_asociada);
@@ -774,7 +774,7 @@ $eapb.="<select id='eapb' name='eapb' class='campo_azul' onchange='validar_antes
 $eapb.="<option value='none'>Seleccione un EAPB</option>";
 
 
-if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2) && (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10) )
+if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2) && (intval($tipo_entidad)==6 || intval($tipo_entidad)==7 || intval($tipo_entidad)==8 || intval($tipo_entidad)==10) )
 {
 	$sql_consulta_eapb_usuario_prestador="SELECT ea.codigo_entidad,ea.nombre_de_la_entidad FROM ";
 	$sql_consulta_eapb_usuario_prestador.=" gioss_relacion_entre_entidades_salud re INNER JOIN gioss_entidades_sector_salud ea ON (re.entidad2 = ea.codigo_entidad) ";
@@ -791,7 +791,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==1 || in
 		}
 	}
 }//fin if si el usuario es administrador y la entidad no es eapb, por lo tanto busca la eapb asociada a la entidad
-else if((intval($perfil_usuario_actual)==3 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==5) && (intval($tipo_entidad)!=6 && intval($tipo_entidad)!=7 && intval($tipo_entidad)!=8 && intval($tipo_entidad)!=10) )
+else if((intval($perfil_usuario_actual)==3 || intval($perfil_usuario_actual)==4 || intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13) && (intval($tipo_entidad)!=6 && intval($tipo_entidad)!=7 && intval($tipo_entidad)!=8 && intval($tipo_entidad)!=10) )
 {
 	$sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
 	$resultado_query_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query_tipo_entidad_asociada);
