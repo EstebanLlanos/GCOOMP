@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="carga_val_CANCER.js"></script>
+        <script type="text/javascript" src="carga_val_CANCER.js?v=2.1"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -144,7 +144,7 @@
 								</tr>
 								<tr>
 								    <td style="text-align:left;">
-									<div id="separador_regimen" style="display: none;">
+									<div id="separador_regimen" style="display: none;" onchange="validar_antes_seleccionar_archivos();">
 									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul'>
 										<option value='none'>Seleccione un regimen</option>
 										<option value='C'>C (Contributivo)</option>

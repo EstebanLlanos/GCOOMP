@@ -374,6 +374,25 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		    
 		}
 		//FIN LONGITUD
+
+		//VERIFICACION REGIMEN
+		if(document.getElementById('selector_regimen_para_agrupados') )
+		{
+			if(document.getElementById('selector_regimen_para_agrupados').style.display!="none")
+			{
+				var regimen_seleccionado=document.getElementById('selector_regimen_para_agrupados').value;
+				var regimen_nombre_archivo=array_nombre_archivo[0].substring(20,21);
+				if(regimen_seleccionado!=regimen_nombre_archivo && regimen_seleccionado!="none")
+				{
+					mensaje+="ERROR: El regimen seleccionado "+regimen_seleccionado+" no corresponde al regimen indicado en el archivo "+regimen_nombre_archivo+". <br>";
+				}//fin if
+				else if(regimen_seleccionado=="none")
+				{
+					mensaje+="ERROR: Seleccione un regimen equivalente al regimen indicado en el archivo "+regimen_nombre_archivo+". <br>";
+				}//fin if
+			}//fin if
+		}//fin if existe selector_regimen_para_agrupados
+		//FIN VERIFICACION REGIMEN
 		
 		var eapb =document.getElementById('eapb').value;
 		while(eapb.length<6 && eapb!="none")

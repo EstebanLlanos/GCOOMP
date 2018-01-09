@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-04 09:45:07
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-09 13:59:54
          compiled from "carga_val_CANCER.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15977223515a4e67e55ea0b8-35203907%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ebbbf5beed0a9b6069c99c900a13d5e6d1a412dc' => 
     array (
       0 => 'carga_val_CANCER.html.tpl',
-      1 => 1515087903,
+      1 => 1515524383,
       2 => 'file',
     ),
   ),
@@ -36,7 +36,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="carga_val_CANCER.js"></script>
+        <script type="text/javascript" src="carga_val_CANCER.js?v=2.1"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -181,7 +181,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								</tr>
 								<tr>
 								    <td style="text-align:left;">
-									<div id="separador_regimen" style="display: none;">
+									<div id="separador_regimen" style="display: none;" onchange="validar_antes_seleccionar_archivos();">
 									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul'>
 										<option value='none'>Seleccione un regimen</option>
 										<option value='C'>C (Contributivo)</option>
