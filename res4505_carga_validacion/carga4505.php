@@ -340,7 +340,7 @@ if(isset($_POST["fecha_remision"]))
 		if ($infoArchivos['size'] > 1024000000)
 		{
 			$mostrarMsj = 'inline-block';
-			$mensaje .= "El tama&ntildeo del archivo no debe superar 1024 MegaBytes de tamaño. Por favor verifique el tama&ntildeo de su archivo.";
+			$mensaje .= "El tama&ntildeo del archivo no debe superar 1024 MegaBytes de tama&ntildeo. Por favor verifique el tama&ntildeo de su archivo.";
 			$validacionLongitud = false;
 			$validacionNombreArchivo = false;
 		} 
