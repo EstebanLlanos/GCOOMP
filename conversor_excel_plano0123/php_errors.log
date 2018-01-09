@@ -1,0 +1,1 @@
+[18-Sep-2017 14:28:12 America/Bogota] PHP Fatal error:  Call to undefined function contar_lineas_archivo() in C:\Program Files (x86)\PostgreSQL\EnterpriseDB-ApachePHP\apache\www\GIOSS_FVLL_SRC\conversor_excel_plano4505\conversor_excel_plano4505.php on line 364
