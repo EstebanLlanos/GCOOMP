@@ -855,6 +855,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	$sql_query_verificar.=" AND nombre_del_archivo='".$nombre_archivo_registrado."'  ";
 	$sql_query_verificar.=" ;  ";
 	$resultados_query_verificar=$coneccionBD->consultar2_no_crea_cierra($sql_query_verificar);
+
+	//echo $sql_query_verificar."<br>";
+
 	if(count($resultados_query_verificar)>0)
 	{
 		$si_fue_validado_antes=true;
