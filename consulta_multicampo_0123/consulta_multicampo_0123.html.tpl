@@ -56,7 +56,7 @@
 
 						<tr>
 						    <td style="text-align:left;">
-						    	<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Analisis para 0123 Cancer</h4>
+						    	<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Analisis para 0123 Hemofilia</h4>
 						    </td>
 					    </tr>
 
