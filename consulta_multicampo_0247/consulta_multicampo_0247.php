@@ -262,7 +262,7 @@ $smarty->assign("menu", $menu, true);
 $smarty->display('consulta_multicampo_0247.html.tpl');
 
 /*
-INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('226','113','Consulta Multi Campo','',FALSE,'..|consulta_multicampo|consulta_multicampo_0247.php','33.03');
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('226','113','Consulta Multi Campo','',FALSE,'..|consulta_multicampo_0247|consulta_multicampo_0247.php','33.03');
 
 INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('226','5'); 
 INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('226','4'); 
