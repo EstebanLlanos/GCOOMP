@@ -180,6 +180,33 @@ function procesar_mensaje3($mensaje)
 	return $mensaje_procesado;
 }
 
+function formato_fecha_valida_quick($fecha_a_verificar,$separador="-")
+{
+	$es_fecha_valida=true;
+
+	$fecha_a_verificar_array= explode($separador,$fecha_a_verificar);
+
+	if(count($fecha_a_verificar_array)!=3)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+	else if( !ctype_digit($fecha_a_verificar_array[0]) 
+		|| !ctype_digit($fecha_a_verificar_array[1]) 
+		|| !ctype_digit($fecha_a_verificar_array[2])  
+		)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+	else if( 
+		!checkdate($fecha_a_verificar_array[1],$fecha_a_verificar_array[2],$fecha_a_verificar_array[0])
+		)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+
+	return $es_fecha_valida;
+}//fin function
+
 //consultar el tipo de entidad
 $sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
 $resultado_query_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query_tipo_entidad_asociada);
