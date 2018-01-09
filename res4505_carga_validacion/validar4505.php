@@ -1962,6 +1962,11 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 			{
 				$mensaje_error_vi.="El numero de lineas indicadas por el registro: $numero_lineas_indicadas_archivo, no corresponde con el numero de lineas que posee actualmente el archivo: $lineas_Archivo_menos_uno. <br>";
 			}
+
+			if(intval($numero_lineas_indicadas_archivo)==0)
+			{
+				$mensaje_error_vi.="El numero de lineas indicadas por el registro: $numero_lineas_indicadas_archivo, no puede ser cero. <br>";
+			}
 			
 			if($mensaje_error_vi!="")
 			{
