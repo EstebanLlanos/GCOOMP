@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_adaptable.js?v=2.914"></script>
+        <script type="text/javascript" src="act_adaptable.js?v=2.915"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -109,6 +109,10 @@
 							<option value='7.5' >Tabla Afiliados Medicina Prepagada Orden BD</option>
 							<option value='7.7' >Tabla Afiliados Medicina Prepagada Mini</option>
 							<option value='8' >Tabla Valores Permitidos 4505 Consultas Cruces Razonabilidad</option>
+							<option value='8.1' >Tabla Valores Permitidos 0247 Consultas Cruces Razonabilidad</option>
+							<option value='8.2' >Tabla Valores Permitidos 0123 Consultas Cruces Razonabilidad</option>
+							<option value='8.3' >Tabla Valores Permitidos 2463 Consultas Cruces Razonabilidad</option>							
+							<option value='8.4' >Tabla Valores Permitidos 4725 Consultas Cruces Razonabilidad</option>
 							<option value='9' >Tabla prestadores servicios salud</option>
 							<option value='10' >Tabla gioss entidades sector salud</option>
 							<option value='11' >Tabla 4505 Consultas</option>

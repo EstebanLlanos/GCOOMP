@@ -103,6 +103,30 @@ function prediligenciar_datos_tabla_seleccionada_para_cargar(valor_seleccionado)
 		document.getElementById('llaves').value="numero_campo_norma";
 		document.getElementById('nombres_columnas_tablas').value="numero_campo_norma,nombre_campo,lista_valores_permitidos";
 	}
+	if(valor_seleccionado=='8.1')
+	{
+		document.getElementById('nombre_tabla').value="valores_permitidos_0247";
+		document.getElementById('llaves').value="numero_campo_norma";
+		document.getElementById('nombres_columnas_tablas').value="numero_orden_desde_cero,numero_campo_norma,nombre_campo,lista_valores_permitidos";
+	}
+	if(valor_seleccionado=='8.2')
+	{
+		document.getElementById('nombre_tabla').value="valores_permitidos_0123";
+		document.getElementById('llaves').value="numero_campo_norma";
+		document.getElementById('nombres_columnas_tablas').value="numero_orden_desde_cero,numero_campo_norma,nombre_campo,lista_valores_permitidos";
+	}
+	if(valor_seleccionado=='8.3')
+	{
+		document.getElementById('nombre_tabla').value="valores_permitidos_2463";
+		document.getElementById('llaves').value="numero_campo_norma";
+		document.getElementById('nombres_columnas_tablas').value="numero_orden_desde_cero,numero_campo_norma,nombre_campo,lista_valores_permitidos";
+	}
+	if(valor_seleccionado=='8.4')
+	{
+		document.getElementById('nombre_tabla').value="valores_permitidos_4725";
+		document.getElementById('llaves').value="numero_campo_norma";
+		document.getElementById('nombres_columnas_tablas').value="numero_orden_desde_cero,numero_campo_norma,nombre_campo,lista_valores_permitidos";
+	}
 	if(valor_seleccionado=='9')
 	{
 		document.getElementById('nombre_tabla').value="gios_prestador_servicios_salud";
