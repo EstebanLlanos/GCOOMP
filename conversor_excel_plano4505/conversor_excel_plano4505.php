@@ -406,7 +406,7 @@ if( count($ruta_archivos_subidos)>0 )
 				    		$cont=0;
 				    		while ($cont<count($array_campos_por_tubo) ) 
 				    		{
-				    			if($linea_resultado!=""){$linea_resultado.="|";}
+				    			if($cont!=0){$linea_resultado.="|";}
 				    			$linea_resultado.=trim($array_campos_por_tubo[$cont]);
 				    			$cont++;
 				    		}//fin while
@@ -418,7 +418,7 @@ if( count($ruta_archivos_subidos)>0 )
 				    		$cont=0;
 				    		while ($cont<count($array_campos_por_punto_y_coma) ) 
 				    		{
-				    			if($linea_resultado!=""){$linea_resultado.="|";}
+				    			if($cont!=0){$linea_resultado.="|";}
 				    			$linea_resultado.=trim($array_campos_por_punto_y_coma[$cont]);
 				    			$cont++;
 				    		}//fin while
@@ -430,7 +430,7 @@ if( count($ruta_archivos_subidos)>0 )
 				    		$cont=0;
 				    		while ($cont<count($array_campos_por_tabulacion) ) 
 				    		{
-				    			if($linea_resultado!=""){$linea_resultado.="|";}
+				    			if($cont!=0){$linea_resultado.="|";}
 				    			$linea_resultado.=trim($array_campos_por_tabulacion[$cont]);
 				    			$cont++;
 				    		}//fin while
@@ -442,7 +442,7 @@ if( count($ruta_archivos_subidos)>0 )
 				    		$cont=0;
 				    		while ($cont<count($array_campos_por_solo_coma) ) 
 				    		{
-				    			if($linea_resultado!=""){$linea_resultado.="|";}
+				    			if($cont!=0){$linea_resultado.="|";}
 				    			$linea_resultado.=trim($array_campos_por_solo_coma[$cont]);
 				    			$cont++;
 				    		}//fin while
@@ -457,7 +457,7 @@ if( count($ruta_archivos_subidos)>0 )
 					    		$cont=0;
 					    		while ($cont<119 ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$linea_resultado.=trim($array_campos_por_tubo[$cont]);
 					    			$cont++;
 					    		}//fin while
@@ -482,7 +482,7 @@ if( count($ruta_archivos_subidos)>0 )
 					    		$cont=0;
 					    		while ($cont<119 ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$linea_resultado.=trim($array_campos_por_punto_y_coma[$cont]);
 					    			$cont++;
 					    		}//fin while
@@ -507,7 +507,7 @@ if( count($ruta_archivos_subidos)>0 )
 					    		$cont=0;
 					    		while ($cont<119 ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$linea_resultado.=trim($array_campos_por_tabulacion[$cont]);
 					    			$cont++;
 					    		}//fin while
@@ -532,7 +532,7 @@ if( count($ruta_archivos_subidos)>0 )
 					    		$cont=0;
 					    		while ($cont<119 ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$linea_resultado.=trim($array_campos_por_solo_coma[$cont]);
 					    			$cont++;
 					    		}//fin while
@@ -643,7 +643,7 @@ if( count($ruta_archivos_subidos)>0 )
 				    		$cont=0;
 				    		while ($cont<count($Row) ) 
 				    		{
-				    			if($linea_resultado!=""){$linea_resultado.="|";}
+				    			if($cont!=0){$linea_resultado.="|";}
 				    			$celda_procesada=preg_replace( "/\r|\n/", "", trim($Row[$cont]) );
 				    			$celda_procesada=str_replace(array("\r","\n"), "", $celda_procesada);
 				    			$linea_resultado.=$celda_procesada;
@@ -660,7 +660,7 @@ if( count($ruta_archivos_subidos)>0 )
 					    		$cont=0;
 					    		while ($cont<119 ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$celda_procesada=preg_replace( "/\r|\n/", "", trim($Row[$cont]) );
 					    			$celda_procesada=str_replace(array("\r","\n"), "", $celda_procesada);
 				    				$linea_resultado.=$celda_procesada;
@@ -681,7 +681,7 @@ if( count($ruta_archivos_subidos)>0 )
 								$cont=0;
 					    		while ($cont<count($Row) ) 
 					    		{
-					    			if($linea_resultado!=""){$linea_resultado.="|";}
+					    			if($cont!=0){$linea_resultado.="|";}
 					    			$celda_procesada=preg_replace( "/\r|\n/", "", trim($Row[$cont]) );
 					    			$celda_procesada=str_replace(array("\r","\n"), "", $celda_procesada);
 				    				$linea_resultado.=$celda_procesada;
@@ -785,7 +785,7 @@ if( count($ruta_archivos_subidos)>0 )
 
 				            if($numeroColumna<=118 && $iniciaPor2==true)
 				            {
-				            	if($linea_resultado!=""){$linea_resultado.="|";}
+				            	if($cont!=0){$linea_resultado.="|";}
 				            	if (!is_null($cell)) 
 				            	{
 				            		$valorCelda=trim("".$cell->getFormattedValue() );
