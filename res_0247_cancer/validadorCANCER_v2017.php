@@ -5389,7 +5389,7 @@ function validar_CANCER($campos,
 			$campo_n17=trim($campos[16]);
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_diagnostico_ciex_cancer_tumor_maligno WHERE codigo_diagnostico='".$campo_n17."' AND ( (codigo_diagnostico BETWEEN 'C500' AND 'C509') OR (codigo_diagnostico BETWEEN 'D050' AND 'D059') OR (codigo_diagnostico='D486')) ; ";
-			$resultado_c17=$coneccionBD->consultar2_no_crea_cierra($consulta);
+			//$resultado_c17=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			
 			
 			//COMPARACION RANGOS CON CAMPO 17
