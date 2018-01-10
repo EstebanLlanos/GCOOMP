@@ -1234,6 +1234,71 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	//no tabla variados que contiene algunos rangos de years
 	//revisar esto en ERC	
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+
+	$array_fecha_corte=explode("-", $fecha_de_corte);
+	$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
+	$directorio_validacion_per_year='../res_0247_cancer/';
+	$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
+	if(file_exists($ruta_validacion_version)==true)
+	{
+		require_once $ruta_validacion_version;
+	}//fin if
+	else
+	{
+		$version_minima=0;
+		$version_maxima=0;
+		$array_versiones_scripts=array();
+		if ($filesVersiones = opendir($directorio_validacion_per_year)) 
+		{
+			while (false !== ($script_actual = readdir($filesVersiones))) 
+			{
+				$script_actual_temp=str_replace(".php", "", $script_actual);
+				$script_actual_temp=str_replace("validadorCANCER_v", "", $script_actual_temp);
+				$array_versiones_scripts[]=intval($script_actual_temp);
+
+
+
+			}//fin while
+			$selecciono_version=false;
+			$version_minima=min($array_versiones_scripts);
+			$version_maxima=max($array_versiones_scripts);
+			if($version_minima>$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$version_minima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			if($version_maxima<$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$version_maxima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			$year_retroceso_version=intval($year_corte_para_version_validacion);
+			while($selecciono_version==false)
+			{				
+				$year_retroceso_version--;
+				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$year_retroceso_version.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin while
+
+
+
+
+		}//fin if
+	}//fin else
 	
 	//archivo donde se separa los que no estan en ciex del campo 17
 	
@@ -2377,9 +2442,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 					if($si_existe==true && $existe_codigo_campo_17==true)
 				    {					
 						
-						$array_fecha_corte=explode("-", $fecha_de_corte);
-						$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
-						require_once '../res_0247_cancer/validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
+						
+
+						
 						$array_resultados_validacion=validar_CANCER($campos,
 											    $nlinea,
 											    $consecutivo_errores,

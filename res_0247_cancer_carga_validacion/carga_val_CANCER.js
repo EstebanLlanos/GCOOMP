@@ -340,6 +340,12 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		if(prestador!="none")
 		{			
 			var prestador_nombre=array_nombre_archivo[0].substring(8,20);
+			if(nombre_sin_extension[0].length==30 || nombre_sin_extension[0].length==28)
+			{
+				prestador_nombre=array_nombre_archivo[0].substring(9,21);
+			}//fin if
+
+			//alert(prestador_nombre);
 			
 			if(prestador_nombre!=prestador  && document.getElementById("tipo_archivo_norma").value=="individual_ips")
 			{
@@ -348,11 +354,20 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			}
 			else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
 			{
-			    if (prestador_nombre!="0000AGRUPADO" && nombre_sin_extension[0].length==35)
+				var eapb_ver_new_name =document.getElementById('eapb').value;
+				while(eapb_ver_new_name.length<12 && eapb_ver_new_name!="none")
+				{
+					eapb_ver_new_name="0"+eapb_ver_new_name;
+				}//fin while eapb caso agrupado nuevo nombre
+			    if (prestador_nombre!="0000AGRUPADO" && nombre_sin_extension[0].length==35 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 			    {
-				mensaje+="ERROR: El archivo no es AGRUPADO <br>";
-			    }
-			}
+					mensaje+="ERROR: El archivo no es AGRUPADO <br>";
+			    }//fin if
+			    else if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==30 || nombre_sin_extension[0].length==28) )
+			    {
+					mensaje+="ERROR: El archivo no es AGRUPADO <br>";
+			    }//fin else if
+			}//fin else if
 			
 			
 		}
@@ -360,23 +375,23 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		//LONGITUD
 		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
 		{
-		    if (nombre_sin_extension[0].length!=35)
+		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 		    {
-			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35 caracteres <br>";
+			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35, 30, 28 caracteres <br>";
 		    }
 		}
 		else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
 		{
-		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
+		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 		    {
-			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35 o 22 caracteres para agrupado <br>";
+			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35, 35, 30, 28, 22 caracteres para agrupado <br>";
 		    }
-		    
+		    //28 30
 		}
 		//FIN LONGITUD
 
 		//VERIFICACION REGIMEN
-		if(document.getElementById('selector_regimen_para_agrupados') )
+		if(document.getElementById('selector_regimen_para_agrupados') && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 )
 		{
 			if(document.getElementById('selector_regimen_para_agrupados').style.display!="none")
 			{
@@ -399,7 +414,7 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		{
 			eapb="0"+eapb;
 		}
-		if(eapb!="none")
+		if(eapb!="none" && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 		{			
 			var eapb_nombre="";
 			if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
