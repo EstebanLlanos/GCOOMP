@@ -144,8 +144,8 @@
 								</tr>
 								<tr>
 								    <td style="text-align:left;">
-									<div id="separador_regimen" style="display: inline;" onchange="validar_antes_seleccionar_archivos();">
-									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul'>
+									<div id="separador_regimen" style="display: inline;" >
+									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul' onchange="validar_antes_seleccionar_archivos();">
 										<option value='none'>Seleccione un regimen</option>
 										<option value='C'>C (Contributivo)</option>
 										<option value='S'>S (Subsidiado)</option>

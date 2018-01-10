@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-09 13:59:54
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-10 09:33:51
          compiled from "carga_val_CANCER.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15977223515a4e67e55ea0b8-35203907%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ebbbf5beed0a9b6069c99c900a13d5e6d1a412dc' => 
     array (
       0 => 'carga_val_CANCER.html.tpl',
-      1 => 1515524383,
+      1 => 1515594496,
       2 => 'file',
     ),
   ),
@@ -177,12 +177,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								
 								
 								<tr>
-								    <td style="text-align:left;"><h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display:none;" id="titulo_regimen">Regimen:</h5></td>
+								    <td style="text-align:left;"><h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display:inline;" id="titulo_regimen">Regimen:</h5></td>
 								</tr>
 								<tr>
 								    <td style="text-align:left;">
-									<div id="separador_regimen" style="display: none;" onchange="validar_antes_seleccionar_archivos();">
-									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul'>
+									<div id="separador_regimen" style="display: inline;" >
+									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul' onchange="validar_antes_seleccionar_archivos();">
 										<option value='none'>Seleccione un regimen</option>
 										<option value='C'>C (Contributivo)</option>
 										<option value='S'>S (Subsidiado)</option>

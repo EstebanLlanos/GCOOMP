@@ -250,8 +250,8 @@ function mostrar_selectores_geograficos()
 		$("#prestador").parent().find("input.ui-autocomplete-input").autocomplete("option", "disabled", false).prop("disabled",false);
 		$("#prestador").parent().find("a.ui-button").button("enable");
 		
-		document.getElementById("separador_regimen").style.display="none";
-		document.getElementById("titulo_regimen").style.display="none";
+		//document.getElementById("separador_regimen").style.display="none";
+		//document.getElementById("titulo_regimen").style.display="none";
 		
 		document.getElementById("titulo_numero_de_remision").style.display="block";
 		document.getElementById("separador_numero_de_remision").style.display="block";
