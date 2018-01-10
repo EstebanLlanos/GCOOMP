@@ -17605,7 +17605,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{
@@ -17741,7 +17741,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{
@@ -17877,7 +17877,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{
@@ -25447,7 +25447,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{
@@ -25606,7 +25606,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{
@@ -25762,7 +25762,7 @@ function validar_CANCER($campos,
 			//valor permitido
 			$consulta="";
 			$consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-			$consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$consulta.=" OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && (intval($campos[$numero_campo])!=97 && intval($campos[$numero_campo])!=98))
 			{

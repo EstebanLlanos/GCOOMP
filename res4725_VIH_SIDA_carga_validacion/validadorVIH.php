@@ -7645,7 +7645,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -7744,7 +7744,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -7842,7 +7842,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -7939,7 +7939,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -17178,7 +17178,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -17274,7 +17274,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -17371,7 +17371,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -17467,7 +17467,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -19412,7 +19412,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -19505,7 +19505,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -19598,7 +19598,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -19691,7 +19691,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
@@ -19785,7 +19785,7 @@ function validar_vih($campos,
 			
 			//valor permitido
 			$consulta_medicamento="";
-			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ;";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 			$condicion=intval($campos[$numero_campo])!=0 && count($resultado)==0 ;
 			if($condicion)
