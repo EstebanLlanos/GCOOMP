@@ -1094,6 +1094,7 @@ foreach($resultado_query_periodos as $key=>$periodo)
 	$fecha_periodo_mes_dia=explode("-",$periodo["valor_fecha_permitida"])[1]."-".explode("-",$periodo["valor_fecha_permitida"])[2];
 	$selector_periodo.="<option value='".$cod_periodo."::".$fecha_periodo_mes_dia."'>Periodo $cod_periodo ($nombre_periodo , $fecha_periodo)</option>";
 }
+$selector_periodo.="<option value='13::01-01'>Periodo 13 (Anual, AAAA-01-01)</option>";
 $selector_periodo.="</select>";
 //FIN PERIODO
 
