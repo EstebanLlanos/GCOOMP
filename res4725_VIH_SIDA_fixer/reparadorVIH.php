@@ -15694,18 +15694,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -15764,18 +15757,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -15833,18 +15819,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -15902,18 +15881,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -17420,18 +17392,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -17488,18 +17453,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -17557,18 +17515,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -17625,18 +17576,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -18028,18 +17972,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -18095,18 +18032,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -18162,18 +18092,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -18229,18 +18152,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
@@ -18296,18 +18212,11 @@ function reparacion_calidad_formato_vih(&$campos,
 		if( count($resultado1)>0 && is_array($resultado1) )
 		{
 		    //si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		    if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["codigo_cum_con_guion"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["codigo_cum_con_guion"];
-		    }
-		    else if(trim($campos[$numero_campo])==trim($resultado1[0]["cod_atc"]))
-		    {
-			$campos[$numero_campo]=$resultado1[0]["cod_atc"];
-		    }
+		    
+		    if($resultado1[0]["codigo_cum"]!="")
+	    	{
+	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    	}//fin if
 		}//fin if
 		else if (count($resultado1)==0)
 		{
