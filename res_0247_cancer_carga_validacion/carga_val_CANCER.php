@@ -13,7 +13,7 @@ include ("../librerias_externas/PHPMailer/class.smtp.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
-require_once 'validadorCANCER.php';
+//require_once 'validadorCANCER.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
@@ -722,6 +722,235 @@ function custom_replace_str($needle,$replace,$haystack,$replace_all=true,$qty_to
 
     return $result_string;
 }//fin function remplazar cadena cuantificado
+
+
+//recibe en dia mes year
+function edad_years_months_days($dob, $now = false)
+{
+    if (!$now) $now = date('d-m-Y');
+    $dob = explode('-', $dob);
+    $now = explode('-', $now);
+    $mnt = array(1 => 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if (($now[2]%400 == 0) or ($now[2]%4==0 and $now[2]%100!=0)) $mnt[2]=29;
+    if($now[0] < $dob[0]){
+	    $now[0] += $mnt[intval($now[1])];
+	    $now[1]--;
+    }
+    if($now[1] < $dob[1]){
+	    $now[1] += 12;
+	    $now[2]--;
+    }
+    if($now[2] < $dob[2]) return false;
+    return  array('y' => $now[2] - $dob[2], 'm' => $now[1] - $dob[1], 'd' => $now[0] - $dob[0]);
+}
+
+function edad_calculada_a_partir_de_dos_fechas($fecha_nacimiento_param,$fecha_secundaria_param,$tiempo)
+{
+	$edad_en_years= -1;
+	$edad_meses =-1;	
+	$edad_dias =-1;
+
+	$array_fecha_nacimiento=explode("-",trim($fecha_nacimiento_param) );
+	$array_fecha_secundaria_para_nacimiento=explode("-",$fecha_secundaria_param);
+	$array_edad_fc=array();
+	
+	if(count($array_fecha_nacimiento)==3 
+		&& count($array_fecha_secundaria_para_nacimiento)==3
+		)
+	{
+		$array_edad_fc=edad_years_months_days($array_fecha_nacimiento[2]."-".$array_fecha_nacimiento[1]."-".$array_fecha_nacimiento[0],$array_fecha_secundaria_para_nacimiento[2]."-".$array_fecha_secundaria_para_nacimiento[1]."-".$array_fecha_secundaria_para_nacimiento[0]);
+		$edad_en_years=intval($array_edad_fc['y']);
+		$edad_meses=(intval($array_edad_fc['y'])*12)+$array_edad_fc['m'];
+		$edad_dias=diferencia_dias_entre_fechas($fecha_nacimiento_param,$fecha_secundaria_param);
+	}//fin if
+
+	if(strtoupper( trim($tiempo) )=="Y")
+	{
+		return $edad_en_years;
+	}
+	else if(strtoupper( trim($tiempo) )=="M")
+	{
+		return $edad_meses;
+	}
+	else if(strtoupper( trim($tiempo) )=="D")
+	{
+		return $edad_dias;
+	}
+	
+}//fin function
+
+function remover_caracteres_especiales( $string )
+{
+    $string = str_replace("á","a",$string);
+	$string = str_replace("é","e",$string);
+	$string = str_replace("í","i",$string);
+	$string = str_replace("ó","o",$string);
+	$string = str_replace("ú","u",$string);
+	$string = str_replace("ñ","n",$string);
+	$string = str_replace("Á","A",$string);
+	$string = str_replace("É","E",$string);
+	$string = str_replace("Í","I",$string);
+	$string = str_replace("Ó","O",$string);
+	$string = str_replace("Ú","U",$string);
+	$string = str_replace("Ñ","N",$string);
+    return preg_replace('/[^a-zA-Z0-9:.\s\-,@\+]/', '', $string);
+}
+
+
+function quita_tildes($mensaje)
+{
+	$mensaje_procesado = str_replace("á","a",$mensaje);
+	$mensaje_procesado = str_replace("é","e",$mensaje_procesado);
+	$mensaje_procesado = str_replace("í","i",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ó","o",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ú","u",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ñ","n",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Á","A",$mensaje_procesado);
+	$mensaje_procesado = str_replace("É","E",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Í","I",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ó","O",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ú","U",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ñ","N",$mensaje_procesado);
+	$mensaje_procesado = str_replace("'"," ",$mensaje_procesado);
+	$mensaje_procesado = str_replace("\n"," ",$mensaje_procesado);
+	$mensaje_procesado = remover_caracteres_especiales($mensaje_procesado);
+	
+	return $mensaje_procesado;
+}
+
+function diferencia_dias_entre_fechas($fecha_1,$fecha_2)
+{
+    //las fechas deben ser cadenas de 10 caracteres en el siguiente formato AAAA-MM-DD, ejemplo: 1989-03-03
+    //si la fecha 1 es inferior a la fecha 2, obtendra un valor mayor a 0
+    //si la fecha uno excede o es igual a la fecha 2, tendra un valor resultado menor o igual a 0
+    date_default_timezone_set("America/Bogota");
+    
+    $array_fecha_1=explode("-",$fecha_1);
+    
+    $verificar_fecha_para_date_diff=true;
+    
+    if(count($array_fecha_1)==3)
+    {
+	    if(!ctype_digit($array_fecha_1[0])
+	       || !ctype_digit($array_fecha_1[1]) || !ctype_digit($array_fecha_1[2])
+	       || !checkdate(intval($array_fecha_1[1]),intval($array_fecha_1[2]),intval($array_fecha_1[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;	
+    }
+    
+    $array_fecha_2=explode("-",$fecha_2);			
+    if(count($array_fecha_2)==3)
+    {
+	    if(!ctype_digit($array_fecha_2[0])
+	       || !ctype_digit($array_fecha_2[1]) || !ctype_digit($array_fecha_2[2])
+	       || !checkdate(intval($array_fecha_2[1]),intval($array_fecha_2[2]),intval($array_fecha_2[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;
+    }
+
+    if($verificar_fecha_para_date_diff==true)
+    {
+	    $year1=intval($array_fecha_1[0])."";
+	    $mes1=intval($array_fecha_1[1])."";
+	    $dia1=intval($array_fecha_1[2])."";
+
+	    $year2=intval($array_fecha_2[0])."";
+	    $mes2=intval($array_fecha_2[1])."";
+	    $dia2=intval($array_fecha_2[2])."";
+
+	    if(strlen($dia1)==1)
+	    {
+	    	$dia1="0".$dia1;
+	    }//fin if
+
+	    if(strlen($mes1)==1)
+	    {
+	    	$mes1="0".$mes1;
+	    }//fin if
+
+	    if(strlen($dia2)==1)
+	    {
+	    	$dia2="0".$dia2;
+	    }//fin if
+
+	    if(strlen($mes2)==1)
+	    {
+	    	$mes2="0".$mes2;
+	    }//fin if
+
+	    $fecha_1=$year1."-".$mes1."-".$dia1;
+
+	    $fecha_2=$year2."-".$mes2."-".$dia2;
+	}//fin if
+    
+    $diferencia_dias_entre_fechas=0;
+    try
+    {
+	    if($verificar_fecha_para_date_diff==true)
+	    {
+		    $date_fecha_1=date($fecha_1);
+		    $date_fecha_2=date($fecha_2);
+		    $fecha_1_format=new DateTime($date_fecha_1);
+		    $fecha_2_format=new DateTime($date_fecha_2);		
+		    try
+		    {
+		    $interval = date_diff($fecha_1_format,$fecha_2_format);
+		    $diferencia_dias_entre_fechas= (float)$interval->format("%r%a");
+		    }
+		    catch(Exception $e)
+		    {}
+	    }//fin if funcion date diff
+	    else
+	    {
+		    $diferencia_dias_entre_fechas=false;
+	    }//fin else
+	}//fin try
+	catch(Exception $e)
+	{
+		//echo "<script>alert('error excepcion: ".$e->getMessage()."')</script>";
+		return false;
+	}//fin catch
+	    
+    return $diferencia_dias_entre_fechas;
+    
+}//fin calculo diferencia entre fechas
+
+function formato_fecha_valida_quick_val($fecha_a_verificar,$separador="-")
+{
+	$es_fecha_valida=true;
+
+	$fecha_a_verificar_array= explode($separador,$fecha_a_verificar);
+
+	if(count($fecha_a_verificar_array)!=3)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+	else if( !ctype_digit($fecha_a_verificar_array[0]) 
+		|| !ctype_digit($fecha_a_verificar_array[1]) 
+		|| !ctype_digit($fecha_a_verificar_array[2])  
+		)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+	else if( 
+		!checkdate($fecha_a_verificar_array[1],$fecha_a_verificar_array[2],$fecha_a_verificar_array[0])
+		)
+	{			
+		$es_fecha_valida=false;
+	}//fin if
+
+	return $es_fecha_valida;
+}//fin function
 
 //consultar el tipo de entidad
 $sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
@@ -2147,7 +2376,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 
 					if($si_existe==true && $existe_codigo_campo_17==true)
 				    {					
-						//validar_CANCER($campos,$nlinea,&$consecutivo_errores,$array_tipo_validacion,$array_grupo_validacion,$array_detalle_validacion,$nombre_archivo,$fecha_remision,$fecha_de_corte,$cod_prestador,$cod_eapb)
+						
+						$array_fecha_corte=explode("-", $fecha_de_corte);
+						$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
+						require_once 'validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
 						$array_resultados_validacion=validar_CANCER($campos,
 											    $nlinea,
 											    $consecutivo_errores,
