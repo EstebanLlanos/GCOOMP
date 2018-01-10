@@ -2379,7 +2379,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 						
 						$array_fecha_corte=explode("-", $fecha_de_corte);
 						$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
-						require_once 'validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
+						require_once '../res_0247_cancer/validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
 						$array_resultados_validacion=validar_CANCER($campos,
 											    $nlinea,
 											    $consecutivo_errores,

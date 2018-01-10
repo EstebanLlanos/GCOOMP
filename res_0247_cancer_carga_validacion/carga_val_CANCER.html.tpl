@@ -140,11 +140,11 @@
 								
 								
 								<tr>
-								    <td style="text-align:left;"><h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display:none;" id="titulo_regimen">Regimen:</h5></td>
+								    <td style="text-align:left;"><h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display:inline;" id="titulo_regimen">Regimen:</h5></td>
 								</tr>
 								<tr>
 								    <td style="text-align:left;">
-									<div id="separador_regimen" style="display: none;" onchange="validar_antes_seleccionar_archivos();">
+									<div id="separador_regimen" style="display: inline;" onchange="validar_antes_seleccionar_archivos();">
 									    <select id='selector_regimen_para_agrupados' name='selector_regimen_para_agrupados' class='campo_azul'>
 										<option value='none'>Seleccione un regimen</option>
 										<option value='C'>C (Contributivo)</option>
