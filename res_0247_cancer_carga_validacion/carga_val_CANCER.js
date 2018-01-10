@@ -226,8 +226,8 @@ function mostrar_selectores_geograficos()
 		
 		document.getElementById("sub_titulo_entidad_3_oculto").style.display="block";
 		
-		document.getElementById("separador_regimen").style.display="block";
-		document.getElementById("titulo_regimen").style.display="block";
+		//document.getElementById("separador_regimen").style.display="block";
+		//document.getElementById("titulo_regimen").style.display="block";
 		
 		document.getElementById("titulo_numero_de_remision").style.display="none";
 		document.getElementById("separador_numero_de_remision").style.display="none";
@@ -329,6 +329,22 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		{
 			mensaje+="ERROR: Archivo debe ser "+sigla+". <br>";
 		}
+
+		//CONDICIONES ESPECIFICAS VERSIONES
+		//verificacion solo gcoomp
+		//nota: comentar otras versiones
+		if(nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 )
+		{
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+		}//fin if
+		//fin verificacion solo gcoomp
+		//verificacion versiones prestador general
+		//nota: comentar otras versiones
+		if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
+		{
+			//mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+		}//fin if
+		//FIN CONDICIONES ESPECIFICAS VERSIONES
 		
 		var prestador = document.getElementById('prestador').value;
 		
@@ -365,12 +381,12 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			    }//fin if
 			    else if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==30 || nombre_sin_extension[0].length==28) )
 			    {
-					mensaje+="ERROR: El archivo no es AGRUPADO <br>";
+			    	mensaje+="ERROR: La EAPB "+eapb_ver_new_name+" no corresponde al la EAPB indicada en el archivo "+prestador_nombre+" para un archivo AGRUPADO <br>";
 			    }//fin else if
 			}//fin else if
 			
 			
-		}
+		}//fin if
 		
 		//LONGITUD
 		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
@@ -408,6 +424,8 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			}//fin if
 		}//fin if existe selector_regimen_para_agrupados
 		//FIN VERIFICACION REGIMEN
+
+		
 		
 		var eapb =document.getElementById('eapb').value;
 		while(eapb.length<6 && eapb!="none")
@@ -705,4 +723,9 @@ onbeforeunload = function(e){
 $(document).ready(function(){
     $("#eapb").combobox();
     $("#prestador").combobox();
+    //nota: descomentar para versiones general y prestador
+    document.getElementById("separador_regimen").style.display="none";
+	document.getElementById("titulo_regimen").style.display="none";
+	document.getElementById("selector_regimen_para_agrupados").value="E";
 })
+
