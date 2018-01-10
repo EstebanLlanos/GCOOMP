@@ -625,7 +625,7 @@ function validar_CANCER($campos,
 			}//fin if
 			
 			//valor permitido
-			if( $campos[$numero_campo]!="RC" &&  $campos[$numero_campo]!="TI" &&  $campos[$numero_campo]!="CC" &&  $campos[$numero_campo]!="CE" &&  $campos[$numero_campo]!="PA" &&  $campos[$numero_campo]!="MS" &&  $campos[$numero_campo]!="AS" &&  $campos[$numero_campo]!="CD")
+			if( $campos[$numero_campo]!="RC" &&  $campos[$numero_campo]!="TI" &&  $campos[$numero_campo]!="CC" &&  $campos[$numero_campo]!="CE" &&  $campos[$numero_campo]!="PA" &&  $campos[$numero_campo]!="MS" &&  $campos[$numero_campo]!="AS" &&  $campos[$numero_campo]!="CD" &&  $campos[$numero_campo]!="SC" &&  $campos[$numero_campo]!="PE")
 			{
 				if($errores_campos!="")
 				{
@@ -1374,7 +1374,7 @@ function validar_CANCER($campos,
 			}//fin if
 			
 			//valor permitido
-			if( (intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>16) && (intval($campos[$numero_campo])<31 || intval($campos[$numero_campo])>39) && (intval($campos[$numero_campo])<50 || intval($campos[$numero_campo])>61) )
+			if( (intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>16) && (intval($campos[$numero_campo])<31 || intval($campos[$numero_campo])>39) && (intval($campos[$numero_campo])<50 || intval($campos[$numero_campo])>63) )
 			{
 				if($errores_campos!="")
 				{
@@ -4430,7 +4430,7 @@ function validar_CANCER($campos,
 			     && trim($campos[$numero_campo])!="18"
 			     && trim($campos[$numero_campo])!="19"
 			     && trim($campos[$numero_campo])!="20"
-			     && trim($campos[$numero_campo])!="98"				
+			     && trim($campos[$numero_campo])!="98"
 			     && trim($campos[$numero_campo])!="99"
 			   )
 			{
@@ -6160,6 +6160,7 @@ function validar_CANCER($campos,
 			if(trim($campos[$numero_campo])!="1"
 			&& trim($campos[$numero_campo])!="2"
 			&& trim($campos[$numero_campo])!="3"
+			&& trim($campos[$numero_campo])!="4"
 			&& trim($campos[$numero_campo])!="97"
 			&& trim($campos[$numero_campo])!="98"
 			&& trim($campos[$numero_campo])!="99"
@@ -6732,7 +6733,6 @@ function validar_CANCER($campos,
 			$es_fecha_calendario_actual=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 			//no es fecha calendario
 			if($es_fecha_calendario_actual>0
-			   && trim($campos[$numero_campo])!="1800-01-01"
 			   && trim($campos[$numero_campo])!="1845-01-01"
 			   )
 			{
@@ -27756,7 +27756,6 @@ function validar_CANCER($campos,
 			&& trim($campos[$numero_campo])!="4"
 			&& trim($campos[$numero_campo])!="5"
 			&& trim($campos[$numero_campo])!="6"
-			&& trim($campos[$numero_campo])!="7"
 			&& trim($campos[$numero_campo])!="98"
 			)
 			{
@@ -35163,8 +35162,6 @@ function validar_CANCER($campos,
 		}//fin if este campo no esta en blanco
 		
 	}//if si existe campo
-	
-	
 	
 	//numero_orden_desde_cero 203 numero orden 204 numero campo 126 
 	$numero_campo=203;
