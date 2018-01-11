@@ -336,9 +336,9 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		//nota: comentar otras versiones
 		if(nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 && get_entidad_personalizada=="PrepagadaCoomeva" )
 		{
-			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. "+nombre_sin_extension[0].length+" <br>";
 		}//fin if
-		else if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
+		else if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22 && get_entidad_personalizada!="PrepagadaCoomeva")
 		{
 			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
 		}//fin if
