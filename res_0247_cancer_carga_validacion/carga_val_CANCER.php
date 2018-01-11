@@ -1099,6 +1099,11 @@ $selector_periodo.="</select>";
 //FIN PERIODO
 
 
+require_once '../utiles/conf_personalizada.php';
+$get_entidad_personalizada= get_entidad_personalizada();
+
+$smarty->assign("get_entidad_personalizada", $get_entidad_personalizada, true);
+
 $smarty->assign("proveniente_de_prestador_o_eapb", $proveniente_de_prestador_o_eapb, true);
 
 $smarty->assign("campo_periodo", $selector_periodo, true);
@@ -1109,6 +1114,7 @@ $smarty->assign("mostrarResultado", $mostrarResultado, true);
 $smarty->assign("nombre", $nombre, true);
 $smarty->assign("menu", $menu, true);
 $smarty->display('carga_val_CANCER.html.tpl');
+
 
 //PARTE PARA LA VALIDACION DEL ARCHIVO
 
@@ -1585,6 +1591,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				$mes="";
 				$dia="";
 				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,8,12);
+				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_cancer_inicial['name']);
+				if(strlen($nombre_sin_txt_para_verificacion)==30 
+					   || strlen($nombre_sin_txt_para_verificacion)==28
+					)
+				{
+					$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,9,12);
+				}//fin if
 				$cod_prestador_temporal=$cod_prestador;
 				while(strlen($cod_prestador_temporal)<12)
 				{
@@ -1603,15 +1616,26 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
 					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_cancer_inicial['name']);
+					$cod_eapb_temporal_new_name=$cod_eapb;
+					while(strlen($cod_eapb_temporal_new_name)<12)
+					{
+						$cod_eapb_temporal_new_name="0".$cod_eapb_temporal_new_name;
+					}//fin while
 					if("0000AGRUPADO"!=$prestador_del_nombre_archivo && strlen($nombre_sin_txt_para_verificacion)==35 )
 					{
 						$es_valido_nombre_archivo=false;
 						$errores.="La parte del nombre para el  archivo que indica si esta agrupado( $prestador_del_nombre_archivo ), no corresponde a la especificacion 0000AGRUPADO. <br>";
 					}
-				}
+					else if($prestador_del_nombre_archivo!=$cod_eapb_temporal_new_name && (strlen($nombre_sin_txt_para_verificacion)==30 
+					   || strlen($nombre_sin_txt_para_verificacion)==28) )
+					{
+						$es_valido_nombre_archivo=false;
+						$errores.="La eapb $prestador_del_nombre_archivo, no corresponde a la eapb en seleccionada $cod_eapb_temporal_new_name para el tipo de validacion agrupado. <br>";
+					}
+				}//fin else if
 				
-				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
-				{
+				if($tipo_entidad_que_efectua_el_cargue=="individual_ips"  && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
+				{					
 					$regimen_nombre=substr($nombre_archivo_fecha_prestador,20,1);
 					if($regimen_nombre!="C" && $regimen_nombre!="S" && $regimen_nombre!="P" && $regimen_nombre!="N" && $regimen_nombre!="E")
 					{
@@ -1631,7 +1655,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				
 				//LONGITUD INCORRECTA
 				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_cancer_inicial['name']);
-				if(strlen($nombre_sin_txt_para_verificacion)!=35 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				if(strlen($nombre_sin_txt_para_verificacion)!=35 && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="La longitud del archivo sin incluir el .txt debe ser de 35 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
@@ -1640,17 +1664,19 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				{
 					if(strlen($nombre_sin_txt_para_verificacion)!=35
 					   && strlen($nombre_sin_txt_para_verificacion)!=22
+					   && strlen($nombre_sin_txt_para_verificacion)!=30 
+					   && strlen($nombre_sin_txt_para_verificacion)!=28
 					   )
 					{
 						if(strlen($nombre_sin_txt_para_verificacion)<22
-						   || (strlen($nombre_sin_txt_para_verificacion)>22 && strlen($nombre_sin_txt_para_verificacion)<25)
+						   || (strlen($nombre_sin_txt_para_verificacion)>22 && strlen($nombre_sin_txt_para_verificacion)<28)
 						   )
 						{
 							$es_valido_nombre_archivo=false;
 							$errores.="La longitud del archivo sin incluir el .txt debe ser de 22 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 						}
 						else if(
-						(strlen($nombre_sin_txt_para_verificacion)>25 && strlen($nombre_sin_txt_para_verificacion)<35)
+						(strlen($nombre_sin_txt_para_verificacion)>30 && strlen($nombre_sin_txt_para_verificacion)<35)
 						|| strlen($nombre_sin_txt_para_verificacion)>35
 						)
 						{
@@ -1662,14 +1688,24 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				//FIN LONGITUD INCORRECTA
 				
 				//REGIMEN
-				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				if($tipo_entidad_que_efectua_el_cargue=="individual_ips" && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
 				{
 					$tipo_regimen_archivo=substr($nombre_archivo_fecha_prestador,20,1);
 					//echo "<script>alert('$tipo_regimen_archivo');</script>";
 				}
-				else
+				else if(strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
 				{
 					$tipo_regimen_archivo="C";
+					if(isset($_POST["selector_regimen_para_agrupados"])
+					   && $_POST["selector_regimen_para_agrupados"]!="none"
+					   )
+					{
+						$tipo_regimen_archivo=$_POST["selector_regimen_para_agrupados"];
+					}
+				}
+				else
+				{
+					$tipo_regimen_archivo="E";
 					if(isset($_POST["selector_regimen_para_agrupados"])
 					   && $_POST["selector_regimen_para_agrupados"]!="none"
 					   )
@@ -1680,11 +1716,11 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				//FIN REGIMEN
 				
 				$eapb_del_nombre_del_archivo="";
-				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				if($tipo_entidad_que_efectua_el_cargue=="individual_ips" && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
 				{
 					$eapb_del_nombre_del_archivo=substr($nombre_archivo_fecha_prestador,21,6);
 				}
-				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
+				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb" && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
 				{
 					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_cancer_inicial['name']);
 					if(strlen($nombre_sin_txt_para_verificacion)==35)
@@ -1712,7 +1748,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 				//echo "<script>alert('$eapb_del_nombre_del_archivo y $cod_eapb_temporal');</script>";
 				
 				
-				if($eapb_del_nombre_del_archivo!=$cod_eapb_temporal)
+				if($eapb_del_nombre_del_archivo!=$cod_eapb_temporal && strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=28)
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="El codigo de la EAPB indicada en el nombre del archivo ( $eapb_del_nombre_del_archivo ), no corresponde al codigo de la EAPB a reportar ( $cod_eapb ). <br>";

@@ -331,18 +331,16 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		}
 
 		//CONDICIONES ESPECIFICAS VERSIONES
+		var get_entidad_personalizada = document.getElementById('get_entidad_personalizada').value;
 		//verificacion solo gcoomp
 		//nota: comentar otras versiones
-		if(nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 )
+		if(nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 && get_entidad_personalizada=="PrepagadaCoomeva" )
 		{
 			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
 		}//fin if
-		//fin verificacion solo gcoomp
-		//verificacion versiones prestador general
-		//nota: comentar otras versiones
-		if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
+		else if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
 		{
-			//mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
 		}//fin if
 		//FIN CONDICIONES ESPECIFICAS VERSIONES
 		
@@ -724,8 +722,12 @@ $(document).ready(function(){
     $("#eapb").combobox();
     $("#prestador").combobox();
     //nota: descomentar para versiones general y prestador
-    document.getElementById("separador_regimen").style.display="none";
-	document.getElementById("titulo_regimen").style.display="none";
-	document.getElementById("selector_regimen_para_agrupados").value="E";
+    var get_entidad_personalizada = document.getElementById('get_entidad_personalizada').value;
+    if(get_entidad_personalizada=="PrepagadaCoomeva" )
+    {
+	    document.getElementById("separador_regimen").style.display="none";
+		document.getElementById("titulo_regimen").style.display="none";
+		document.getElementById("selector_regimen_para_agrupados").value="E";
+	}//fin if es coomeva mp
 })
 

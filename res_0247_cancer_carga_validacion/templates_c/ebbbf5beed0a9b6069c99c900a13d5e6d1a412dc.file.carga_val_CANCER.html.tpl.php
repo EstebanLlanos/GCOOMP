@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-10 14:08:37
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-10 17:01:44
          compiled from "carga_val_CANCER.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15977223515a4e67e55ea0b8-35203907%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ebbbf5beed0a9b6069c99c900a13d5e6d1a412dc' => 
     array (
       0 => 'carga_val_CANCER.html.tpl',
-      1 => 1515611312,
+      1 => 1515621638,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'proveniente_de_prestador_o_eapb' => 1,
     'campo_prestador' => 1,
     'campo_eapb' => 1,
+    'get_entidad_personalizada' => 1,
     'campo_periodo' => 1,
     'mensaje_proceso' => 1,
   ),
@@ -166,6 +167,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<tr>
 								<td style="text-align:left;">
 								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -01-01 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5>
+								    <input type="hidden" name="get_entidad_personalizada" id="get_entidad_personalizada" value="<?php echo $_smarty_tpl->tpl_vars['get_entidad_personalizada']->value;?>
+">
 								</td>
 								</tr>
 								<tr>
