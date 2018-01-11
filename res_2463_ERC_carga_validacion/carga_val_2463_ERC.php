@@ -13,7 +13,7 @@ include ("../librerias_externas/PHPMailer/class.smtp.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
-require_once 'validador_2463_ERC.php';
+//require_once 'validador_2463_ERC.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
@@ -824,6 +824,128 @@ function custom_replace_str($needle,$replace,$haystack,$replace_all=true,$qty_to
 }//fin function remplazar cadena cuantificado
 
 
+//recibe en dia mes year
+function edad_years_months_days($dob, $now = false)
+{
+    if (!$now) $now = date('d-m-Y');
+    $dob = explode('-', $dob);
+    $now = explode('-', $now);
+    $mnt = array(1 => 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if (($now[2]%400 == 0) or ($now[2]%4==0 and $now[2]%100!=0)) $mnt[2]=29;
+    if($now[0] < $dob[0]){
+	    $now[0] += $mnt[intval($now[1])];
+	    $now[1]--;
+    }
+    if($now[1] < $dob[1]){
+	    $now[1] += 12;
+	    $now[2]--;
+    }
+    if($now[2] < $dob[2]) return false;
+    return  array('y' => $now[2] - $dob[2], 'm' => $now[1] - $dob[1], 'd' => $now[0] - $dob[0]);
+}
+
+
+function diferencia_dias_entre_fechas($fecha_1,$fecha_2)
+{
+    //las fechas deben ser cadenas de 10 caracteres en el siguiente formato AAAA-MM-DD, ejemplo: 1989-03-03
+    //si la fecha 1 es inferior a la fecha 2, obtendra un valor mayor a 0
+    //si la fecha uno excede o es igual a la fecha 2, tendra un valor resultado menor o igual a 0
+    date_default_timezone_set("America/Bogota");
+    
+    $array_fecha_1=explode("-",$fecha_1);
+    
+    $verificar_fecha_para_date_diff=true;
+    
+    if(count($array_fecha_1)==3)
+    {
+	    if(!ctype_digit($array_fecha_1[0])
+	       || !ctype_digit($array_fecha_1[1]) || !ctype_digit($array_fecha_1[2])
+	       || !checkdate(intval($array_fecha_1[1]),intval($array_fecha_1[2]),intval($array_fecha_1[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;	
+    }
+    
+    $array_fecha_2=explode("-",$fecha_2);			
+    if(count($array_fecha_2)==3)
+    {
+	    if(!ctype_digit($array_fecha_2[0])
+	       || !ctype_digit($array_fecha_2[1]) || !ctype_digit($array_fecha_2[2])
+	       || !checkdate(intval($array_fecha_2[1]),intval($array_fecha_2[2]),intval($array_fecha_2[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;
+    }
+
+    if($verificar_fecha_para_date_diff==true)
+    {
+        $year1=intval($array_fecha_1[0])."";
+        $mes1=intval($array_fecha_1[1])."";
+        $dia1=intval($array_fecha_1[2])."";
+
+        $year2=intval($array_fecha_2[0])."";
+        $mes2=intval($array_fecha_2[1])."";
+        $dia2=intval($array_fecha_2[2])."";
+
+        if(strlen($dia1)==1)
+        {
+            $dia1="0".$dia1;
+        }//fin if
+
+        if(strlen($mes1)==1)
+        {
+            $mes1="0".$mes1;
+        }//fin if
+
+        if(strlen($dia2)==1)
+        {
+            $dia2="0".$dia2;
+        }//fin if
+
+        if(strlen($mes2)==1)
+        {
+            $mes2="0".$mes2;
+        }//fin if
+
+        $fecha_1=$year1."-".$mes1."-".$dia1;
+
+        $fecha_2=$year2."-".$mes2."-".$dia2;
+    }//fin if
+    
+    $diferencia_dias_entre_fechas=0;
+    if($verificar_fecha_para_date_diff==true)
+    {
+	    $date_fecha_1=date($fecha_1);
+	    $date_fecha_2=date($fecha_2);
+	    $fecha_1_format=new DateTime($date_fecha_1);
+	    $fecha_2_format=new DateTime($date_fecha_2);		
+	    try
+	    {
+	    $interval = date_diff($fecha_1_format,$fecha_2_format);
+	    $diferencia_dias_entre_fechas= (float)$interval->format("%r%a");
+	    }
+	    catch(Exception $e)
+	    {}
+    }//fin if funcion date diff
+    else
+    {
+	    $diferencia_dias_entre_fechas=false;
+    }
+    
+    return $diferencia_dias_entre_fechas;
+    
+}//fin calculo diferencia entre fechas
+
+
+
 //consultar el tipo de entidad
 $sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
 $resultado_query_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query_tipo_entidad_asociada);
@@ -1109,6 +1231,74 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 		$fecha_de_corte=$year_corte_para_buscar."-06-30";
 	}//fin else
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+
+	//SELECTOR VERSION	
+	$nombre_base_version="validador_2463_ERC_v";
+	$array_fecha_corte=explode("-", $fecha_de_corte);
+	$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
+	$directorio_validacion_per_year='../res_2463_ERC/';
+	$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_corte_para_version_validacion.'.php';
+	if(file_exists($ruta_validacion_version)==true)
+	{
+		require_once $ruta_validacion_version;
+	}//fin if
+	else
+	{
+		$version_minima=0;
+		$version_maxima=0;
+		$array_versiones_scripts=array();
+		if ($filesVersiones = opendir($directorio_validacion_per_year)) 
+		{
+			while (false !== ($script_actual = readdir($filesVersiones))) 
+			{
+				$script_actual_temp=str_replace(".php", "", $script_actual);
+				$script_actual_temp=str_replace($nombre_base_version, "", $script_actual_temp);
+				$array_versiones_scripts[]=intval($script_actual_temp);
+
+
+
+			}//fin while
+			$selecciono_version=false;
+			$version_minima=min($array_versiones_scripts);
+			$version_maxima=max($array_versiones_scripts);
+			if($version_minima>$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_minima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			if($version_maxima<$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_maxima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			$year_retroceso_version=intval($year_corte_para_version_validacion);
+			while($selecciono_version==false)
+			{				
+				$year_retroceso_version--;
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_retroceso_version.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin while
+
+
+
+
+		}//fin if
+	}//fin else
+	//FIN SELECTOR VERSION
 	
 	$error_mostrar_bd="";
 		
