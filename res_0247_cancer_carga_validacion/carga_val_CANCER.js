@@ -539,7 +539,9 @@ function validar_campos()
 	var fechaActual = new Date();
     //var fechaIngreso = new Date($("#fecha_remision").val());
 	
-	if(document.getElementById("prestador").value=="none")
+	if(document.getElementById("prestador").value=="none" 
+		&& document.getElementById("tipo_archivo_norma").value!="agrupado_eapb"
+		)
 	{
 		mensaje+='<br>-Seleccione un prestador \n';
 	}
