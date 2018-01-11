@@ -253,8 +253,8 @@ function mostrar_selectores_geograficos()
 		//document.getElementById("separador_regimen").style.display="none";
 		//document.getElementById("titulo_regimen").style.display="none";
 		
-		document.getElementById("titulo_numero_de_remision").style.display="block";
-		document.getElementById("separador_numero_de_remision").style.display="block";
+		//document.getElementById("titulo_numero_de_remision").style.display="block";
+		//document.getElementById("separador_numero_de_remision").style.display="block";
 	    
 	}
 }
@@ -728,6 +728,8 @@ $(document).ready(function(){
 	    document.getElementById("separador_regimen").style.display="none";
 		document.getElementById("titulo_regimen").style.display="none";
 		document.getElementById("selector_regimen_para_agrupados").value="E";
+		document.getElementById("titulo_numero_de_remision").style.display="none";
+		document.getElementById("separador_numero_de_remision").style.display="none";
 	}//fin if es coomeva mp
 })
 
