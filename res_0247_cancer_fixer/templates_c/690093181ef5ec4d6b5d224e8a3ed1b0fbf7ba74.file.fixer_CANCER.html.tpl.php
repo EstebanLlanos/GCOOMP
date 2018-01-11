@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2016-05-26 09:13:47
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-11 15:27:15
          compiled from "fixer_CANCER.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10508548eb1076831f0-07072623%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '690093181ef5ec4d6b5d224e8a3ed1b0fbf7ba74' => 
     array (
       0 => 'fixer_CANCER.html.tpl',
-      1 => 1464251704,
+      1 => 1515702431,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'proveniente_de_prestador_o_eapb' => 1,
     'campo_prestador' => 1,
     'campo_eapb' => 1,
+    'get_entidad_personalizada' => 1,
     'campo_periodo' => 1,
     'mensaje_proceso' => 1,
   ),
@@ -36,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="fixer_CANCER.js"></script>
+        <script type="text/javascript" src="fixer_CANCER.js?v=1.2"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -165,7 +166,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								
 								<tr>
 								<td style="text-align:left;">
-								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Fecha/Periodo de corte:</h5>
+								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -01-01 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5>
+								    <input type="hidden" name="get_entidad_personalizada" id="get_entidad_personalizada" value="<?php echo $_smarty_tpl->tpl_vars['get_entidad_personalizada']->value;?>
+">
 								</td>
 								</tr>
 								<tr>

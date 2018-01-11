@@ -243,8 +243,8 @@ function mostrar_selectores_geograficos()
 		$("#prestador").parent().find("input.ui-autocomplete-input").autocomplete("option", "disabled", false).prop("disabled",false);
 		$("#prestador").parent().find("a.ui-button").button("enable");
 		
-		document.getElementById("titulo_numero_de_remision").style.display="block";
-		document.getElementById("separador_numero_de_remision").style.display="block";
+		//document.getElementById("titulo_numero_de_remision").style.display="block";
+		//document.getElementById("separador_numero_de_remision").style.display="block";
 	    
 	}
 }
@@ -319,6 +319,20 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		{
 			mensaje+="ERROR: Archivo debe ser "+sigla+". <br>";
 		}
+
+		//CONDICIONES ESPECIFICAS VERSIONES
+		var get_entidad_personalizada = document.getElementById('get_entidad_personalizada').value;
+		//verificacion solo gcoomp
+		//nota: comentar otras versiones
+		if(nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 && get_entidad_personalizada=="PrepagadaCoomeva" )
+		{
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. "+nombre_sin_extension[0].length+" <br>";
+		}//fin if
+		else if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22 && get_entidad_personalizada!="PrepagadaCoomeva")
+		{
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+		}//fin if
+		//FIN CONDICIONES ESPECIFICAS VERSIONES
 		
 		var prestador = document.getElementById('prestador').value;
 		
@@ -330,6 +344,12 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		if(prestador!="none")
 		{			
 			var prestador_nombre=array_nombre_archivo[0].substring(8,20);
+			if(nombre_sin_extension[0].length==30 || nombre_sin_extension[0].length==28)
+			{
+				prestador_nombre=array_nombre_archivo[0].substring(9,21);
+			}//fin if
+
+			//alert(prestador_nombre);
 			
 			if(prestador_nombre!=prestador  && document.getElementById("tipo_archivo_norma").value=="individual_ips")
 			{
@@ -338,40 +358,70 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			}
 			else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
 			{
-			    if (prestador_nombre!="0000AGRUPADO" && nombre_sin_extension[0].length==35)
+				var eapb_ver_new_name =document.getElementById('eapb').value;
+				while(eapb_ver_new_name.length<12 && eapb_ver_new_name!="none")
+				{
+					eapb_ver_new_name="0"+eapb_ver_new_name;
+				}//fin while eapb caso agrupado nuevo nombre
+			    if (prestador_nombre!="0000AGRUPADO" && nombre_sin_extension[0].length==35 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 			    {
-				mensaje+="ERROR: El archivo no es AGRUPADO <br>";
-			    }
-			}
+					mensaje+="ERROR: El archivo no es AGRUPADO <br>";
+			    }//fin if
+			    else if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==30 || nombre_sin_extension[0].length==28) )
+			    {
+			    	mensaje+="ERROR: La EAPB "+eapb_ver_new_name+" no corresponde al la EAPB indicada en el archivo "+prestador_nombre+" para un archivo AGRUPADO <br>";
+			    }//fin else if
+			}//fin else if
 			
 			
-		}
+		}//fin if
 		
 		//LONGITUD
 		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
 		{
-		    if (nombre_sin_extension[0].length!=35)
+		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 		    {
-			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35 caracteres <br>";
+			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35, 30, 28 caracteres <br>";
 		    }
 		}
 		else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
 		{
-		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22)
+		    if (nombre_sin_extension[0].length!=35 && nombre_sin_extension[0].length!=22 && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
 		    {
-			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35 o 22 caracteres para agrupado <br>";
+			mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 35, 35, 30, 28, 22 caracteres para agrupado <br>";
 		    }
-		    
+		    //28 30
 		}
 		//FIN LONGITUD
+
+		//VERIFICACION REGIMEN
+		if(document.getElementById('selector_regimen_para_agrupados') && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28 )
+		{
+			if(document.getElementById('selector_regimen_para_agrupados').style.display!="none")
+			{
+				var regimen_seleccionado=document.getElementById('selector_regimen_para_agrupados').value;
+				var regimen_nombre_archivo=array_nombre_archivo[0].substring(20,21);
+				if(regimen_seleccionado!=regimen_nombre_archivo && regimen_seleccionado!="none")
+				{
+					mensaje+="ERROR: El regimen seleccionado "+regimen_seleccionado+" no corresponde al regimen indicado en el archivo "+regimen_nombre_archivo+". <br>";
+				}//fin if
+				else if(regimen_seleccionado=="none")
+				{
+					mensaje+="ERROR: Seleccione un regimen equivalente al regimen indicado en el archivo "+regimen_nombre_archivo+". <br>";
+				}//fin if
+			}//fin if
+		}//fin if existe selector_regimen_para_agrupados
+		//FIN VERIFICACION REGIMEN
+
+		
 		
 		var eapb =document.getElementById('eapb').value;
 		while(eapb.length<6 && eapb!="none")
 		{
 			eapb="0"+eapb;
 		}
-		if(eapb!="none")
-		{
+		if(eapb!="none" && nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=28)
+		{			
 			var eapb_nombre="";
 			if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
 			{
@@ -402,38 +452,25 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			if(eapb_nombre!=eapb)
 			{
 				
-			    mensaje+="ERROR: La EAPB "+eapb+" no corresponde al la EAPB indicada en el archivo "+eapb_nombre+". <br>";
+				mensaje+="ERROR: La EAPB "+eapb+" no corresponde al la EAPB indicada en el archivo "+eapb_nombre+". <br>";
 			}
-			
 			
 			
 		}
 		
-		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
-		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
+		
+		if(document.getElementById('numero_de_remision').value=="")
 		{
-		    if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
-		    {
-			    mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no corresponde al numero de remision "+array_nombre_archivo[1]+" registrado  en el archivo "+nombre_sin_extension[0]+" . <br>";
-		    }
+			document.getElementById('numero_de_remision').value=array_nombre_archivo[1];
 		}//fin if
-		else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
+		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
+		if(isNaN(numero_de_remision_registrado)==true && numero_de_remision_registrado!="")
 		{
-		    $barra_al_piso=array_nombre_archivo[0].substring(8,9);
-		    if ($barra_al_piso=="_")
-		    {
-			document.getElementById("titulo_numero_de_remision").style.display="none";
-			document.getElementById("separador_numero_de_remision").style.display="none";
-		    }
-		    else
-		    {
-			document.getElementById("titulo_numero_de_remision").style.display="block";
-			document.getElementById("separador_numero_de_remision").style.display="block";
-			if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
-			{
-				mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no corresponde al numero de remision "+array_nombre_archivo[1]+" registrado  en el archivo "+nombre_sin_extension[0]+" . <br>";
-			}
-		    }//fin else
+			mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no es valido. <br>";
+		}//fin if
+		else if( numero_de_remision_registrado=="00")
+		{
+			mensaje+="ERROR: El numero de remision debe ser diferente de 00 si se indica en el archivo. <br>";	
 		}//fin else if
 		
 		var year_de_corte_registrado=document.getElementById('year_de_corte').value;
@@ -492,7 +529,9 @@ function validar_campos()
 	var fechaActual = new Date();
     //var fechaIngreso = new Date($("#fecha_remision").val());
 	
-	if(document.getElementById("prestador").value=="none")
+	if(document.getElementById("prestador").value=="none"
+		&& document.getElementById("tipo_archivo_norma").value!="agrupado_eapb"
+		)
 	{
 		mensaje+='<br>-Seleccione un prestador \n';
 	}
@@ -558,6 +597,8 @@ function validar_campos()
 
 function cargarCANCER()
 {
+	validar_antes_seleccionar_archivos();
+
 	var hay_errores = validar_campos();		   
 	
 	document.getElementById('accion').value="validar";
@@ -658,4 +699,14 @@ onbeforeunload = function(e){
 $(document).ready(function(){
     $("#eapb").combobox();
     $("#prestador").combobox();
+    //nota: descomentar para versiones general y prestador
+    var get_entidad_personalizada = document.getElementById('get_entidad_personalizada').value;
+    if(get_entidad_personalizada=="PrepagadaCoomeva" )
+    {
+	    //document.getElementById("separador_regimen").style.display="none";
+		//document.getElementById("titulo_regimen").style.display="none";
+		//document.getElementById("selector_regimen_para_agrupados").value="E";
+		document.getElementById("titulo_numero_de_remision").style.display="none";
+		document.getElementById("separador_numero_de_remision").style.display="none";
+	}//fin if es coomeva mp
 })
