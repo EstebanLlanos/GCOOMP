@@ -1186,7 +1186,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	$nombre_archivo_file=explode(".",$_FILES["0247_cancer_file"]["name"])[0];
 	$nombre_archivo_registrado=explode(".",$_FILES["0247_cancer_file"]["name"])[0];	
 	$numero_de_remision=$_POST["numero_de_remision"];
-	if($numero_de_remision=="")
+	if(ctype_digit($numero_de_remision)==false)
 	{
 		$numero_de_remision="00";
 	}//fin if
