@@ -476,8 +476,12 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
 		if(isNaN(numero_de_remision_registrado)==true && numero_de_remision_registrado!="")
 		{
-			mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no es un numero "+nombre_sin_extension[0]+" . <br>";
+			mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no es valido. <br>";
 		}//fin if
+		else if( numero_de_remision_registrado=="00")
+		{
+			mensaje+="ERROR: El numero de remision debe ser diferente de 00 si se indica en el archivo. <br>";	
+		}//fin else if
 		
 		var year_de_corte_registrado=document.getElementById('year_de_corte').value;
 		if(year_de_corte_registrado!="")
@@ -606,7 +610,7 @@ function validar_campos()
 function cargarCANCER()
 {
 	validar_antes_seleccionar_archivos();
-	
+
 	var hay_errores = validar_campos();		   
 	
 	document.getElementById('accion').value="validar";
