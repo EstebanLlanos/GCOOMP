@@ -469,6 +469,10 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		}
 		
 		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
+		if(document.getElementById('numero_de_remision').value=="")
+		{
+			document.getElementById('numero_de_remision').value=array_nombre_archivo[1];
+		}//fin if
 		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
 		{
 		    if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
