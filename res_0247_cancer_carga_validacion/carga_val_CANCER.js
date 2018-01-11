@@ -468,36 +468,16 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 			
 		}
 		
-		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
+		
 		if(document.getElementById('numero_de_remision').value=="")
 		{
 			document.getElementById('numero_de_remision').value=array_nombre_archivo[1];
 		}//fin if
-		if (document.getElementById("tipo_archivo_norma").value=="individual_ips")
+		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
+		if(isNaN(numero_de_remision_registrado)==true && numero_de_remision_registrado!="")
 		{
-		    if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
-		    {
-			    mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no corresponde al numero de remision "+array_nombre_archivo[1]+" registrado  en el archivo "+nombre_sin_extension[0]+" . <br>";
-		    }
+			mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no es un numero "+nombre_sin_extension[0]+" . <br>";
 		}//fin if
-		else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
-		{
-		    $barra_al_piso=array_nombre_archivo[0].substring(8,9);
-		    if ($barra_al_piso=="_")
-		    {
-			document.getElementById("titulo_numero_de_remision").style.display="none";
-			document.getElementById("separador_numero_de_remision").style.display="none";
-		    }
-		    else
-		    {
-			document.getElementById("titulo_numero_de_remision").style.display="block";
-			document.getElementById("separador_numero_de_remision").style.display="block";
-			if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
-			{
-				mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no corresponde al numero de remision "+array_nombre_archivo[1]+" registrado  en el archivo "+nombre_sin_extension[0]+" . <br>";
-			}
-		    }//fin else
-		}//fin else if
 		
 		var year_de_corte_registrado=document.getElementById('year_de_corte').value;
 		if(year_de_corte_registrado!="")
@@ -625,6 +605,8 @@ function validar_campos()
 
 function cargarCANCER()
 {
+	validar_antes_seleccionar_archivos();
+	
 	var hay_errores = validar_campos();		   
 	
 	document.getElementById('accion').value="validar";
