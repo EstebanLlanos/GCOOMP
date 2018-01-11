@@ -1247,10 +1247,12 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	//revisar esto en ERC	
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 
+	//SELECTOR VERSION
+	$nombre_base_version="validadorCANCER_v";
 	$array_fecha_corte=explode("-", $fecha_de_corte);
 	$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
 	$directorio_validacion_per_year='../res_0247_cancer/';
-	$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$year_corte_para_version_validacion.'.php';
+	$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_corte_para_version_validacion.'.php';
 	if(file_exists($ruta_validacion_version)==true)
 	{
 		require_once $ruta_validacion_version;
@@ -1259,13 +1261,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	{
 		$version_minima=0;
 		$version_maxima=0;
-		$array_versiones_scripts=array();
+		$array_versiones_scripts=array();		
 		if ($filesVersiones = opendir($directorio_validacion_per_year)) 
 		{
 			while (false !== ($script_actual = readdir($filesVersiones))) 
 			{
 				$script_actual_temp=str_replace(".php", "", $script_actual);
-				$script_actual_temp=str_replace("validadorCANCER_v", "", $script_actual_temp);
+				$script_actual_temp=str_replace($nombre_base_version, "", $script_actual_temp);
 				$array_versiones_scripts[]=intval($script_actual_temp);
 
 
@@ -1276,7 +1278,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 			$version_maxima=max($array_versiones_scripts);
 			if($version_minima>$year_corte_para_version_validacion)
 			{
-				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$version_minima.'.php';
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_minima.'.php';
 				if(file_exists($ruta_validacion_version)==true)
 				{
 					require_once $ruta_validacion_version;
@@ -1286,7 +1288,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 
 			if($version_maxima<$year_corte_para_version_validacion)
 			{
-				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$version_maxima.'.php';
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_maxima.'.php';
 				if(file_exists($ruta_validacion_version)==true)
 				{
 					require_once $ruta_validacion_version;
@@ -1298,7 +1300,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 			while($selecciono_version==false)
 			{				
 				$year_retroceso_version--;
-				$ruta_validacion_version=$directorio_validacion_per_year.'validadorCANCER_v'.$year_retroceso_version.'.php';
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_retroceso_version.'.php';
 				if(file_exists($ruta_validacion_version)==true)
 				{
 					require_once $ruta_validacion_version;
@@ -1311,6 +1313,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 
 		}//fin if
 	}//fin else
+	//FIN SELECTOR VERSION
 	
 	//archivo donde se separa los que no estan en ciex del campo 17
 	
