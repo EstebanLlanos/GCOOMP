@@ -3783,7 +3783,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_conformacion_dx WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && (intval($campos[$numero_campo])!=96 && intval($campos[$numero_campo])!=98 && intval($campos[$numero_campo])!=99) )
 			{
@@ -12028,7 +12028,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -12173,7 +12173,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -19292,7 +19292,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -19467,7 +19467,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -27184,7 +27184,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_cirugia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98 )
 			{
@@ -27895,7 +27895,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_cirugia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -29470,7 +29470,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -29595,7 +29595,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -30904,7 +30904,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -31036,7 +31036,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -32362,7 +32362,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_trasplante WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98 )
 			{
@@ -32784,7 +32784,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_cirugia_reconstructiva WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98 )
 			{
@@ -33862,7 +33862,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_cuidado_paliativo WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -34337,7 +34337,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_psiquiatria WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98  )
 			{
@@ -34750,7 +34750,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".quita_tildes($campos[$numero_campo])."' ; ";
+			$consulta.="SELECT * FROM gioss_cancer_ips_nutricion WHERE codigo_habilitacion='".quita_tildes($campos[$numero_campo])."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0 && intval($campos[$numero_campo])!=98 )
 			{

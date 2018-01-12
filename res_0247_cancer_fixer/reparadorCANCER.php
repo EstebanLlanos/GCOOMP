@@ -10257,7 +10257,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 		
 		$consulta="";
-		$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+		$consulta.="SELECT * FROM gioss_cancer_ips_conformacion_dx WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 
 		if( (count($resultado)==0 || !is_array($resultado))
@@ -13657,7 +13657,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_ant_20=$campos[19];
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    	    
 	    if((count($resultado)==0 || !is_array($resultado))
@@ -13724,7 +13724,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 		
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
 	    $campo_ant_45=$campos[44];
@@ -16810,7 +16810,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_ant_61=trim($campos[100]);
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
 	    
@@ -16889,7 +16889,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 		
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
 	    $campo_ant_45=$campos[44];
@@ -20549,7 +20549,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_ant_74=$campos[145];
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_cirugia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( (count($resultado)==0 || !is_array($resultado) )
 	       && $campos[$numero_campo]!="98"
@@ -20814,7 +20814,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_n83=trim($campos[154]);
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_cirugia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 
 	    if( count($resultado)==0 && (trim($campos[$numero_campo])!="98")
@@ -21370,7 +21370,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //despues de que se corrige se aplica el criterio siguiente
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
 	    
@@ -21426,7 +21426,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		$campo_ant_86=$campos[157];
 		
 		$consulta="";
-		$consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+		$consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 		if(count($resultado)==0
 		&& trim($campos[$numero_campo])!="98"
@@ -21826,7 +21826,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //despues de que se corrige se aplica el criterio siguiente
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
 	    
@@ -21884,7 +21884,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_ant_86=$campos[157];
 	    
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_radioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if(count($resultado)==0
 	    && trim($campos[$numero_campo])!="98"
@@ -22293,7 +22293,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_106=trim($campos[177]);
 		
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_trasplante WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( count($resultado)==0 && intval($campos[$numero_campo])!=98
 	       && ($campo_106=="2" || $campo_106=="98")
@@ -22427,7 +22427,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $campo_ant_111=$campos[182];
 	    //campo obligatorio
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_cirugia_reconstructiva WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( count($resultado)==0 && intval($campos[$numero_campo])!=98
 	       && ($campo_ant_111=="2" || $campo_ant_111=="98")
@@ -22716,7 +22716,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //despues de que se corrige se aplica el criterio siguiente
 	    $campo_ant_114=$campos[185];
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_cuidado_paliativo WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( count($resultado)==0 && intval($campos[$numero_campo])!=98
 	    && ($campo_ant_114=="2" || $campo_ant_114=="3")
@@ -22848,7 +22848,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //despues de que se corrige se aplica el criterio siguiente
 	    $campo_n117=trim($campos[194]);
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_psiquiatria WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( count($resultado)==0 && intval($campos[$numero_campo])!=98
 	    && ($campo_n117=="2" || $campo_n117=="98")
@@ -22981,7 +22981,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //despues de que se corrige se aplica el criterio siguiente
 	    $campo_n120=trim($campos[197]);
 	    $consulta="";
-	    $consulta.="SELECT * FROM gios_prestador_servicios_salud WHERE cod_registro_especial_pss='".$campos[$numero_campo]."' ; ";
+	    $consulta.="SELECT * FROM gioss_cancer_ips_nutricion WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if( count($resultado)==0 && intval($campos[$numero_campo])!=98
 	    && ($campo_n120=="2" || $campo_n120=="98")
