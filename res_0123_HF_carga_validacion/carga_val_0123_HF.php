@@ -1034,17 +1034,23 @@ $mensaje_advertencia_tiempo .="Estimado usuario, se ha iniciado el proceso de va
 $mensaje_advertencia_tiempo .="Una vez validado, se genera el Logs de errores, el cual se enviar&aacute a su Correo electr&oacutenico o puede descargarlo directamente del aplicat&iacutevo.<br>";
 $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se cargar&aacuten en la base de datos y se dar&aacute por aceptada la informaci&oacuten reportada<br>";
 
-if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HF_file"]) && $_FILES["0123_HF_file"]["error"]==0)
+if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HEMOFILIA_file"]) && $_FILES["0123_HEMOFILIA_file"]["error"]==0)
 {	
 	
 
 	
 
-	$nombre_archivo_file=explode(".",$_FILES["0123_HF_file"]["name"])[0];
-	$nombre_archivo_registrado=explode(".",$_FILES["0123_HF_file"]["name"])[0];	
+	$nombre_archivo_file=explode(".",$_FILES["0123_HEMOFILIA_file"]["name"])[0];
+	$nombre_archivo_registrado=explode(".",$_FILES["0123_HEMOFILIA_file"]["name"])[0];	
+	
 	$numero_de_remision=$_POST["numero_de_remision"];
-	$archivo_norma=$_FILES["0123_HF_file"];
-	$archivo_fuente_after_post=$_FILES["0123_HF_file"];
+
+	if (!ctype_digit($numero_de_remision)) {
+		$numero_de_remision = '00';
+	}
+
+	$archivo_norma=$_FILES["0123_HEMOFILIA_file"];
+	$archivo_fuente_after_post=$_FILES["0123_HEMOFILIA_file"];
 	$cod_prestador=$_POST["prestador"];
 	$cod_eapb=$_POST["eapb"];	
 	$codigo_periodo=explode("::",$_POST["periodo"])[0];
@@ -1376,11 +1382,11 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 			$ruta_archivo_hf = $rutaTemporal.$archivo_norma['name'];
 			move_uploaded_file($archivo_norma['tmp_name'], $ruta_archivo_hf);
 			
-			$array_nombre_sin_sigla=explode("HF",$archivo_norma['name']);
+			$array_nombre_sin_sigla=explode("HEMOFILIA",$archivo_norma['name']);
 			if(count($array_nombre_sin_sigla)!=2)
 			{
 				$es_valido_nombre_archivo=false;
-				$errores.="El encabezado del archivo $nombre_archivo_file no corresponde a un archivo HF. <br>";
+				$errores.="El encabezado del archivo $nombre_archivo_file no corresponde a un archivo HEMOFILIA. <br>";
 			}
 			else
 			{
@@ -1389,7 +1395,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				$year="";
 				$mes="";
 				$dia="";
-				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,8,12);
+				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,9,12);
 				$cod_prestador_temporal=$cod_prestador;
 				while(strlen($cod_prestador_temporal)<12)
 				{
@@ -1407,17 +1413,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				}
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
-					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_fuente_after_post['name']);
-					if("0000AGRUPADO"!=$prestador_del_nombre_archivo 
-						//&& strlen($nombre_sin_txt_para_verificacion)==32 //para erc y vih es 32
-					)//fin condicion
-					{
-						$es_valido_nombre_archivo=false;
-						$errores.="La parte del nombre para el  archivo que indica si esta agrupado( $prestador_del_nombre_archivo ), no corresponde a la especificacion 0000AGRUPADO. <br>";
-					}
+					$cod_eapb_temporal_new_name=$cod_eapb;
+                    while(strlen($cod_eapb_temporal_new_name)<12)
+                    {
+                        $cod_eapb_temporal_new_name="0".$cod_eapb_temporal_new_name;
+                    }//fin while
+
+					if($prestador_del_nombre_archivo!=$cod_eapb_temporal_new_name && (strlen($nombre_sin_txt_para_verificacion)==31
+                       || strlen($nombre_sin_txt_para_verificacion)==33) )
+                    {
+                        $es_valido_nombre_archivo=false;
+                        $errores.="La eapb $prestador_del_nombre_archivo, no corresponde a la eapb en seleccionada $cod_eapb_temporal_new_name para el tipo de validacion agrupado. <br>";
+                    }
 				}//fin else if
 
-				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				/*if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$regimen_nombre=substr($nombre_archivo_fecha_prestador,20,1);
 					if($regimen_nombre!="C" && $regimen_nombre!="S" && $regimen_nombre!="P" && $regimen_nombre!="N" && $regimen_nombre!="E" && $regimen_nombre!="O")
@@ -1425,7 +1435,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$es_valido_nombre_archivo=false;
 						$errores.="El regimen ($regimen_nombre) no corresponde a C-S-P-N-E. <br>";
 					}
-				}//fin if
+				}*///fin if
 				//echo "<script>alert('$regimen_nombre');</script>";
 
 				/*para agrupado remover de las tablas gioss_tabla_estado_informacion_r0123_hf y gioss_numero_de_secuencia_archivos_hf las condiciones de llave foranea para prestador
@@ -1438,7 +1448,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 
 				//LONGITUD INCORRECTA para erc y vih es 32|22|19para hf debe ser 31|21|18 por el menos un caracter
 				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_fuente_after_post['name']);
-				if(strlen($nombre_sin_txt_para_verificacion)!=31 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				if(strlen($nombre_sin_txt_para_verificacion)!=31 || strlen($nombre_sin_txt_para_verificacion)!=33 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="La longitud del archivo sin incluir el .txt debe ser de 32 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
@@ -1470,7 +1480,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				//FIN LONGITUD INCORRECTA
 
 				//REGIMEN
-				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				/*if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					//esta comentado debido a que hay que verificar tablas asi como en ERC para que acepte regimen alfanumerico
 					$tipo_regimen_archivo=substr($nombre_archivo_fecha_prestador,20,1); 
@@ -1485,11 +1495,11 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					{
 						$tipo_regimen_archivo=$_POST["selector_regimen_para_agrupados"];
 					}
-				}
+				}*/
 				//FIN REGIMEN
 				
 				//$eapb_del_nombre_del_archivo=substr($nombre_archivo_fecha_prestador,21,6);
-				$eapb_del_nombre_del_archivo="";
+				/*$eapb_del_nombre_del_archivo="";
 				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$eapb_del_nombre_del_archivo=substr($nombre_archivo_fecha_prestador,21,6);
@@ -1521,7 +1531,6 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				}
 				//echo "<script>alert('$eapb_del_nombre_del_archivo y $cod_eapb_temporal');</script>";
 				
-				/*
 				$tipo_entidad_reportadora_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,8,2);
 				$tipo_regimen_archivo=$tipo_entidad_reportadora_del_nombre_archivo;				
 				if ($tipo_entidad_reportadora_del_nombre_archivo!="NI" && $tipo_entidad_reportadora_del_nombre_archivo!="DI" && $tipo_entidad_reportadora_del_nombre_archivo!="MU" && $tipo_entidad_reportadora_del_nombre_archivo!="DE")
@@ -1529,13 +1538,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					$es_valido_nombre_archivo=false;
 					$errores.="El tipo de prestador indicado en el nombre del archivo ( $tipo_entidad_reportadora_del_nombre_archivo ), no corresponde a NI, MU, DI, DE . <br>";
 				}
-				*/
+				
 				
 				if($eapb_del_nombre_del_archivo!=$cod_eapb_temporal)
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="El codigo de la EAPB indicada en el nombre del archivo ( $eapb_del_nombre_del_archivo ), no corresponde al codigo de la EAPB a reportar ( $cod_eapb ). <br>";
-				}
+				}*/
 				//echo $fecha_de_corte."<br>";
 				$array_fecha_de_corte=explode("-",$fecha_de_corte);
 				//echo $fecha_corte_anterior_registrada_nombre."<br>";
@@ -1560,7 +1569,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		else
 		{
 			$es_valido_nombre_archivo=false;
-			$errores.="El nombre del archivo para HF es invalido. <br>";
+			$errores.="El nombre del archivo para HEMOFILIA es invalido. <br>";
 		}
 	}//fin else
 	//FIN PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO HF
@@ -1788,7 +1797,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					if($muestra_mensaje_nuevo)
 					{
 				
-						$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo HF. <br> registros buenos $registros_buenos , registros malos $registros_malos . <br>Porcentaje actual $porcentaje %  ";
+						$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo HEMOFILIA. <br> registros buenos $registros_buenos , registros malos $registros_malos . <br>Porcentaje actual $porcentaje %  ";
 						$html_del_mensaje="";
 						$html_del_mensaje.="<table>";
 						$html_del_mensaje.="<tr>";
@@ -2884,7 +2893,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 
 					$array_contador_total_errores_obligatorios_campo[999]++;
 
-					$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo HF ";
+					$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo HEMOFILIA ";
 					$html_del_mensaje="";
 					$html_del_mensaje.="<table>";
 					$html_del_mensaje.="<tr>";
@@ -3102,7 +3111,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$error_mostrar_bd.=" AL SUBIR CAMPOS EXITOSOS ".$error_bd_seq."<br>";
 						}
 						
-						$mensaje_contador_errores="Subiendo a cargados con exito el registro ".($nlinea+1)." de $lineas_del_archivo del archivo HF ";
+						$mensaje_contador_errores="Subiendo a cargados con exito el registro ".($nlinea+1)." de $lineas_del_archivo del archivo HEMOFILIA ";
 						$html_del_mensaje="";
 						$html_del_mensaje.="<table>";
 						$html_del_mensaje.="<tr>";
@@ -3379,7 +3388,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 			
 			if(connection_aborted()==false)
 			{
-				echo "<script>document.getElementById('mensaje').innerHTML='Se ha terminado de revisar y validar el archivo HF';</script>";
+				echo "<script>document.getElementById('mensaje').innerHTML='Se ha terminado de revisar y validar el archivo HEMOFILIA';</script>";
 				ob_flush();
 				flush();
 			}
@@ -3391,7 +3400,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		if($hubo_inconsistencias_en_HF)
 		{
 			$se_genero_archivo_de_inconsistencias=true;		
-			$errores.="Hubo inconsistencias en el archivo HF.<br>";
+			$errores.="Hubo inconsistencias en el archivo HEMOFILIA.<br>";
 			
 		}
 
@@ -3648,7 +3657,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		
 		//BOTONES DESCARGA
 		$botones="";
-		$botones.=" <input type=\'button\' value=\'Descargar archivo de inconsistencias para HF\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
+		$botones.=" <input type=\'button\' value=\'Descargar archivo de inconsistencias para HEMOFILIA\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
 		
 		//FIN BOTONES DESCARGA
 		
@@ -3702,7 +3711,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				}//fin if usa ../utiles/configuracion_global_email.php
 				$mail->From = "sistemagioss@gmail.com";
 				$mail->FromName = "GIOSS";
-				$mail->Subject = "Inconsistencias HF 0123 ";
+				$mail->Subject = "Inconsistencias HEMOFILIA 0123 ";
 				$mail->AltBody = "Cordial saludo,\n El sistema ha determinado que su archivo(s)  contiene diversas inconsistencias,\n las cuales pueden ser: campos con información inconsistente, usuarios duplicados ó el uso de caracteres especiales(acentos,'Ñ' o É,Ý, ¥, ¤, ´)";
 		    
 				$mail->MsgHTML("Cordial saludo,\n El sistema ha determinado que su archivo(s)  contiene diversos errores, con el numero de secuencia: $numero_secuencia_actual.<strong>GIOSS</strong>.");
@@ -3754,13 +3763,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 else if(isset($_POST["accion"]) && $_POST["accion"]=="validar" )
 {
 	$ultimo_error="";
-	if(!( isset($_FILES["0123_HF_file"])))
+	if(!( isset($_FILES["0123_HEMOFILIA_file"])))
 	{
 		$ultimo_error="El archivo no se cargo ";
 	}
-	else if(!($_FILES["0123_HF_file"]["error"]==0))
+	else if(!($_FILES["0123_HEMOFILIA_file"]["error"]==0))
 	{
-		$ultimo_error="Error con el archivo de tipo ".$_FILES["0123_HF_file"]["error"];
+		$ultimo_error="Error con el archivo de tipo ".$_FILES["0123_HEMOFILIA_file"]["error"];
 	}
 	if(connection_aborted()==false)
 	{

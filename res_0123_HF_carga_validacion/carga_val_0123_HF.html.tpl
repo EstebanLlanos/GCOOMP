@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="carga_val_0123_HF.js?v=1.121"></script>
+        <script type="text/javascript" src="carga_val_0123_HF.js?v=1.128"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -91,11 +91,15 @@
 								</tr>
 								<tr>
 								<td style="text-align:left;">
-								<div id='entidad_2'>{$campo_eapb}</div>							
+								<div id='entidad_2'>{$campo_eapb}</div>
 								</td>
 								</tr>
-								
 								<tr>
+									<td>
+										<input type='hidden' style='width:230px;height:30px;' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision 0123' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />
+									</td>
+								</tr>
+								<!-- <tr>
 								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>Numero de remisi&oacuten:</h5></td>
 								</tr>
 								<tr>
@@ -105,7 +109,7 @@
 									 </div>
 								</td>
 								<td><p id='error_nombre_archivo'></p></td>
-								</tr>
+								</tr> -->
 								
 								<!--
 								<tr>
@@ -139,7 +143,7 @@
 							<table id='tabla_seleccion_archivos' style='display:inline;'>
 							
 								<!--hidden validar archivo, (debe contener la sigla)-->
-								<input type='hidden' name='HF_hidden' id='HF_hidden' value='' />
+								<input type='hidden' name='HEMOFILIA_hidden' id='HEMOFILIA_hidden' value='' />
 								<!--fin hidden validar archivo-->
 								
 								
@@ -157,7 +161,7 @@
 								<tr>
 								
 								<td >
-								<div class="upload"><input type="file" id='0123_HF_file' name='0123_HF_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" /></div>
+								<div class="upload"><input type="file" id='0123_HEMOFILIA_file' name='0123_HEMOFILIA_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" /></div>
 								</td>
 								
 								<td style="position:relative;left:0%;top:0%;text-align: left;">

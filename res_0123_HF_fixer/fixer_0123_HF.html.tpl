@@ -148,7 +148,7 @@
 								<table id='tabla_seleccion_archivos' style='display:inline;'>
 								
 									<!--hidden validar archivo, (debe contener la sigla)-->
-									<input type='hidden' name='HF_hidden' id='HF_hidden' value='' />
+									<input type='hidden' name='HEMOFILIA_hidden' id='HEMOFILIA_hidden' value='' />
 									<!--fin hidden validar archivo-->
 									
 									
@@ -167,7 +167,7 @@
 										
 									<tr>									
 									<td >
-									<div class="upload"><input type="file" id='0123_HF_file' name='0123_HF_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" /></div>
+									<div class="upload"><input type="file" id='0123_HEMOFILIA_file' name='0123_HEMOFILIA_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" /></div>
 									</td>
 									</tr>
 									

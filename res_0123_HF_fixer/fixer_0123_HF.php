@@ -59,7 +59,6 @@ $mostrarResultado="none";
 
 $mensajes_error_bd="";
 
-
 function contar_lineas_archivo($ruta_file)
 {
     $linecount = 0;
@@ -1131,7 +1130,7 @@ $mensaje_advertencia_tiempo .="Estimado usuario, se ha iniciado el proceso de va
 $mensaje_advertencia_tiempo .="Una vez validado, se genera el Logs de errores, el cual se enviar&aacute a su Correo electr&oacutenico o puede descargarlo directamente del aplicat&iacutevo.<br>";
 $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se cargar&aacuten en la base de datos y se dar&aacute por aceptada la informaci&oacuten reportada<br>";
 
-if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HF_file"]) && $_FILES["0123_HF_file"]["error"]==0)
+if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HEMOFILIA_file"]) && $_FILES["0123_HEMOFILIA_file"]["error"]==0)
 {
 	if(connection_aborted()==false)
 	{
@@ -1146,9 +1145,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	
 	
 	
-	$nombre_archivo_registrado=explode(".",$_FILES["0123_HF_file"]["name"])[0];	
+	$nombre_archivo_registrado=explode(".",$_FILES["0123_HEMOFILIA_file"]["name"])[0];	
 	$numero_de_remision=$_POST["numero_de_remision"];
-	$archivo_hf=$_FILES["0123_HF_file"];
+
+	if (!ctype_digit($numero_de_remision)) {
+		$numero_de_remision = '00';
+	}
+
+	$archivo_hf=$_FILES["0123_HEMOFILIA_file"];
 	$cod_prestador=$_POST["prestador"];
 	$cod_eapb=$_POST["eapb"];	
 	$codigo_periodo=explode("::",$_POST["periodo"])[0];
@@ -1361,11 +1365,11 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 			$ruta_archivo_hf = $rutaTemporal.$archivo_hf['name'];
 			move_uploaded_file($archivo_hf['tmp_name'], $ruta_archivo_hf);
 			
-			$array_nombre_sin_sigla=explode("HF",$archivo_hf['name']);
+			$array_nombre_sin_sigla=explode("HEMOFILIA",$archivo_hf['name']);
 			if(count($array_nombre_sin_sigla)!=2)
 			{
 				$es_valido_nombre_archivo=false;
-				$errores.="El encabezado del archivo $nombre_archivo_registrado no corresponde a un archivo HF. <br>";
+				$errores.="El encabezado del archivo $nombre_archivo_registrado no corresponde a un archivo HEMOFILIA. <br>";
 			}
 			else
 			{
@@ -1528,7 +1532,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		else
 		{
 			$es_valido_nombre_archivo=false;
-			$errores.="El nombre del archivo para HF es invalido. <br>";
+			$errores.="El nombre del archivo para HEMOFILIA es invalido. <br>";
 		}
 	}//fin else
 	//FIN PARTE VALIDACION ESTRUCTURA NOMBRE DEL ARCHIVO HF
@@ -3736,7 +3740,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					echo "<script>alert('No hubo duplicados');</script>";
 				}
 				echo "<script>document.getElementById('mensaje').style.textAlign='center';</script>";
-				echo "<script>document.getElementById('mensaje').innerHTML='$mensaje_perm_estado $mensaje_perm_estado_reg_dupl $mensaje_perm_estado_reg_recuperados Se ha terminado de corregir HF<br> lineas con numero de campos incorrectos, que no permitieron corregir: $numero_lineas_campos_incorrectos';</script>";
+				echo "<script>document.getElementById('mensaje').innerHTML='$mensaje_perm_estado $mensaje_perm_estado_reg_dupl $mensaje_perm_estado_reg_recuperados Se ha terminado de corregir HEMOFILIA<br> lineas con numero de campos incorrectos, que no permitieron corregir: $numero_lineas_campos_incorrectos';</script>";
 				
 				echo "<script>document.getElementById('tabla_estado_1').style.position='relative';</script>";
 				ob_flush();
@@ -3750,7 +3754,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		if($hubo_inconsistencias_en_HF)
 		{
 			$se_genero_archivo_de_inconsistencias=true;		
-			$errores.="Se corrigieron los errores a corregir en el archivo HF.<br>";
+			$errores.="Se corrigieron los errores a corregir en el archivo HEMOFILIA.<br>";
 			
 		}
 		
@@ -3780,7 +3784,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		
 		//BOTONES DESCARGA
 		$botones="";
-		$botones.=" <input type=\'button\' value=\'Descargar archivo reparado para HF\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
+		$botones.=" <input type=\'button\' value=\'Descargar archivo reparado para HEMOFILIA\'  class=\'btn btn-success color_boton\' onclick=\"download_inconsistencias_campos(\'$ruta_zip\');\"/> ";
 		
 		//FIN BOTONES DESCARGA
 		
@@ -3980,7 +3984,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				}//fin if usa ../utiles/configuracion_global_email.php
 				$mail->From = "sistemagioss@gmail.com";
 				$mail->FromName = "GIOSS";
-				$mail->Subject = "Reparacion HF 0123 ";
+				$mail->Subject = "Reparacion HEMOFILIA 0123 ";
 				$mail->AltBody = "Cordial saludo,\n El sistema ha reparado su archivo )";
 		    
 				$mail->MsgHTML("Cordial saludo,\n El sistema ha realizado las correciones necesarias para la calidad de su archivo para la EAPB $cod_eapb .<strong>GIOSS</strong>.");
@@ -4043,13 +4047,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 else if(isset($_POST["accion"]) && $_POST["accion"]=="validar" )
 {
 	$ultimo_error="";
-	if(!( isset($_FILES["0123_HF_file"])))
+	if(!( isset($_FILES["0123_HEMOFILIA_file"])))
 	{
 		$ultimo_error="El archivo no se cargo ";
 	}
-	else if(!($_FILES["0123_HF_file"]["error"]==0))
+	else if(!($_FILES["0123_HEMOFILIA_file"]["error"]==0))
 	{
-		$ultimo_error="Error con el archivo de tipo ".$_FILES["0123_HF_file"]["error"];
+		$ultimo_error="Error con el archivo de tipo ".$_FILES["0123_HEMOFILIA_file"]["error"];
 	}
 	
 	if(connection_aborted()==false)

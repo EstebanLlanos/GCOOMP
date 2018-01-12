@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2017-12-20 15:06:01
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-11 15:21:53
          compiled from "carga_val_0123_HF.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18287739305a32b39e660ff5-08825243%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '08518bd92496cd78f463cbc450452f1c4bf98e51' => 
     array (
       0 => 'carga_val_0123_HF.html.tpl',
-      1 => 1513800356,
+      1 => 1515702050,
       2 => 'file',
     ),
   ),
@@ -36,7 +36,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="carga_val_0123_HF.js?v=1.121"></script>
+        <script type="text/javascript" src="carga_val_0123_HF.js?v=1.128"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -127,11 +127,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<tr>
 								<td style="text-align:left;">
 								<div id='entidad_2'><?php echo $_smarty_tpl->tpl_vars['campo_eapb']->value;?>
-</div>							
+</div>
 								</td>
 								</tr>
-								
 								<tr>
+									<td>
+										<input type='hidden' style='width:230px;height:30px;' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision 0123' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />
+									</td>
+								</tr>
+								<!-- <tr>
 								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>Numero de remisi&oacuten:</h5></td>
 								</tr>
 								<tr>
@@ -141,7 +145,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 									 </div>
 								</td>
 								<td><p id='error_nombre_archivo'></p></td>
-								</tr>
+								</tr> -->
 								
 								<!--
 								<tr>
@@ -176,7 +180,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							<table id='tabla_seleccion_archivos' style='display:inline;'>
 							
 								<!--hidden validar archivo, (debe contener la sigla)-->
-								<input type='hidden' name='HF_hidden' id='HF_hidden' value='' />
+								<input type='hidden' name='HEMOFILIA_hidden' id='HEMOFILIA_hidden' value='' />
 								<!--fin hidden validar archivo-->
 								
 								
@@ -194,7 +198,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<tr>
 								
 								<td >
-								<div class="upload"><input type="file" id='0123_HF_file' name='0123_HF_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" /></div>
+								<div class="upload"><input type="file" id='0123_HEMOFILIA_file' name='0123_HEMOFILIA_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" /></div>
 								</td>
 								
 								<td style="position:relative;left:0%;top:0%;text-align: left;">
