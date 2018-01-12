@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-09 12:34:27
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-12 11:15:20
          compiled from "act_adaptable.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5829536b73bb3d58b6-80593088%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '67f0c11726009dcf0966216654e21191da9db555' => 
     array (
       0 => 'act_adaptable.html.tpl',
-      1 => 1515519241,
+      1 => 1515773694,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_adaptable.js?v=2.915"></script>
+        <script type="text/javascript" src="act_adaptable.js?v=2.916"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -145,6 +145,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							<option value='9' >Tabla prestadores servicios salud</option>
 							<option value='10' >Tabla gioss entidades sector salud</option>
 							<option value='11' >Tabla 4505 Consultas</option>
+							<option value='12.1' >Tabla gioss_cancer_ips_radioterapia</option>
+							<option value='12.2' >Tabla gioss_cancer_ips_quimioterapia</option>
+							<option value='12.3' >Tabla gioss_cancer_ips_cirugia_reconstructiva</option>
+							<option value='12.4' >Tabla gioss_cancer_ips_cirugia</option>
+							<option value='12.5' >Tabla gioss_cancer_ips_trasplante</option>
+							<option value='12.6' >Tabla gioss_cancer_ips_conformacion_dx</option>
+							<option value='12.7' >Tabla gioss_cancer_ips_cuidado_paliativo</option>
+							<option value='12.8' >Tabla gioss_cancer_ips_nutricion</option>
+							<option value='12.9' >Tabla gioss_cancer_ips_psiquiatria</option>
 						</select>
 						</td>
 						</tr>
