@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2017-12-21 11:04:13
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-12 09:17:59
          compiled from "fixer_0123_HF.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18942992035a3bcf8c9c40e4-70799783%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9e40b87b473ef7696afe8ccb5d420351e01c77f3' => 
     array (
       0 => 'fixer_0123_HF.html.tpl',
-      1 => 1513872244,
+      1 => 1515705868,
       2 => 'file',
     ),
   ),
@@ -185,7 +185,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<table id='tabla_seleccion_archivos' style='display:inline;'>
 								
 									<!--hidden validar archivo, (debe contener la sigla)-->
-									<input type='hidden' name='HF_hidden' id='HF_hidden' value='' />
+									<input type='hidden' name='HEMOFILIA_hidden' id='HEMOFILIA_hidden' value='' />
 									<!--fin hidden validar archivo-->
 									
 									
@@ -204,7 +204,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 										
 									<tr>									
 									<td >
-									<div class="upload"><input type="file" id='0123_HF_file' name='0123_HF_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HF_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HF','nombre_archivo_0123');" /></div>
+									<div class="upload"><input type="file" id='0123_HEMOFILIA_file' name='0123_HEMOFILIA_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" onclick="obtener_nombre_file_upload('0123_HEMOFILIA_file','nombre_archivo_0123');verificar_nombre_archivo(this.value,'HEMOFILIA','nombre_archivo_0123');" /></div>
 									</td>
 									</tr>
 									

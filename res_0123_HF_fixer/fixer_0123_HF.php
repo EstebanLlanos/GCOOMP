@@ -1378,7 +1378,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				$year="";
 				$mes="";
 				$dia="";
-				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,8,12);
+				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,9,12);
 				$cod_prestador_temporal=$cod_prestador;
 				while(strlen($cod_prestador_temporal)<12)
 				{
@@ -1397,13 +1397,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
 					$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_hf['name']);
-					if("0000AGRUPADO"!=$prestador_del_nombre_archivo && strlen($nombre_sin_txt_para_verificacion)==31 )//para hf es 31
-					{
-						$es_valido_nombre_archivo=false;
-						$errores.="La parte del nombre para el  archivo que indica si esta agrupado( $prestador_del_nombre_archivo ), no corresponde a la especificacion 0000AGRUPADO. <br>";
-					}
+					$cod_eapb_temporal_new_name=$cod_eapb;
+                    while(strlen($cod_eapb_temporal_new_name)<12)
+                    {
+                        $cod_eapb_temporal_new_name="0".$cod_eapb_temporal_new_name;
+                    }//fin while
+
+					if($prestador_del_nombre_archivo!=$cod_eapb_temporal_new_name && (strlen($nombre_sin_txt_para_verificacion)==31
+                       || strlen($nombre_sin_txt_para_verificacion)==33) )
+                    {
+                        $es_valido_nombre_archivo=false;
+                        $errores.="La eapb $prestador_del_nombre_archivo, no corresponde a la eapb en seleccionada $cod_eapb_temporal_new_name para el tipo de validacion agrupado. <br>";
+                    }
 				}
 				
+				/*
 				if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
 				{
 					$regimen_nombre=substr($nombre_archivo_fecha_prestador,20,1);
@@ -1413,18 +1421,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$errores.="El regimen ($regimen_nombre) no corresponde a C-S-P-N-E-O. <br>";
 					}
 				}//fin if
+				*/
 				//echo "<script>alert('$regimen_nombre');</script>";
 				
 				//LONGITUD INCORRECTA para hf
 				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_hf['name']);
-				if(strlen($nombre_sin_txt_para_verificacion)!=31 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				if(strlen($nombre_sin_txt_para_verificacion)!=31 && strlen($nombre_sin_txt_para_verificacion)!=33 )
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="La longitud del archivo sin incluir el .txt debe ser de 31 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+					$errores.="La longitud del archivo sin incluir el .txt debe ser de 31, 33 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 				}
+				/*
 				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
 				{
 					if(strlen($nombre_sin_txt_para_verificacion)!=31
+
 					   && strlen($nombre_sin_txt_para_verificacion)!=18
 					   && strlen($nombre_sin_txt_para_verificacion)!=21
 					   )
@@ -1445,7 +1456,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$errores.="La longitud del archivo sin incluir el .txt debe ser de 31 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
 						}
 					}//fin if
-				}//fin else if				
+				}//fin else if	
+				*/			
 				//FIN LONGITUD INCORRECTA
 				
 				//REGIMEN
@@ -1502,12 +1514,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					$errores.="El tipo de prestador indicado en el nombre del archivo ( $tipo_entidad_reportadora_del_nombre_archivo ), no corresponde a NI, MU, DI, DE . <br>";
 				}
 				*/
-				
+				/*
 				if($eapb_del_nombre_del_archivo!=$cod_eapb_temporal)
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="El codigo de la EAPB indicada en el nombre del archivo ( $eapb_del_nombre_del_archivo ), no corresponde al codigo de la EAPB a reportar ( $cod_eapb ). <br>";
 				}
+				*/
 				//echo $fecha_de_corte."<br>";
 				$array_fecha_de_corte=explode("-",$fecha_de_corte);
 				//echo $fecha_corte_anterior_registrada_nombre."<br>";
