@@ -199,6 +199,18 @@ function prediligenciar_datos_tabla_seleccionada_para_cargar(valor_seleccionado)
 		document.getElementById('llaves').value="codigo_habilitacion";
 		document.getElementById('nombres_columnas_tablas').value="nom_municipio,codigo_depto,codigo_municipio,codigo_habilitacion,nombre_ips,codigo_servicio,descripcion_servicio";
 	}
+	if(valor_seleccionado=='13')
+	{
+		document.getElementById('nombre_tabla').value="gioss_entidades_sector_salud";
+		document.getElementById('llaves').value="codigo_entidad";
+		document.getElementById('nombres_columnas_tablas').value="codigo_entidad,nombre_de_la_entidad,des_tipo_entidad_salud";
+	}
+	if(valor_seleccionado=='14')
+	{
+		document.getElementById('nombre_tabla').value="gios_prestador_servicios_salud";
+		document.getElementById('llaves').value="cod_registro_especial_pss";
+		document.getElementById('nombres_columnas_tablas').value="cod_registro_especial_pss,nom_entidad_prestadora,des_representante_legal,cod_tipo_identificacion,cod_tipo_entidad,cod_naturaleza_juridica,cod_tipo_cobertura,zona,cod_nivel_atencion,num_tipo_identificacion,num_sede_ips,digito_verificacion,nombre_comercial_prestador";
+	}
 }//fin function
 
 function download_archivo(ruta)

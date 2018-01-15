@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_adaptable.js?v=2.916"></script>
+        <script type="text/javascript" src="act_adaptable.js?v=2.919"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -111,7 +111,7 @@
 							<option value='8' >Tabla Valores Permitidos 4505 Consultas Cruces Razonabilidad</option>
 							<option value='8.1' >Tabla Valores Permitidos 0247 Consultas Cruces Razonabilidad</option>
 							<option value='8.2' >Tabla Valores Permitidos 0123 Consultas Cruces Razonabilidad</option>
-							<option value='8.3' >Tabla Valores Permitidos 2463 Consultas Cruces Razonabilidad</option>							
+							<option value='8.3' >Tabla Valores Permitidos 2463 Consultas Cruces Razonabilidad</option>
 							<option value='8.4' >Tabla Valores Permitidos 4725 Consultas Cruces Razonabilidad</option>
 							<option value='9' >Tabla prestadores servicios salud</option>
 							<option value='10' >Tabla gioss entidades sector salud</option>
@@ -125,6 +125,8 @@
 							<option value='12.7' >Tabla gioss_cancer_ips_cuidado_paliativo</option>
 							<option value='12.8' >Tabla gioss_cancer_ips_nutricion</option>
 							<option value='12.9' >Tabla gioss_cancer_ips_psiquiatria</option>
+							<option value='13' >Tabla gioss_entidades_sector_salud MIN (3 columnas)</option>
+							<option value='14' >Tabla gios_prestador_servicios_salud MIN (13 columnas)</option>
 						</select>
 						</td>
 						</tr>
