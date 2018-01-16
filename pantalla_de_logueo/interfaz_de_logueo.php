@@ -47,7 +47,7 @@ if(isset($_REQUEST["se_cerro_session"]))
 	$se_cerro_session=$_REQUEST["se_cerro_session"];
 	unset($_REQUEST["se_cerro_session"]);
 	//direccion para bd  menu 68 en gios_menus_opciones_sistema ..|index.php?se_cerro_session=SI
-	echo "<script>alert('Se cerro la sesion');</script>";
+	//echo "<script>alert('Se cerro la sesion');</script>";
 }
 //FIN VERIFICA SI SE CERRO SESSION
 if (session_id()!=""
@@ -357,4 +357,21 @@ $smarty->display('interfaz_de_logueo.html.tpl');
 $ram_usada_MB=(memory_get_usage(true)/1048576.2);
 echo "<script>document.getElementById('medidor_ram').innerHTML='".$ram_usada_MB." $html_se_creo_temporales';</script>";
 $coneccionBD->cerrar_conexion();
+
+if($se_cerro_session!="NO")
+{
+	//direccion para bd  menu 68 en gios_menus_opciones_sistema ..|index.php?se_cerro_session=SI
+	echo "<script>alert('Se cerro la sesion');</script>";
+}
+
+if(isset($_POST['login']) && isset($_POST['password']) )//fin condicion
+{
+	$login=trim($_POST['login']);
+	$password=trim($_POST['password']);
+	$html_javascript="<script>
+	document.getElementById('login').value='$login';
+	document.getElementById('password').value='$password';
+	</script>";
+	echo $html_javascript;
+}
 ?>
