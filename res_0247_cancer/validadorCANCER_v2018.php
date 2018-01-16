@@ -6741,7 +6741,7 @@ function validar_CANCER($campos,
 				    $errores_campos.="|";
 			    }		
 			    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-				$var_numero_codigo="0103053";
+				$var_numero_codigo="0103055";
 			    $cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
 			    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0103,".$array_grupo_validacion["0103"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 			    $consecutivo_errores++;
@@ -27753,7 +27753,6 @@ function validar_CANCER($campos,
 			if( trim($campos[$numero_campo])!="1"
 			&& trim($campos[$numero_campo])!="2"
 			&& trim($campos[$numero_campo])!="3"
-			&& trim($campos[$numero_campo])!="4"
 			&& trim($campos[$numero_campo])!="5"
 			&& trim($campos[$numero_campo])!="6"
 			&& trim($campos[$numero_campo])!="98"
