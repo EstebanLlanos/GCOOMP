@@ -12243,6 +12243,25 @@ function validar_CANCER($campos,
 
 			$campo_n128=trim($campos[205]);
 
+			if((intval($campos[$numero_campo])==98)
+			   && ($campo_n45!="2" && $campo_n45!="98")
+			   && ($campo_n49!="1845-01-01")
+			   )
+			{
+				if($errores_campos!="")
+				{
+					$errores_campos.="|";
+				}		
+				//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+				$var_numero_codigo="0105112";
+				$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
+				$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				$consecutivo_errores++;
+				
+				$hubo_errores=true;		
+			}
+			
+			/*
 			$fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
 			$campo_actual_es_inferior_fecha_c18=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_campo_18_fecha_diagnostico);
 
@@ -12263,6 +12282,7 @@ function validar_CANCER($campos,
 				
 				$hubo_errores=true;
 			}
+			*/
 			
 			
 		}//fin if este campo no esta en blanco
