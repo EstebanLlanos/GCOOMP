@@ -162,10 +162,13 @@ function validar_CANCER($campos,
 	
 	
 	//$fecha_primer_dia_corte=$year_fecha_de_corte."-01-01";
-
+	$array_limite_inferior=explode("-", $fecha_inferior_pv);
+	$year_limite_inferior=$array_limite_inferior[0];
+	
 	$mes_fecha_de_corte=$fecha_de_corte_array[1];
 	$fecha_primer_dia_corte=$year_fecha_de_corte."-".$mes_fecha_de_corte."-01";
-	$fecha_primer_dia_del_primer_mes_corte=$year_fecha_de_corte."-01-01";
+	//$fecha_primer_dia_del_primer_mes_corte=$year_fecha_de_corte."-01-01";
+	$fecha_primer_dia_del_primer_mes_corte=$year_limite_inferior."-01-02";
 
 	$campo20_contra_year_anterior_al_actual=diferencia_dias_entre_fechas($campo_n20,$year_anterior_al_actual);//<= mayor o igual al actual
 
