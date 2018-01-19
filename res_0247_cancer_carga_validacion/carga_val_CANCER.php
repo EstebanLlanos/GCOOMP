@@ -1316,6 +1316,9 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 
 		}//fin if
 	}//fin else
+	$array_ruta_criterios_validacion=explode( "/", $ruta_validacion_version);
+	$nombre_archivo_criterios_seleccionado=$array_ruta_criterios_validacion[count($array_ruta_criterios_validacion)-1];
+	echo "Version Criterios validacion a usar ".$nombre_archivo_criterios_seleccionado;
 	//FIN SELECTOR VERSION
 	
 	//archivo donde se separa los que no estan en ciex del campo 17
