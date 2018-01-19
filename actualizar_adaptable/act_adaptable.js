@@ -211,6 +211,12 @@ function prediligenciar_datos_tabla_seleccionada_para_cargar(valor_seleccionado)
 		document.getElementById('llaves').value="cod_registro_especial_pss";
 		document.getElementById('nombres_columnas_tablas').value="cod_registro_especial_pss,nom_entidad_prestadora,des_representante_legal,cod_tipo_identificacion,cod_tipo_entidad,cod_naturaleza_juridica,cod_tipo_cobertura,zona,cod_nivel_atencion,num_tipo_identificacion,num_sede_ips,digito_verificacion,nombre_comercial_prestador";
 	}
+	if(valor_seleccionado=='15')
+	{
+		document.getElementById('nombre_tabla').value="gioss_cups_cancer_qx";
+		document.getElementById('llaves').value="codigo";
+		document.getElementById('nombres_columnas_tablas').value="codigo,descripcion";
+	}
 }//fin function
 
 function download_archivo(ruta)
