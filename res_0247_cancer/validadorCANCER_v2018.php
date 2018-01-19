@@ -26861,7 +26861,7 @@ function validar_CANCER($campos,
 				$hubo_errores=true;
 			}
 
-			f(trim($campos[$numero_campo])=="1845-01-01"
+			if(trim($campos[$numero_campo])=="1845-01-01"
 			   && ($campo_n45=="1")
 			   && $campo_n61!="97"
 			   )
