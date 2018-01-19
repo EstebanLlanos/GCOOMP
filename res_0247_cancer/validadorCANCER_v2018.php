@@ -20462,7 +20462,7 @@ function validar_CANCER($campos,
 			}
 			
 			if((trim($campos[$numero_campo])!="98")
-			   && ($campo_n45!="2" && $campo_n45!="98")
+			   && ($campo_n45=="1")
 			   && $campo_n61=="97"
 			   )
 			{
@@ -20516,45 +20516,45 @@ function validar_CANCER($campos,
 			$c69=trim($campos[140]);
 			
 			if((trim($campos[$numero_campo])!="98")
-			   && ($campo_n45!="2" && $campo_n45!="98")
+			   && ($campo_n45=="1")
 			   && $campo_n61!="97"
-			   && ( $c66_1!="1"
-				&& $c66_2!="1"
-				&& $c66_3!="1"
-				&& $c66_4!="1"
-				&& $c66_5!="1"
-				&& $c66_6!="1"
-				&& $c66_7!="1"
-				&& $c66_8!="1"
-				&& $c66_9!="1"
-				&& $c66_10!="1"
-				&& $c66_11!="1"
-				&& $c66_12!="1"
-				&& $c66_13!="1"
-				&& $c66_14!="1"
-				&& $c66_15!="1"
-				&& $c66_16!="1"
-				&& $c66_17!="1"
-				&& $c66_18!="1"
-				&& $c66_19!="1"
-				&& $c66_20!="1"
-				&& $c66_21!="1"
-				&& $c66_22!="1"
-				&& $c66_23!="1"
-				&& $c66_24!="1"
-				&& $c66_25!="1"
-				&& $c66_26!="1"
-				&& $c66_27!="1"
-				&& $c66_28!="1"
-				&& $c66_29!="1"
-				&& $c66_30!="1"
-				&& $c66_31!="1"
-				&& $c66_32!="1"
+			   && ( ($c66_1=="2" || $c66_1=="3" || $c66_1=="98")
+				&& ($c66_2=="2" || $c66_2=="3" || $c66_2=="98")
+				&& ($c66_3=="2" || $c66_3=="3" || $c66_3=="98")
+				&& ($c66_4=="2" || $c66_4=="3" || $c66_4=="98")
+				&& ($c66_5=="2" || $c66_5=="3" || $c66_5=="98")
+				&& ($c66_6=="2" || $c66_6=="3" || $c66_6=="98")
+				&& ($c66_7=="2" || $c66_7=="3" || $c66_7=="98")
+				&& ($c66_8=="2" || $c66_8=="3" || $c66_8=="98")
+				&& ($c66_9=="2" || $c66_9=="3" || $c66_9=="98")
+				&& ($c66_10=="2" || $c66_10=="3" || $c66_10=="98")
+				&& ($c66_11=="2" || $c66_11=="3" || $c66_11=="98")
+				&& ($c66_12=="2" || $c66_12=="3" || $c66_12=="98")
+				&& ($c66_13=="2" || $c66_13=="3" || $c66_13=="98")
+				&& ($c66_14=="2" || $c66_14=="3" || $c66_14=="98")
+				&& ($c66_15=="2" || $c66_15=="3" || $c66_15=="98")
+				&& ($c66_16=="2" || $c66_16=="3" || $c66_16=="98")
+				&& ($c66_17=="2" || $c66_17=="3" || $c66_17=="98")
+				&& ($c66_18=="2" || $c66_18=="3" || $c66_18=="98")
+				&& ($c66_19=="2" || $c66_19=="3" || $c66_19=="98")
+				&& ($c66_20=="2" || $c66_20=="3" || $c66_20=="98")
+				&& ($c66_21=="2" || $c66_21=="3" || $c66_21=="98")
+				&& ($c66_22=="2" || $c66_22=="3" || $c66_22=="98")
+				&& ($c66_23=="2" || $c66_23=="3" || $c66_23=="98")
+				&& ($c66_24=="2" || $c66_24=="3" || $c66_24=="98")
+				&& ($c66_25=="2" || $c66_25=="3" || $c66_25=="98")
+				&& ($c66_26=="2" || $c66_26=="3" || $c66_26=="98")
+				&& ($c66_27=="2" || $c66_27=="3" || $c66_27=="98")
+				&& ($c66_28=="2" || $c66_28=="3" || $c66_28=="98")
+				&& ($c66_29=="2" || $c66_29=="3" || $c66_29=="98")
+				&& ($c66_30=="2" || $c66_30=="3" || $c66_30=="98")
+				&& ($c66_31=="2" || $c66_31=="3" || $c66_31=="98")
+				&& ($c66_32=="2" || $c66_32=="3" || $c66_32=="98")
 				&& ($c67=="97" || $c67=="98" )
 				&& ($c68=="97" || $c68=="98" )
 				&& ($c69=="97" || $c69=="98" )
 				)//fin 66_x
-			   )
+			   )//fin condicion
 			{
 				if($errores_campos!="")
 				{
@@ -20570,7 +20570,7 @@ function validar_CANCER($campos,
 			}
 			
 			if((trim($campos[$numero_campo])=="98")
-			   && ($campo_n45!="2" && $campo_n45!="98")
+			   && ($campo_n45=="1")
 			   && $campo_n61!="97"
 			   && ( $c66_1=="1"
 				|| $c66_2=="1"
@@ -20604,11 +20604,8 @@ function validar_CANCER($campos,
 				|| $c66_30=="1"
 				|| $c66_31=="1"
 				|| $c66_32=="1"
-				|| ($c67!="97" && $c67!="98" )
-				|| ($c68!="97" && $c68!="98" )
-				|| ($c69!="97" && $c69!="98" )
 				)//fin 66_x
-			   )
+			   )//fin condicion
 			{
 				if($errores_campos!="")
 				{
@@ -20616,6 +20613,29 @@ function validar_CANCER($campos,
 				}		
 				//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
 				$var_numero_codigo="0105178";
+				$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
+				$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				$consecutivo_errores++;
+				
+				$hubo_errores=true;
+			}
+
+			if((trim($campos[$numero_campo])=="98")
+			   && ($campo_n45=="1")
+			   && $campo_n61!="97"
+			   && ( 
+			   	($c67!="97" && $c67!="98" )
+				|| ($c68!="97" && $c68!="98" )
+				|| ($c69!="97" && $c69!="98" )
+				)//fin 66_x
+			   )//fin condicion
+			{
+				if($errores_campos!="")
+				{
+					$errores_campos.="|";
+				}		
+				//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+				$var_numero_codigo="0105325";
 				$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
 				$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 				$consecutivo_errores++;
