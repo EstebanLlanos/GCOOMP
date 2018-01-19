@@ -27651,7 +27651,7 @@ function validar_CANCER($campos,
 			}
 			
 			$consultac78="";
-			$consultac78.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campo_n78."' ; ";
+			$consultac78.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campo_n78."' ; ";
 			$resultadoc78=$coneccionBD->consultar2_no_crea_cierra($consultac78);
 			
 			if((trim($campos[$numero_campo])!="1")
@@ -28216,7 +28216,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campos[$numero_campo]."' ; ";
+			$consulta.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campos[$numero_campo]."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && intval($campos[$numero_campo])!=98 )
 			{
@@ -28283,7 +28283,7 @@ function validar_CANCER($campos,
 			}
 
 		    $consulta83="";
-			$consulta83.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campo_n83."' ; ";
+			$consulta83.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campo_n83."' ; ";
 			$resultado83=$coneccionBD->consultar2_no_crea_cierra($consulta83);
 
 			if( trim($campo_n83)!=98 
@@ -28704,7 +28704,7 @@ function validar_CANCER($campos,
 
 
 	    $consulta83="";
-		$consulta83.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campo_n83."' ; ";
+		$consulta83.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campo_n83."' ; ";
 		$resultado83=$coneccionBD->consultar2_no_crea_cierra($consulta83);
 			
 			if(
@@ -28838,7 +28838,7 @@ function validar_CANCER($campos,
 			}
 			
 			$consulta83="";
-		$consulta83.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campo_n83."' ; ";
+		$consulta83.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campo_n83."' ; ";
 		$resultado83=$coneccionBD->consultar2_no_crea_cierra($consulta83);
 			
 			if(
@@ -28928,7 +28928,7 @@ function validar_CANCER($campos,
 			
 			//valor permitido
 			$consulta="";
-			$consulta.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campos[$numero_campo]."' ; ";
+			$consulta.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campos[$numero_campo]."' ; ";
 			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 			if( count($resultado)==0  && intval($campos[$numero_campo])!=98 )
 			{
@@ -29117,7 +29117,7 @@ function validar_CANCER($campos,
 			
 			/*
 			$consulta83="";
-		$consulta83.="SELECT * FROM gioss_cups WHERE codigo_procedimiento='".$campo_n83."' ; ";
+		$consulta83.="SELECT * FROM gioss_cups_cancer_qx WHERE codigo='".$campo_n83."' ; ";
 		$resultado83=$coneccionBD->consultar2_no_crea_cierra($consulta83);
 		*/
 			
