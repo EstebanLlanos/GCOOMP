@@ -14,6 +14,9 @@ require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
 //require_once 'validadorCANCER.php';
+//mantener comentado los require de las verisones por year, solo usar para verificar sintaxis
+//require_once '../res_0247_cancer/validadorCANCER_v2017.php';
+//require_once '../res_0247_cancer/validadorCANCER_v2018.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
