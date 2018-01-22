@@ -1054,6 +1054,45 @@ $eapb.="</select>";
 $eapb.="</div>";
 //FIN EAPB
 
+//TIPO ENTIDAD
+
+$proveniente_de_prestador_o_eapb="";
+if($TIPO_ENTIDAD_DE_LA_VERSION=="GENERAL"
+   || $TIPO_ENTIDAD_DE_LA_VERSION=="EPS"
+   || $TIPO_ENTIDAD_DE_LA_VERSION=="SECRETARIA"
+   )
+{
+$proveniente_de_prestador_o_eapb.="<tr><td style='text-align:left;'><h5 id='sub_titulo_tipo_entidad' style=\"color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;\">Tipo Entidad que realiza el cargue</h5></td></tr>
+					<tr>
+					    <td style='text-align:left;'>
+						<select id='tipo_archivo_norma' name='tipo_archivo_norma' class='campo_azul' onchange='mostrar_selectores_geograficos();validar_antes_seleccionar_archivos();' style='width:230px;'>							    
+						    <option value='individual_ips'>Prestador Individual</option>
+						    <!--<option value='ent_territoriales'>Agrupado Entidad Territorial</option>-->
+						    <option value='agrupado_eapb'>Agrupado EAPB</option>
+						</select>
+					    </td>
+					</tr>
+				";
+}
+else if($TIPO_ENTIDAD_DE_LA_VERSION=="IPS")
+{
+	$proveniente_de_prestador_o_eapb.="
+	<!--
+	<tr>
+	<td style='text-align:left;'><b><br>El tipo de archivo a validar <br> proveendra de una IPS o prestador.<br>&nbsp;<b/>
+	</td>
+	</tr>
+	-->
+	<tr>
+	<td>
+	<input type='hidden' id='tipo_archivo_norma' name='tipo_archivo_norma' value='individual_ips'/>			
+	</td>
+	</tr>
+	";
+}
+
+//FIN TIPO ENTIDAD
+
 //SELECTOR PERIODO
 $query_periodos_rips="SELECT * FROM gioss_periodo_reporte_1393_arte ORDER BY codigo_periodo;";
 $resultado_query_periodos=$coneccionBD->consultar2_no_crea_cierra($query_periodos_rips);
@@ -1072,6 +1111,8 @@ foreach($resultado_query_periodos as $key=>$periodo)
 }
 $selector_periodo.="</select>";
 //FIN PERIODO
+
+$smarty->assign("proveniente_de_prestador_o_eapb", $proveniente_de_prestador_o_eapb, true)
 
 $smarty->assign("campo_periodo", $selector_periodo, true);
 $smarty->assign("campo_eapb", $eapb, true);
@@ -1116,6 +1157,8 @@ date_default_timezone_set ("America/Bogota");
 $fecha_actual = date('Y-m-d');
 $tiempo_actual = date('H:i:s');
 $tiempo_actual_string=str_replace(":","-",$tiempo_actual);
+
+$fecha_para_archivo=str_replace("-", "", $fecha_actual ).str_replace(":", "", $tiempo_actual );
 
 $rutaTemporal = '../TEMPORALES/';
 $error_mensaje="";
