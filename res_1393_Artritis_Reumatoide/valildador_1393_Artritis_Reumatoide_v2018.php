@@ -18,7 +18,8 @@ function validar_ARTE($campos,
 		      $cod_eapb,
 		      &$diccionario_identificacion,
 		      &$diccionario_identificacion_lineas,
-		      &$coneccionBD)
+		      &$coneccionBD,
+		      $array_numero_campo_bd)
 {
 	$hubo_errores=false;
 	$errores_campos="";
@@ -121,25 +122,7 @@ function validar_ARTE($campos,
 	
 	
 	
-	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
-	$query_consulta_estructura_numero_campos="";
-	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
-	$query_consulta_estructura_numero_campos.=" WHERE ";
-	$query_consulta_estructura_numero_campos.=" codigo_tipo_norma_obligatoria='08' ";
-	$query_consulta_estructura_numero_campos.=" AND ";
-	$query_consulta_estructura_numero_campos.=" codigo_tipo_archivo='0801' ORDER BY numero_de_orden ";
-	$query_consulta_estructura_numero_campos.=" ; ";
-	$resultado_query_estructura_campos=$coneccionBD->consultar2_no_crea_cierra($query_consulta_estructura_numero_campos);
 	
-	$array_numero_campo_bd=array();
-	if(count($resultado_query_estructura_campos)>0)
-	{
-		foreach($resultado_query_estructura_campos as $estructura_campo)
-		{
-			$array_numero_campo_bd[intval($estructura_campo["numero_de_orden"])]=$estructura_campo["numero_de_campo"];
-		}
-	}
-	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	
 	//VALIDACION CARACTERES POR CAMPO
 	$campos_ver_characters=$campos;
