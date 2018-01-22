@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-11 12:18:56
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-22 12:19:29
          compiled from "carga_val_CANCER.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15977223515a4e67e55ea0b8-35203907%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ebbbf5beed0a9b6069c99c900a13d5e6d1a412dc' => 
     array (
       0 => 'carga_val_CANCER.html.tpl',
-      1 => 1515691089,
+      1 => 1516641508,
       2 => 'file',
     ),
   ),
@@ -139,8 +139,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								</tr>
 								<tr>
 								<td style="text-align:left;">
+									<input type='hidden' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' style='width:230px;height:30px;' placeholder='Numero de remision CANCER'  />
 								    <div id='separador_numero_de_remision'>
-								    <input type='text' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' style='width:230px;height:30px;' placeholder='Numero de remision CANCER' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />
+								    <!--<input type='text' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' style='width:230px;height:30px;' placeholder='Numero de remision CANCER' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />-->
 								    </div>
 								</td>
 								<td><p id='error_nombre_archivo'></p></td>

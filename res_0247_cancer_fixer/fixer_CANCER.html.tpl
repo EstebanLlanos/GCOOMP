@@ -102,8 +102,9 @@
 								</tr>
 								<tr>
 								<td style="text-align:left;">
+									<input type='hidden' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' style='width:230px;height:30px;' placeholder='Numero de remision CANCER'  />
 								    <div id='separador_numero_de_remision'>
-								    <input type='text' style='width:230px;height:30px;' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision CANCER' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />
+								    <!--<input type='text' style='width:230px;height:30px;' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision CANCER' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />-->
 								    </div>
 								</td>
 								<td><p id='error_nombre_archivo'></p></td>
