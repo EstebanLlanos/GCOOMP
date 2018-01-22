@@ -1,4 +1,4 @@
-<!DOARTEYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
@@ -127,7 +127,7 @@
 							<table id='tabla_seleccion_archivos' style='display:inline;'>
 							
 								<!--hidden validar archivo, (debe contener la sigla)-->
-								<input type='hidden' name='ARTE_hidden' id='ARTE_hidden' value='' />
+								<input type='hidden' name='ARTRITIS_hidden' id='ARTRITIS_hidden' value='' />
 								<!--fin hidden validar archivo-->
 								
 								
@@ -143,7 +143,7 @@
 								<tr>
 								
 								<td style="position:absolute;left:-65%;top:5%;width:5%;">
-								<div class="upload"><input type="file" id='1393_ARTE_file' name='1393_ARTE_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('1393_ARTE_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'AR','nombre_archivo_1393');" onclick="obtener_nombre_file_upload('1393_ARTE_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'AR','nombre_archivo_1393');" /></div>
+								<div class="upload"><input type="file" id='1393_ARTRITIS_file' name='1393_ARTRITIS_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('1393_ARTRITIS_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'ARTRITIS','nombre_archivo_1393');" onclick="obtener_nombre_file_upload('1393_ARTRITIS_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'ARTRITIS','nombre_archivo_1393');" /></div>
 								</td>
 								
 								<td style="position:absolute;left:-50%;top:15%;">
