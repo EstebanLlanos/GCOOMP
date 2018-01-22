@@ -1945,6 +1945,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 			
 			$nlinea=0;
 			$fue_cerrada_la_gui=false;
+			$se_creo_tabla_indice=false;
 			while (!feof($file_HF)) 
 			{
 				if($fue_cerrada_la_gui==false)
