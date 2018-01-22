@@ -308,7 +308,7 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 					eapb_ver_new_name="0"+eapb_ver_new_name;
 				}//fin while eapb caso agrupado nuevo nombre
 
-			    if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==33 || nombre_sin_extension[0].length==31) )
+			    if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==32 || nombre_sin_extension[0].length==30) )
 			    {
 			    	mensaje+="ERROR: La EAPB "+eapb_ver_new_name+" no corresponde al la EAPB indicada en el archivo "+prestador_nombre+" para un archivo AGRUPADO <br>";
 			    }//fin else if
@@ -394,7 +394,7 @@ function validar_campos()
 	var fechaActual = new Date();
     //var fechaIngreso = new Date($("#fecha_remision").val());
 	
-	if(document.getElementById("prestador").value=="none")
+	if(document.getElementById("prestador").value=="none" && document.getElementById("tipo_archivo_norma").value!="agrupado_eapb")
 	{
 		mensaje+='<br>-Seleccione un prestador \n';
 	}
@@ -402,10 +402,11 @@ function validar_campos()
 	{
 		mensaje+='<br>-Seleccione un eapb \n';
 	}	
+	/*
 	if(document.getElementById("numero_de_remision").value=="")
 	{
 		mensaje+='<br>-Registre el numero de remision del archivo \n';
-	}
+	}*/
 	
 	if(document.getElementById("periodo").value=="none")
 	{
@@ -468,6 +469,7 @@ function validar_campos()
 
 function cargarARTE()
 {
+	validar_antes_seleccionar_archivos();
 	var hay_errores = validar_campos();		   
 	
 	document.getElementById('accion').value="validar";
@@ -555,6 +557,59 @@ function cuando_se_escribe_el_nombre_del_archivo()
 	
 }
 
+
+function mostrar_selectores_geograficos()
+{
+	
+	if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
+	{
+		
+		
+		document.getElementById("sub_titulo_entidad_1").style.display="none";
+		document.getElementById("entidad_1").style.display="none";
+		/*
+		$("#prestador").parent().find("input.ui-autocomplete-input").autocomplete("option", "disabled", true).prop("disabled",true);
+		$("#prestador").parent().find("a.ui-button").button("disable");
+		*/
+		
+		document.getElementById("sub_titulo_entidad_2").style.display="none";
+		document.getElementById("sub_titulo_entidad_2_oculto").style.display="block";
+		
+		document.getElementById("sub_titulo_entidad_3_oculto").style.display="block";
+		
+		/*document.getElementById("separador_regimen").style.display="block";
+		document.getElementById("titulo_regimen").style.display="block";*/
+		
+		/*document.getElementById("titulo_numero_de_remision").style.display="none";
+		document.getElementById("separador_numero_de_remision").style.display="none";*/
+	}
+	else
+	{
+		document.getElementById("sub_titulo_entidad_3_oculto").style.display="none";
+		document.getElementById("sub_titulo_entidad_4_oculto").style.display="none";
+		
+		document.getElementById("sub_titulo_entidad_1_oculto").style.display="none";
+		document.getElementById("sub_titulo_entidad_2_oculto").style.display="none";
+		
+		document.getElementById("sub_titulo_entidad_1").style.display="block";
+		document.getElementById("sub_titulo_entidad_2").style.display="block";
+		document.getElementById("entidad_1").style.display="block";
+		document.getElementById("entidad_2").style.display="block";
+		
+		$("#eapb").parent().find("input.ui-autocomplete-input").autocomplete("option", "disabled", false).prop("disabled",false);
+		$("#eapb").parent().find("a.ui-button").button("enable");
+		$("#prestador").parent().find("input.ui-autocomplete-input").autocomplete("option", "disabled", false).prop("disabled",false);
+		$("#prestador").parent().find("a.ui-button").button("enable");
+		
+		/*document.getElementById("separador_regimen").style.display="none";
+		document.getElementById("titulo_regimen").style.display="none";*/
+		
+		/*document.getElementById("titulo_numero_de_remision").style.display="block";
+		document.getElementById("separador_numero_de_remision").style.display="block";*/
+	    
+	}
+}
+
 function download_inconsistencias_campos(ruta)
 {
 	
@@ -564,3 +619,9 @@ function download_inconsistencias_campos(ruta)
 onbeforeunload = function(e){	
 		return 'Recuerde que se perderan los cambios realizados.';	
 }
+
+
+$(document).ready(function(){
+    $("#eapb").combobox();
+    $("#prestador").combobox();
+})
