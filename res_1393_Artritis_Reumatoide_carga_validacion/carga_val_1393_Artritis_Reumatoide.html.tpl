@@ -5,12 +5,12 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="carga_val_1393_Artritis_Reumatoide.js"></script>
+        <script type="text/javascript" src="carga_val_1393_Artritis_Reumatoide.js?v=1.002"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="carga_val_1393_Artritis_Reumatoide.css" rel="stylesheet" />
-       <title>Carga y Validacion de archivos para Artritis Reumatoide</title>
+        <link type="text/css" href="carga_val_1393_Artritis_Reumatoide.css?v=1.001" rel="stylesheet" />
+       <title>Carga y Validacion de archivos para Artritis Reumatoide 1393</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>
     <body>
@@ -56,43 +56,49 @@
 						
 						<tr>
 						<td style="text-align:left;">
-						<h5>Formulario de carga y validacion de documentos 1393 para Artritis Reumatoide</h5>
+						<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Formulario de carga y validacion de documentos 1393 para Artritis Reumatoide</h4>
 						</td>
 						</tr>
 						
 						<tr>
 						
-						<td style="text-align:left;width:15.05%;">
+						<td style="text-align:left;width:7.05%;">
 						
 							<table>
+
+								{$proveniente_de_prestador_o_eapb}
 							
 								<tr>
 								<td style="text-align:left;">
-								Nombre Prestador:
+								    <h5 id='sub_titulo_entidad_1' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Entidad Que Efect&uacutea el Cargue:</h5>
+								    <h5 id='sub_titulo_entidad_1_oculto' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display: none;">Entidad a La Cual se Efect&uacutea el Reporte:</h5>
+								    <h5 id='sub_titulo_entidad_3_oculto' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display: none;position: relative;top:50%;">Se Reporta al Ministerio de Salud.</h5>
 								</td>
 								</tr>
 								
 								<tr>
 								<td style="text-align:left;">
-								{$campo_prestador}
+								<div id='entidad_1'>{$campo_prestador}</div>
 								</td>
 								</tr>
 								
 								<tr>
-								<td style="text-align:left;">Nombre EAPB:</td>
+								<td style="text-align:left;">
+								    <h5 id='sub_titulo_entidad_2' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Entidad a La Cual se Efect&uacutea el Reporte:</h5>
+								    <h5 id='sub_titulo_entidad_2_oculto' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display: none;">Entidad Que Efect&uacutea el Cargue:</h5>
+								    <h5 id='sub_titulo_entidad_4_oculto' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;display: none;position: relative;top:50%;">Se Reporta al Ministerio de Salud.</h5>
+								</td>
 								</tr>
 								<tr>
 								<td style="text-align:left;">
-								{$campo_eapb}							
+								<div id='entidad_2'>{$campo_eapb}</div>
 								</td>
 								</tr>
-								
 								<tr>
-								<td style="text-align:left;">Numero de remisi&oacuten:</td>
-								</tr>
-								<tr>
-								<td style="text-align:left;"><input type='text' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision 1393' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" /></td>
-								<td><p id='error_nombre_archivo'></p></td>
+									<td>
+										<input type='hidden' style='width:230px;height:30px;' id='numero_de_remision' name='numero_de_remision'  class='campo_azul' placeholder='Numero de remision 0123' onchange="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeyup="cuando_se_escribe_el_nombre_del_archivo();validar_antes_seleccionar_archivos();" onkeypress="return isNumberKey(event)" maxlength="2" />
+										<input type='hidden' id='error_nombre_archivo'/>
+									</td>
 								</tr>
 								
 								<!--
@@ -105,14 +111,14 @@
 								-->
 								
 								<tr>
-								<td style="text-align:left;">A&ntildeo de corte:</td>
+								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>A&ntildeo de corte:</h5></td>
 								</tr>
 								<tr>
-								<td style="text-align:left;"><input type='text' id='year_de_corte' name='year_de_corte' class='campo_azul' placeholder='AAAA' maxlength="4" onkeypress="return isNumberKey(event)" onchange="validar_antes_seleccionar_archivos();" onkeyup="validar_antes_seleccionar_archivos();"/> </td>
+								<td style="text-align:left;"><input type='text' style='width:230px;height:30px;' id='year_de_corte' name='year_de_corte' class='campo_azul' placeholder='AAAA' maxlength="4" onkeypress="return isNumberKey(event)" onchange="validar_antes_seleccionar_archivos();" onkeyup="validar_antes_seleccionar_archivos();"/> </td>
 								</tr>	
 								
 								<tr>
-								<td style="text-align:left;">Fecha/Periodo de corte:</td>
+								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -06-30 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5></td>
 								</tr>
 								<tr>
 								<td style="text-align:left;">
@@ -133,21 +139,25 @@
 								
 								<!--ARCHIVO ARTE-->
 								<tr>
-								<td style="text-align:left;width:25%;">
-								<h5>1393 ARTRITIS<br> REUMATOIDE:</h5>
-								</td>
+								
 								
 								<td style="position:relative;text-align:left;width:25%;">
 								
 								<table>
+									<tr>
+										<td style="text-align:left;width:25%;">
+										<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">1393 ENF. ARTRITIS<br> REUMATOIDE:</h5>
+										</td>
+									</tr>
+
 								<tr>
 								
-								<td style="position:absolute;left:-65%;top:5%;width:5%;">
+								<td >
 								<div class="upload"><input type="file" id='1393_ARTRITIS_file' name='1393_ARTRITIS_file' style="cursor:pointer;" onchange="obtener_nombre_file_upload('1393_ARTRITIS_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'ARTRITIS','nombre_archivo_1393');" onclick="obtener_nombre_file_upload('1393_ARTRITIS_file','nombre_archivo_1393');verificar_nombre_archivo(this.value,'ARTRITIS','nombre_archivo_1393');" /></div>
 								</td>
 								
-								<td style="position:absolute;left:-50%;top:15%;">
-								<div id='nombre_archivo_1393'></div>
+								<td style="position:relative;left:0%;top:0%;text-align: left;">
+								<div style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;" id='nombre_archivo_1393'></div>
 								</td>
 								
 								</tr>

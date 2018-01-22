@@ -499,7 +499,7 @@ function limpiar_files()
 	if(document.getElementById('1393_ARTRITIS_file'))
 	{
 		reset_file_elem(document.getElementById('1393_ARTRITIS_file'));
-		verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393');
+		verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTRITIS','nombre_archivo_1393');
 	}
 	
 	document.getElementById('eapb').value="none";
@@ -521,7 +521,7 @@ function validar_antes_seleccionar_archivos()
 	var year_de_corte = document.getElementById('year_de_corte').value;
 	var periodo = document.getElementById('periodo').value;
 	
-	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393');
+	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTRITIS','nombre_archivo_1393');
 	
 	//var array_fecha_remision = fecha_remision.split("/");
 	
@@ -540,7 +540,7 @@ function validar_antes_seleccionar_archivos()
 
 function cuando_se_escribe_el_nombre_del_archivo()
 {
-	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393')
+	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTRITIS','nombre_archivo_1393')
 	
 	var numero_de_remision = document.getElementById('numero_de_remision').value;
 	
