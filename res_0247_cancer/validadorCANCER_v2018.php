@@ -31967,7 +31967,7 @@ function validar_CANCER($campos,
 			$campo_n127=trim($campos[204]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n95=="2")
-			   && ($campo_n127="1" || $campo_n127="99")
+			   && ($campo_n127=="1" || $campo_n127=="99")
 			   )
 			{
 				if($errores_campos!="")
@@ -31986,7 +31986,7 @@ function validar_CANCER($campos,
 			$campo_n131=trim($campos[208]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n95=="2")
-			   && ($campo_n131="1845-01-01")
+			   && ($campo_n131=="1845-01-01")
 			   )
 			{
 				if($errores_campos!="")
@@ -32005,7 +32005,7 @@ function validar_CANCER($campos,
 			$campo_n132=trim($campos[209]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n95=="2")
-			   && ($campo_n132="99")
+			   && ($campo_n132=="99")
 			   )
 			{
 				if($errores_campos!="")
@@ -32031,6 +32031,7 @@ function validar_CANCER($campos,
 			if($NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili")
 			{
 				if(trim($campos[$numero_campo])=="3"
+					&& ($campo_n95=="2")
 				   && $campo_n128!="4"
 				   && $campo_n128!="10"
 				  )
@@ -32054,6 +32055,7 @@ function validar_CANCER($campos,
 				//aplica cuando no es fundacion
 			
 				if(trim($campos[$numero_campo])=="3"
+					&& ($campo_n95=="2")
 				   && $campo_n128!="4"
 				   && $campo_n128!="10"
 				  )
@@ -32999,7 +33001,7 @@ function validar_CANCER($campos,
 
 			if((intval($campos[$numero_campo])!=98)
 			   && ($campo_n86==1)
-			   && (intval($campo_n99)<=1)
+			   && (intval($campo_n99)==1)
 			   )
 			{
 				if($errores_campos!="")
@@ -33581,7 +33583,7 @@ function validar_CANCER($campos,
 			$campo_n127=trim($campos[204]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n104=="2")
-			   && ($campo_n127="1" || $campo_n127="99")
+			   && ($campo_n127=="1" || $campo_n127=="99")
 			   )
 			{
 				if($errores_campos!="")
@@ -33600,7 +33602,7 @@ function validar_CANCER($campos,
 			$campo_n131=trim($campos[208]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n104=="2")
-			   && ($campo_n131="1845-01-01")
+			   && ($campo_n131=="1845-01-01")
 			   )
 			{
 				if($errores_campos!="")
@@ -33619,7 +33621,7 @@ function validar_CANCER($campos,
 			$campo_n132=trim($campos[209]);
 			if((intval($campos[$numero_campo])==3)
 			   && ($campo_n104=="2")
-			   && ($campo_n132="99")
+			   && ($campo_n132=="98")
 			   )
 			{
 				if($errores_campos!="")
@@ -33643,6 +33645,7 @@ function validar_CANCER($campos,
 			if($NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili")
 			{
 				if(trim($campos[$numero_campo])=="3"
+					&& ($campo_n104=="2")
 				   && $campo_n128!="4"
 				   && $campo_n128!="10"
 				  )
@@ -33653,7 +33656,7 @@ function validar_CANCER($campos,
 						$errores_campos.="|";
 					}		
 					//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-					$var_numero_codigo="0205269";
+					$var_numero_codigo="0205364";
 					$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
@@ -33666,6 +33669,7 @@ function validar_CANCER($campos,
 				//aplica cuando no es fundacion
 			
 				if(trim($campos[$numero_campo])=="3"
+					&& ($campo_n104=="2")
 				   && $campo_n128!="4"
 				   && $campo_n128!="10"
 				  )
@@ -33675,7 +33679,7 @@ function validar_CANCER($campos,
 						$errores_campos.="|";
 					}		
 					//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-					$var_numero_codigo="0105269";
+					$var_numero_codigo="0105364";
 					$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." campo_20: ".$campos[19]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
