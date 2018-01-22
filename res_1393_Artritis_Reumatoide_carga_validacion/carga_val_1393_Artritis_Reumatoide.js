@@ -29,6 +29,151 @@ setTimeout("GetClock()", 1000);
 }//fin if funcion obtener reloj
 window.onload=GetClock;
 
+
+(function( $ ) {
+    $.widget( "custom.combobox",
+	     {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+          .addClass( "custom-combobox" )
+          .insertAfter( this.element );
+ 
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+ 
+      _createAutocomplete: function()
+      {
+        var selected = this.element.children( ":selected" ),
+          value = selected.val() ? selected.text() : "";
+ 
+        this.input = $( "<input>" )
+          .appendTo( this.wrapper )
+          .val( value )
+          .attr( "title", "" )
+          //.addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+	  .addClass( "campo_azul custom-combobox-input  ui-corner-left" )
+          .autocomplete({
+            delay: 0,
+            minLength: 0,
+            source: $.proxy( this, "_source" )
+          })
+	  //parte seleccionar todo el texto del input
+	  .on('mouseup', function() {
+              $(this).select();
+          })
+	  //fin parte seleccionar todo el texto del input
+          .tooltip({
+            tooltipClass: "ui-state-highlight"
+          });
+ 
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+          },
+ 
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+ 
+      _createShowAllButton: function()
+      {
+        var input = this.input,
+          wasOpen = false;
+ 
+        $( "<a>" )
+          .attr( "tabIndex", -1 )
+          .attr( "title", "Show All Items" )
+          .tooltip()
+          .appendTo( this.wrapper )
+          .button({
+            icons: {
+              primary: "ui-icon-triangle-1-s"
+            },
+            text: false
+          })
+          .removeClass( "ui-corner-all" )
+          .addClass( "custom-combobox-toggle ui-corner-right altura_flecha arrow-up" )
+          .mousedown(function() {
+            wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+          })
+          .click(function() {
+            input.focus();
+ 
+            // Close if already visible
+            if ( wasOpen ) {
+              return;
+            }
+ 
+            // Pass empty string as value to search for, displaying all results
+            input.autocomplete( "search", "" );
+          });
+      },
+ 
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function()
+	{
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+ 
+      _removeIfInvalid: function( event, ui ) {
+ 
+        // Selected an item, nothing to do
+        if ( ui.item )
+	{
+		validar_antes_seleccionar_archivos();
+          return;
+        }
+ 
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+          valueLowerCase = value.toLowerCase(),
+          valid = false;
+        this.element.children( "option" ).each(function()
+	{
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+ 
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+ 
+        // Remove invalid value
+        this.input
+          .val( "" )
+          .attr( "title", value + " didn't match any item" )
+          .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+ 
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+  })( jQuery );
+
+
 //especificar none si el resultado de la peticion ajax no sera contenida en un div
 function ConsultaAJAX(parametros,filePHP,divContent)
 {
@@ -127,6 +272,17 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		{
 			mensaje+="ERROR: Archivo debe ser "+sigla+". <br>";
 		}
+
+
+		//CONDICIONES ESPECIFICAS VERSIONES
+		//verificacion solo gcoomp
+		//nota: comentar otras versiones
+		if(nombre_sin_extension[0].length!=32 && nombre_sin_extension[0].length!=30)
+		{
+			mensaje+="ERROR: El nombre de archivo no es valido para esta version. <br>";
+		}//fin if
+
+		//FIN CONDICIONES ESPECIFICAS VERSIONES
 		
 		var prestador = document.getElementById('prestador').value;
 		
@@ -137,49 +293,50 @@ function verificar_nombre_archivo(path_val,sigla,div_nombre)
 		}
 		if(prestador!="none")
 		{			
-			var prestador_nombre=array_nombre_archivo[0].substring(8,20);
+			var prestador_nombre=array_nombre_archivo[0].substring(9,21);
 			
-			if(prestador_nombre!=prestador)
+			if(prestador_nombre!=prestador && document.getElementById("tipo_archivo_norma").value=="individual_ips")
 			{
 				
 				mensaje+="ERROR: El prestador "+prestador+" no corresponde al prestador indicado en el archivo "+prestador_nombre+". <br>";
 			}
-			
-			
-		}
-		
-		//regimen
-		var regimen_nombre=array_nombre_archivo[0].substring(20,21);
-		if(regimen_nombre!="C" && regimen_nombre!="S" && regimen_nombre!="P" && regimen_nombre!="N" && regimen_nombre!="E")
-		{
-			
-			mensaje+="ERROR: el regimen "+regimen_nombre+" no corresponde a C-S-P-N-E. <br>";
-		}
-		//fin regimen
-		
-		var eapb =document.getElementById('eapb').value;
-		while(eapb.length<6 && eapb!="none")
-		{
-			eapb="0"+eapb;
-		}
-		if(eapb!="none")
-		{			
-			var eapb_nombre=array_nombre_archivo[0].substring(21,28);
-			//alert(eapb);
-			if(eapb_nombre!=eapb)
+			else if (document.getElementById("tipo_archivo_norma").value=="agrupado_eapb")
 			{
-				
-				mensaje+="ERROR: La EAPB "+eapb+" no corresponde al la EAPB indicada en el archivo "+eapb_nombre+". <br>";
+				var eapb_ver_new_name =document.getElementById('eapb').value;
+				while(eapb_ver_new_name.length<12 && eapb_ver_new_name!="none")
+				{
+					eapb_ver_new_name="0"+eapb_ver_new_name;
+				}//fin while eapb caso agrupado nuevo nombre
+
+			    if (prestador_nombre!=eapb_ver_new_name  && (nombre_sin_extension[0].length==33 || nombre_sin_extension[0].length==31) )
+			    {
+			    	mensaje+="ERROR: La EAPB "+eapb_ver_new_name+" no corresponde al la EAPB indicada en el archivo "+prestador_nombre+" para un archivo AGRUPADO <br>";
+			    }//fin else if
 			}
-			
-			
 		}
+
+		//LONGITUD para ARTRITIS
 		
-		var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
-		if(numero_de_remision_registrado!=array_nombre_archivo[1] && array_nombre_archivo.length==2 && numero_de_remision_registrado!="")
-		{
-			mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no corresponde al numero de remision "+array_nombre_archivo[1]+" registrado  en el archivo "+nombre_sin_extension[0]+" . <br>";
-		}
+	    if (nombre_sin_extension[0].length!=30 && nombre_sin_extension[0].length!=32)
+	    {
+		mensaje+="ERROR: La longitud del archivo de "+nombre_sin_extension[0].length+" caracteres no corresponde a 31 caracteres <br>";
+	    }
+
+	    if(document.getElementById('numero_de_remision').value=="")
+        {
+            document.getElementById('numero_de_remision').value=array_nombre_archivo[1];
+        }//fin if
+        var numero_de_remision_registrado=document.getElementById('numero_de_remision').value;
+        if(isNaN(numero_de_remision_registrado)==true && numero_de_remision_registrado!="")
+        {
+            mensaje+="ERROR: El numero de remision "+numero_de_remision_registrado+" no es valido. <br>";
+        }//fin if
+        else if( numero_de_remision_registrado=="00")
+        {
+            mensaje+="ERROR: El numero de remision debe ser diferente de 00 si se indica en el archivo. <br>";    
+        }//fin else if
+		    
+		//FIN LONGITUD
 		
 		var year_de_corte_registrado=document.getElementById('year_de_corte').value;
 		if(year_de_corte_registrado!="")
@@ -277,13 +434,13 @@ function validar_campos()
 	*/
 	
 	//verificacion de la carga del archivo ARTE
-    if(document.getElementById("1393_ARTE_file").value=="")
+    if(document.getElementById("1393_ARTRITIS_file").value=="")
 	{
-		mensaje+='<br>-Seleccione un archivo AR a validar \n';
+		mensaje+='<br>-Seleccione un archivo de ARTRITIS a validar \n';
 	}
 	
 	
-	if(document.getElementById("ARTE_hidden").value=="error")
+	if(document.getElementById("ARTRITIS_hidden").value=="error")
 	{
 		mensaje+='<br>-EL archivo seleccionado para ARTE no tiene un nombre valido \n';
 	}
@@ -337,10 +494,10 @@ function reset_file_elem(elem)
 
 function limpiar_files()
 {
-	if(document.getElementById('1393_ARTE_file'))
+	if(document.getElementById('1393_ARTRITIS_file'))
 	{
-		reset_file_elem(document.getElementById('1393_ARTE_file'));
-		verificar_nombre_archivo(document.getElementById('1393_ARTE_file').value,'ARTE','nombre_archivo_1393');
+		reset_file_elem(document.getElementById('1393_ARTRITIS_file'));
+		verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393');
 	}
 	
 	document.getElementById('eapb').value="none";
@@ -362,7 +519,7 @@ function validar_antes_seleccionar_archivos()
 	var year_de_corte = document.getElementById('year_de_corte').value;
 	var periodo = document.getElementById('periodo').value;
 	
-	verificar_nombre_archivo(document.getElementById('1393_ARTE_file').value,'ARTE','nombre_archivo_1393');
+	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393');
 	
 	//var array_fecha_remision = fecha_remision.split("/");
 	
@@ -381,7 +538,7 @@ function validar_antes_seleccionar_archivos()
 
 function cuando_se_escribe_el_nombre_del_archivo()
 {
-	verificar_nombre_archivo(document.getElementById('1393_ARTE_file').value,'ARTE','nombre_archivo_1393')
+	verificar_nombre_archivo(document.getElementById('1393_ARTRITIS_file').value,'ARTE','nombre_archivo_1393')
 	
 	var numero_de_remision = document.getElementById('numero_de_remision').value;
 	
