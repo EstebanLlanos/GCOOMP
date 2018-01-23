@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_adaptable.js?v=2.920"></script>
+        <script type="text/javascript" src="act_adaptable.js?v=2.921"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
@@ -128,6 +128,7 @@
 							<option value='13' >Tabla gioss_entidades_sector_salud MIN (3 columnas)</option>
 							<option value='14' >Tabla gios_prestador_servicios_salud MIN (13 columnas)</option>
 							<option value='15' >Tabla gioss_cups_cancer_qx para c78 y c83</option>
+							<option value='16' >Tabla gioss_cups_cancer_qx para gioss_ciex_cancer_pseudoprogresion</option>
 						</select>
 						</td>
 						</tr>

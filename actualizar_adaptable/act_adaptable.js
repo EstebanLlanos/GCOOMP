@@ -217,6 +217,12 @@ function prediligenciar_datos_tabla_seleccionada_para_cargar(valor_seleccionado)
 		document.getElementById('llaves').value="codigo";
 		document.getElementById('nombres_columnas_tablas').value="codigo,descripcion";
 	}
+	if(valor_seleccionado=='16')
+	{
+		document.getElementById('nombre_tabla').value="gioss_ciex_cancer_pseudoprogresion";
+		document.getElementById('llaves').value="codigo";
+		document.getElementById('nombres_columnas_tablas').value="codigo,descripcion";
+	}
 }//fin function
 
 function download_archivo(ruta)
