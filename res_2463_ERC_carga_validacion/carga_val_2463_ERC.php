@@ -2525,8 +2525,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 							$sql_insertar_en_tabla_analisis_coherencia.="fecha_de_corte,";					
 							$sql_insertar_en_tabla_analisis_coherencia.="fecha_y_hora_validacion,";					
 							$sql_insertar_en_tabla_analisis_coherencia.="nombre_archivo,";
-							$cont_campo_ins=1;
-							while($cont_campo_ins<=119)
+							$cont_campo_ins=0;
+							while($cont_campo_ins<119)
 							{
 								
 								$sql_insertar_en_tabla_analisis_coherencia.="campo_erc_de_numero_orden_".$cont_campo_ins.",";
@@ -2557,8 +2557,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_de_corte."',";					
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_actual." ".$tiempo_actual."',";							
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$nombre_archivo_registrado."',";							
-							$cont_campo_ins=1;
-							while($cont_campo_ins<=119)
+							$cont_campo_ins=0;
+							while($cont_campo_ins<119)
 							{
 								$sql_insertar_en_tabla_analisis_coherencia.="'".procesar_mensaje($campos[$cont_campo_ins-1])."',";
 								$cont_campo_ins++;
