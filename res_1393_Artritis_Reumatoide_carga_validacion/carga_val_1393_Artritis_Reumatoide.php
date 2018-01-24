@@ -13,7 +13,7 @@ include ("../librerias_externas/PHPMailer/class.smtp.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
-require_once '../res_1393_Artritis_Reumatoide/valildador_1393_Artritis_Reumatoide_v2018.php';
+//require_once '../res_1393_Artritis_Reumatoide/valildador_1393_Artritis_Reumatoide_v2018.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
