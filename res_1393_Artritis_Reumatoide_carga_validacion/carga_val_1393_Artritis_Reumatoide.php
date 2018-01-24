@@ -13,13 +13,15 @@ include ("../librerias_externas/PHPMailer/class.smtp.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
-require_once 'valildador_1393_Artritis_Reumatoide.php';
+require_once '../res_1393_Artritis_Reumatoide/valildador_1393_Artritis_Reumatoide_v2018.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
 require_once '../utiles/crear_zip.php';
 
 require_once '../utiles/configuracion_global_email.php';
+
+require_once '../utiles/configuracion_tipo_entidad.php';
 
 $smarty = new Smarty;
 $coneccionBD = new conexion();
@@ -64,18 +66,18 @@ function alphanumericAndSpace2( $string )
 
 function procesar_mensaje($mensaje)
 {
-	$mensaje_procesado = str_replace("ï¿½","a",$mensaje);
-	$mensaje_procesado = str_replace("ï¿½","e",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","i",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","o",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","u",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","n",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","A",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","E",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","I",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","O",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","U",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","N",$mensaje_procesado);
+	$mensaje_procesado = str_replace("á","a",$mensaje);
+	$mensaje_procesado = str_replace("é","e",$mensaje_procesado);
+	$mensaje_procesado = str_replace("í","i",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ó","o",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ú","u",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ñ","n",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Á","A",$mensaje_procesado);
+	$mensaje_procesado = str_replace("É","E",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Í","I",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ó","O",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ú","U",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ñ","N",$mensaje_procesado);
 	$mensaje_procesado = str_replace("'"," ",$mensaje_procesado);
 	$mensaje_procesado = str_replace("\n"," ",$mensaje_procesado);
 	$mensaje_procesado = alphanumericAndSpace($mensaje_procesado);
@@ -85,18 +87,18 @@ function procesar_mensaje($mensaje)
 
 function procesar_mensaje2($mensaje)
 {
-	$mensaje_procesado = str_replace("ï¿½","a",$mensaje);
-	$mensaje_procesado = str_replace("ï¿½","e",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","i",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","o",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","u",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","n",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","A",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","E",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","I",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","O",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","U",$mensaje_procesado);
-	$mensaje_procesado = str_replace("ï¿½","N",$mensaje_procesado);
+	$mensaje_procesado = str_replace("á","a",$mensaje);
+	$mensaje_procesado = str_replace("é","e",$mensaje_procesado);
+	$mensaje_procesado = str_replace("í","i",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ó","o",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ú","u",$mensaje_procesado);
+	$mensaje_procesado = str_replace("ñ","n",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Á","A",$mensaje_procesado);
+	$mensaje_procesado = str_replace("É","E",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Í","I",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ó","O",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ú","U",$mensaje_procesado);
+	$mensaje_procesado = str_replace("Ñ","N",$mensaje_procesado);
 	$mensaje_procesado = str_replace("'"," ",$mensaje_procesado);
 	$mensaje_procesado = str_replace("\n"," ",$mensaje_procesado);
 	$mensaje_procesado = alphanumericAndSpace2($mensaje_procesado);
@@ -990,7 +992,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || i
 	{
 		foreach($resultado_query_prestadores_asociados_eapb as $prestador_asociado_eapb)
 		{
-			$prestador.="<option value='".$prestador_asociado_eapb['codigo_entidad']."' selected>".$prestador_asociado_eapb['nombre_de_la_entidad']."</option>";
+			$prestador.="<option value='".$prestador_asociado_eapb['codigo_entidad']."' selected>".$prestador_asociado_eapb['codigo_entidad']." ".$prestador_asociado_eapb['nombre_de_la_entidad']."</option>";
 		}
 	}
 }//si el tipo entidad es diferente de 6,7,8,10
@@ -1003,7 +1005,7 @@ else if((intval($perfil_usuario_actual)==1 || intval($perfil_usuario_actual)==2 
 	{
 		foreach($resultado_query_tipo_entidad as $eapb_entidad)
 		{
-			$prestador.="<option value='".$eapb_entidad['codigo_entidad']."' selected>".$eapb_entidad['nombre_de_la_entidad']."</option>";
+			$prestador.="<option value='".$eapb_entidad['codigo_entidad']."' selected>".$eapb_entidad['codigo_entidad']." ".$eapb_entidad['nombre_de_la_entidad']."</option>";
 		}
 	}
 }//fin else if en caso de que el perfil sea 1 o 2 y el tipo de la entidad sea igual a 6,7,8,10
@@ -1031,7 +1033,7 @@ if((intval($perfil_usuario_actual)==5 || intval($perfil_usuario_actual)==13 || i
 	{
 		foreach($resultado_query_eapb_usuario as $eapb_prestador_usuario_res)
 		{
-			$eapb.="<option value='".$eapb_prestador_usuario_res['codigo_entidad']."' selected>".$eapb_prestador_usuario_res['nombre_de_la_entidad']."</option>";
+			$eapb.="<option value='".$eapb_prestador_usuario_res['codigo_entidad']."' selected>".$eapb_prestador_usuario_res['codigo_entidad']." ".$eapb_prestador_usuario_res['nombre_de_la_entidad']."</option>";
 		}
 	}
 }//fin if si el usuario es administrador y la entidad no es eapb, por lo tanto busca la eapb asociada a la entidad
@@ -1044,7 +1046,7 @@ else if((intval($perfil_usuario_actual)==3 || intval($perfil_usuario_actual)==4 
 	{
 		foreach($resultado_query_tipo_entidad as $eapb_entidad)
 		{
-			$eapb.="<option value='".$eapb_entidad['codigo_entidad']."' selected>".$eapb_entidad['nombre_de_la_entidad']."</option>";
+			$eapb.="<option value='".$eapb_entidad['codigo_entidad']."' selected>".$eapb_entidad['codigo_entidad']." ".$eapb_entidad['nombre_de_la_entidad']."</option>";
 		}
 	}
 }//fin else si el usuario es de perfil 3 y la entidad es de tipo eapb
@@ -1112,7 +1114,7 @@ foreach($resultado_query_periodos as $key=>$periodo)
 $selector_periodo.="</select>";
 //FIN PERIODO
 
-$smarty->assign("proveniente_de_prestador_o_eapb", $proveniente_de_prestador_o_eapb, true)
+$smarty->assign("proveniente_de_prestador_o_eapb", $proveniente_de_prestador_o_eapb, true);
 
 $smarty->assign("campo_periodo", $selector_periodo, true);
 $smarty->assign("campo_eapb", $eapb, true);
@@ -1175,30 +1177,384 @@ $mensaje_advertencia_tiempo .="Estimado usuario, se ha iniciado el proceso de va
 $mensaje_advertencia_tiempo .="Una vez validado, se genera el Logs de errores, el cual se enviar&aacute a su Correo electr&oacutenico o puede descargarlo directamente del aplicat&iacutevo.<br>";
 $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se cargar&aacuten en la base de datos y se dar&aacute por aceptada la informaci&oacuten reportada<br>";
 
-if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393_ARTE_file"]) && $_FILES["1393_ARTE_file"]["error"]==0)
+if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393_ARTRITIS_file"]) && $_FILES["1393_ARTRITIS_file"]["error"]==0)
 {	
-	$nombre_archivo_file=explode(".",$_FILES["1393_ARTE_file"]["name"])[0];
-	$nombre_archivo_registrado=explode(".",$_FILES["1393_ARTE_file"]["name"])[0];	
+	$nombre_archivo_file=explode(".",$_FILES["1393_ARTRITIS_file"]["name"])[0];
+	$nombre_archivo_registrado=explode(".",$_FILES["1393_ARTRITIS_file"]["name"])[0];	
 	$numero_de_remision=$_POST["numero_de_remision"];
-	$archivo_norma=$_FILES["1393_ARTE_file"];
+	$archivo_norma=$_FILES["1393_ARTRITIS_file"];
 	$cod_prestador=$_POST["prestador"];
 	$cod_eapb=$_POST["eapb"];	
 	$codigo_periodo=explode("::",$_POST["periodo"])[0];
 	$fecha_de_corte=$_POST["year_de_corte"]."-".explode("::",$_POST["periodo"])[1];
+
+	if (!ctype_digit($numero_de_remision)) {
+		$numero_de_remision = '00';
+	}
+
+	$tipo_entidad_que_efectua_el_cargue=$_POST["tipo_archivo_norma"];
+	
+	if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
+	{
+		$cod_prestador="AGRUP_EAPB";
+	}
+	else if($tipo_entidad_que_efectua_el_cargue=="individual_ips")
+	{		
+		$cod_prestador=$_POST["prestador"];
+	}
+
+	//echo $cod_prestador."<br>";
+
+	//DIRECTORIO DE LOS ARCHIVOS
+    $rutaTemporal="../TEMPORALES/";
+    $nombre_archivo_sin_extension=explode(".",$nombre_archivo_registrado)[0];
+    $nueva_carpeta=$rutaTemporal.$nombre_archivo_sin_extension.$fecha_para_archivo."V";
+    if(!file_exists($nueva_carpeta))
+    {
+	    mkdir($nueva_carpeta, 0777);
+    }
+    else
+    {
+	    $files_to_erase = glob($nueva_carpeta."/*"); // get all file names
+	    foreach($files_to_erase as $file_to_be_erased)
+	    { // iterate files
+	      if(is_file($file_to_be_erased))
+	      {
+			unlink($file_to_be_erased); // delete file
+	      }
+	    }
+    }
+    $rutaTemporal=$nueva_carpeta."/";
+    //FIN DIRECTORIO DE LOS ARCHIVOS
+
+    //parte verifica si es mayor de 03-31 del mismo year
+	$year_corte_inferior=trim($_POST["year_de_corte"]);
+	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-06-30";
+	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
+	if($diferencia_dias_con_mitad_year<0)
+	{
+		$year_corte_para_buscar="".(intval(trim($_POST["year_de_corte"]))+1);
+	}//fin if
+	else
+	{
+		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
+	}
+	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
+	//fin parte verifica si es mayor de 03-31 del mismo year
+
+	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
+	$fecha_inferior_pv="";
+	$fecha_inferior_pv=$year_corte_inferior."-07-01";
+	$fecha_de_corte=$year_corte_para_buscar."-06-30";
+	//no tabla variados que contiene algunos rangos de years
+	//revisar esto en ERC	
+	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+
+	//SELECTOR VERSION
+	$nombre_base_version="valildador_1393_Artritis_Reumatoide_v";
+	$array_fecha_corte=explode("-", $fecha_de_corte);
+	$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
+	$directorio_validacion_per_year='../res_1393_Artritis_Reumatoide/';
+	$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_corte_para_version_validacion.'.php';
+	if(file_exists($ruta_validacion_version)==true)
+	{
+		require_once $ruta_validacion_version;
+	}//fin if
+	else
+	{
+		$version_minima=0;
+		$version_maxima=0;
+		$array_versiones_scripts=array();		
+		if ($filesVersiones = opendir($directorio_validacion_per_year)) 
+		{
+			while (false !== ($script_actual = readdir($filesVersiones))) 
+			{
+				$script_actual_temp=str_replace(".php", "", $script_actual);
+				$script_actual_temp=str_replace($nombre_base_version, "", $script_actual_temp);
+				$array_versiones_scripts[]=intval($script_actual_temp);
+
+
+
+			}//fin while
+			$selecciono_version=false;
+			$version_minima=min($array_versiones_scripts);
+			$version_maxima=max($array_versiones_scripts);
+			if($version_minima>$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_minima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			if($version_maxima<$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_maxima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			$year_retroceso_version=intval($year_corte_para_version_validacion);
+			while($selecciono_version==false)
+			{				
+				$year_retroceso_version--;
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_retroceso_version.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin while
+
+
+
+
+		}//fin if
+	}//fin else
+	//FIN SELECTOR VERSION
 	
 	$error_mostrar_bd="";
+
+	$mensaje_advertencia_tiempo="";
+	$mensaje_advertencia_tiempo .="Estimado usuario, se ha iniciado el proceso de validaci&oacuten del archivo <b> $nombre_archivo_registrado </b>,<br> lo que puede tomar varios minutos, dependiendo del volumen de registros.<br>";
+	$mensaje_advertencia_tiempo .="Una vez validado, se genera el Logs de errores, el cual se enviar&aacute a su Correo electr&oacutenico o puede descargarlo directamente del aplicat&iacutevo.<br>";
+	$mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se cargar&aacuten en la base de datos y se dar&aacute por aceptada la informaci&oacuten reportada<br>";
+
+	//CREACION ARCHIVO REGISTROS BUENOS, MALOS, E INCONSISTENCIAS REGISTROS MALOS
+	
+	//creacion archivo separado registros buenos
+	$ruta_registros_buenos=$rutaTemporal.$nombre_archivo_registrado."_RB".$fecha_actual."_".$tiempo_actual_string.".txt";
+	if(file_exists($ruta_registros_buenos))
+	{
+		unlink($ruta_registros_buenos);
+	}
+	$file_archivo_registros_buenos = fopen($ruta_registros_buenos, "w") or die("fallo la creacion del archivo");
+	$titulo_rb="REGISTROS BUENOS";
+	fwrite($file_archivo_registros_buenos,$titulo_rb);
+	
+	//creacion archivo separado registros malos
+	$ruta_registros_malos=$rutaTemporal.$nombre_archivo_registrado."_RM".$fecha_actual."_".$tiempo_actual_string.".txt";
+	if(file_exists($ruta_registros_malos))
+	{
+		unlink($ruta_registros_malos);
+	}
+	$file_archivo_registros_malos = fopen($ruta_registros_malos, "w") or die("fallo la creacion del archivo");
+	$titulo_rb="REGISTROS MALOS";
+	fwrite($file_archivo_registros_malos,$titulo_rb);
+	
+	//creacion archivo separado inconsistencias registros malos
+	$ruta_inconsistencias_registros_malos=$rutaTemporal."inconAR_RM_".$fecha_actual."_".$tiempo_actual_string.".csv";
+	if(file_exists($ruta_inconsistencias_registros_malos))
+	{
+		unlink($ruta_inconsistencias_registros_malos);
+	}
+	$file_archivo_incons_registros_malos = fopen($ruta_inconsistencias_registros_malos, "w") or die("fallo la creacion del archivo");
+	$titulos="";
+	$titulos.="consecutivo,nombre archivo,codigo tipo inconsistencia,tipo inconsistencia,codigo grupo inconsistencia,grupo inconsistencia,";
+	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo, tipo identificacion, numero identificacion";
+	//PARTE REESCRIBE TITULOS INCONSISTENCIAS PARA CSV SIMPLE DE ABRIR
+    $columnas_titulos_inconsistencias_para_bd=explode(",", $titulos);
+    $error_titulos_procesado_csv_excel="";
+    $error_titulos_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_titulos_inconsistencias_para_bd)."\"";
+    //FIN PARTE REESCRIBE TITULOS INCONSISTENCIAS PARA CSV SIMPLE DE ABRIR
+	fwrite($file_archivo_incons_registros_malos,$error_titulos_procesado_csv_excel."\n");
+	
+	//FIN CREACION REGISTROS BUENOS, MALOS, E INCONSISTENCIAS REGISTROS MALOS
 	
 	//abre o crea el archivo dodne se escribiran las inconsistencias
+	//CREA ARCHIVO INCONSISTENCIAS TOTALES
 	$ruta_archivo_inconsistencias_ARTE=$rutaTemporal."inconsistencias1393ARTE_".$cod_prestador."_".$fecha_actual."_".$tiempo_actual_string.".csv";
 	if(file_exists($ruta_archivo_inconsistencias_ARTE))
 	{
 		unlink($ruta_archivo_inconsistencias_ARTE);
 	}
-	$file_inconsistencias_r4725_ARTE = fopen($ruta_archivo_inconsistencias_ARTE, "w") or die("fallo la creacion del archivo");
+	$file_inconsistencias_r1393_ARTE = fopen($ruta_archivo_inconsistencias_ARTE, "w") or die("fallo la creacion del archivo");
 	$titulos="";
 	$titulos.="consecutivo,nombre archivo,codigo tipo inconsistencia,tipo inconsistencia,codigo grupo inconsistencia,grupo inconsistencia,";
-	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo";
-	fwrite($file_inconsistencias_r4725_ARTE,$titulos."\n");
+	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo, tipo de identificacion, numero de identificacion";
+	//PARTE REESCRIBE TITULOS INCONSISTENCIAS PARA CSV SIMPLE DE ABRIR
+    $columnas_titulos_inconsistencias_para_bd=explode(",", $titulos);
+    $error_titulos_procesado_csv_excel="";
+    $error_titulos_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_titulos_inconsistencias_para_bd)."\"";
+    //FIN PARTE REESCRIBE TITULOS INCONSISTENCIAS PARA CSV SIMPLE DE ABRIR
+	fwrite($file_inconsistencias_r1393_ARTE,$error_titulos_procesado_csv_excel."\n");
+	//FIN CREA ARCHIVO INCONSISTENCIAS TOTALES
+
+	//CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+	$ruta_registros_que_tienen_afiliados=$rutaTemporal.$nombre_archivo_registrado."_SA".$fecha_actual."_".$tiempo_actual_string.".txt";
+	if(file_exists($ruta_registros_que_tienen_afiliados))
+	{
+		unlink($ruta_registros_que_tienen_afiliados);
+	}
+	$file_archivo_registros_que_tienen_afiliados = fopen($ruta_registros_que_tienen_afiliados, "w") or die("fallo la creacion del archivo");
+	$titulo_rsa="REGISTROS QUE TIENEN AFILIADOS EN BD";
+	fwrite($file_archivo_registros_que_tienen_afiliados,$titulo_rsa);	
+	//FIN CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+
+	//CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+	$ruta_registros_que_no_tienen_afiliados=$rutaTemporal.$nombre_archivo_registrado."_NA".$fecha_actual."_".$tiempo_actual_string.".txt";
+	if(file_exists($ruta_registros_que_no_tienen_afiliados) )
+	{
+		unlink($ruta_registros_que_no_tienen_afiliados);
+	}
+	$file_archivo_registros_que_no_tienen_afiliados = fopen($ruta_registros_que_no_tienen_afiliados, "w") or die("fallo la creacion del archivo");
+	$titulo_rna="REGISTROS QUE NO TIENEN AFILIADOS";
+	fwrite($file_archivo_registros_que_no_tienen_afiliados,$titulo_rna);	
+	//FIN CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+
+	//CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+	$ruta_log_registros_modificados=$rutaTemporal.$nombre_archivo_registrado."_LOGMODSA".$fecha_actual."_".$tiempo_actual_string.".txt";
+	if(file_exists($ruta_log_registros_modificados) )
+	{
+		unlink($ruta_log_registros_modificados);
+	}
+	$file_archivo_log_registros_modificados = fopen($ruta_log_registros_modificados, "w") or die("fallo la creacion del archivo");
+	$titulo_rlmsa="LOG MODIFICADOS QUE SI TIENEN AFILIADOS EN BD";
+	fwrite($file_archivo_log_registros_modificados,$titulo_rlmsa);	
+	//FIN CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
+
+	//CREACION ARCHIVOS AFILIADO EXISTE CAMBIOS SEXO FECHA NACIMIENTO
+	//archivo afiliado existe CAMBIO SEXO
+	$ruta_archivo_afiliado_existe_cambio_sexo=$rutaTemporal."afiliados_existe_cambio_sexo.txt";
+	if(file_exists($ruta_archivo_afiliado_existe_cambio_sexo) )
+	{
+		unlink($ruta_archivo_afiliado_existe_cambio_sexo);
+	}//fin if
+	$file_archivo_afiliado_existe_cambio_sexo= fopen($ruta_archivo_afiliado_existe_cambio_sexo, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_afiliado_existe_cambio_sexo, "ARCHIVO AFILIADOS EXISTE, SE REALIZO CAMBIO EN EL ARCHIVO POR EL SEXO DEL AFILIADO ENCONTRADO EN EL SISTEMA"); 
+
+	//archivo afiliado existe CAMBIO FECHA NACIMIENTO
+	$ruta_archivo_afiliado_existe_cambio_fecha_nacimiento=$rutaTemporal."afiliados_existe_cambio_fecha_nacimiento.txt";
+	if(file_exists($ruta_archivo_afiliado_existe_cambio_fecha_nacimiento) )
+	{
+		unlink($ruta_archivo_afiliado_existe_cambio_fecha_nacimiento);
+	}//fin if
+	$file_archivo_afiliado_existe_cambio_fecha_nacimiento= fopen($ruta_archivo_afiliado_existe_cambio_fecha_nacimiento, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_afiliado_existe_cambio_fecha_nacimiento, "ARCHIVO AFILIADOS EXISTE, SE REALIZO CAMBIO EN EL ARCHIVO POR LA FECHA DE NACIMIENTO DEL AFILIADO ENCONTRADO EN EL SISTEMA"); 						  
+	
+	//FIN CREACION ARCHIVOS AFILIADO EXISTE CAMBIOS SEXO FECHA NACIMIENTO
+
+	//CREACION REPORTE CALIFICACION CAMPOS
+	$codigo_perido_para_archivo=$codigo_periodo;
+	if(strlen($codigo_perido_para_archivo)==1)
+	{
+		$codigo_perido_para_archivo="0".$codigo_periodo;
+	}//fin if
+	$ruta_archivo_reporte_calificacion_campos=$rutaTemporal."EvaluacionResultadoValidacion".$cod_eapb.$codigo_perido_para_archivo.str_replace('-', '', $fecha_actual).".csv";
+	if(file_exists($ruta_archivo_reporte_calificacion_campos) )
+	{
+		unlink($ruta_archivo_reporte_calificacion_campos);
+	}//fin if
+	$file_archivo_reporte_calificacion_campos= fopen($ruta_archivo_reporte_calificacion_campos, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_reporte_calificacion_campos, ""); 	
+
+	fclose($file_archivo_reporte_calificacion_campos);
+	//FIN CREACION REPORTE CALIFICACION CAMPOS
+	
+	//CREACION REPORTE RESULTADO VALIDACION por ips(si es posible)
+	$ruta_archivo_reporte_registros_por_ips=$rutaTemporal."RESULTADOVALIDACIONPORIPS".$cod_eapb.$codigo_perido_para_archivo.str_replace('-', '', $fecha_actual).".csv";
+	if(file_exists($ruta_archivo_reporte_registros_por_ips) )
+	{
+		unlink($ruta_archivo_reporte_registros_por_ips);
+	}//fin if
+	$file_archivo_reporte_registros_por_ips= fopen($ruta_archivo_reporte_registros_por_ips, "w") or die("fallo la creacion del archivo");
+	fwrite($file_archivo_reporte_registros_por_ips, ""); 	
+	
+	fclose($file_archivo_reporte_registros_por_ips);
+	//FIN CREACION REPORTE RESULTADO VALIDACION por ips(si es posible)
+
+	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+	$query_consulta_estructura_numero_campos="";
+	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo,descripcion_nombre_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
+	$query_consulta_estructura_numero_campos.=" WHERE ";
+	$query_consulta_estructura_numero_campos.=" codigo_tipo_norma_obligatoria='08' ";
+	$query_consulta_estructura_numero_campos.=" AND ";
+	$query_consulta_estructura_numero_campos.=" codigo_tipo_archivo='0801' ORDER BY numero_de_orden ";
+	$query_consulta_estructura_numero_campos.=" ; ";
+	$resultado_query_estructura_campos=$coneccionBD->consultar2_no_crea_cierra($query_consulta_estructura_numero_campos);
+	
+	$array_numero_campo_bd=array();
+	$array_descripcion_nombre_campo_bd=array();
+	$array_numero_orden=array();
+	if(count($resultado_query_estructura_campos)>0)
+	{
+		foreach($resultado_query_estructura_campos as $estructura_campo)
+		{
+			$array_numero_campo_bd[intval($estructura_campo["numero_de_orden"])]=$estructura_campo["numero_de_campo"];
+			$array_descripcion_nombre_campo_bd[intval($estructura_campo["numero_de_orden"])]=$estructura_campo["descripcion_nombre_campo"];
+			$array_numero_orden[$estructura_campo["numero_de_campo"]]=intval($estructura_campo["numero_de_orden"]);
+		}
+	}
+	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+
+	//INICIALIZACION ARRAYS PARA CONTADOR ERRORES POR CAMPO INDIVIDUAL
+	$array_contador_total_errores_obligatorios_campo=array();
+	$cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_errores_obligatorios_campo[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_errores_obligatorios_campo[999]=0;
+
+    $array_contador_total_inconsistencias_campo_0105=array();
+    $cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_inconsistencias_campo_0105[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_inconsistencias_campo_0105[999]=0;
+
+    $array_contador_total_inconsistencias_campo_0104=array();
+    $cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_inconsistencias_campo_0104[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_inconsistencias_campo_0104[999]=0;
+
+    $array_contador_total_inconsistencias_campo_0103=array();
+    $cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_inconsistencias_campo_0103[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_inconsistencias_campo_0103[999]=0;
+
+    $array_contador_total_inconsistencias_campo_0102=array();
+    $cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_inconsistencias_campo_0102[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_inconsistencias_campo_0102[999]=0;
+
+    $array_contador_total_inconsistencias_campo_0101=array();
+    $cont_llenado=0;
+    while($cont_llenado<152)
+    {
+    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+    	$array_contador_total_inconsistencias_campo_0101[$numero_campo_actual]=0;
+    	$cont_llenado++;
+    }//fin while
+    $array_contador_total_inconsistencias_campo_0101[999]=0;
+    //FIN INICIALIZACION ARRAYS PARA CONTADOR ERRORES POR CAMPO INDIVIDUAL
 	
 	
 	$errores="";
@@ -1229,7 +1585,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 			$ruta_archivo_arte = $rutaTemporal.$archivo_norma['name'];
 			move_uploaded_file($archivo_norma['tmp_name'], $ruta_archivo_arte);
 			
-			$array_nombre_sin_sigla=explode("AR",$archivo_norma['name']);
+			$array_nombre_sin_sigla=explode("ARTRITIS",$archivo_norma['name']);
 			if(count($array_nombre_sin_sigla)!=2)
 			{
 				$es_valido_nombre_archivo=false;
@@ -1237,6 +1593,43 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 			}
 			else
 			{
+				$nombre_archivo_fecha_prestador=$array_nombre_sin_sigla[0];
+				$prestador_del_nombre_archivo="";
+				$year="";
+				$mes="";
+				$dia="";
+				$prestador_del_nombre_archivo=substr($nombre_archivo_fecha_prestador,9,12);
+				$cod_prestador_temporal=$cod_prestador;
+				while(strlen($cod_prestador_temporal)<12)
+				{
+					$cod_prestador_temporal="0".$cod_prestador_temporal;
+				}
+				//echo "<script>alert('$prestador_del_nombre_archivo y $cod_prestador_temporal');</script>";
+				$year=substr($nombre_archivo_fecha_prestador,0,4);
+				$mes=substr($nombre_archivo_fecha_prestador,4,2);
+				$dia=substr($nombre_archivo_fecha_prestador,6,2);
+				//echo "<script>alert('$year $mes $dia');</script>";
+				if($prestador_del_nombre_archivo!=$cod_prestador_temporal && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				{
+					$es_valido_nombre_archivo=false;
+					$errores.="El codigo de prestador indicado en el nombre del archivo ( $prestador_del_nombre_archivo ), no corresponde al codigo prestador asociado ( $cod_prestador ). <br>";
+				}
+				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
+				{
+					$cod_eapb_temporal_new_name=$cod_eapb;
+                    while(strlen($cod_eapb_temporal_new_name)<12)
+                    {
+                        $cod_eapb_temporal_new_name="0".$cod_eapb_temporal_new_name;
+                    }//fin while
+
+					if($prestador_del_nombre_archivo!=$cod_eapb_temporal_new_name && (strlen($nombre_sin_txt_para_verificacion)==30
+                       || strlen($nombre_sin_txt_para_verificacion)==32) )
+                    {
+                        $es_valido_nombre_archivo=false;
+                        $errores.="La eapb $prestador_del_nombre_archivo, no corresponde a la eapb en seleccionada $cod_eapb_temporal_new_name para el tipo de validacion agrupado. <br>";
+                    }
+				}//fin else if
+				/*
 				$nombre_archivo_fecha_prestador=$array_nombre_sin_sigla[0];
 				$prestador_del_nombre_archivo="";
 				$year="";
@@ -1272,6 +1665,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 				{
 					$cod_eapb_temporal="0".$cod_eapb_temporal;
 				}
+				*/
 				//echo "<script>alert('$eapb_del_nombre_del_archivo y $cod_eapb_temporal');</script>";
 				
 				/*
@@ -1283,27 +1677,63 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					$errores.="El tipo de prestador indicado en el nombre del archivo ( $tipo_entidad_reportadora_del_nombre_archivo ), no corresponde a NI, MU, DI, DE . <br>";
 				}
 				*/
+
+				//LONGITUD INCORRECTA para erc y vih es 32|22|19para hf debe ser 31|21|18 por el menos un caracter
+				$nombre_sin_txt_para_verificacion=str_replace(".txt","",$archivo_fuente_after_post['name']);
+				if(strlen($nombre_sin_txt_para_verificacion)!=30 && strlen($nombre_sin_txt_para_verificacion)!=32 && $tipo_entidad_que_efectua_el_cargue=="individual_ips")
+				{
+					$es_valido_nombre_archivo=false;
+					$errores.="La longitud del archivo sin incluir el .txt debe ser de 30, 32 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+				}
+				else if($tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
+				{
+					if(strlen($nombre_sin_txt_para_verificacion)!=30
+					   && strlen($nombre_sin_txt_para_verificacion)!=18
+					   && strlen($nombre_sin_txt_para_verificacion)!=21
+					   )
+					{
+						if(strlen($nombre_sin_txt_para_verificacion)<18
+						   || (strlen($nombre_sin_txt_para_verificacion)>18 && strlen($nombre_sin_txt_para_verificacion)<21)
+						   )
+						{
+							$es_valido_nombre_archivo=false;
+							$errores.="La longitud del archivo sin incluir el .txt debe ser de 19 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+						}
+						else if(
+						(strlen($nombre_sin_txt_para_verificacion)>21 && strlen($nombre_sin_txt_para_verificacion)<30)
+						|| strlen($nombre_sin_txt_para_verificacion)>30
+						)
+						{
+							$es_valido_nombre_archivo=false;
+							$errores.="La longitud del archivo sin incluir el .txt debe ser de 32 caracteres no ".strlen($nombre_sin_txt_para_verificacion)."  <br>";
+						}
+					}//fin if
+				}//fin else if				
+				//FIN LONGITUD INCORRECTA
 				
+				/*
 				if($eapb_del_nombre_del_archivo!=$cod_eapb_temporal)
 				{
 					$es_valido_nombre_archivo=false;
 					$errores.="El codigo de la EAPB indicada en el nombre del archivo ( $eapb_del_nombre_del_archivo ), no corresponde al codigo de la EAPB a reportar ( $cod_eapb ). <br>";
-				}
+				}*/
 				$array_fecha_de_corte=explode("-",$fecha_de_corte);
-				if($year!=$array_fecha_de_corte[0])
+				//echo $fecha_corte_anterior_registrada_nombre."<br>";
+				$array_fecha_de_corte_anterior_registrada_nombre=explode("-",$fecha_corte_anterior_registrada_nombre);
+				if($year!=$array_fecha_de_corte_anterior_registrada_nombre[0])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El a&ntildeo indicado en el nombre del archivo ( $year ), no corresponde al a&ntildeo registrado ( ".$array_fecha_de_corte[0]." ). <br>";
+					$errores.="El a&ntildeo indicado en el nombre del archivo ( $year ), no corresponde al a&ntildeo registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[0]." ). <br>";
 				}
-				if($mes!=$array_fecha_de_corte[1])
+				if($mes!=$array_fecha_de_corte_anterior_registrada_nombre[1])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El mes indicado en el nombre del archivo ( $mes ), no corresponde al mes registrado ( ".$array_fecha_de_corte[1]." ). <br>";
+					$errores.="El mes indicado en el nombre del archivo ( $mes ), no corresponde al mes registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[1]." ). <br>";
 				}
-				if($dia!=$array_fecha_de_corte[2])
+				if($dia!=$array_fecha_de_corte_anterior_registrada_nombre[2])
 				{
 					$es_valido_nombre_archivo=false;
-					$errores.="El dia indicado en el nombre del archivo ( $dia ), no corresponde al dia registrado ( ".$array_fecha_de_corte[2]." ). <br>";
+					$errores.="El dia indicado en el nombre del archivo ( $dia ), no corresponde al dia registrado ( ".$array_fecha_de_corte_anterior_registrada_nombre[2]." ). <br>";
 				}
 			}//fin if contiene la sigla
 		}//fin if nombre del archivo no es vacio
@@ -1446,11 +1876,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 		
 		$registros_buenos=0;
 		$registros_malos=0;
+
+		$cont_porcentaje=0;
 		
 		// parte donde valida los campos del archivo ARTE 
 		$hubo_inconsistencias_en_ARTE=false;	
 		$diccionario_identificacion=array();
 		$diccionario_identificacion_lineas=array();
+
+		$numero_registros_afiliado_no_existe=0;
+		$numero_registros_a_mostrar_max_afiliado_no_existe=0;
+		$cadena_primeros_afiliados_inexistentes="";
+
+		$numero_registros_afiliado_si_existen=0;
+		$numero_registros_a_mostrar_max_afiliado_si_existen=0;
+		$cadena_primeros_afiliados_existentes="";
 		if($es_valido_nombre_archivo)
 		{
 			$mensaje_errores_ARTE="";
@@ -1462,6 +1902,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 			
 			$nlinea=0;
 			$fue_cerrada_la_gui=false;
+			$se_creo_tabla_indice=false;
 			while (!feof($file_ARTE)) 
 			{
 				if($fue_cerrada_la_gui==false)
@@ -1508,80 +1949,410 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 				
 				$campos = explode("\t", $linea);
 				
-				//parte para evitar caracteres extraï¿½os en el ultimo campo antes del salto de linea
+				//parte para evitar caracteres extraños en el ultimo campo antes del salto de linea
 				$campos[count($campos)-1]=procesar_mensaje($campos[count($campos)-1]);
 				
 				//pasa a validar los campos
 				if(count($campos)==152)
 				{
-				
-					$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo ARTE. <br> registros buenos $registros_buenos , registros malos $registros_malos . ";
-					$html_del_mensaje="";
-					$html_del_mensaje.="<table>";
-					$html_del_mensaje.="<tr>";
-					$html_del_mensaje.="<td colspan=\'2\'>";
-					$html_del_mensaje.="<p id=\'advertencia\'>".$mensaje_advertencia_tiempo."</p>";
-					$html_del_mensaje.="</td>";
-					$html_del_mensaje.="</tr>";
-					$html_del_mensaje.="<tr>";
-					$html_del_mensaje.="<td style=\'width:50%;text-align:right;\'>";
-					$html_del_mensaje.="<img id=\'loading\' src=\'../assets/imagenes/loader.gif\' alt=\'Cargando\' title=\'Espere\'>";
-					$html_del_mensaje.="</td>";
-					$html_del_mensaje.="<td style=\'width:50%;text-align:left;\'>";
-					$html_del_mensaje.="<div id=\'estado_validacion\'>".$mensaje_contador_errores."</div><div id=\'errores_bd_div\'></div>";
-					$html_del_mensaje.="</td>";
-					$html_del_mensaje.="</tr>";
-					$html_del_mensaje.="</table>";
-					if($fue_cerrada_la_gui==false)
+					$cont_linea=$nlinea;//solo validacion esta parte
+					//porcentaje
+					$muestra_mensaje_nuevo=false;
+					$porcentaje=intval((($cont_linea)*100)/($lineas_del_archivo-1));
+					if($porcentaje!=$cont_porcentaje || ($porcentaje==0 && ($cont_linea)==1) || $porcentaje==100)
 					{
-						echo "<script>document.getElementById('mensaje').innerHTML='$html_del_mensaje';</script>";
-						ob_flush();
-						flush();
+					 $cont_porcentaje=$porcentaje;
+					 $muestra_mensaje_nuevo=true;
 					}
-					//ACTUALIZA ESTADO EJECUCION
-					/*
-					$porcentaje=(($nlinea+1)*100)/$lineas_del_archivo;
-					$dies_porciento=intval((10*$lineas_del_archivo)/100);
-					if(($porcentaje%$dies_porciento)==0 )
-					*/
+					//fin porcentaje
 					
-					$query_update_esta_siendo_procesado="";
-					$query_update_esta_siendo_procesado.=" UPDATE gioss_1393_esta_validando_actualmente ";
-					$query_update_esta_siendo_procesado.=" SET mensaje_estado_registros='".$mensaje_contador_errores."' ";
-					$query_update_esta_siendo_procesado.=" WHERE fecha_remision='".$fecha_de_corte."' ";
-					$query_update_esta_siendo_procesado.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";
-					$query_update_esta_siendo_procesado.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
-					$query_update_esta_siendo_procesado.=" AND nick_usuario='".$nick_user."'  ";
-					$query_update_esta_siendo_procesado.=" AND fecha_validacion='".$fecha_actual."'  ";
-					$query_update_esta_siendo_procesado.=" AND hora_validacion='".$tiempo_actual."'  ";
-					$query_update_esta_siendo_procesado.=" ; ";
-					$error_bd="";
-					$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_update_esta_siendo_procesado, $error_bd);
-					if($error_bd!="")
+					if($muestra_mensaje_nuevo)
 					{
+						$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo ARTE. <br> registros buenos $registros_buenos , registros malos $registros_malos . ";
+						$html_del_mensaje="";
+						$html_del_mensaje.="<table>";
+						$html_del_mensaje.="<tr>";
+						$html_del_mensaje.="<td colspan=\'2\'>";
+						$html_del_mensaje.="<p id=\'advertencia\'>".$mensaje_advertencia_tiempo."</p>";
+						$html_del_mensaje.="</td>";
+						$html_del_mensaje.="</tr>";
+						$html_del_mensaje.="<tr>";
+						$html_del_mensaje.="<td style=\'width:50%;text-align:right;\'>";
+						$html_del_mensaje.="<img id=\'loading\' src=\'../assets/imagenes/loader.gif\' alt=\'Cargando\' title=\'Espere\'>";
+						$html_del_mensaje.="</td>";
+						$html_del_mensaje.="<td style=\'width:50%;text-align:left;\'>";
+						$html_del_mensaje.="<div id=\'estado_validacion\'>".$mensaje_contador_errores."</div><div id=\'errores_bd_div\'></div>";
+						$html_del_mensaje.="</td>";
+						$html_del_mensaje.="</tr>";
+						$html_del_mensaje.="</table>";
 						if($fue_cerrada_la_gui==false)
 						{
-							echo "<script>alert('error al actualizar el estado actual de validacion en tiempo real  1393 ');</script>";
+							echo "<script>document.getElementById('mensaje').innerHTML='$html_del_mensaje';</script>";
+							ob_flush();
+							flush();
 						}
+						//ACTUALIZA ESTADO EJECUCION
+						/*
+						$porcentaje=(($nlinea+1)*100)/$lineas_del_archivo;
+						$dies_porciento=intval((10*$lineas_del_archivo)/100);
+						if(($porcentaje%$dies_porciento)==0 )
+						*/
+						
+						$query_update_esta_siendo_procesado="";
+						$query_update_esta_siendo_procesado.=" UPDATE gioss_1393_esta_validando_actualmente ";
+						$query_update_esta_siendo_procesado.=" SET mensaje_estado_registros='".$mensaje_contador_errores."' ";
+						$query_update_esta_siendo_procesado.=" WHERE fecha_remision='".$fecha_de_corte."' ";
+						$query_update_esta_siendo_procesado.=" AND codigo_entidad_reportadora='".$cod_prestador."' ";
+						$query_update_esta_siendo_procesado.=" AND nombre_archivo='".$nombre_archivo_registrado."'  ";
+						$query_update_esta_siendo_procesado.=" AND nick_usuario='".$nick_user."'  ";
+						$query_update_esta_siendo_procesado.=" AND fecha_validacion='".$fecha_actual."'  ";
+						$query_update_esta_siendo_procesado.=" AND hora_validacion='".$tiempo_actual."'  ";
+						$query_update_esta_siendo_procesado.=" ; ";
+						$error_bd="";
+						$bool_hubo_error_query=$coneccionBD->insertar_no_warning_get_error_no_crea_cierra($query_update_esta_siendo_procesado, $error_bd);
+						if($error_bd!="")
+						{
+							if($fue_cerrada_la_gui==false)
+							{
+								echo "<script>alert('error al actualizar el estado actual de validacion en tiempo real  1393 ');</script>";
+							}
+						}
+						
+						//FIN ACTUALIZA ESTADO EJECUCION
+					}//fin muestra mensaje nuevo
+					
+					//PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
+					//gioss_afiliados_eapb_rc, id_afiliado, tipo_id_afiliado,$tipo_de_regimen_de_la_informacion_reportada
+					$query_bd_existe_afiliado_en_tabla_regimen="";
+					$resultados_query_existe_afiliado_tablas_regimen=array();
+					$nombre_tabla_afiliado_hallado="";
+					$campo_n8_ti=trim($campos[7]);//TIPO IDENTIFICACION si es el numero de orden 4 y campo 5 en hemofilia
+					$campo_n9_ni=trim($campos[8]);//NUMERO IDENTIFICACION	si es el numero de orden 5 y campo 6 en hemofilia
+					$tipo_de_regimen_de_la_informacion_reportada=trim($campos[1]);//REGIMEN campo 2	
+					$cod_eapb_global=$cod_eapb;			
+					if($tipo_de_regimen_de_la_informacion_reportada=="C")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rc";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n9_ni."' AND tipo_id_afiliado = '".$campo_n8_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
 					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="S")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_regimen_subsidiado";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n9_ni."' AND tipo_id_afiliado = '".$campo_n8_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="E" || $tipo_de_regimen_de_la_informacion_reportada=="O")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_mp";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n9_ni."' AND tipo_id_afiliado = '".$campo_n8_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="P")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rp";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n9_ni."' AND tipo_id_afiliado = '".$campo_n8_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}
+					if($tipo_de_regimen_de_la_informacion_reportada=="N")
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_nv";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n9_ni."' AND tipo_id_afiliado = '".$campo_n8_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+					}//fin if
+					//contador filas
+					$num_filas_resultado_existe_tablas_regimen=count($resultados_query_existe_afiliado_tablas_regimen);
+
+					if(
+						$num_filas_resultado_existe_tablas_regimen==0 
+						|| !is_array($resultados_query_existe_afiliado_tablas_regimen)
+					)//fin parentesis condicion
+					{
+						$numero_registros_afiliado_no_existe++;
+						if($numero_registros_a_mostrar_max_afiliado_no_existe<10)
+						{
+							//$cadena_primeros_afiliados_inexistentes.=$campo_n8_ti."-".$campo_n9_ni." REGIMEN $tipo_de_regimen_de_la_informacion_reportada ".procesar_mensaje2($query_bd_existe_afiliado_en_tabla_regimen)."<br>";
+							$cadena_primeros_afiliados_inexistentes.=$campo_n8_ti."-".$campo_n9_ni." REGIMEN $tipo_de_regimen_de_la_informacion_reportada NO<br>";
+							$numero_registros_a_mostrar_max_afiliado_no_existe++;
+						}//fin if muestra 10 primeros
+					}//contador numero afiliados inexistentes en bd
+					else if($num_filas_resultado_existe_tablas_regimen>0 
+						&& is_array($resultados_query_existe_afiliado_tablas_regimen)
+						)
+					{
+						$numero_registros_afiliado_si_existen++;
+						if($numero_registros_a_mostrar_max_afiliado_si_existen<10)
+						{
+							$cadena_primeros_afiliados_existentes.=$campo_n8_ti."-".$campo_n9_ni." REGIMEN $tipo_de_regimen_de_la_informacion_reportada SE<br>";
+							$numero_registros_a_mostrar_max_afiliado_si_existen++;							
+						}//fin if
+					}//fin else if
+					//FIN PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
+
+					//PARTE VALIDACION ERC AFILIADO ESTA EN BD para hf es igual el orden que erc en estos campos de ident.
+					$campo_n4_primer_nombre=trim($campos[3]);
+					$campo_n5_segundo_nombre=trim($campos[4]);
+					$campo_n6_primer_apellido=trim($campos[5]);
+					$campo_n7_segundo_apellido=trim($campos[6]);
+					$campo_n8_ti=trim($campos[7]);
+					$campo_n9_ni=trim($campos[8]);
+					$campo_n10_fecha_nacimiento=trim($campos[9]);
+					$campo_n11_sexo=trim($campos[10]);
+
+
+					$tipo_de_regimen_de_la_informacion_reportada=trim($campos[1]);//campo 2,  regimen artritis
+
+					//PARTE PRE CORRECCION SEXO Y FECHA NACIMIENTO DE ACUERDO A TABLAS DE REGIMEN
+					$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=false;
+					$se_modifico_sexo=false;
+					$se_modifico_fecha_nacimiento=false;
+					$se_modifico_nombres_o_apellidos=false;
+					$si_existe=false;
+
+					$sexo_anterior="";
+					$fecha_anterior="";
+
+					$sexo_posterior="";
+					$fecha_posterior="";
 					
-					//FIN ACTUALIZA ESTADO EJECUCION
+					if($num_filas_resultado_existe_tablas_regimen>0 
+						&& is_array($resultados_query_existe_afiliado_tablas_regimen)
+						)
+					{
+						$si_existe=true;
+						//verifica el sexo y fecha registrado en bd
+						$numero_campo_sexo=7;//campo 8 norma ERC
+						$sexo_en_registro_archivo=strtoupper(trim($campos[$numero_campo_sexo]) );
+						$sexo_anterior=$sexo_en_registro_archivo;
+						$numero_campo_fecha_nacimiento=6;//campo  7 norma ERC
+						$fecha_nacimiento_en_registro_archivo=trim($campos[$numero_campo_fecha_nacimiento]);
+						$fecha_anterior=$fecha_nacimiento_en_registro_archivo;
+						$sexo_en_bd=strtoupper(trim($resultados_query_existe_afiliado_tablas_regimen[0]['sexo']) );
+						$fecha_nacimiento_en_bd=trim($resultados_query_existe_afiliado_tablas_regimen[0]['fecha_nacimiento']);
+
+						if($sexo_en_bd!="" && $fecha_nacimiento_en_bd!="")
+						{
+							//si el sexo registrado en la tabla regimen
+							//esta bien escrito y es diferente de lo registrado en 
+							//el archivo(independiente si este esta bien escrito o no)
+							//lo remplaza por el nuevo sexo
+							if($sexo_en_bd=="F" 
+								|| $sexo_en_bd=="M"
+								)
+							{
+								if($sexo_en_bd!=$sexo_en_registro_archivo)
+								{
+									$campos[$numero_campo_sexo]=$sexo_en_bd;
+									$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+									$se_modifico_sexo=true;
+								}//fin if
+							}//fin if
+
+							//echo "<script>alert('$fecha_nacimiento_en_registro_archivo $campo_n8_ti $campo_n9_ni');</script>";
+
+							$fecha_nacimiento_en_registro_archivo=corrector_formato_fecha($fecha_nacimiento_en_registro_archivo,$fecha_de_corte,true);
+							if(formato_fecha_valida_quick($fecha_nacimiento_en_bd) )
+							{
+								$campos[$numero_campo_fecha_nacimiento]=$fecha_nacimiento_en_bd;
+								$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+								$se_modifico_fecha_nacimiento=true;
+								
+							}//fin if fecha nacimeinto es valida
+							else
+							{
+								$fecha_nacimiento_en_bd=corrector_formato_fecha($fecha_nacimiento_en_bd,$fecha_de_corte,true);
+								if(formato_fecha_valida_quick($fecha_nacimiento_en_bd) )
+								{
+									if($fecha_nacimiento_en_bd!=$fecha_nacimiento_en_registro_archivo)
+									{
+										$campos[$numero_campo_fecha_nacimiento]=$fecha_nacimiento_en_bd;
+										$se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen=true;
+										$se_modifico_fecha_nacimiento=true;
+									}//fin if
+								}//fin if fecha nacimeinto es valida
 					
+							}//fin else
+
+							$sexo_posterior=$sexo_en_bd;
+							$fecha_posterior=$fecha_nacimiento_en_bd;
+						}//fin if datos de bd no estan vacios
+
+						//se modifica nombres						
+						$campos[3]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['primer_nombre']) );
+						$campos[4]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['segundo_nombre']) );
+						$campos[5]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['primer_apellido']) );
+						$campos[6]=procesar_mensaje(trim($resultados_query_existe_afiliado_tablas_regimen[0]['segundo_apellido']) );
+						$se_modifico_nombres_o_apellidos=true;
+
+						//coloca none ya que puede venir desde la tabla de afiliados en blanco y ser calificado como incorrecto
+						if($campos[3]==""){$campos[3]="NONE";}
+						if($campos[4]==""){$campos[4]="NONE";}
+						if($campos[5]==""){$campos[5]="NONE";}
+						if($campos[6]==""){$campos[6]="NONE";}
+
+						//PARTE VERIFICA SI EL AFILIADO CORRESPONDE A UNO DE LOS AFILIADOS DUPLICADOS ENTRE SI POR SOLO NUMERO ID
+						//en caso de que si corresponda, reemplaza el tipo de identificacion por el almacenado en
+						// la tabla unicos_de_tabla_duplicados_afiliados_mp
+						$campo_n10_fecha_nacimiento=trim($campos[9]);
+						$campo_n11_sexo=trim($campos[10]);
+						$campo_n9_numero_identificacion=trim($campos[8]);
+
+						$numero_campo_tipo_id=7;//campo 8 numero orden 7
+
+						$numero_campo_primer_nombre=3;
+						$numero_campo_segundo_nombre=4;
+						$numero_campo_primer_apellido=5;
+						$numero_campo_segundo_apellido=6;
+						$error_bd_pertenece="";
+						$query_pertenece_a_un_afiliado_duplicado="SELECT * FROM unicos_de_tabla_duplicados_afiliados_mp where numero_id='".$campo_n9_numero_identificacion."' and sexo='".$campo_n11_sexo."' and fecha_de_nacimiento='".$campo_n10_fecha_nacimiento."' ;";
+						$resultados_pertenece_a_un_afiliado_duplicado=$coneccionBD->consultar_no_warning_get_error_no_crea_cierra($query_pertenece_a_un_afiliado_duplicado,$error_bd_pertenece);
+						if(is_array($resultados_pertenece_a_un_afiliado_duplicado) && count($resultados_pertenece_a_un_afiliado_duplicado)>0 )
+						{
+							foreach ($resultados_pertenece_a_un_afiliado_duplicado as $key => $datosAfiliadoDuplicadoEnTablaPrincipal) 
+							{
+								if(
+									$campo_n10_fecha_nacimiento==$datosAfiliadoDuplicadoEnTablaPrincipal['fecha_de_nacimiento']
+									&& $campo_n11_sexo==$datosAfiliadoDuplicadoEnTablaPrincipal['sexo']
+									&& ($campos[$numero_campo_primer_apellido]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']
+										|| $campos[$numero_campo_primer_apellido]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']
+										|| $campos[$numero_campo_primer_apellido]=="NONE"
+										|| $campos[$numero_campo_primer_apellido]=="NOAP"
+										)//fin primer apellido
+									&& ($campos[$numero_campo_primer_nombre]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']
+										|| $campos[$numero_campo_primer_nombre]==$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']
+										|| $campos[$numero_campo_primer_nombre]=="NONE"
+										|| $campos[$numero_campo_primer_nombre]=="NOAP"
+										)//fin primer nombre
+									)//fin condicion
+								{
+									$campos[$numero_campo_tipo_id]=$datosAfiliadoDuplicadoEnTablaPrincipal['tipo_id'];
+
+									
+									if(
+										$campos[$numero_campo_segundo_apellido]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_segundo_apellido]=$datosAfiliadoDuplicadoEnTablaPrincipal['segundo_apellido'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_segundo_nombre]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_segundo_nombre]=$datosAfiliadoDuplicadoEnTablaPrincipal['segundo_nombre'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_primer_apellido]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_primer_apellido]=$datosAfiliadoDuplicadoEnTablaPrincipal['primer_apellido'];
+									}//fin if
+
+									
+									if(
+										$campos[$numero_campo_primer_nombre]=="NONE" // solo se mira igual a none ya que el vacio lo mira antes
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']!=""
+										&& $datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre']!="NONE"
+									)//fin condicion
+									{
+										$campos[$numero_campo_primer_nombre]=$datosAfiliadoDuplicadoEnTablaPrincipal['primer_nombre'];
+									}//fin if
+								}//fin if
+							}//fin foreach
+						}//fin if encontro que pertenece a un afiliado duplicado en la tabl principal
+						//FIN PARTE VERIFICA SI EL AFILIADO CORRESPONDE A UNO DE LOS AFILIADOS DUPLICADOS ENTRE SI POR SOLO NUMERO ID 
+
+
+
+					}//fin if hay concidencia en bd
+
+					$primer_nombre="".$campos[3];
+					$segundo_nombre="".$campos[4];
+					$primer_apellido="".$campos[5];
+					$segundo_apellido="".$campos[6];
+
+					$datos_complementarios="Tipo ID: $campo_n8_ti  Numero ID: $campo_n9_ni  Primer Nombre: $primer_nombre Segundo Nombre: $segundo_nombre Primer Apellido: $primer_apellido Segundo Apellido: $segundo_apellido ";
+
+					if($se_modifico_sexo_o_fecha_de_acuerdo_a_tabla_regimen==true)
+					{
+						fwrite($file_archivo_log_registros_modificados, "\n"."Sexo anterior: $sexo_anterior Sexo posterior: $sexo_posterior Fecha Nacimiento Anterior: $fecha_anterior Fecha Nacimiento Posterior: $fecha_posterior ".$datos_complementarios );	
+
+					}//fin fi hubo modificacion
+
+					if($se_modifico_sexo==true)
+					{
+						$linea_se_modifico_sexo_afiliado="=\"$campo_n8_ti\";=\"$campo_n9_ni\";=\"Al afiliado $campo_n8_ti $campo_n9_ni se le cambio el sexo ( $sexo_anterior ) por ( $sexo_posterior )\"";
+						fwrite($file_archivo_afiliado_existe_cambio_sexo, "\n".$linea_se_modifico_sexo_afiliado);
+					}//fin if
+
+					if($se_modifico_fecha_nacimiento==true)
+					{
+						$linea_se_modifico_fecha_nacimiento_afiliado="=\"$campo_n8_ti\";=\"$campo_n9_ni\";=\"Al afiliado $campo_n8_ti $campo_n9_ni se le cambio la fecha de nacimiento ( $fecha_anterior) por ( $fecha_posterior )\"";
+						fwrite($file_archivo_afiliado_existe_cambio_fecha_nacimiento, "\n".$linea_se_modifico_fecha_nacimiento_afiliado);
+					}//fin if
+
+					//PARTE LLENA ARCHIVO NUEVO ORIGINAL CON POSIBLES REGISTROS AFILIADOS MODIFICADOS SEXO FECHA NACIMIENTO
+					//solo los que esten en tabla de afiliados
+					$array_resultados_validacion=array("error"=>false,"mensaje"=>"");//inicializa aqui
+				    if($si_existe==true )
+				    {
+					    		    
+					    fwrite($file_archivo_registros_que_tienen_afiliados, "\n".campos_a_registro_sin_consecutivo($campos) );	
+				    }//fin if
+			    	else if	($si_existe==false )
+			    	{
+			    		fwrite($file_archivo_registros_que_no_tienen_afiliados, "\n".campos_a_registro_sin_consecutivo($campos) );
+
+			    		//se indica la inconsistencia						
+			    		$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0105600"])[1];
+			    		$errores_campo_identificacion="";
+						$errores_campo_identificacion.="1,".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",0105600,$cadena_descripcion_inconsistencia ...VR:".$campos[8]." ,".($nlinea+1).",6";//$campos[8] es el campo 9 de numero id artritis
+			    		//fin se indica la inconsistencia	
+
+						//se pone false debido a que en las versiones fvll y general es informativo
+			    		$array_resultados_validacion=array("error"=>true,"mensaje"=>$errores_campo_identificacion);
+
+
+			    	}//fin else if
+				    //FIN PARTE LLENA ARCHIVO NUEVO ORIGINAL CON POSIBLES REGISTROS AFILIADOS MODIFICADOS SEXO FECHA NACIMIENTO
+					//FIN PARTE VALIDACION ERC AFILIADO ESTA EN BD
+
+					$linea_mod_depende_afiliados=implode("\t", $campos);
 					
-					//validar_ARTE($campos,$nlinea,&$consecutivo_errores,$array_tipo_validacion,$array_grupo_validacion,$array_detalle_validacion,$nombre_archivo,$fecha_remision,$fecha_de_corte,$cod_prestador,$cod_eapb)
-					$array_resultados_validacion=validar_ARTE($campos,
-										 $nlinea,
-										 $consecutivo_errores,
-										 $array_tipo_validacion,
-										 $array_grupo_validacion,
-										 $array_detalle_validacion,
-										 $nombre_archivo_registrado,
-										 $fecha_de_corte,
-										 $cod_prestador,
-										 $cod_eapb,
-										 $diccionario_identificacion,
-										 $diccionario_identificacion_lineas,
-										 $coneccionBD);
+					if($si_existe==true)
+					{
+						//validar_ARTE($campos,$nlinea,&$consecutivo_errores,$array_tipo_validacion,$array_grupo_validacion,$array_detalle_validacion,$nombre_archivo,$fecha_remision,$fecha_de_corte,$cod_prestador,$cod_eapb)
+						$array_resultados_validacion=validar_ARTE($campos,
+											 $nlinea,
+											 $consecutivo_errores,
+											 $array_tipo_validacion,
+											 $array_grupo_validacion,
+											 $array_detalle_validacion,
+											 $nombre_archivo_registrado,
+											 $fecha_de_corte,
+											 $fecha_inferior_pv,
+											 $cod_prestador,
+											 $cod_eapb,
+											 $diccionario_identificacion,
+											 $diccionario_identificacion_lineas,
+											 $coneccionBD,
+											 $array_numero_campo_bd
+											);
+					}//fin if si existe afiliado
 										
 					if($hubo_inconsistencias_en_ARTE==false)
 					{
@@ -1593,12 +2364,303 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					{
 						$estado_validacion_registro=1;
 						$registros_buenos++;
-					}
+
+						fwrite($file_archivo_registros_buenos,"\n".trim($linea_mod_depende_afiliados));
+
+						//PARTE DATOS PARA TABLA ANALISIS USADA PARA CONSULTAS SOBRE LOS DATOS VALIDADOS CORRECTOS
+						$fecha_inicial_para_analisis=$fecha_de_corte;
+						$regional_para_analisis="";
+						if($se_creo_tabla_indice==false)
+						{
+							$insercion_tabla_indice_exitosa=true;
+
+				    		$sql_insertar_en_tabla_indice_analisis_coherencia="";				    
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="insert into gioss_indice_archivo_para_analisis_1393";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="(";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="cod_prestador_servicios_salud,";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="codigo_eapb,";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="fecha_inicio_periodo,";					
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="fecha_de_corte,";					
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="fecha_y_hora_validacion,";					
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="nombre_archivo,";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="numero_de_secuencia";								
+							$sql_insertar_en_tabla_indice_analisis_coherencia.=")";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="values";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="(";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$cod_prestador."',";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$cod_eapb."',";
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$fecha_inicial_para_analisis."',";					
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$fecha_de_corte."',";					
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$fecha_actual." ".$tiempo_actual."',";							
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$nombre_archivo_registrado."',";							
+							$sql_insertar_en_tabla_indice_analisis_coherencia.="'".$numero_secuencia_actual."'";								
+							$sql_insertar_en_tabla_indice_analisis_coherencia.=");";
+							$error_bd_seq="";
+							$bandera = $coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_insertar_en_tabla_indice_analisis_coherencia, $error_bd_seq);
+							if($error_bd_seq!="")
+							{
+							    $error_de_base_de_datos.=" ERROR AL INSERTAR INDICE PARA EL ARCHIVO DE ANALISIS: ".$error_bd_seq."<br>";
+							    echo $error_de_base_de_datos;
+							    $insercion_tabla_indice_exitosa=false;
+							}
+							 //FIN QUERY INSERT gioss_indice_archivo_para_analisis_4505
+
+				    		if($insercion_tabla_indice_exitosa==true)
+				    		{
+				    			echo "<span style='color:white;'>creo indice</span><br>";
+				    			$se_creo_tabla_indice=true;
+				    		}
+						}//fin if no se ha creado registro en la tabla indice
+
+						if($se_creo_tabla_indice==true)
+						{
+							//PREPARA EDADES Y CAMPOS ADICIONALES
+
+							$numero_campo_fecha_nacimiento=6;//campo  7 norma ERC
+							$fecha_nacimiento_en_registro_archivo=trim($campos[$numero_campo_fecha_nacimiento]);
+
+				    		//CALCULO EDAD
+							$fecha_nacimiento= explode("-",$fecha_nacimiento_en_registro_archivo);
+							$bool_fecha_nacimiento_valida=true;
+							if(count($fecha_nacimiento)!=3
+							   || !(ctype_digit($fecha_nacimiento[0]) && ctype_digit($fecha_nacimiento[1]) && ctype_digit($fecha_nacimiento[2]) )
+							   || !checkdate($fecha_nacimiento[1],$fecha_nacimiento[2],$fecha_nacimiento[0]))
+							{			
+								$bool_fecha_nacimiento_valida=false;
+							}
+							
+							
+							$edad= -1;
+							$edad_dias =-1;
+							$edad_meses =-1;
+							$edad_semanas = -1;
+							$verificador_edad= -1;
+
+							$edad_quinquenio=0;
+							$edad_etarea=0;
+							
+							if($bool_fecha_nacimiento_valida==true)
+							{
+							    
+							    $string_fecha_nacimiento=date($fecha_nacimiento[0]."-".$fecha_nacimiento[1]."-".$fecha_nacimiento[2]);
+							    
+							    $fecha_nacimiento_format=new DateTime($string_fecha_nacimiento);
+							    $fecha_corte_format=new DateTime($fecha_de_corte);
+							
+							    $interval = date_diff($fecha_nacimiento_format,$fecha_corte_format);
+							    $edad_dias =(float)($interval->days);
+							    
+							    //$edad= (float)($interval->days / 365);		    
+							    //$edad_meses = (float)($interval->days / 30.4368499);
+							    //$edad_meses_2 = (float)($interval->format('%m')+ 12 * $interval->format('%y'));
+							    
+							    $array_fecha_nacimiento=explode("-",$string_fecha_nacimiento);
+							    $array_fecha_corte=explode("-",$fecha_de_corte);
+							    $array_edad=edad_years_months_days($array_fecha_nacimiento[2]."-".$array_fecha_nacimiento[1]."-".$array_fecha_nacimiento[0],$array_fecha_corte[2]."-".$array_fecha_corte[1]."-".$array_fecha_corte[0]);
+							    $edad_meses=(intval($array_edad['y'])*12)+$array_edad['m'];
+							    $edad=intval($array_edad['y']);
+							    
+							    $edad_semanas = (float)($interval->days / 7);
+							    $verificador_edad= (float)$interval->format("%r%a");
+
+							    //edad quinquenio
+							    if($edad==0)
+							    {
+							    	$edad_quinquenio=1;							    	
+							    }//fin if
+							    else if($edad>=1 && $edad<=4)
+							    {
+							    	$edad_quinquenio=2;
+							    }
+							    else if($edad>=5 && $edad<=9)
+							    {
+							    	$edad_quinquenio=3;
+							    }
+							    else if($edad>=10 && $edad<=14)
+							    {
+							    	$edad_quinquenio=4;
+							    }
+							    else if($edad>=15 && $edad<=19)
+							    {
+							    	$edad_quinquenio=5;
+							    }
+							    else if($edad>=20 && $edad<=24)
+							    {
+							    	$edad_quinquenio=6;
+							    }
+							    else if($edad>=25 && $edad<=29)
+							    {
+							    	$edad_quinquenio=7;
+							    }
+							    else if($edad>=30 && $edad<=34)
+							    {
+							    	$edad_quinquenio=8;
+							    }
+							    else if($edad>=35 && $edad<=39)
+							    {
+							    	$edad_quinquenio=9;
+							    }
+							    else if($edad>=40 && $edad<=44)
+							    {
+							    	$edad_quinquenio=10;
+							    }
+							    else if($edad>=45 && $edad<=49)
+							    {
+							    	$edad_quinquenio=11;
+							    }
+							    else if($edad>=50 && $edad<=54)
+							    {
+							    	$edad_quinquenio=12;
+							    }
+							    else if($edad>=55 && $edad<=59)
+							    {
+							    	$edad_quinquenio=13;
+							    }
+							    else if($edad>=60 && $edad<=64)
+							    {
+							    	$edad_quinquenio=14;
+							    }
+							    else if($edad>=65 && $edad<=69)
+							    {
+							    	$edad_quinquenio=15;
+							    }
+							    else if($edad>=70 && $edad<=74)
+							    {
+							    	$edad_quinquenio=16;
+							    }
+							    else if($edad>=75 && $edad<=79)
+							    {
+							    	$edad_quinquenio=17;
+							    }
+							    else if($edad>=80 && $edad<=84)
+							    {
+							    	$edad_quinquenio=18;
+							    }
+							    else if($edad>=85 && $edad<=89)
+							    {
+							    	$edad_quinquenio=19;
+							    }
+							    else if($edad>=90 )
+							    {
+							    	$edad_quinquenio=20;
+							    }
+							    //fin edad quinquenio
+
+							    //edad etarea
+							    if($edad==0)
+							    {
+							    	$edad_etarea=1;							    	
+							    }//fin if
+							    else if($edad>=1 && $edad<=4)
+							    {
+							    	$edad_etarea=2;
+							    }
+							    else if($edad>=5 && $edad<=14)
+							    {
+							    	$edad_etarea=3;
+							    }
+							    else if($edad>=15 && $edad<=44)
+							    {
+							    	$edad_etarea=4;
+							    }
+							    else if($edad>=45 && $edad<=59)
+							    {
+							    	$edad_etarea=5;
+							    }
+							    else if($edad>=60 )
+							    {
+							    	$edad_etarea=6;
+							    }
+							    //fin edad etarea
+							    
+							    
+							}
+							//FIN CALCULO EDAD
+
+				    		//FIN PREPARA EDADES Y CAMPOS ADICIONALES
+
+				    		//tabla analisis insert
+					    	$sql_insertar_en_tabla_analisis_coherencia="";				    
+							$sql_insertar_en_tabla_analisis_coherencia.="insert into gioss_archivo_para_analisis_1393";
+							$sql_insertar_en_tabla_analisis_coherencia.="(";
+							$sql_insertar_en_tabla_analisis_coherencia.="cod_prestador_servicios_salud,";
+							$sql_insertar_en_tabla_analisis_coherencia.="codigo_eapb,";
+							$sql_insertar_en_tabla_analisis_coherencia.="fecha_inicio_periodo,";					
+							$sql_insertar_en_tabla_analisis_coherencia.="fecha_de_corte,";					
+							$sql_insertar_en_tabla_analisis_coherencia.="fecha_y_hora_validacion,";					
+							$sql_insertar_en_tabla_analisis_coherencia.="nombre_archivo,";
+							$cont_campo_ins=0;
+							while($cont_campo_ins<152)
+							{
+								
+								$sql_insertar_en_tabla_analisis_coherencia.="campo_arte_de_numero_orden_".$cont_campo_ins.",";
+								
+								$cont_campo_ins++;
+							}
+							if($bool_fecha_nacimiento_valida==true)
+							{
+								$sql_insertar_en_tabla_analisis_coherencia.="edad_years,";
+								$sql_insertar_en_tabla_analisis_coherencia.="edad_meses,";
+								$sql_insertar_en_tabla_analisis_coherencia.="edad_dias,";
+
+								$sql_insertar_en_tabla_analisis_coherencia.="grupo_edad_quinquenal,";								
+								$sql_insertar_en_tabla_analisis_coherencia.="grupo_etareo,";
+							}//fin if fecha nacimeinto valida
+							if($regional_para_analisis!="")
+							{
+								$sql_insertar_en_tabla_analisis_coherencia.="regional,";
+							}//fin if hay regional
+							$sql_insertar_en_tabla_analisis_coherencia.="numero_fila, ";							
+							$sql_insertar_en_tabla_analisis_coherencia.="numero_de_secuencia";
+							$sql_insertar_en_tabla_analisis_coherencia.=")";
+							$sql_insertar_en_tabla_analisis_coherencia.="values";
+							$sql_insertar_en_tabla_analisis_coherencia.="(";
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$cod_prestador."',";
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$cod_eapb."',";
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_inicial_para_analisis."',";					
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_de_corte."',";					
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_actual." ".$tiempo_actual."',";							
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$nombre_archivo_registrado."',";							
+							$cont_campo_ins=0;
+							while($cont_campo_ins<152)
+							{
+								$sql_insertar_en_tabla_analisis_coherencia.="'".procesar_mensaje($campos[$cont_campo_ins-1])."',";
+								$cont_campo_ins++;
+							}
+							if($bool_fecha_nacimiento_valida==true)
+							{
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$edad."', ";
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$edad_meses."', ";
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$edad_dias."', ";
+
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$edad_quinquenio."', ";
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$edad_etarea."', ";
+							}//fin if fecha nacimeinto valida
+							if($regional_para_analisis!="")
+							{
+								$sql_insertar_en_tabla_analisis_coherencia.="'".$regional_para_analisis."', ";
+							}//fin if hay regional			
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$nlinea."', ";											
+							$sql_insertar_en_tabla_analisis_coherencia.="'".$numero_secuencia_actual."'";	
+							$sql_insertar_en_tabla_analisis_coherencia.=");";
+							$error_bd_seq="";
+							$bandera = $coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_insertar_en_tabla_analisis_coherencia, $error_bd_seq);
+							if($error_bd_seq!="")
+							{
+							    $error_de_base_de_datos.=" ERROR CARGANDO ARCHIVO PARA ANALISIS: ".$error_bd_seq."<br>";
+							    echo $sql_insertar_en_tabla_analisis_coherencia."<br>";
+							    echo $error_de_base_de_datos;
+							}//fin if
+						}//fin if se inserto el indice
+						//FIN PARTE DATOS PARA TABLA ANALISIS USADA PARA CONSULTAS SOBRE LOS DATOS VALIDADOS CORRECTOS
+					}//fin else escribe registros buenos
 					else
 					{
 						$estado_validacion_registro=2;
 						$registros_malos++;
-					}
+
+						fwrite($file_archivo_registros_malos,"\n".trim($linea_mod_depende_afiliados));
+					}//fin else escribe registros malos
 					
 					$query_insertar_campos_a_bd="";
 					$query_insertar_campos_a_bd.="INSERT INTO gioss_tabla_registros_no_cargados_rechazados_r1393_arte ";
@@ -1643,6 +2705,20 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					{
 						$error_mostrar_bd.=" AL SUBIR CAMPOS RECHAZADOS ".$error_bd_seq."<br>";
 					}
+
+					//PARTE LLENA ARRAY BOOLEANOS PARA QUE SOLO TENGA EN CUENTA LA PRIMERA INCONSISTENCIA DEL CAMPO
+				    $array_booleano_primer_error_por_linea=array();
+				    $cont_llenado=0;
+				    while($cont_llenado<152)
+				    {
+				    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
+				    	$array_booleano_primer_error_por_linea[$numero_campo_actual]=true;
+				    	$cont_llenado++;
+				    }//fin while
+				    $array_booleano_primer_error_por_linea[999]=true;
+				    //FIN PARTE LLENA ARRAY BOOLEANOS PARA QUE SOLO TENGA EN CUENTA LA PRIMERA INCONSISTENCIA DEL CAMPO
+
+				    $cantidad_errores_por_linea=0;
 					
 					//escribe los errores
 					$mensaje_errores_ARTE=$array_resultados_validacion["mensaje"];
@@ -1650,13 +2726,75 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					
 					foreach($array_mensajes_errores_campos as $msg_error)
 					{
-						if($msg_error!="")
-						{
-							fwrite($file_inconsistencias_r4725_ARTE, $msg_error."\n");
-						}
-						
 						$columnas_inconsistencias_para_bd=array();
 						$columnas_inconsistencias_para_bd=explode(",",$msg_error);
+
+						//PARTE INCREMENTA CONTADOR ERRORES POR CADA CAMPO PERO SOLO 1 POR LINEA
+					    $cod_tipo_inconsistencia_temp=trim($columnas_inconsistencias_para_bd[2]);
+					    $numero_campo_temp=trim($columnas_inconsistencias_para_bd[9]);
+
+					    $cod_grupo_inconsistencia_temp=trim($columnas_inconsistencias_para_bd[4]);
+					    //echo $cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+
+					    if($array_booleano_primer_error_por_linea[trim($numero_campo_temp)]==true
+						&& $cod_tipo_inconsistencia_temp=="01"
+						)
+				    	{
+				    		//echo "ENTRO ".$cod_tipo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_errores_obligatorios_campo[trim($numero_campo_temp)]++;
+				    		$array_booleano_primer_error_por_linea[trim($numero_campo_temp)]=false;
+				    	}//fin if
+
+				    	if($cod_grupo_inconsistencia_temp=="0105")
+				    	{
+				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_inconsistencias_campo_0105[trim($numero_campo_temp)]++;
+				    	}//fin if
+
+				    	if($cod_grupo_inconsistencia_temp=="0104")
+				    	{
+				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_inconsistencias_campo_0104[trim($numero_campo_temp)]++;
+				    	}//fin if
+
+				    	if($cod_grupo_inconsistencia_temp=="0103")
+				    	{
+				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_inconsistencias_campo_0103[trim($numero_campo_temp)]++;
+				    	}//fin if
+
+				    	if($cod_grupo_inconsistencia_temp=="0102")
+				    	{
+				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_inconsistencias_campo_0102[trim($numero_campo_temp)]++;
+				    	}//fin if
+
+				    	if($cod_grupo_inconsistencia_temp=="0101")
+				    	{
+				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
+				    		$array_contador_total_inconsistencias_campo_0101[trim($numero_campo_temp)]++;
+				    	}//fin if
+				    	//FIN PARTE INCREMENTA CONTADOR ERRORES POR CADA CAMPO PERO SOLO 1 POR LINEA
+
+				    	if($msg_error!="")
+						{
+							$columnas_inconsistencias_para_bd[]=$campo_n8_ti;
+							$columnas_inconsistencias_para_bd[]=$campo_n9_ni;
+
+							//PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR
+						    $error_procesado_csv_excel="";
+						    $error_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_inconsistencias_para_bd)."\"";
+						    //FIN PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR						    
+							fwrite($file_inconsistencias_r1393_ARTE, $error_procesado_csv_excel."\n");
+
+							//$file_archivo_incons_registros_malos
+							if($array_resultados_validacion["error"]==true)
+							{								
+								fwrite($file_archivo_incons_registros_malos, $error_procesado_csv_excel."\n");
+							}//fin if
+						}//fin if
+						
+						
 						
 						//SUBIDA DE INCONSISTENCIAS A LA BASE DE DATOS
 						if(count($columnas_inconsistencias_para_bd)==10)
@@ -1707,13 +2845,228 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 							
 						}					
 						//FIN SUBIDA INCONSISTENCIAS A LA BASE DE DATOS
+						if($cod_tipo_inconsistencia_temp=="01")
+						{
+							$cantidad_errores_por_linea++;
+						}//fin if solo si la inconsistencia es obligatoria
 						
-					}
+					}//fin foreach
 					//fin escribe los errores
+
+					//PARTE CARGA EN TABLA INDEXADORA IPS POR ARCHIVO
+					if(count($campos)>=152)
+				    {
+					    try
+					    {
+					    	$codigo_prestador_para_insercion="";
+					    	$codigo_eapb_para_insercion="";
+
+					    	$codigo_prestador_para_insercion=$cod_prestador;
+					    	$codigo_eapb_para_insercion=$cod_eapb;
+					    	$fecha_inicial_para_analisis=$fecha_de_corte;
+						
+
+					    	//$prestador_archivo=procesar_mensaje($campos[2]);
+					    	$prestador_archivo=$codigo_prestador_para_insercion;//debido a que en cancer no se sabe aun que campo es 
+					    	$nit_prestador_archivo="";
+					    	$cod_municipio="";
+					    	$cod_depto="";
+					    	$nombre_prestador="";
+
+					    	$codigo_habilitacion_con_ceros_consulta=$prestador_archivo;
+
+					    	if(strlen($codigo_habilitacion_con_ceros_consulta)==11 &&
+						       (substr($codigo_habilitacion_con_ceros_consulta,0,1)=="5" || substr($codigo_habilitacion_con_ceros_consulta,0,1)=="8")
+						       )
+							{
+							    $codigo_habilitacion_con_ceros_consulta="0".$codigo_habilitacion_con_ceros_consulta;
+					}
+							else if(strlen($codigo_habilitacion_con_ceros_consulta)==10)
+							{
+							    $codigo_habilitacion_con_ceros_consulta=$codigo_habilitacion_con_ceros_consulta."01";
+					}
+							else if(strlen($codigo_habilitacion_con_ceros_consulta)==9 
+								&& (substr($codigo_habilitacion_con_ceros_consulta,0,1)=="5" || substr($codigo_habilitacion_con_ceros_consulta,0,1)=="8")
+							)
+							{
+							    $codigo_habilitacion_con_ceros_consulta="0".$codigo_habilitacion_con_ceros_consulta."01";
+							}//fin else 
+
+					    	while(strlen($codigo_habilitacion_con_ceros_consulta)<12 
+								&& $codigo_habilitacion_con_ceros_consulta!="999"
+							)
+							{
+								//incrementa cuando es menor de 12
+								$codigo_habilitacion_con_ceros_consulta="0".$codigo_habilitacion_con_ceros_consulta;
+							}//fin while
+
+					    	$sql_query_nit_prestador="SELECT num_tipo_identificacion, cod_municipio, cod_depto, nom_entidad_prestadora FROM gios_prestador_servicios_salud WHERE (cod_registro_especial_pss='$prestador_archivo' OR cod_registro_especial_pss='$codigo_habilitacion_con_ceros_consulta' ) ; ";
+							$resultado_query_nit_prestador=$coneccionBD->consultar2_no_crea_cierra($sql_query_nit_prestador);
+							if(count($resultado_query_nit_prestador)>0 
+								&& is_array($resultado_query_nit_prestador) 
+								)//fin condicion if
+							{
+								$nit_prestador_archivo=trim($resultado_query_nit_prestador[0]["num_tipo_identificacion"]);
+								$cod_municipio=trim($resultado_query_nit_prestador[0]["cod_municipio"]);
+								$cod_depto=trim($resultado_query_nit_prestador[0]["cod_depto"]);
+								$nombre_prestador=trim($resultado_query_nit_prestador[0]["nom_entidad_prestadora"]);
+							}//fin if
+
+							if($codigo_habilitacion_con_ceros_consulta!="" && $codigo_habilitacion_con_ceros_consulta!=$prestador_archivo)
+							{
+								$nombre_prestador="(Codigo Habilitacion Probable: $codigo_habilitacion_con_ceros_consulta | Codigo Habilitacion Escrito Archivo: $prestador_archivo ) ".$nombre_prestador;
+							}//fin if
+
+							
+
+							//se necesita hacer el select de todos modos
+							$cantidad_lineas_en_archivo_para_prestador=0;
+							$cantidad_lineas_correctas_en_archivo_para_prestador=0;
+
+							$cantidad_inconsistencias_para_ips=0;
+							$cantidad_inconsistencias_para_ips=intval($cantidad_errores_por_linea);
+
+							$sql_select_datos_prestador_en_reporte="";
+							$sql_select_datos_prestador_en_reporte.="SELECT cantidad_lineas_en_archivo, cantidad_lineas_correctas_en_archivo, cantidad_inconsistencias_para_ips
+							FROM gioss_index_reporte_ips_1393 
+							WHERE 
+							entidad_reportante ='".$codigo_prestador_para_insercion."'
+							AND
+							entidad_a_reportar ='".$codigo_eapb_para_insercion."'
+							AND
+							fecha_inicio_periodo ='".$fecha_inicial_para_analisis."'
+							AND
+							fecha_de_corte ='".$fecha_de_corte."'
+							AND
+							fecha_y_hora_validacion ='".$fecha_actual." ".$tiempo_actual."'
+							AND 
+							nombre_archivo ='".$nombre_archivo_registrado."'
+							AND
+							numero_de_secuencia ='".$numero_secuencia_actual."'
+							AND
+							prestador_en_archivo ='".$prestador_archivo."'
+							";
+							$resultado_query_prestador_en_reporte=$coneccionBD->consultar2_no_crea_cierra($sql_select_datos_prestador_en_reporte);
+							if(count($resultado_query_prestador_en_reporte)>0 
+								&& is_array($resultado_query_prestador_en_reporte) 
+								)//fin condicion if
+							{
+								$cantidad_lineas_en_archivo_para_prestador=intval($resultado_query_prestador_en_reporte[0]['cantidad_lineas_en_archivo']);
+								$cantidad_lineas_correctas_en_archivo_para_prestador=intval($resultado_query_prestador_en_reporte[0]['cantidad_lineas_correctas_en_archivo']);
+								$cantidad_inconsistencias_para_ips=$cantidad_inconsistencias_para_ips+intval($resultado_query_prestador_en_reporte[0]['cantidad_inconsistencias_para_ips']);
+							}//fin if
+
+							//incrementa los valores consultados
+							$cantidad_lineas_en_archivo_para_prestador++;
+							if($estado_validacion_registro==1)
+							{
+								$cantidad_lineas_correctas_en_archivo_para_prestador++;
+							}//fin if
+
+
+
+							//UPSERT
+
+							$filas_afectadas=0;
+
+							$sql_update_en_reporte_ips="";
+							$sql_update_en_reporte_ips.="UPDATE gioss_index_reporte_ips_1393 SET ";
+							$sql_update_en_reporte_ips.=" cantidad_lineas_en_archivo='$cantidad_lineas_en_archivo_para_prestador' , ";
+							$sql_update_en_reporte_ips.=" cantidad_lineas_correctas_en_archivo='$cantidad_lineas_correctas_en_archivo_para_prestador',  ";
+							$sql_update_en_reporte_ips.=" cantidad_inconsistencias_para_ips='$cantidad_inconsistencias_para_ips'  ";
+							$sql_update_en_reporte_ips.="
+								WHERE 
+								entidad_reportante ='".$codigo_prestador_para_insercion."'
+								AND
+								entidad_a_reportar ='".$codigo_eapb_para_insercion."'
+								AND
+								fecha_inicio_periodo ='".$fecha_inicial_para_analisis."'
+								AND
+								fecha_de_corte ='".$fecha_de_corte."'
+								AND
+								fecha_y_hora_validacion ='".$fecha_actual." ".$tiempo_actual."'
+								AND 
+								nombre_archivo ='".$nombre_archivo_registrado."'
+								AND
+								numero_de_secuencia ='".$numero_secuencia_actual."'
+								AND
+								prestador_en_archivo ='".$prestador_archivo."'
+							";
+							$error_bd_seq="";
+							$bandera = $coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_update_en_reporte_ips, $error_bd_seq);
+							if($error_bd_seq!="")
+							{
+							    $error_de_base_de_datos.=" ERROR AL ACTUALIZAR PARA REPORTE PRESTADOR: ".$error_bd_seq."<br>";
+							    echo $error_de_base_de_datos;
+							}//fin if
+
+
+							$filas_afectadas=intval($coneccionBD->get_filas_afectadas_update() );
+							if($filas_afectadas==0)
+							{
+						    	$sql_insertar_en_reporte_ips="";				    
+								$sql_insertar_en_reporte_ips.="insert into gioss_index_reporte_ips_1393";
+								$sql_insertar_en_reporte_ips.="(";
+								$sql_insertar_en_reporte_ips.="entidad_reportante,";
+								$sql_insertar_en_reporte_ips.="entidad_a_reportar,";
+								$sql_insertar_en_reporte_ips.="fecha_inicio_periodo,";					
+								$sql_insertar_en_reporte_ips.="fecha_de_corte,";					
+								$sql_insertar_en_reporte_ips.="fecha_y_hora_validacion,";					
+								$sql_insertar_en_reporte_ips.="nombre_archivo,";
+								$sql_insertar_en_reporte_ips.="numero_de_secuencia,";
+								$sql_insertar_en_reporte_ips.="prestador_en_archivo,";
+								$sql_insertar_en_reporte_ips.="nit_prestador_en_archivo,";
+								$sql_insertar_en_reporte_ips.="nombre_prestador,";	
+								$sql_insertar_en_reporte_ips.="codigo_departamento,";
+								$sql_insertar_en_reporte_ips.="codigo_municipio,";
+								$sql_insertar_en_reporte_ips.="cantidad_lineas_en_archivo,";
+								$sql_insertar_en_reporte_ips.="cantidad_lineas_correctas_en_archivo,";
+								$sql_insertar_en_reporte_ips.="cantidad_inconsistencias_para_ips";						
+								$sql_insertar_en_reporte_ips.=")";
+								$sql_insertar_en_reporte_ips.="values";
+								$sql_insertar_en_reporte_ips.="(";
+								$sql_insertar_en_reporte_ips.="'".$codigo_prestador_para_insercion."',";
+								$sql_insertar_en_reporte_ips.="'".$codigo_eapb_para_insercion."',";
+								$sql_insertar_en_reporte_ips.="'".$fecha_inicial_para_analisis."',";					
+								$sql_insertar_en_reporte_ips.="'".$fecha_de_corte."',";					
+								$sql_insertar_en_reporte_ips.="'".$fecha_actual." ".$tiempo_actual."',";							
+								$sql_insertar_en_reporte_ips.="'".$nombre_archivo_registrado."',";							
+								$sql_insertar_en_reporte_ips.="'".$numero_secuencia_actual."',";
+								$sql_insertar_en_reporte_ips.="'".$prestador_archivo."',";
+								$sql_insertar_en_reporte_ips.="'".$nit_prestador_archivo."',";	
+								$sql_insertar_en_reporte_ips.="'".$nombre_prestador."',";
+								$sql_insertar_en_reporte_ips.="'".$cod_depto."',";	
+								$sql_insertar_en_reporte_ips.="'".$cod_municipio."',";	
+								$sql_insertar_en_reporte_ips.="'".$cantidad_lineas_en_archivo_para_prestador."',";						
+								$sql_insertar_en_reporte_ips.="'".$cantidad_lineas_correctas_en_archivo_para_prestador."',";
+								$sql_insertar_en_reporte_ips.="'".$cantidad_inconsistencias_para_ips."'";			
+								$sql_insertar_en_reporte_ips.=");";
+								$error_bd_seq="";
+								$bandera = $coneccionBD->insertar_no_warning_get_error_no_crea_cierra($sql_insertar_en_reporte_ips, $error_bd_seq);
+								if($error_bd_seq!="")
+								{
+								    $error_de_base_de_datos.=" ERROR AL INSERTAR PARA REPORTE PRESTADOR: ".$error_bd_seq."<br>";
+								    echo $error_de_base_de_datos;
+								}//fin if
+							}//filas afectadas
+							//FIN UPSERT
+
+
+					    }//fin try
+					    catch(Exception $e)
+					    {
+					    	echo "Error al llenar la informacion de los prestadores por archivo: ".$e->getMessage();
+					    }//fin catch
+					}//fin if si es mayor o igual a 119
+					//FIN PARTE CARGA EN TABLA INDEXADORA IPS POR ARCHIVO
 					
 				}//fin if verifica longitud
 				else
 				{
+					$registros_malos++;//debido a que no cumple estructura
+
+					$array_contador_total_errores_obligatorios_campo[999]++;
+
 					$mensaje_contador_errores="revisando linea ".($nlinea+1)." de $lineas_del_archivo del archivo ARTE ";
 					$html_del_mensaje="";
 					$html_del_mensaje.="<table>";
@@ -1746,10 +3099,17 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					{
 						$hubo_inconsistencias_en_ARTE=true;
 					}
-					fwrite($file_inconsistencias_r4725_ARTE, $error_longitud."\n");
+
 					
 					$columnas_inconsistencias_para_bd=array();
 					$columnas_inconsistencias_para_bd=explode(",",$error_longitud);
+
+					//PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR
+				    $error_procesado_csv_excel="";
+				    $error_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_inconsistencias_para_bd)."\"";
+				    //FIN PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR			
+
+				    fwrite($file_inconsistencias_r1393_ARTE, $error_procesado_csv_excel."\n");
 					
 					//SUBIDA DE INCONSISTENCIAS A LA BASE DE DATOS
 					if(count($columnas_inconsistencias_para_bd)==10)
@@ -1802,13 +3162,29 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					//FIN SUBIDA INCONSISTENCIAS A LA BASE DE DATOS
 				}//fin else longitud no apropiada
 				$nlinea++;
+
+				$ram_usada_MB=(memory_get_usage(true)/1048576.2);
+				if($fue_cerrada_la_gui==false)
+				{
+					echo "<script>document.getElementById('medidor_ram').innerHTML='".$ram_usada_MB."';</script>";
+				}
 			}
 			fclose($file_ARTE);
 		}
 		//fin parte valida archivo
 		
 		//cierra el archivo donde se escriben las inconsistencias
-		fclose($file_inconsistencias_r4725_ARTE);
+		fclose($file_inconsistencias_r1393_ARTE);
+		fclose($file_archivo_registros_buenos);
+		fclose($file_archivo_registros_malos);
+		fclose($file_archivo_incons_registros_malos);
+		
+		fclose($file_archivo_registros_que_tienen_afiliados);
+		fclose($file_archivo_registros_que_no_tienen_afiliados);
+
+		fclose($file_archivo_log_registros_modificados);						  
+		fclose($file_archivo_afiliado_existe_cambio_sexo);
+		fclose($file_archivo_afiliado_existe_cambio_fecha_nacimiento);
 		
 		
 		
@@ -1858,7 +3234,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 					$linea=str_replace(",",".",$linea);
 					$campos = explode("\t", $linea);
 					
-					//parte para evitar caracteres extraï¿½os en el ultimo campo antes del salto de linea
+					//parte para evitar caracteres extraños en el ultimo campo antes del salto de linea
 					$campos[count($campos)-1]=procesar_mensaje($campos[count($campos)-1]);
 					
 					//pasa a validar los campos
@@ -2201,10 +3577,227 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 			$errores.="Hubo inconsistencias en el archivo ARTE.<br>";
 			
 		}
+
+		//PARTE ARCHIVO REPORTE POR IPS(aunque para esta norma de alto costo seria solo el resultado de la validacion del archivo)
+		$fecha_inicial_para_analisis=$fecha_de_corte;
+		$sql_count_reporte_por_ips="";
+		$sql_count_reporte_por_ips.="SELECT count(*) as numero_registros
+		FROM gioss_index_reporte_ips_1393 
+		WHERE 
+		entidad_reportante ='".$cod_prestador."'
+		AND
+		entidad_a_reportar ='".$cod_eapb."'
+		AND
+		fecha_inicio_periodo ='".$fecha_inicial_para_analisis."'
+		AND
+		fecha_de_corte ='".$fecha_de_corte."'
+		AND
+		fecha_y_hora_validacion ='".$fecha_actual." ".$tiempo_actual."'
+		AND 
+		nombre_archivo ='".$nombre_archivo_registrado."'
+		AND
+		numero_de_secuencia ='".$numero_secuencia_actual."'
+		";
+
+		$numero_registros_para_reporte_por_ips=0;
+
+		$resultado_query_count_reporte_por_ips=$coneccionBD->consultar2_no_crea_cierra($sql_count_reporte_por_ips);
+		if(count($resultado_query_count_reporte_por_ips)>0 
+			&& is_array($resultado_query_count_reporte_por_ips) 
+			)//fin condicion if
+		{
+			$numero_registros_para_reporte_por_ips=intval($resultado_query_count_reporte_por_ips[0]['numero_registros']);
+			//echo "numero_registros_para_reporte_por_ips $numero_registros_para_reporte_por_ips query sql_count_reporte_por_ips $sql_count_reporte_por_ips<br>";
+		}//fin if	
+
+		$offset=0;
+		$block_limit=1000;
+		if($numero_registros_para_reporte_por_ips>0)
+		{
+
+			$file_archivo_reporte_registros_por_ips = fopen($ruta_archivo_reporte_registros_por_ips, "a") or die("fallo la creacion del archivo modo:w reporte para ips ");	
+
+		    $parte_inicial_reporte_registros_por_ips="";
+			$parte_inicial_reporte_registros_por_ips.="SISTEMA DE INFORMACION GIOSS\n";
+			$parte_inicial_reporte_registros_por_ips.="REPORTE DE ESTADO DE REGISTROS REPORTADOS POR INSTITUCION PRESTADORA DE SERVICIOS IPS\n";
+			$parte_inicial_reporte_registros_por_ips.="RESOLUCION 1393\n";
+			$parte_inicial_reporte_registros_por_ips.="RESULTADO DEL PROCESO DE VALIDACION\n";
+
+			fwrite($file_archivo_reporte_registros_por_ips, $parte_inicial_reporte_registros_por_ips); 
+
+		    $titulos_reporte="";
+			$titulos_reporte.="\"Numero Identificacion Prestador\";\"Codigo Habilitacion Prestador\";\"Nombre Del Prestador\";\"Codigo Del Departamento\";\"Codigo Municipio\";\"Numero de Registros Leidos\";\"Numero de Registros Errados\";\"Numero de Registros Correctos\";\"Relacion Registros Correctos\";\"Numero de Inconsistencias por IPS\"";
+			$titulos_reporte=str_replace("_", " ", $titulos_reporte);
+			//$titulos_reporte=strtoupper($titulos_reporte);
+			fwrite($file_archivo_reporte_registros_por_ips, $titulos_reporte);    		        
+		    
+		    
+			$sql_reporte_por_ips="";
+			$sql_reporte_por_ips.="SELECT *
+			FROM gioss_index_reporte_ips_1393 
+			WHERE 
+			entidad_reportante ='".$cod_prestador."'
+			AND
+			entidad_a_reportar ='".$cod_eapb."'
+			AND
+			fecha_inicio_periodo ='".$fecha_inicial_para_analisis."'
+			AND
+			fecha_de_corte ='".$fecha_de_corte."'
+			AND
+			fecha_y_hora_validacion ='".$fecha_actual." ".$tiempo_actual."'
+			AND 
+			nombre_archivo ='".$nombre_archivo_registrado."'
+			AND
+			numero_de_secuencia ='".$numero_secuencia_actual."'
+			LIMIT $block_limit OFFSET $offset
+
+			";
+			$resultado_query_reporte_por_ips=$coneccionBD->consultar2_no_crea_cierra($sql_reporte_por_ips);
+			foreach ($resultado_query_reporte_por_ips as $key => $reporte_pretador_actual) 
+			{
+				$nit_prestador_a_escribir=trim($reporte_pretador_actual['nit_prestador_en_archivo']);
+				$codigo_habilitacion_a_escribir=trim($reporte_pretador_actual['prestador_en_archivo']);
+				$nombre_prestador_a_escribir=trim($reporte_pretador_actual['nombre_prestador']);
+				$codigo_departamento_a_escribir=trim($reporte_pretador_actual['codigo_departamento']);
+				$codigo_municipio_a_escribir=trim($reporte_pretador_actual['codigo_municipio']);
+				$cantidad_lineas_en_archivo_a_escribir=intval(trim($reporte_pretador_actual['cantidad_lineas_en_archivo']) );
+				$cantidad_lineas_correctas_en_archivo_a_escribir=intval(trim($reporte_pretador_actual['cantidad_lineas_correctas_en_archivo']) );
+				$lineas_incorrectas_a_escribir=	$cantidad_lineas_en_archivo_a_escribir-$cantidad_lineas_correctas_en_archivo_a_escribir;
+				$indicador_de_registros_correctos=0;
+				if($cantidad_lineas_en_archivo_a_escribir>0)
+				{
+					$indicador_de_registros_correctos= $cantidad_lineas_correctas_en_archivo_a_escribir/$cantidad_lineas_en_archivo_a_escribir;
+					$indicador_de_registros_correctos=round(floatval($indicador_de_registros_correctos),2,PHP_ROUND_HALF_UP);
+				}//fin if
+
+				$cantidad_inconsistencias_para_ips_a_escribir="";
+				if(isset($reporte_pretador_actual['cantidad_inconsistencias_para_ips']) )
+				{
+					$cantidad_inconsistencias_para_ips_a_escribir=intval(trim($reporte_pretador_actual['cantidad_inconsistencias_para_ips']) );
+				}//fin if
+
+				if(strlen($codigo_habilitacion_a_escribir)==11 &&
+					       (substr($codigo_habilitacion_a_escribir,0,1)=="5" || substr($codigo_habilitacion_a_escribir,0,1)=="8")
+			       )
+				{
+				    $codigo_habilitacion_a_escribir="0".$codigo_habilitacion_a_escribir;
+				}
+				else if(strlen($codigo_habilitacion_a_escribir)==10)
+				{
+				    $codigo_habilitacion_a_escribir=$codigo_habilitacion_a_escribir."01";
+				}
+				else if(strlen($codigo_habilitacion_a_escribir)==9 
+					&& (substr($codigo_habilitacion_a_escribir,0,1)=="5" || substr($codigo_habilitacion_a_escribir,0,1)=="8")
+				)
+				{
+				    $codigo_habilitacion_a_escribir="0".$codigo_habilitacion_a_escribir."01";
+				}//fin else 
+
+		    	while(strlen($codigo_habilitacion_a_escribir)<12 
+					&& $codigo_habilitacion_a_escribir!="999"
+				)
+				{
+					//incrementa cuando es menor de 12
+					$codigo_habilitacion_a_escribir="0".$codigo_habilitacion_a_escribir;
+				}//fin while
+
+				$linea_reporte="";
+				$linea_reporte.="=\"$nit_prestador_a_escribir\";=\"$codigo_habilitacion_a_escribir\";=\"$nombre_prestador_a_escribir\";=\"$codigo_departamento_a_escribir\";=\"$codigo_municipio_a_escribir\";$cantidad_lineas_en_archivo_a_escribir;$lineas_incorrectas_a_escribir;$cantidad_lineas_correctas_en_archivo_a_escribir;=\"$indicador_de_registros_correctos %\";$cantidad_inconsistencias_para_ips_a_escribir";
+				fwrite($file_archivo_reporte_registros_por_ips, "\n".$linea_reporte);
+
+			}//fin foreach
+			fclose($file_archivo_reporte_registros_por_ips);
+		}//fin if numero registros mayor de cero
+
+		//FIN PARTE ARCHIVO REPORTE POR IPS(aunque para esta norma de alto costo seria solo el resultado de la validacion del archivo)
+
+		//PARTE ESCRIBE ARCHIVO ERRORES CAMPO INDIVIDUAL		
+		$archivo_reporte_errores_por_campo = fopen($ruta_archivo_reporte_calificacion_campos, "a") or die("fallo la creacion del archivo modo:w reporte errores por campo ");
+
+		$lineas_totales_archivo_temp=intval($lineas_del_archivo);
+		//lineas_del_archivo
+
+		$fecha_terminacion="";
+		$hora_terminacion="";
+
+		$fecha_terminacion = "".date('Y-m-d');
+	    $hora_terminacion = "".date('H:i:s');
+
+		$parte_inicial_reporte_evaluacion_resultado_validacion="";
+		$parte_inicial_reporte_evaluacion_resultado_validacion.="SISTEMA DE INFORMACION GIOSS\n";
+		$parte_inicial_reporte_evaluacion_resultado_validacion.="Evaluacion Resultados Por Campo Proceso validacion\n";
+		$parte_inicial_reporte_evaluacion_resultado_validacion.="Resolucion 1393\n";
+		$parte_inicial_reporte_evaluacion_resultado_validacion.="Numero de Registros Validados ( ".$lineas_totales_archivo_temp." ) \n";
+		$parte_inicial_reporte_evaluacion_resultado_validacion.="\"$cod_eapb\";\"Periodo ".$codigo_perido_para_archivo."\"\n\"Fecha Y Hora Inicio Validacion $fecha_actual $tiempo_actual\"\n\"Fecha Y Hora Fin Validacion $fecha_terminacion $hora_terminacion\"";
+		fwrite($archivo_reporte_errores_por_campo, $parte_inicial_reporte_evaluacion_resultado_validacion);
+
+
+
+		$titulos_conteo="\"NUMERO CAMPO\";\"DESCRIPCION CAMPO\";\"NUMERO DE REGISTROS CORRECTOS\";\"NUMERO DE REGISTROS INCONSISTENTES\";\"PORCENTAJE DE REGISTROS INCONSISTENTES\";\"0105 Inconsistencias Calidad\";\"0104 Inconsistencias Campo En Blanco\";\"0103 Inconsistencias Valor Permitido\";\"0102 Inconsistencias Formato\";\"0101 Inconsistencias Longitud\";\"TOTAL INCONSISTENCIAS\"";
+		
+		fwrite($archivo_reporte_errores_por_campo, "\n".$titulos_conteo);
+		foreach($array_contador_total_errores_obligatorios_campo as $key=>$error_campo_actual)
+		{
+			$nombre_campo="";
+			$numero_orden_actual=999;
+			if(isset($array_numero_orden[$key])==true)
+			{
+				$numero_orden_actual=$array_numero_orden[$key];
+			}//fin if
+			
+			if(isset($array_descripcion_nombre_campo_bd[$numero_orden_actual])==true)
+			{
+				$nombre_campo=$array_descripcion_nombre_campo_bd[$numero_orden_actual];
+			}
+			else
+			{
+				$nombre_campo="Error Relacionado Con Estructura Del Registro";
+			}//fin else if
+
+			$cantidad_inconsistencias_0105=intval($array_contador_total_inconsistencias_campo_0105[$key]);
+			$cantidad_inconsistencias_0104=intval($array_contador_total_inconsistencias_campo_0104[$key]);
+			$cantidad_inconsistencias_0103=intval($array_contador_total_inconsistencias_campo_0103[$key]);
+			$cantidad_inconsistencias_0102=intval($array_contador_total_inconsistencias_campo_0102[$key]);
+			$cantidad_inconsistencias_0101=intval($array_contador_total_inconsistencias_campo_0101[$key]);
+
+			$TOTAL_INCONSISTENCIAS=$cantidad_inconsistencias_0105+$cantidad_inconsistencias_0104+$cantidad_inconsistencias_0103+$cantidad_inconsistencias_0102+$cantidad_inconsistencias_0101;
+
+			$ratio=0;
+			if($lineas_totales_archivo_temp>0)
+			{
+				$ratio=round( ((intval($error_campo_actual)*100)/$lineas_totales_archivo_temp),2,PHP_ROUND_HALF_UP );
+			}//fin if atrapa division por cero
+
+			$string_resultado_campo_actual="";
+			$string_resultado_campo_actual.="=\"".$key."\"";
+			$string_resultado_campo_actual.=";=\"".$nombre_campo."\"";
+			$string_resultado_campo_actual.=";".($lineas_totales_archivo_temp-$error_campo_actual)."";
+			$string_resultado_campo_actual.=";".$error_campo_actual."";
+			$string_resultado_campo_actual.=";=\"".$ratio." % \"";
+			$string_resultado_campo_actual.=";".$cantidad_inconsistencias_0105."";
+			$string_resultado_campo_actual.=";".$cantidad_inconsistencias_0104."";
+			$string_resultado_campo_actual.=";".$cantidad_inconsistencias_0103."";
+			$string_resultado_campo_actual.=";".$cantidad_inconsistencias_0102."";
+			$string_resultado_campo_actual.=";".$cantidad_inconsistencias_0101."";
+			$string_resultado_campo_actual.=";".$TOTAL_INCONSISTENCIAS."";
+			fwrite($archivo_reporte_errores_por_campo, "\n".$string_resultado_campo_actual);
+		}//fin foreach
+		fclose($archivo_reporte_errores_por_campo);
+		//echo print_r($array_contador_total_errores_obligatorios_campo,true);
+		//FIN PARTE ESCRIBE ARCHIVO ERRORES CAMPO INDIVIDUAL
 		
 		//CREAR ZIP
 		$archivos_a_comprimir=array();
 		$archivos_a_comprimir[0]=$ruta_archivo_inconsistencias_ARTE;
+		$archivos_a_comprimir[]=$ruta_registros_malos;
+		$archivos_a_comprimir[]=$ruta_registros_buenos;
+		$archivos_a_comprimir[]=$ruta_inconsistencias_registros_malos;
+		$archivos_a_comprimir[]=$ruta_registros_que_tienen_afiliados;
+		$archivos_a_comprimir[]=$ruta_registros_que_no_tienen_afiliados;
+		$archivos_a_comprimir[]=$ruta_archivo_afiliado_existe_cambio_sexo;
+		$archivos_a_comprimir[]=$ruta_archivo_afiliado_existe_cambio_fecha_nacimiento;
+		$archivos_a_comprimir[]=$ruta_archivo_reporte_calificacion_campos;
+		$archivos_a_comprimir[]=$ruta_archivo_reporte_registros_por_ips;
 		$ruta_zip=$rutaTemporal."inconsistencias1393ARTE_".$cod_prestador."_".$fecha_actual."_".$tiempo_actual_string.'.zip';
 		if(file_exists($ruta_zip))
 		{
@@ -2293,7 +3886,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 				$mail->From = "sistemagioss@gmail.com";
 				$mail->FromName = "GIOSS";
 				$mail->Subject = "Inconsistencias ARTE 1393 ";
-				$mail->AltBody = "Cordial saludo,\n El sistema ha determinado que su archivo(s)  contiene diversas inconsistencias,\n las cuales pueden ser: campos con informaciï¿½n inconsistente, usuarios duplicados ï¿½ el uso de caracteres especiales(acentos,'ï¿½' o ï¿½,ï¿½, ï¿½, ï¿½, ï¿½)";
+				$mail->AltBody = "Cordial saludo,\n El sistema ha determinado que su archivo(s)  contiene diversas inconsistencias,\n las cuales pueden ser: campos con información inconsistente, usuarios duplicados ó el uso de caracteres especiales(acentos,'Ñ' o É,Ý, ¥, ¤, ´)";
 		    
 				$mail->MsgHTML("Cordial saludo,\n El sistema ha determinado que su archivo(s)  contiene diversos errores, con el numero de secuencia: $numero_secuencia_actual.<strong>GIOSS</strong>.");
 					    $mail->AddAttachment($ruta_zip);
@@ -2344,13 +3937,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["1393
 else if(isset($_POST["accion"]) && $_POST["accion"]=="validar" )
 {
 	$ultimo_error="";
-	if(!( isset($_FILES["1393_ARTE_file"])))
+	if(!( isset($_FILES["1393_ARTRITIS_file"])))
 	{
 		$ultimo_error="El archivo no se cargo ";
 	}
-	else if(!($_FILES["1393_ARTE_file"]["error"]==0))
+	else if(!($_FILES["1393_ARTRITIS_file"]["error"]==0))
 	{
-		$ultimo_error="Error con el archivo de tipo ".$_FILES["1393_ARTE_file"]["error"];
+		$ultimo_error="Error con el archivo de tipo ".$_FILES["1393_ARTRITIS_file"]["error"];
 	}
 	if(connection_aborted()==false)
 	{
