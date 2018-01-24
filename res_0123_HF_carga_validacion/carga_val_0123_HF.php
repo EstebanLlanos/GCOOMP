@@ -1386,7 +1386,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	{
 		unlink($ruta_archivo_inconsistencias_HF);
 	}
-	$file_inconsistencias_r4725_HF = fopen($ruta_archivo_inconsistencias_HF, "w") or die("fallo la creacion del archivo");
+	$file_inconsistencias_r0123_HF = fopen($ruta_archivo_inconsistencias_HF, "w") or die("fallo la creacion del archivo");
 	$titulos="";
 	$titulos.="consecutivo,nombre archivo,codigo tipo inconsistencia,tipo inconsistencia,codigo grupo inconsistencia,grupo inconsistencia,";
 	$titulos.="codigo detalle inconsistencia,detalle inconsistencia, numero de linea, numero de campo, tipo de identificacion, numero de identificacion";
@@ -1395,7 +1395,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $error_titulos_procesado_csv_excel="";
     $error_titulos_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_titulos_inconsistencias_para_bd)."\"";
     //FIN PARTE REESCRIBE TITULOS INCONSISTENCIAS PARA CSV SIMPLE DE ABRIR
-	fwrite($file_inconsistencias_r4725_HF,$error_titulos_procesado_csv_excel."\n");
+	fwrite($file_inconsistencias_r0123_HF,$error_titulos_procesado_csv_excel."\n");
 	//FIN CREA ARCHIVO INCONSISTENCIAS TOTALES
 
 	//CREACION ARCHIVO PARA REGISTROS QUE TIENEN AFILIADO EN BASE DE DATOS
@@ -2829,7 +2829,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						    $error_procesado_csv_excel="";
 						    $error_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_inconsistencias_para_bd)."\"";
 						    //FIN PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR						    
-							fwrite($file_inconsistencias_r4725_HF, $error_procesado_csv_excel."\n");
+							fwrite($file_inconsistencias_r0123_HF, $error_procesado_csv_excel."\n");
 
 							//$file_archivo_incons_registros_malos
 							if($array_resultados_validacion["error"]==true)
@@ -3150,7 +3150,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				    $error_procesado_csv_excel.="=\"".implode("\";=\"", $columnas_inconsistencias_para_bd)."\"";
 				    //FIN PARTE REESCRIBE PARA CSV SIMPLE DE ABRIR			
 
-				    fwrite($file_inconsistencias_r4725_HF, $error_procesado_csv_excel."\n");
+				    fwrite($file_inconsistencias_r0123_HF, $error_procesado_csv_excel."\n");
 					
 					//SUBIDA DE INCONSISTENCIAS A LA BASE DE DATOS
 					if(count($columnas_inconsistencias_para_bd)==10)
@@ -3215,7 +3215,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		//fin parte valida archivo
 		
 		//cierra el archivo donde se escriben las inconsistencias
-		fclose($file_inconsistencias_r4725_HF);
+		fclose($file_inconsistencias_r0123_HF);
 		fclose($file_archivo_registros_buenos);
 		fclose($file_archivo_registros_malos);
 		fclose($file_archivo_incons_registros_malos);
