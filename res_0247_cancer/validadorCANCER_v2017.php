@@ -2894,6 +2894,7 @@ function validar_CANCER($campos,
 			if(trim($campos[$numero_campo])=="99"
 			   && $campo18_es_fecha_calendario<0
 			   && $fecha_c18_mayor_igual_2015<=0
+			   && $fecha_c18_mayor_igual_2015!==false
 			   )
 			{
 				if($errores_campos!="")
