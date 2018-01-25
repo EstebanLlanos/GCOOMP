@@ -2443,7 +2443,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				if(
@@ -2466,7 +2466,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}//fin if
 			}
 			else
@@ -2967,7 +2967,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -3674,7 +3674,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -3866,7 +3866,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -4109,7 +4109,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -5275,7 +5275,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -6064,7 +6064,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -7718,7 +7718,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -8187,7 +8187,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				if(
@@ -8210,7 +8210,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}//fin if
 			}
 			else
@@ -8584,7 +8584,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -8934,7 +8934,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -18318,7 +18318,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 
 				
@@ -18687,7 +18687,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -26272,7 +26272,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -26647,7 +26647,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -28406,7 +28406,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -30213,7 +30213,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -31670,7 +31670,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
@@ -36022,7 +36022,7 @@ function validar_CANCER($campos,
 					$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",02,".$array_tipo_validacion["02"].",0205,".$array_grupo_validacion["0205"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
 					$consecutivo_errores++;
 					
-					$hubo_errores=true;
+					
 				}
 			}
 			else
