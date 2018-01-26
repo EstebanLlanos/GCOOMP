@@ -104,6 +104,9 @@
 						<input type="radio" name="tipo_archivo" id="archivo_1393" value="1393" class='campo_azul' /> AR - Artritis Reumatoide (AR) 1393
 						</td>
 						</tr>
+
+
+						
 						
 						
 						
@@ -115,6 +118,16 @@
                         <b>(el algoritmo de subida se encargara de poner los codigos dentro con la descripci&oacuten)</b>. <br>
 						codigo_tipo_inconsistencia, codigo_grupo_inconsistencia, codigo_detalle_inconsistencia, descripcion inconsistencia
 						</p>
+						</td>
+						</tr>
+
+						<tr>
+						<td style="text-align:left;">
+						<select id='year_version' name='year_version' class='campo_azul'>
+							<option value='0000'>Neutral</option>
+							<option value='2017'>2017</option>
+							<option value='2018'>2018</option>
+						</select>
 						</td>
 						</tr>
 						

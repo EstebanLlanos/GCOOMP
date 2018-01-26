@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2015-06-25 15:56:44
+<?php /* Smarty version Smarty-3.1.17, created on 2018-01-26 11:05:04
          compiled from "act_detalle_inconsistencias.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:23404537e5ff2878304-49702507%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '61ea92db5d429384098a4edb1a2e54917b4e1764' => 
     array (
       0 => 'act_detalle_inconsistencias.html.tpl',
-      1 => 1432056938,
+      1 => 1516982700,
       2 => 'file',
     ),
   ),
@@ -133,6 +133,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<input type="radio" name="tipo_archivo" id="archivo_1393" value="1393" class='campo_azul' /> AR - Artritis Reumatoide (AR) 1393
 						</td>
 						</tr>
+
+
+						
 						
 						
 						
@@ -144,6 +147,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         <b>(el algoritmo de subida se encargara de poner los codigos dentro con la descripci&oacuten)</b>. <br>
 						codigo_tipo_inconsistencia, codigo_grupo_inconsistencia, codigo_detalle_inconsistencia, descripcion inconsistencia
 						</p>
+						</td>
+						</tr>
+
+						<tr>
+						<td style="text-align:left;">
+						<select id='year_version' name='year_version' class='campo_azul'>
+							<option value='0000'>Neutral</option>
+							<option value='2017'>2017</option>
+							<option value='2018'>2018</option>
+						</select>
 						</td>
 						</tr>
 						

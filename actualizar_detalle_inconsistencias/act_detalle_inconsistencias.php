@@ -130,6 +130,8 @@ if(isset($_FILES["archivo_info"])
 {
 	$rutaTemporal = '../TEMPORALES/';
 	$mensaje_div="";
+
+	$year_version=$_POST['year_version'];
 	
 	//parte preparacion datos info tabla
 	$tipo_archivo=$_POST["tipo_archivo"];
@@ -148,9 +150,17 @@ if(isset($_FILES["archivo_info"])
 	{
 		$nombre_tabla="gioss_detalle_inconsistencia_r4725_sida_vih";
 	}
-	if($tipo_archivo=="0247")
+	if($tipo_archivo=="0247" && $year_version=="0000")
 	{
 		$nombre_tabla="gioss_detalle_inconsistencia_0247_CANCER";
+	}
+	if($tipo_archivo=="0247" && $year_version=="2017")
+	{
+		$nombre_tabla="gioss_detalle_inconsistencia_0247_cancer_v2017";
+	}
+	if($tipo_archivo=="0247" && $year_version=="2018")
+	{
+		$nombre_tabla="gioss_detalle_inconsistencia_0247_cancer_v2018";
 	}
 	if($tipo_archivo=="2463")
 	{
