@@ -1318,8 +1318,52 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 	}//fin else
 	$array_ruta_criterios_validacion=explode( "/", $ruta_validacion_version);
 	$nombre_archivo_criterios_seleccionado=$array_ruta_criterios_validacion[count($array_ruta_criterios_validacion)-1];
-	echo "Version Criterios validacion a usar ".$nombre_archivo_criterios_seleccionado;
+	echo "Version Criterios validacion a usar ".$nombre_archivo_criterios_seleccionado."<br>";
 	//FIN SELECTOR VERSION
+
+	//PARTE SELECCION DETALLES INCONSISTENCIA VERSION	
+	try
+	{
+		$array_fecha_corte=explode("-", $fecha_de_corte);
+		$year_corte_para_version_detalles=trim($array_fecha_corte[0]);
+		$version_seleccionada=0;
+		$version_minima_detalles=0;
+		$version_maxima_detalles=0;
+		$array_versiones_detalles=array();
+		$array_versiones_detalles[]=2017;
+		$array_versiones_detalles[]=2018;
+		$version_minima_detalles=min($array_versiones_detalles);
+		$version_maxima_detalles=max($array_versiones_detalles);
+
+		if($version_minima_detalles>=$year_corte_para_version_detalles)
+		{
+			$version_seleccionada=$version_minima_detalles;
+		}//fin if
+		else if($version_maxima_detalles<=$year_corte_para_version_detalles)
+		{
+			$version_seleccionada=$version_maxima_detalles;
+		}//fin else
+
+		echo "Version Detalles Seleccionada ".$version_seleccionada."<br>";
+
+		$query_versionada_detalle_validacion="SELECT * FROM gioss_detalle_inconsistencia_0247_cancer_v".$version_seleccionada.";";
+		$resultado_query_versionada_detalle_validacion=$coneccionBD->consultar2_no_crea_cierra($query_versionada_detalle_validacion);
+		if(count($resultado_query_versionada_detalle_validacion)>0 && is_array($resultado_query_versionada_detalle_validacion)==true)
+		{
+			$array_detalle_validacion=array();
+			foreach($resultado_query_versionada_detalle_validacion as $detalle_validacion)
+			{
+				$array_detalle_validacion[$detalle_validacion["codigo_detalle_inconsistencia"]]=$detalle_validacion["descripcion_detalle_inconsistencia"];
+			}//fin foreach
+		}//fin if
+	}//fin try
+	catch(Exception $e)
+	{
+		echo "<span style='color:white;'>excepcion al consultar detalles  de inconsistencias versionadas</span>";
+	}//fin catch
+	//PARTE SELECCION DETALLES INCONSISTENCIA VERSION
+
+	
 	
 	//archivo donde se separa los que no estan en ciex del campo 17
 	
