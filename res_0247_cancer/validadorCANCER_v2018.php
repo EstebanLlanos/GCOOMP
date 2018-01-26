@@ -4704,7 +4704,13 @@ function validar_CANCER($campos,
 			
 		}//fin if campo no esta en blanoc
 	}//if si existe campo
-	
+
+	//CONSULTA EN TABLA DE CODIGO HEMOLINFATICO
+	$campo_n17=trim($campos[16]);
+	$consulta_hemolinfatico="";
+	$consulta_hemolinfatico.="SELECT * FROM gioss_ca_hematolinfatico WHERE codigo='".$campo_n17."' ; ";
+	$resultado_hemolinfatico=$coneccionBD->consultar2_no_crea_cierra($consulta_hemolinfatico);
+	//FIN CONSULTA EN TABLA DE CODIGO HEMOLINFATICO	
 	
 	//numero_orden_desde_cero 26 numero orden 27 numero campo 27
 	$numero_campo=26;
@@ -4842,6 +4848,24 @@ function validar_CANCER($campos,
 			}//fin if
 			
 			
+
+			if( (trim($campos[$numero_campo])=="98")
+			   && count($resultado_hemolinfatico)>0
+			   && is_array($resultado_hemolinfatico)
+			   )//fin if
+			{
+				if($errores_campos!="")
+				{
+					$errores_campos.="|";
+				}		
+				//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+				$var_numero_codigo="0105381";
+				$cadena_descripcion_inconsistencia=explode(";;",str_replace(",", " - ", $array_detalle_validacion[$var_numero_codigo]) )[1];
+				$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0105,".$array_grupo_validacion["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+				$consecutivo_errores++;
+				
+				$hubo_errores=true;
+			}//fin if
 
 		}//fin campo no esta en blanco
 	}//if si existe campo
@@ -5011,7 +5035,8 @@ function validar_CANCER($campos,
 			//FIN COMPARACION RANGOS CON CAMPO 17
 
 			if(trim($campos[$numero_campo])!="98"
-			   && $cumple_condicion_con_rangos_codigo_campo_17==true
+			   && count($resultado_hemolinfatico)>0
+			   && is_array($resultado_hemolinfatico)
 			   )
 			{
 				if($errores_campos!="")
@@ -5030,8 +5055,7 @@ function validar_CANCER($campos,
 			$campo_27=trim($campos[26]);
 			
 			if(trim($campos[$numero_campo])!="98"
-				&& ($campo_27=="98" || $campo_27=="20" )
-			   && $cumple_condicion_con_rangos_codigo_campo_17==false
+				&& ($campo_27=="20" || $campo_27=="98" )
 			   )
 			{
 				if($errores_campos!="")
@@ -5071,7 +5095,6 @@ function validar_CANCER($campos,
 
 			if(trim($campos[$numero_campo])=="98"
 				&& $campo_27!="98" && $campo_27!="20" 
-			   && $cumple_condicion_con_rangos_codigo_campo_17==false // cambio 28-04-2017
 			   )
 			{
 				if($errores_campos!="")
@@ -5296,7 +5319,9 @@ function validar_CANCER($campos,
 				$hubo_errores=true;
 			}
 			
+
 			$campo_n28=intval($campos[27]);
+			/*
 			if(trim($campos[$numero_campo])!="0"
 			   && ($cumple_condicion_2_con_rangos_codigo_campo_17==true)
 			   )
@@ -5313,11 +5338,13 @@ function validar_CANCER($campos,
 				
 				$hubo_errores=true;
 			}
+			*/
 			
 			
 
 			if( trim($campos[$numero_campo])!="98"
-			   && $cumple_condicion_con_rangos_codigo_campo_17==true
+			   && count($resultado_hemolinfatico)>0
+			   && is_array($resultado_hemolinfatico)
 			   )
 			{
 				
@@ -5336,7 +5363,8 @@ function validar_CANCER($campos,
 
 			$campo_n27=intval($campos[26]);
 			if( trim($campos[$numero_campo])=="98"
-			   && $cumple_condicion_con_rangos_codigo_campo_17==false
+			   && (count($resultado_hemolinfatico)==0
+			   || is_array($resultado_hemolinfatico)==false)
 			   )
 			{
 				
@@ -5354,7 +5382,28 @@ function validar_CANCER($campos,
 			}
 			
 			if( trim($campos[$numero_campo])=="98"
-			   && ($campo_n27!="20" && $campo_n27!="98" && $campo_n27!="99")
+				&& (
+					$campo_n27=="1"
+					|| $campo_n27=="2"
+					|| $campo_n27=="3"
+					|| $campo_n27=="4"
+					|| $campo_n27=="5"
+					|| $campo_n27=="6"
+					|| $campo_n27=="7"
+					|| $campo_n27=="8"
+					|| $campo_n27=="9"
+					|| $campo_n27=="10"
+					|| $campo_n27=="11"
+					|| $campo_n27=="12"
+					|| $campo_n27=="13"
+					|| $campo_n27=="14"
+					|| $campo_n27=="15"
+					|| $campo_n27=="16"
+					|| $campo_n27=="17"
+					|| $campo_n27=="18"
+					|| $campo_n27=="19"
+				)
+			   //&& ($campo_n27!="20" && $campo_n27!="98" && $campo_n27!="99")
 			   )
 			{
 				
@@ -5375,7 +5424,17 @@ function validar_CANCER($campos,
 			//se quito el 03-05-2017
 			$campo_n27=trim($campos[26]);
 			if( trim($campos[$numero_campo])!="98"
-			   && ( $campo_n27=="20" || $campo_n27=="98" || $campo_n27=="99" )
+			   && (
+					$campo_n27=="20"
+					|| $campo_n27=="21"
+					|| $campo_n27=="22"
+					|| $campo_n27=="23"
+					|| $campo_n27=="24"
+					|| $campo_n27=="25"
+					|| $campo_n27=="98"
+					|| $campo_n27=="99"
+				)
+			   //&& ( $campo_n27=="20" || $campo_n27=="98" || $campo_n27=="99" )
 			   )
 			{
 				
@@ -10194,14 +10253,6 @@ function validar_CANCER($campos,
 			
 		}//fin if campo no esta en blanco
 	}//if si existe campo
-
-	//CONSULTA EN TABLA DE CODIGO HEMOLINFATICO
-	$campo_n17=trim($campos[16]);
-	$consulta_hemolinfatico="";
-	$consulta_hemolinfatico.="SELECT * FROM gioss_ca_hematolinfatico WHERE codigo='".$campo_n17."' ; ";
-	$resultado_hemolinfatico=$coneccionBD->consultar2_no_crea_cierra($consulta_hemolinfatico);
-	//FIN CONSULTA EN TABLA DE CODIGO HEMOLINFATICO
-	
 	
 	//numero_orden_desde_cero 45 numero orden 46 numero campo 46 
 	$numero_campo=45;
