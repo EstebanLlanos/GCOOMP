@@ -1368,7 +1368,7 @@ function reparador_campo_obligatorio_CANCER(&$campos,$cod_eapb,$nlinea,&$consecu
 	{
 		if(trim($campos[$numero_campo])=="")
 	    {
-			$campos[$numero_campo]="97";
+			$campos[$numero_campo]="98";
 	    }
 	}//if si existe campo
 	
@@ -2895,6 +2895,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			$campos[$numero_campo]=strtoupper($campos[$numero_campo]);
 			
 			//valor permitido
+			/*
 			if( $campos[$numero_campo]!="RC" &&  $campos[$numero_campo]!="TI" &&  $campos[$numero_campo]!="CC" &&  $campos[$numero_campo]!="CE" &&  $campos[$numero_campo]!="PA" &&  $campos[$numero_campo]!="MS" &&  $campos[$numero_campo]!="AS" &&  $campos[$numero_campo]!="CD" &&  $campos[$numero_campo]!="SC" &&  $campos[$numero_campo]!="PE")
 			{
 				if($errores_campos!="")
@@ -2908,6 +2909,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 				
 				$hubo_errores=true;
 			}//fin if
+			*/
 		}//fin if no esta en blanco
 		
 	}//if si existe campo
@@ -2918,6 +2920,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	if(isset($campos[$numero_campo]))
 	{
 		//campo obligatorio
+		/*
 		if(trim($campos[$numero_campo])=="")
 		{
 			if($errores_campos!="")
@@ -2931,6 +2934,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			
 			$hubo_errores=true;
 		}//fin if 
+		*/
 		
 		if(true)
 		{
@@ -2949,6 +2953,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	if(isset($campos[$numero_campo]))
 	{
 		//campo obligatorio
+		/*
 		if(trim($campos[$numero_campo])=="")
 		{
 			if($errores_campos!="")
@@ -2962,6 +2967,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			
 			$hubo_errores=true;
 		}//fin if 
+		*/
 			
 		if(true)
 		{		
@@ -2982,6 +2988,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			$campos[$numero_campo]=strtoupper($campos[$numero_campo]);
 			
 			//valor permitido
+			/*
 			if( $campos[$numero_campo]!="M" &&  $campos[$numero_campo]!="F"  )
 			{
 				if($errores_campos!="")
@@ -2995,6 +3002,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 				
 				$hubo_errores=true;
 			}//fin if
+			*/
 		}//fin if no esta en blanco
 	}//if si existe campo
 	
@@ -3003,20 +3011,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$numero_campo=8;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if(trim($campos[$numero_campo])=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		if(true)
 		{
@@ -3045,6 +3040,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			$campos[$numero_campo]=strtoupper($campos[$numero_campo]);
 			
 			//valor permitido
+			/*
 			if( $campos[$numero_campo]!="C" && $campos[$numero_campo]!="S" && $campos[$numero_campo]!="P" && $campos[$numero_campo]!="E" && $campos[$numero_campo]!="N" && $campos[$numero_campo]!="O")
 			{
 				if($errores_campos!="")
@@ -3058,6 +3054,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 				
 				$hubo_errores=true;
 			}//fin if
+			*/
 		}//fin if no esta en blanco
 		
 	}//if si existe campo
@@ -3103,25 +3100,12 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$numero_campo=12;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if(trim($campos[$numero_campo])=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
+		
 		
 		if(true)
 		{	
 			//valor permitido
-			if( (intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>16) && (intval($campos[$numero_campo])<31 || intval($campos[$numero_campo])>39) && (intval($campos[$numero_campo])<50 || intval($campos[$numero_campo])>61) )
+			if( (intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>16) && (intval($campos[$numero_campo])<31 || intval($campos[$numero_campo])>39) && (intval($campos[$numero_campo])<50 || intval($campos[$numero_campo])>63) )
 			{
 				$campos[$numero_campo]="61";
 			}//fin if
@@ -3154,21 +3138,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	//numero_orden_desde_cero 14 numero orden 15 numero campo 15 
 	$numero_campo=14;
 	if(isset($campos[$numero_campo]))
-	{
-		//campo obligatorio
-		if(trim($campos[$numero_campo])=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...VR:".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+	{		
 		
 		if(!ctype_digit(str_replace(array(".",","),"",$campos[$numero_campo])))
 		{
@@ -3253,6 +3223,12 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		{
 		    $campos[$numero_campo]=$fecha_primer_dia_corte;
 		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1800-01-01";
+	    }//campo no esta en blanco
 	}//if si existe campo
 	
 	
@@ -3278,6 +3254,12 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		{
 		    $campos[$numero_campo]=$fecha_primer_dia_corte;
 		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1800-01-01";
+	    }//campo no esta en blanco
 		
 		
 	}//if si existe campo
@@ -3305,6 +3287,12 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		{
 		    $campos[$numero_campo]=$fecha_de_corte;
 		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1800-01-01";
+	    }//campo no esta en blanco
 		
 	}//if si existe campo
 	
@@ -3339,44 +3327,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="8"
 		&& trim($campos[$numero_campo])!="99"
 	    	);
-
-	    $campo_n22=trim($campos[21]);
 	    
-	    $campo_n128=trim($campos[205]);
-
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_mayor_igual_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
-	    
-	    if($valores_permitidos_para_condicion_actual
-		    && $campo_n22=="98"
-		    && $fecha_c18_fecha_calendario<0
-			   && $fecha_c18_mayor_igual_2015<=0
-		    )
-	    {
-			$campos[$numero_campo]="8";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-		    && $campo_n22!="98" 
-		    && $fecha_c18_fecha_calendario<0
-			   && $fecha_c18_mayor_igual_2015<=0
-		    )
-	    {
-			$campos[$numero_campo]="7";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-		    && $campo_n22=="98"
-		    && (
-		    	($fecha_c18_fecha_calendario<0
-			   && $fecha_c18_mayor_igual_2015>0)//es menor
-		    	|| $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-		    	)
-		    )
-	    {
-			$campos[$numero_campo]="99";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 			$campos[$numero_campo]="8";
 	    }
@@ -3395,8 +3347,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }	    
 	    
-	    $campo_ant_21=$campos[20];
+	    
 	    //valor permitido
+
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
@@ -3407,20 +3360,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if( 
-	    	$valores_permitidos_para_condicion_actual
-	       && $campo_ant_21=="7" 
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }//fin if
-	    else if( $valores_permitidos_para_condicion_actual
-	       && ($campo_ant_21!="7")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }//fin if
-	    else if( $valores_permitidos_para_condicion_actual
+	    if( $valores_permitidos_para_condicion_actual
 	       )
 	    {
 		    $campos[$numero_campo]="98";
@@ -3445,14 +3385,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
-
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_menor_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
 	    
 	    
-	    $campo_ant_21=$campos[20];
+	    
 	    
 	    if($es_fecha_calendario<0
 	       && $excede_fecha_de_corte<0
@@ -3460,27 +3395,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    {
 			$campos[$numero_campo]=$fecha_de_corte;
 	    }
-	    //no es fecha calendario
-	    else if($es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-	       && $campo_ant_21=="7"
-	       )
-	    {
-		$campos[$numero_campo]="1845-01-01";
-	    }
-	    if($es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-		&& $campo_ant_21!="7"
-		&& (
-			($fecha_c18_fecha_calendario<0 && $fecha_c18_menor_2015>0)
-	        	|| $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-	        	)
-		)
-	    {
-		    $campos[$numero_campo]="1800-01-01";
-	    }//campo no esta en blanco
 	    else if($es_fecha_calendario>0
 	       && $campos[$numero_campo]!="1800-01-01"
 	       && $campos[$numero_campo]!="1845-01-01"
@@ -3503,25 +3417,12 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin campo esta en blanco
 	    
-	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
-	    
+
 	    //valor permitido
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 	    
-	    $campo_ant_23=$campos[22];
-	    $campo_ant_20=$campos[19];
 	    
-	    $c23_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_23,"1900-12-31");
-	    //$fecha_primer_dia_corte=$year_fecha_de_corte."-01-01";
-	    $mes_fecha_de_corte=$fecha_de_corte_array[1];
-		$fecha_primer_dia_corte=$year_fecha_de_corte."-".$mes_fecha_de_corte."-01";
-	    $c23_es_mayor_primer_dia_fecha_corte=diferencia_dias_entre_fechas($campo_ant_23,$fecha_primer_dia_corte);
-	    $c23_es_menor_ultimo_dia_fecha_corte=diferencia_dias_entre_fechas($campo_ant_23,$fecha_de_corte);
-
-
-
-	    $c23_es_menor_a_2015=diferencia_dias_entre_fechas($campo_ant_23,"2015-01-01");
 	    
 	    if($es_fecha_calendario<0
 	       && $excede_fecha_de_corte<0
@@ -3529,25 +3430,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    {
 			$campos[$numero_campo]=$fecha_primer_dia_corte;
 	    }
-	    else if(
-	    	$es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-	       && $campo_ant_23=="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }//campo no esta en blanco
-	    else if(
-	    	$es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-		    && ( ($c23_es_fecha_calendario<0
-		    && $c23_es_menor_a_2015>0 ) || $campo_ant_23=="1800-01-01" )
-		    )
-	    {
-			$campos[$numero_campo]="1800-01-01";
-	    }//campo no esta en blanco
 	    else if($es_fecha_calendario>0
 	       && $campos[$numero_campo]!="1800-01-01"
 	       && $campos[$numero_campo]!="1845-01-01"
@@ -3564,13 +3446,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$numero_campo=24;
 	if(isset($campos[$numero_campo]))
 	{
-		$campo_ant_24=$campos[23];
-		$campo_ant_20=$campos[19];
-
-
-		$c24_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_24,"1900-12-31");
-	    $c24_es_menor_2015=diferencia_dias_entre_fechas($campo_ant_24,"2015-01-01");
-	    
+		
+		//valor permitido
 		
 		$consulta="";
 		$consulta.="SELECT * FROM gioss_cancer_ips_conformacion_dx WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
@@ -3580,19 +3457,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		   && $campos[$numero_campo]!="96"
 		   && $campos[$numero_campo]!="98"
 		   && $campos[$numero_campo]!="99"
-		   && $campo_ant_24=="1845-01-01"
-		   )
-		{
-		    $campos[$numero_campo]="98";
-		}
-		else if( (count($resultado)==0 || !is_array($resultado))
-		   && $campos[$numero_campo]!="96"
-		   && $campos[$numero_campo]!="98"
-		   && $campos[$numero_campo]!="99"
-		   && ( 
-		    	($c24_es_fecha_calendario<0 && $c24_es_menor_2015>0) 
-		    	|| $campo_ant_24=="1800-01-01"
-		    	)
 		   )
 		{
 		    $campos[$numero_campo]="99";
@@ -3615,16 +3479,11 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }//fin if campo no esta en blanoc
 	    
 	    //valor permitido
-	    $campo_ant_20=$campos[19];
+	    
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 
-
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_menor_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
 	    
 	    if($es_fecha_calendario<0
 	    && $excede_fecha_de_corte<0
@@ -3635,10 +3494,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //no es fecha calendario
 	    else if($es_fecha_calendario>0
 	       && $campos[$numero_campo]!="1800-01-01"
-	       && (
-		       	($fecha_c18_fecha_calendario<0 && $fecha_c18_menor_2015>0)
-			   || $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-			   )
 	       )
 	    {
 			$campos[$numero_campo]="1800-01-01";
@@ -3657,12 +3512,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    $campo_ant_24=$campos[23];
+	    
 	    
 	    //valor permitido
-	    
-	    //campo obligatorio
-	    $campo_n28=trim($campos[27]);
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -3689,19 +3541,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			     && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-		&& $campo_n28=="98" 
-		)
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if( $valores_permitidos_para_condicion_actual
-	       && $campo_n28!="98"
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 	    }
@@ -3722,91 +3562,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-		$campo_n17=trim($campos[16]);
-		
-		$string_numeros_comparar="";
-		$cumple_condicion_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_b_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_2_con_rangos_codigo_campo_17=false;
-		$empieza_por_d=false;
-		if(strlen($campo_n17)==4)
-		{
-		    $string_numeros_comparar=$campo_n17;
-		    $string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		    $string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		    
-		    $string_numeros_comparar_2=$campo_n17;
-		    $string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		    $string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		    
-		    $tiene_letra_principio=substr($campo_n17,0,1);
-		    
-		    $tiene_letra_final=substr($campo_n17,-1);
-		    
-		    if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="C"
-		       //&& $tiene_letra_final!="X"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar);
-				if(($numero_int>=810
-				   && $numero_int<=880)
-				   || ($numero_int>=900
-				   && $numero_int<=959)
-				   )
-				{
-				    $cumple_condicion_con_rangos_codigo_campo_17=true;
-				}
-
-				if(($numero_int>=0
-				   && $numero_int<=798)
-				   || ($numero_int>=881
-				   && $numero_int<=889)
-				   || ($numero_int>=960
-				   && $numero_int<=969)
-				   )
-				{
-				    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    if(ctype_digit($string_numeros_comparar_2)
-		       && $tiene_letra_principio=="C"
-		       && $tiene_letra_final=="X"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar_2);
-				if(($numero_int==80
-				   || $numero_int==97)
-				   )
-				{
-				    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    else if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="D"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar);
-				if(($numero_int>=0
-				    && $numero_int<=99)
-				    )
-				{
-				    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y d al principio
-		    
-		    if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		    {
-				$empieza_por_d=true;
-		    }
-		}//fin condicion rangos campo 17 mira longitud 4 caracteres
-		//FIN COMPARACION RANGOS CON CAMPO 17
-	    
-	    //campo obligatorio
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -3817,31 +3572,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="99"
 	    	);
 
-	    $campo_27=trim($campos[26]);
-	    
-	    //campo obligatorio
-
-	    if($valores_permitidos_para_condicion_actual
-	    	&&	$cumple_condicion_con_rangos_codigo_campo_17==true
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }	    
-	    else if($valores_permitidos_para_condicion_actual
-	    	&& ($campo_n27=="20" || $campo_n27=="98"  )
-	       && $cumple_condicion_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-	    	 && ($campo_n27!="20" && $campo_n27!="98"  )
-	    	 && $cumple_condicion_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 	    }
@@ -3861,102 +3592,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    $campo_ant_28=$campos[27];
 	    
 	    //valor permitido
 	    
-	     //COMPARACION RANGOS CON CAMPO 17
-		$campo_n17=trim($campos[16]);
-		
-		$string_numeros_comparar="";
-		$cumple_condicion_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_b_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_2_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_con_rangos_d_codigo_campo_17=false;
-		$empieza_por_d=false;
-		if(strlen($campo_n17)==4)
-		{
-		    $string_numeros_comparar=$campo_n17;
-		    $string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		    $string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		    
-		    $string_numeros_comparar_2=$campo_n17;
-		    $string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		    $string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		    
-		    $tiene_letra_principio=substr($campo_n17,0,1);
-		    
-		    $tiene_letra_final=substr($campo_n17,-1);
-		    
-		    if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="C"
-		       //&& $tiene_letra_final!="X"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar);
-				if(($numero_int>=810
-				   && $numero_int<=880)
-				   || ($numero_int>=900
-				   && $numero_int<=959)
-				   )
-				{
-				    $cumple_condicion_con_rangos_codigo_campo_17=true;
-				}
-
-				if(($numero_int>=0
-				   && $numero_int<=798)
-				   || ($numero_int>=881
-				   && $numero_int<=889)
-				   || ($numero_int>=960
-				   && $numero_int<=969)
-				   )
-				{
-				    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    if(ctype_digit($string_numeros_comparar_2)
-		       && $tiene_letra_principio=="C"
-		       && $tiene_letra_final=="X"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar_2);
-				if(($numero_int==80
-				   || $numero_int==97)
-				   )
-				{
-				    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    else if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="D"
-		       )
-		    {
-				$numero_int=intval($string_numeros_comparar);
-				if(($numero_int>=0
-				    && $numero_int<=99)
-				    )
-				{
-				    $cumple_condicion_2_con_rangos_codigo_campo_17=true;
-				    $cumple_condicion_con_rangos_d_codigo_campo_17=true;
-				}
-			
-		    }// es digito y d al principio
-		    
-		    if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		    {
-				$empieza_por_d=true;
-		    }
-		}//fin condicion rangos campo 17 mira longitud 4 caracteres
-		//FIN COMPARACION RANGOS CON CAMPO 17
-
-		$campo_27=trim($campos[26]);
-
-
-	    
-	    $campo_ant_28=$campos[27];
-
 	    $valores_permitidos_para_condicion_actual=
 	    (
 	    	trim($campos[$numero_campo])!="0"
@@ -3992,34 +3630,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 
 
 	    
-	    $campo_ant_28=$campos[27];
-	    $campo_n27=trim($campos[26]);
-	    if($valores_permitidos_para_condicion_actual 
-	    	&& ($cumple_condicion_con_rangos_codigo_campo_17==true)
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if este campo no esta en blanco
-	    else if($valores_permitidos_para_condicion_actual 
-	    	 && ($cumple_condicion_con_rangos_d_codigo_campo_17==true)	   
-		    )
-	    {
-	    	//c4
-		    $campos[$numero_campo]="0";
-	    }
-	    else if($valores_permitidos_para_condicion_actual 
-	    	&& ($cumple_condicion_con_rangos_codigo_campo_17==false)
-	    	&& ($cumple_condicion_con_rangos_d_codigo_campo_17==false)
-
-	       )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="99";
-		    
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 		    
@@ -4042,18 +3653,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }//fin este campo no esta en blanco
 	    
 	    //valor permitido
-	    $campo_ant_20=$campos[19];
-	    
-	    $campo_ant_28=$campos[27];
 
-	    $campo_n29=trim($campos[28]);
-
-	    //campo obligatorio
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_menor_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
-	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 	    
@@ -4062,24 +3662,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    )
 	    {
 			$campos[$numero_campo]=$fecha_de_corte;
-	    }
-	    else if($es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-	       && $campo_n29=="98"
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-	       && $campos[$numero_campo]!="1800-01-01"
-	       && $campos[$numero_campo]!="1845-01-01"
-	       && $campo_n29!="98"
-	       && ( ($fecha_c18_fecha_calendario<0 && $fecha_c18_menor_2015>=0)
-		   || $fecha_campo_18_fecha_diagnostico=="1800-01-01")
-	       )
-	    {
-		    $campos[$numero_campo]="1800-01-01";
 	    }
 	    else if($es_fecha_calendario>0
 	       && $campos[$numero_campo]!="1800-01-01"
@@ -4103,61 +3685,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		$campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
-	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_2_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=500
-		       && $numero_int<=509 && $numero_int!=507)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int==50
-				   || $numero_int==51
-				   || $numero_int==57
-				   || $numero_int==59
-				   )
-			)
-		    {
-			$cumple_condicion_2_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y d al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
+	    //valor permitido
 	    
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -4167,51 +3695,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="99"
 	    	);
 	    
-	    $campo_n32=trim($campos[31]);
-			
-	    $c32_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n32,"1900-12-31");
-	    //campo obligatorio
-	    $campo_n33=trim($campos[32]);
-	    
-	    if($valores_permitidos_para_condicion_actual        
-		&& $cumple_condicion_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual 	       
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==true
-	       )//fin condicion if
-	    {
-		    $campos[$numero_campo]="97";
-	    }
-	    else if($valores_permitidos_para_condicion_actual 	       
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true)
-		&& $campo_n33=="98"
-	       )
-	    {
-		    $campos[$numero_campo]="2";
-	    }
-	    else if($valores_permitidos_para_condicion_actual 	       
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true)
-		&& (
-			$campo_n33=="1"
-			|| $campo_n33=="2"
-			|| $campo_n33=="3"
-			)
-	     )//fin condicion if
-	    {
-		    $campos[$numero_campo]="1";
-	    }
-	    else if($valores_permitidos_para_condicion_actual 	       
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true)
-		&& $campo_n33=="99"
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }	    
-	    else if($valores_permitidos_para_condicion_actual )
+	    if($valores_permitidos_para_condicion_actual )
 	    {
 		    $campos[$numero_campo]="98";
 	    }//fin 
@@ -4233,76 +3717,13 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin este campo no esta en blanco
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
-	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_2_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=500
-		       && $numero_int<=509 && $numero_int!=507)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int==50
-				   || $numero_int==51
-				   || $numero_int==57
-				   || $numero_int==59
-				   )
-			)
-		    {
-			$cumple_condicion_2_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y d al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
-	    
-	    
-	    $campo_ant_31=trim($campos[30]);
+	    //valor permitido
 	    
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 
 
-
-	    //campo obligatorio
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_menor_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
 	    
 	    //campo obligatorio
 	    /*
@@ -4314,50 +3735,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }	    
 	    else
 	    */
-	    $campo_ant_33=trim($campos[32]);
 	    if($es_fecha_calendario>0
-	       && trim($campos[$numero_campo])!="1800-01-01"
-	       && trim($campos[$numero_campo])!="1840-01-01"
-	       && trim($campos[$numero_campo])!="1845-01-01"  	       
-		&& $cumple_condicion_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-	       && trim($campos[$numero_campo])!="1800-01-01"
-	       && trim($campos[$numero_campo])!="1840-01-01"
-	       && trim($campos[$numero_campo])!="1845-01-01"    
-		&& ($campo_ant_33=="98")
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true
-			|| $cumple_condicion_2_con_rangos_codigo_campo_17==true
-			)
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-	       && trim($campos[$numero_campo])!="1800-01-01"
-	       && trim($campos[$numero_campo])!="1840-01-01"
-	       && trim($campos[$numero_campo])!="1845-01-01"     
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==true
-			
-	      )//fin condicion
-	    {
-		    $campos[$numero_campo]="1840-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-	       && trim($campos[$numero_campo])!="1800-01-01"
-	       && trim($campos[$numero_campo])!="1840-01-01"
-	       && trim($campos[$numero_campo])!="1845-01-01"    
-		&& ($campo_ant_33!="97" && $campo_ant_33!="99")
-		&& $cumple_condicion_con_rangos_codigo_campo_17==true
-	       )
-	    {
-		    $campos[$numero_campo]="1800-01-01";
-	    }	    
-	    else if($es_fecha_calendario>0
 	       && trim($campos[$numero_campo])!="1800-01-01"
 	       && trim($campos[$numero_campo])!="1840-01-01"
 	       && trim($campos[$numero_campo])!="1845-01-01" )
@@ -4381,65 +3759,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 			
 	    //valor permitido
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
 	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_2_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=500
-		       && $numero_int<=509 && $numero_int!=507)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int==50
-				   || $numero_int==51
-				   || $numero_int==57
-				   || $numero_int==59
-				   )
-			)
-		    {
-			$cumple_condicion_2_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y d al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
-	    
-	    $campo_n32=intval($campos[31]);
-	    
-	    $campo_n31=trim($campos[30]);
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -4450,38 +3770,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99" 
 	    	);
 			
-	    //campo obligatorio
-	    $campo_n32=trim($campos[31]);
-		$campo_32_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n32,"1900-12-31");
-
-	    if($valores_permitidos_para_condicion_actual	       
-		&& $cumple_condicion_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual   
-		&& $cumple_condicion_con_rangos_codigo_campo_17==true
-		&& ($campo_n32=="1845-01-01")
-       	)
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual	       
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==true
-	       )
-	    {
-		    $campos[$numero_campo]="97";
-	    }
-	    else if($valores_permitidos_para_condicion_actual   
-		&& $cumple_condicion_con_rangos_codigo_campo_17==true
-		&& ($campo_n32=="1800-01-01" || $campo_32_es_fecha_calendario<0)
-       	)
-	    {
-		    $campos[$numero_campo]="97";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 	    }
@@ -4503,78 +3792,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
 	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_b_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_2_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		$tiene_letra_final=substr($campo_n17,-1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   //&& $tiene_letra_final!="X"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=180
-		       && $numero_int<=189)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		if(ctype_digit($string_numeros_comparar_2)
-		   && $tiene_letra_principio=="C"
-		   && $tiene_letra_final=="X"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar_2);
-		    if(($numero_int>=19
-		       && $numero_int<=20)
-		       )
-		    {
-			$cumple_condicion_b_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=10
-			&& $numero_int<=12)
-			)
-		    {
-			$cumple_condicion_2_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y d al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
-	    
-	    //campo obligatorio
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -4585,36 +3803,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 				&& trim($campos[$numero_campo])!="99"	   
 	    	);
 
-	    $campo_n35=trim($campos[34]);
-	    if($valores_permitidos_para_condicion_actual       
-		&& $cumple_condicion_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_b_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual	       
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_b_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-		    )
-			&& $campo_n35=="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if($valores_permitidos_para_condicion_actual     
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_b_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-		    )
-		&& $campo_n35!="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="1";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 	    }
@@ -4636,93 +3825,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin if esta en blanco
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
 	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_b_con_rangos_codigo_campo_17=false;
-	    $cumple_condicion_2_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		$tiene_letra_final=substr($campo_n17,-1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   //&& $tiene_letra_final!="X"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=180
-		       && $numero_int<=189)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		if(ctype_digit($string_numeros_comparar_2)
-		   && $tiene_letra_principio=="C"
-		   && $tiene_letra_final=="X"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar_2);
-		    if(($numero_int>=19
-		       && $numero_int<=20)
-		       )
-		    {
-			$cumple_condicion_b_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(($numero_int>=10
-			&& $numero_int<=12)
-			)
-		    {
-			$cumple_condicion_2_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y d al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
-	    
-	    $campo_n34=$campos[33];
-	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
-	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
-	    
-	    $campo_n20=$campos[19];
-	    
-	    
-	    $c20_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n20,"1900-12-31");
+	    // valor permitido
 
-	    //campo obligatorio
-	    $fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_menor_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
-	    
-	    //campo obligatorio
 	    /*
 	    //y la fecha de corte
 	    if($es_fecha_calendario<0
@@ -4733,42 +3838,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    */
 	    if($es_fecha_calendario>0
-		&& $campos[$numero_campo]!="1800-01-01"
-		&& $campos[$numero_campo]!="1845-01-01"     
-		&& $cumple_condicion_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_b_con_rangos_codigo_campo_17==false
-		&& $cumple_condicion_2_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }	    
-	    else if($es_fecha_calendario>0
-		&& $campos[$numero_campo]!="1800-01-01"
-		&& $campos[$numero_campo]!="1845-01-01"      
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_b_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-		    )
-		&& ($campo_n34=="98" || $campo_n34=="99")
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		&& $campos[$numero_campo]!="1800-01-01"
-		&& $campos[$numero_campo]!="1845-01-01"       
-		&& ($cumple_condicion_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_b_con_rangos_codigo_campo_17==true
-		    || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-		    )
-		&& ($campo_n34!="98" && $campo_n34!="99")
-		&& ( ($fecha_c18_fecha_calendario<0 && $fecha_c18_menor_2015>0)
-		   || $fecha_campo_18_fecha_diagnostico=="1800-01-01")
-	       )
-	    {
-		    $campos[$numero_campo]="1800-01-01";
-	    }
-	    else if($es_fecha_calendario>0
 		&& $campos[$numero_campo]!="1800-01-01"
 		&& $campos[$numero_campo]!="1845-01-01" )
 	    {
@@ -4792,142 +3861,10 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //validado
-	    //COMPARACION RANGOS CON CAMPO 17
-	    $campo_n17=trim($campos[16]);
 	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_17=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n17)==4)
-	    {
-		$string_numeros_comparar=$campo_n17;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n17;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n17,0,1);
-		
-		$tiene_letra_final=substr($campo_n17,-1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   //&& $tiene_letra_final!="X"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if(
-		    	(
-						$numero_int==810
-						|| $numero_int==811
-						|| $numero_int==812
-						|| $numero_int==813
-						|| $numero_int==817
-						|| $numero_int==819
-						|| $numero_int==820
-						|| $numero_int==821
-						|| $numero_int==822
-						|| $numero_int==827
-						|| $numero_int==829
-						|| $numero_int==830
-						|| $numero_int==831
-						|| $numero_int==832
-						|| $numero_int==833
-						|| $numero_int==834
-						|| $numero_int==835
-						|| $numero_int==836
-						|| $numero_int==837
-						|| $numero_int==838
-						|| $numero_int==839
-						|| $numero_int==840
-						|| $numero_int==841
-						|| $numero_int==842
-						|| $numero_int==843
-						|| $numero_int==844
-						|| $numero_int==845
-						|| $numero_int==850
-						|| $numero_int==851
-						|| $numero_int==857
-						|| $numero_int==859
-						|| $numero_int==880
-						|| $numero_int==900
-						|| $numero_int==901
-						|| $numero_int==902
-						|| $numero_int==910
-						|| $numero_int==911
-						|| $numero_int==912
-						|| $numero_int==913
-						|| $numero_int==914
-						|| $numero_int==915
-						|| $numero_int==917
-						|| $numero_int==918
-						|| $numero_int==919
-						|| $numero_int==920
-						|| $numero_int==921
-						|| $numero_int==922
-						|| $numero_int==923
-						|| $numero_int==924
-						|| $numero_int==925
-						|| $numero_int==927
-						|| $numero_int==929
-						|| $numero_int==930
-						|| $numero_int==931
-						|| $numero_int==932
-						|| $numero_int==937
-						|| $numero_int==939
-						|| $numero_int==940
-						|| $numero_int==941
-						|| $numero_int==942
-						|| $numero_int==943
-						|| $numero_int==944
-						|| $numero_int==945
-						|| $numero_int==947
-						|| $numero_int==950
-						|| $numero_int==951
-						|| $numero_int==952
-						|| $numero_int==957
-						|| $numero_int==959
-						)
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_17=true;
-		    }
-		    
-		}// es digito y c al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 17 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 17
 	    
-	    //campo obligatorio
+	    //valor permitido
 	    if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="3"
-			&& trim($campos[$numero_campo])!="4"
-			&& trim($campos[$numero_campo])!="98"
-			&& trim($campos[$numero_campo])!="99"
-	       && $cumple_condicion_con_rangos_codigo_campo_17==false
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="3"
-			&& trim($campos[$numero_campo])!="4"
-			&& trim($campos[$numero_campo])!="98"
-			&& trim($campos[$numero_campo])!="99"
-	       && $cumple_condicion_con_rangos_codigo_campo_17==true
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])!="1"
 			&& trim($campos[$numero_campo])!="2"
 			&& trim($campos[$numero_campo])!="3"
 			&& trim($campos[$numero_campo])!="4"
@@ -4950,43 +3887,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    //campo obligatorio
+	    //valor permitido
 	    if(trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="9"
-	    && trim($campos[$numero_campo])!="10"
-	    && trim($campos[$numero_campo])!="98"
-	    && trim($campos[$numero_campo])!="99"
-		&& $campo_n17!="D075"
-		&& $campo_n17!="C61X"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if(trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="9"
-	    && trim($campos[$numero_campo])!="10"
-	    && trim($campos[$numero_campo])!="98"
-	    && trim($campos[$numero_campo])!="99"
-		&& ($campo_n17=="D075"
-		|| $campo_n17=="C61X"
-		)
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])!="2"
 	    && trim($campos[$numero_campo])!="3"
 	    && trim($campos[$numero_campo])!="4"
 	    && trim($campos[$numero_campo])!="5"
@@ -5023,136 +3925,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-		$campo_n17=trim($campos[16]);
-		
-		$string_numeros_comparar="";
-		$cumple_condicion_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_a_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_b_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_2_con_rangos_codigo_campo_17=false;
-		$empieza_por_d=false;
-		if(strlen($campo_n17)==4)
-		{
-		    $string_numeros_comparar=$campo_n17;
-		    $string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		    $string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		    
-		    $string_numeros_comparar_2=$campo_n17;
-		    $string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		    $string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		    
-		    $tiene_letra_principio=substr($campo_n17,0,1);
-		    
-		    $tiene_letra_final=substr($campo_n17,-1);
-		    
-		    //echo "<script>alert('c17 $campo_n17 str1 $string_numeros_comparar str2 $string_numeros_comparar_2 li $tiene_letra_principio lf $tiene_letra_final ')</script>";
-		    
-		    if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="C"
-		       //&& $tiene_letra_final!="X"
-		       )
-		    {
-				//echo "<script>alert('empezo por C')</script>";
-				$numero_int=intval($string_numeros_comparar);
-				if(
-						($numero_int>=810
-					   && $numero_int<=880)
-					   ||
-					   ($numero_int>=900
-					   && $numero_int<=959				   
-					   )
-				   )
-				{
-				    $cumple_condicion_con_rangos_codigo_campo_17=true;
-				}
-
-				if(
-					($numero_int>=0
-				   && $numero_int<=798)
-				   ||
-				   ($numero_int>=881
-				   && $numero_int<=889				   
-				   )
-				   ||
-				   ($numero_int>=960
-				   && $numero_int<=969				   
-				   )
-			   )
-				{
-				    $cumple_condicion_a_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    if(ctype_digit($string_numeros_comparar_2)
-		       && $tiene_letra_principio=="C"
-		       && $tiene_letra_final=="X"
-		       )
-		    {
-			$numero_int=intval($string_numeros_comparar_2);
-			if(
-				($numero_int==01
-			   || $numero_int==07
-			   || $numero_int==12
-			   || $numero_int==19
-			   || $numero_int==20
-			   || $numero_int==23
-			   || $numero_int==33
-			   || $numero_int==52
-			   || $numero_int==55
-			   || $numero_int==56
-			   || $numero_int==58
-			   || $numero_int==61
-			   || $numero_int==64
-			   || $numero_int==65
-			   || $numero_int==66
-			   || $numero_int==73
-			   || $numero_int==80
-			   || $numero_int==97
-			   )
-
-			   )
-			{
-			    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-			}
-			
-		    }// es digito y c al principio
-		    else if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="D"
-		       )
-		    {
-			$numero_int=intval($string_numeros_comparar);
-			if(($numero_int>=0
-			    && $numero_int<=99)
-			    )
-			{
-			    $cumple_condicion_2_con_rangos_codigo_campo_17=true;
-			}
-			
-		    }// es digito y d al principio
-		    
-		    if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		    {
-			$empieza_por_d=true;
-		    }
-		}//fin condicion rangos campo 17 mira longitud 4 caracteres
-		//FIN COMPARACION RANGOS CON CAMPO 17
-
-
-		//llamado a calculo edad
-		$campo_n7=trim($campos[6]);
-		$campo_n18=trim($campos[17]);
-		$campo18_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n18,"1900-12-31");
-		$year_edad_cal_dep=-1;
-		if($campo18_es_fecha_calendario<0)
-		{
-			$year_edad_cal_dep=edad_calculada_a_partir_de_dos_fechas($campo_n7,$campo_n18,"y");
-		}
-		else
-		{
-			$year_edad_cal_dep=edad_calculada_a_partir_de_dos_fechas($campo_n7,$fecha_de_corte,"y");
-		}
-		//fin llamado a calculo edad
 
 		$valores_permitidos_para_condicion_actual=(
 			trim($campos[$numero_campo])!="1"
@@ -5173,64 +3945,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 			);
 	    
-		$campo_n39=trim($campos[38]);
-
-			$fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-			$fecha_c18_mayor_igual_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-			$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
+		
 	    
-	    //campo obligatorio
-	    if($valores_permitidos_para_condicion_actual
-	       && $cumple_condicion_con_rangos_codigo_campo_17==true
-	       && $year_edad_cal_dep>=18
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-	    	&& $campo_n39=="1845-01-01"
-	       && ( 
-			    	($fecha_c18_fecha_calendario<0
-			   	&& $fecha_c18_mayor_igual_2015>0)
-			    || $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-			    )
-	       && (
-		    	$cumple_condicion_con_rangos_codigo_campo_17==true
-		    	|| (
-		    		$year_edad_cal_dep<18
-				   && ($cumple_condicion_a_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_b_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-					   	)
-				   )
-		    	)
-	       )
-	    {
-		    $campos[$numero_campo]="99";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-	    	&& $campo_n39!="1845-01-01"
-	       && ( 
-			    	($fecha_c18_fecha_calendario<0
-			   	&& $fecha_c18_mayor_igual_2015<=0)
-			    || $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-			    )
-	       && (
-		    	$cumple_condicion_con_rangos_codigo_campo_17==true
-		    	|| (
-		    		$year_edad_cal_dep<18
-				   && ($cumple_condicion_a_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_b_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-					   	)
-				   )
-		    	)
-	       )
-	    {
-		    $campos[$numero_campo]="97";
-	    }
-	    else if($valores_permitidos_para_condicion_actual)
+	    if($valores_permitidos_para_condicion_actual)
 	    {
 		    $campos[$numero_campo]="98";
 	    }
@@ -5250,199 +3967,21 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//no esta en blanco
 	    
-	    $campo_n38=trim($campos[37]);
+	    //valor permitido
 	    
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 	    
-	    //COMPARACION RANGOS CON CAMPO 17
-		$campo_n17=trim($campos[16]);
-		
-		$string_numeros_comparar="";
-		$cumple_condicion_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_a_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_b_con_rangos_codigo_campo_17=false;
-		$cumple_condicion_2_con_rangos_codigo_campo_17=false;
-		$empieza_por_d=false;
-		if(strlen($campo_n17)==4)
-		{
-		    $string_numeros_comparar=$campo_n17;
-		    $string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		    $string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		    
-		    $string_numeros_comparar_2=$campo_n17;
-		    $string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		    $string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		    
-		    $tiene_letra_principio=substr($campo_n17,0,1);
-		    
-		    $tiene_letra_final=substr($campo_n17,-1);
-		    
-		    //echo "<script>alert('c17 $campo_n17 str1 $string_numeros_comparar str2 $string_numeros_comparar_2 li $tiene_letra_principio lf $tiene_letra_final ')</script>";
-		    
-		    if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="C"
-		       //&& $tiene_letra_final!="X"
-		       )
-		    {
-				//echo "<script>alert('empezo por C')</script>";
-				$numero_int=intval($string_numeros_comparar);
-				if(
-						($numero_int>=810
-					   && $numero_int<=880)
-					   ||
-					   ($numero_int>=900
-					   && $numero_int<=959				   
-					   )
-				   )
-				{
-				    $cumple_condicion_con_rangos_codigo_campo_17=true;
-				}
-
-				if(
-					($numero_int>=0
-				   && $numero_int<=798)
-				   ||
-				   ($numero_int>=881
-				   && $numero_int<=889				   
-				   )
-				   ||
-				   ($numero_int>=960
-				   && $numero_int<=969				   
-				   )
-			   )
-				{
-				    $cumple_condicion_a_con_rangos_codigo_campo_17=true;
-				}
-			
-		    }// es digito y c al principio
-		    if(ctype_digit($string_numeros_comparar_2)
-		       && $tiene_letra_principio=="C"
-		       && $tiene_letra_final=="X"
-		       )
-		    {
-			$numero_int=intval($string_numeros_comparar_2);
-			if(
-				($numero_int==01
-			   || $numero_int==07
-			   || $numero_int==12
-			   || $numero_int==19
-			   || $numero_int==20
-			   || $numero_int==23
-			   || $numero_int==33
-			   || $numero_int==52
-			   || $numero_int==55
-			   || $numero_int==56
-			   || $numero_int==58
-			   || $numero_int==61
-			   || $numero_int==64
-			   || $numero_int==65
-			   || $numero_int==66
-			   || $numero_int==73
-			   || $numero_int==80
-			   || $numero_int==97
-			   )
-
-			   )
-			{
-			    $cumple_condicion_b_con_rangos_codigo_campo_17=true;
-			}
-			
-		    }// es digito y c al principio
-		    else if(ctype_digit($string_numeros_comparar)
-		       && $tiene_letra_principio=="D"
-		       )
-		    {
-			$numero_int=intval($string_numeros_comparar);
-			if(($numero_int>=0
-			    && $numero_int<=99)
-			    )
-			{
-			    $cumple_condicion_2_con_rangos_codigo_campo_17=true;
-			}
-			
-		    }// es digito y d al principio
-		    
-		    if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		    {
-			$empieza_por_d=true;
-		    }
-		}//fin condicion rangos campo 17 mira longitud 4 caracteres
-		//FIN COMPARACION RANGOS CON CAMPO 17
-
-
-		//llamado a calculo edad
-		$campo_n7=trim($campos[6]);
-		$campo_n18=trim($campos[17]);
-		$campo18_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n18,"1900-12-31");
-		$year_edad_cal_dep=-1;
-		if($campo18_es_fecha_calendario<0)
-		{
-			$year_edad_cal_dep=edad_calculada_a_partir_de_dos_fechas($campo_n7,$campo_n18,"y");
-		}
-		else
-		{
-			$year_edad_cal_dep=edad_calculada_a_partir_de_dos_fechas($campo_n7,$fecha_de_corte,"y");
-		}
-		//fin llamado a calculo edad
-
-		$fecha_campo_18_fecha_diagnostico=trim($campos[17]);//numero campo 20 con numero de orden 19
-		$fecha_c18_mayor_igual_2015=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"2015-01-01");
-
-		$fecha_c18_fecha_calendario=diferencia_dias_entre_fechas($fecha_campo_18_fecha_diagnostico,"1900-12-31");
 	    
-	    /*
-	    if($es_fecha_calendario<0
-	    && $excede_fecha_de_corte<0
-	    )
-	    {
-		$campos[$numero_campo]=$fecha_de_corte;
-	    }
-	    */
 	    
 		if($es_fecha_calendario>0
-		&& $campos[$numero_campo]!="1800-01-01"
-		&& $campos[$numero_campo]!="1845-01-01"
-	       && $cumple_condicion_con_rangos_codigo_campo_17==false
-	       && $year_edad_cal_dep>=18
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		&& $campos[$numero_campo]!="1800-01-01"
-		&& $campos[$numero_campo]!="1845-01-01"
-	       && ( 
-			    	($fecha_c18_fecha_calendario<0
-			   	&& $fecha_c18_mayor_igual_2015>0)
-			    || $fecha_campo_18_fecha_diagnostico=="1800-01-01"
-			    )
-	       && (
-		    	$cumple_condicion_con_rangos_codigo_campo_17==true
-		    	|| (
-		    		$year_edad_cal_dep<18
-				   && ($cumple_condicion_a_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_b_con_rangos_codigo_campo_17==true 
-					   || $cumple_condicion_2_con_rangos_codigo_campo_17==true
-					   	)
-				   )
-		    	)
-	       )
-	    {
-		    $campos[$numero_campo]="1800-01-01";
-	    }
-	    else if($es_fecha_calendario>0
 		&& $campos[$numero_campo]!="1800-01-01"
 		&& $campos[$numero_campo]!="1845-01-01")
 	    {
 		    $campos[$numero_campo]="1845-01-01";
 	    }
 
-	    $campo_n20=$campos[19];
-	    
-	    
-	    $c20_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n20,"1900-12-31");
 	    
 	    
 		
@@ -5468,32 +4007,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="99"
 	    	);
 
-	    $campo_n48=trim($campos[55]);
-		//campo obligatorio
-		if($valores_permitidos_para_condicion_actual
-			&& (
-			$campo_n48=="1"
-			|| $campo_n48=="2"
-		   	|| $campo_n48=="3"
-		   	|| $campo_n48=="5"
-		   	|| $campo_n48=="7"
-		   	|| $campo_n48=="9"
-		   	)
-		)
-		{
-			$campos[$numero_campo]="1";
-		}
-		else if($valores_permitidos_para_condicion_actual
-			&& ($campo_n48=="4" 
-		   	|| $campo_n48=="6"
-		   	|| $campo_n48=="8"
-		   	|| $campo_n48=="10"
-		   	)
-		)
-		{
-			$campos[$numero_campo]="2";
-		}
-		else if(
+	    if(
 			$valores_permitidos_para_condicion_actual
 			
 		)
@@ -5554,7 +4068,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    )
 	       )
 	    {
-		$campos[$numero_campo]="99";
+			$campos[$numero_campo]="99";
 	    }
 	}//if si existe campo
 	
@@ -5569,57 +4083,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_20=$campos[19];
-	    $campo_ant_44=$campos[43];
 	    
-	    //COMPARACION RANGOS CON CAMPO 44
-	    $campo_n44=trim($campos[43]);
-	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_44_C=false;
-	    $cumple_condicion_con_rangos_codigo_campo_44_D=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n44)==4)
-	    {
-		$string_numeros_comparar=$campo_n44;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n44;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n44,0,1);
-		
-		$tiene_letra_final=substr($campo_n44,-1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   )
-		{
-		    $cumple_condicion_con_rangos_codigo_campo_44_C=true;				
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if($numero_int>=0
-		       && $numero_int<=99				   
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_44_D=true;
-		    }
-		    
-		}// es digito y c al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 44 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 44
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -5627,45 +4091,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 				&& trim($campos[$numero_campo])!="99" 
 	    	);
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_diagnostico_ciex_cancer_tumor_maligno WHERE codigo_diagnostico='".$campo_ant_44."' ; ";
-	    $resultado_ciex=$coneccionBD->consultar2_no_crea_cierra($consulta);
-
-	    $campo_n44=trim($campos[43]);
-	    
-	    $campo_n43=trim($campos[42]);
-	    $campo_43=trim($campos[42]);
-		$c43_es_fecha_calendario=diferencia_dias_entre_fechas($campo_43,"1900-12-31");
-		$c43_frente_2015=diferencia_dias_entre_fechas($campo_43,"2015-01-01");
-		
-		$campo_n128=trim($campos[205]);
-
-	    if($valores_permitidos_para_condicion_actual
-	       && $campo_ant_44=="99"
-	       )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && $campo_ant_44!="99"
-		    && ($campo_n43=="1800-01-01"	   
-			   || ($c43_frente_2015>0 && $c43_es_fecha_calendario<0)  )
-		    )
-	    {
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && $campo_ant_44!="99"
-		    && $c43_es_fecha_calendario<0	   
-		  	&& $c43_frente_2015<=0
-		    )
-	    {
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 	    	
 		    )
@@ -5689,92 +4115,13 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//campo no esta en blanco
 	    
-	    $campo_ant_44=$campos[43];
-	    $campo_ant_20=$campos[19];
-	    
-	    //COMPARACION RANGOS CON CAMPO 44
-	    $campo_n44=trim($campos[43]);
-	    
-	    $string_numeros_comparar="";
-	    $cumple_condicion_con_rangos_codigo_campo_44_C=false;
-	    $cumple_condicion_con_rangos_codigo_campo_44_D=false;
-	    $empieza_por_d=false;
-	    if(strlen($campo_n44)==4)
-	    {
-		$string_numeros_comparar=$campo_n44;
-		$string_numeros_comparar=str_replace("C","",$string_numeros_comparar);
-		$string_numeros_comparar=str_replace("D","",$string_numeros_comparar);
-		
-		$string_numeros_comparar_2=$campo_n44;
-		$string_numeros_comparar_2=str_replace("C","",$string_numeros_comparar_2);
-		$string_numeros_comparar_2=str_replace("X","",$string_numeros_comparar_2);
-		
-		$tiene_letra_principio=substr($campo_n44,0,1);
-		
-		$tiene_letra_final=substr($campo_n44,-1);
-		
-		if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="C"
-		   )
-		{
-		    $cumple_condicion_con_rangos_codigo_campo_44_C=true;				
-		    
-		}// es digito y c al principio
-		else if(ctype_digit($string_numeros_comparar)
-		   && $tiene_letra_principio=="D"
-		   )
-		{
-		    $numero_int=intval($string_numeros_comparar);
-		    if($numero_int>=0
-		       && $numero_int<=99				   
-		       )
-		    {
-			$cumple_condicion_con_rangos_codigo_campo_44_D=true;
-		    }
-		    
-		}// es digito y c al principio
-		
-		if(ctype_digit($string_numeros_comparar) && $tiene_letra_principio=="D")
-		{
-		    $empieza_por_d=true;
-		}
-	    }//fin condicion rangos campo 44 mira longitud 4 caracteres
-	    //FIN COMPARACION RANGOS CON CAMPO 44
-	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_diagnostico_ciex_cancer_tumor_maligno WHERE codigo_diagnostico='".$campo_ant_44."' ; ";
-	    $resultado_ciex=$coneccionBD->consultar2_no_crea_cierra($consulta);
-	    
-	    $campo_n17=$campos[16];
-	    $campo_n20=$campos[19];
+	    //valor permitido
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 
-	    $campo_n44=trim($campos[43]);
-		$campo_n42=trim($campos[41]);
-		$campo_n17=trim($campos[16]);
 	    
 	    if($es_fecha_calendario>0
-		    && $campos[$numero_campo]!="1800-01-01"
-		    && $campos[$numero_campo]!="1845-01-01"
-	       && $campo_ant_44=="99"
-	       )
-	    {
-			$campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin 
-	    else if($es_fecha_calendario>0
-		    && $campos[$numero_campo]!="1800-01-01"
-		    && $campos[$numero_campo]!="1845-01-01"
-		&& $campo_ant_44!="99"
-		&& $campo_n42=="99"
-	       )
-	    {
-		    $campos[$numero_campo]="1800-01-01";
-		    
-	    }//fin if
-	    else if($es_fecha_calendario>0
 		    && $campos[$numero_campo]!="1800-01-01"
 		    && $campos[$numero_campo]!="1845-01-01")
 	    {
@@ -5784,6 +4131,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    
 	    /*
+	    //se comento 
 	    if($es_fecha_calendario<0
 	    && $excede_fecha_de_corte<0
 	    )
@@ -5809,87 +4157,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_n46=trim($campos[45]);
-		$campo_n47=trim($campos[54]);
-		$campo_n53=trim($campos[60]);
-		$campo_n57=trim($campos[96]);
-		$campo_n66=trim($campos[105]);
-		$campo_n70=trim($campos[141]);
 	    
-	    $c46_1=trim($campos[46]);
-	    $c46_2=trim($campos[47]);
-	    $c46_3=trim($campos[48]);
-	    $c46_4=trim($campos[49]);
-	    $c46_5=trim($campos[50]);
-	    $c46_6=trim($campos[51]);
-	    $c46_7=trim($campos[52]);
-	    $c46_8=trim($campos[53]);
-	    
-	    $c53_1=trim($campos[61]);
-	    $c53_2=trim($campos[62]);
-	    $c53_3=trim($campos[63]);
-	    $c53_4=trim($campos[64]);
-	    $c53_5=trim($campos[65]);
-	    $c53_6=trim($campos[66]);
-	    $c53_7=trim($campos[67]);
-	    $c53_8=trim($campos[68]);
-	    $c53_9=trim($campos[69]);
-	    $c53_10=trim($campos[70]);
-	    $c53_11=trim($campos[71]);
-	    $c53_12=trim($campos[72]);
-	    $c53_13=trim($campos[73]);
-	    $c53_14=trim($campos[74]);
-	    $c53_15=trim($campos[75]);
-	    $c53_16=trim($campos[76]);
-	    $c53_17=trim($campos[77]);
-	    $c53_18=trim($campos[78]);
-	    $c53_19=trim($campos[79]);
-	    $c53_20=trim($campos[80]);
-	    $c53_21=trim($campos[81]);
-	    $c53_22=trim($campos[82]);
-	    $c53_23=trim($campos[83]);
-	    $c53_24=trim($campos[84]);
-	    $c53_25=trim($campos[85]);
-	    $c53_26=trim($campos[86]);
-	    $c53_27=trim($campos[87]);
-	    $c53_28=trim($campos[88]);
-	    $c53_29=trim($campos[89]);
-	    $c53_30=trim($campos[90]);
-	    $c53_31=trim($campos[91]);
-	    $c53_32=trim($campos[92]);
-	    
-	    $c66_1=trim($campos[106]);
-	    $c66_2=trim($campos[107]);
-	    $c66_3=trim($campos[108]);
-	    $c66_4=trim($campos[109]);
-	    $c66_5=trim($campos[110]);
-	    $c66_6=trim($campos[111]);
-	    $c66_7=trim($campos[112]);
-	    $c66_8=trim($campos[113]);
-	    $c66_9=trim($campos[114]);
-	    $c66_10=trim($campos[115]);
-	    $c66_11=trim($campos[116]);
-	    $c66_12=trim($campos[117]);
-	    $c66_13=trim($campos[118]);
-	    $c66_14=trim($campos[119]);
-	    $c66_15=trim($campos[120]);
-	    $c66_16=trim($campos[121]);
-	    $c66_17=trim($campos[122]);
-	    $c66_18=trim($campos[123]);
-	    $c66_19=trim($campos[124]);
-	    $c66_20=trim($campos[125]);
-	    $c66_21=trim($campos[126]);
-	    $c66_22=trim($campos[127]);
-	    $c66_23=trim($campos[128]);
-	    $c66_24=trim($campos[129]);
-	    $c66_25=trim($campos[130]);
-	    $c66_26=trim($campos[131]);
-	    $c66_27=trim($campos[132]);
-	    $c66_28=trim($campos[133]);
-	    $c66_29=trim($campos[134]);
-	    $c66_30=trim($campos[135]);
-	    $c66_31=trim($campos[136]);
-	    $c66_32=trim($campos[137]);
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -5897,34 +4165,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="98"
 	    	);
-	    //campo obligatorio
-	    if($valores_permitidos_para_condicion_actual
-	       && ($campo_n46!="98"
-				|| $campo_n47!="98"
-				|| $campo_n53!="98"
-				|| $campo_n57=="1"
-				|| $campo_n66!="98"
-				|| $campo_n70=="1")
-		
-	       )//fin criterio condicion
-	    {
-	    	//c1
-		    $campos[$numero_campo]="1";
-	    }
-	    else if($valores_permitidos_para_condicion_actual
-	       	&& $campo_n46=="98"
-			&& $campo_n47=="98"
-			&& $campo_n53=="98"
-			&& ($campo_n57=="2" || $campo_n57=="98")
-			&& $campo_n66=="98"
-			&& ($campo_n70=="2" || $campo_n70=="98")
-		
-	       )//fin criterio condicion
-	    {
-	    	//c2
-		    $campos[$numero_campo]="98";
-	    }
-	    else if(
+	    
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 			)
 	    {
@@ -5953,21 +4195,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		$campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-	    $campo_ant_45=$campos[44];
-	    
-	    $c46_1=trim($campos[46]);
-	    $c46_2=trim($campos[47]);
-	    $c46_3=trim($campos[48]);
-	    $c46_4=trim($campos[49]);
-	    $c46_5=trim($campos[50]);
-	    $c46_6=trim($campos[51]);
-	    $c46_7=trim($campos[52]);
-	    $c46_8=trim($campos[53]);
+	    //valor permitido
 
 	    $valores_permitidos_para_condicion_actual=( 
 	    	trim($campos[$numero_campo])!="1"
@@ -6072,38 +4300,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    if(
 	    	$valores_permitidos_para_condicion_actual
-		&& $campo_n17!="C910"
-		  		&& $campo_n17!="C920"
-			   	&& $campo_n17!="C835"
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if( 
-	    $valores_permitidos_para_condicion_actual	
-		&& ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")  
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")   
-	       && $campo_ant_45=="1" 
-			
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
 		 )
 	    {
 	    	//c4
@@ -6128,12 +4324,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido	
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6143,36 +4333,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6195,12 +4356,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido	
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6210,36 +4365,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6261,12 +4387,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido	
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6276,36 +4396,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6326,12 +4417,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido	
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6341,36 +4426,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6392,11 +4448,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido	
 	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6406,36 +4457,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6457,12 +4479,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido	
-	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6472,36 +4488,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6524,11 +4511,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido	
 	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6538,36 +4520,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6590,11 +4543,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido	
 	    
-	    $campo_n17=trim($campos[16]);	    
-	    
-		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_46=$campos[45];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6604,36 +4552,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    && trim($campos[$numero_campo])!="99"
 	    	);
 
-	    if($valores_permitidos_para_condicion_actual
-	    	 && $campo_n17!="C910"
-	    	 && $campo_n17!="C920"
-			   && $campo_n17!="C835"
-	      
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		     && ($campo_ant_45=="2"  || $campo_ant_45=="98")
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		     && ($campo_n17=="C910" || $campo_n17=="C920" || $campo_n17=="C835")
-		    && $campo_ant_45=="1"
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if(
+	    if(
 	    	$valores_permitidos_para_condicion_actual
 		    )
 	    {
@@ -6656,9 +4575,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    $campo_ant_45=$campos[44];
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -6762,14 +4678,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			    && trim($campos[$numero_campo])!="98"
 	    	);
 	    
-	    if($valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
+	    if(
 
 	    	$valores_permitidos_para_condicion_actual
 		
@@ -6809,15 +4718,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			&& trim($campos[$numero_campo])!="99"
 	    	);
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
 	    if(
-	    	$valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";		    
-	    }//fin if
-	    else if(
 	    	$valores_permitidos_para_condicion_actual	    	
 	       )
 	    {
@@ -6839,12 +4740,11 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin if este campo no esta en blanco
 	    
+	    //valor permitido 
+
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 		
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
 
 
 	    if($es_fecha_calendario<0
@@ -6853,15 +4753,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
      	{
 		 	$campos[$numero_campo]=$fecha_primer_dia_corte;
      	}
-	    else if(
-	    	$es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
 	    else if($es_fecha_calendario>0
 		   && $campos[$numero_campo]!="1845-01-01"
 	       )
@@ -6885,9 +4776,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_49=trim($campos[56]);
-	    $c49_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_49,"1900-12-31");
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -6904,32 +4792,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    	);
 	    
 	    if(
-	    	$valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if	    
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_49=="1845-01-01"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $c49_es_fecha_calendario<0
-		    )
-	    {
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if	    
-	    else if(
 	    	$valores_permitidos_para_condicion_actual
 	       )
 	    {
@@ -6978,32 +4840,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    	    	    
 	    if((count($resultado)==0 || !is_array($resultado))
 	       && $campos[$numero_campo]!="98"
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-		    && $campos[$numero_campo]!="98"
-		    && $campo_ant_49=="1845-01-01"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-		    && $campos[$numero_campo]!="98"
-		    && $campo_ant_49!="1845-01-01"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && $campos[$numero_campo]!="98"
 	       )
 	    {
 		    $campos[$numero_campo]="98";
@@ -7043,33 +4879,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_45=$campos[44];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-	    $campo_ant_49=$campos[56];
-	    
 	    if((count($resultado)==0 || !is_array($resultado))
-		&& $campos[$numero_campo]!="98"
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-		&& $campos[$numero_campo]!="98"
-		    && $campo_ant_49=="1845-01-01"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 		&& $campos[$numero_campo]!="98"
 		)
 	    {
@@ -7093,45 +4903,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    
-	    $campo_ant_45=$campos[44];
-	    
-	    $c53_1=trim($campos[61]);
-	    $c53_2=trim($campos[62]);
-	    $c53_3=trim($campos[63]);
-	    $c53_4=trim($campos[64]);
-	    $c53_5=trim($campos[65]);
-	    $c53_6=trim($campos[66]);
-	    $c53_7=trim($campos[67]);
-	    $c53_8=trim($campos[68]);
-	    $c53_9=trim($campos[69]);
-	    $c53_10=trim($campos[70]);
-	    $c53_11=trim($campos[71]);
-	    $c53_12=trim($campos[72]);
-	    $c53_13=trim($campos[73]);
-	    $c53_14=trim($campos[74]);
-	    $c53_15=trim($campos[75]);
-	    $c53_16=trim($campos[76]);
-	    $c53_17=trim($campos[77]);
-	    $c53_18=trim($campos[78]);
-	    $c53_19=trim($campos[79]);
-	    $c53_20=trim($campos[80]);
-	    $c53_21=trim($campos[81]);
-	    $c53_22=trim($campos[82]);
-	    $c53_23=trim($campos[83]);
-	    $c53_24=trim($campos[84]);
-	    $c53_25=trim($campos[85]);
-	    $c53_26=trim($campos[86]);
-	    $c53_27=trim($campos[87]);
-	    $c53_28=trim($campos[88]);
-	    $c53_29=trim($campos[89]);
-	    $c53_30=trim($campos[90]);
-	    $c53_31=trim($campos[91]);
-	    $c53_32=trim($campos[92]);
-	    
-	    $c54=trim($campos[93]);
-	    $c55=trim($campos[94]);
-	    $c56=trim($campos[95]);
 
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
@@ -7233,101 +5004,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			&& trim($campos[$numero_campo])!="97"
 			&& trim($campos[$numero_campo])!="98"
 	    	);
-	    
 	    if(
-	    	$valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && ( $c53_1=="1"
-		    || $c53_2=="1"
-		    || $c53_3=="1"
-		    || $c53_4=="1"
-		    || $c53_5=="1"
-		    || $c53_6=="1"
-		    || $c53_7=="1"
-		    || $c53_8=="1"
-		    || $c53_9=="1"
-		    || $c53_10=="1"
-		    || $c53_11=="1"
-		    || $c53_12=="1"
-		    || $c53_13=="1"
-		    || $c53_14=="1"
-		    || $c53_15=="1"
-		    || $c53_16=="1"
-		    || $c53_17=="1"
-		    || $c53_18=="1"
-		    || $c53_19=="1"
-		    || $c53_20=="1"
-		    || $c53_21=="1"
-		    || $c53_22=="1"
-		    || $c53_23=="1"
-		    || $c53_24=="1"
-		    || $c53_25=="1"
-		    || $c53_26=="1"
-		    || $c53_27=="1"
-		    || $c53_28=="1"
-		    || $c53_29=="1"
-		    || $c53_30=="1"
-		    || $c53_31=="1"
-		    || $c53_32=="1"
-		    || ($c54!="97" && $c54!="98")
-		    || ($c55!="97" && $c55!="98")
-		    || ($c56!="97" && $c56!="98")
-		    )//fin 53_x
-		)
-	    {
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if( $valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && ( $c53_1!="1"
-			 && $c53_2!="1"
-			 && $c53_3!="1"
-			 && $c53_4!="1"
-			 && $c53_5!="1"
-			 && $c53_6!="1"
-			 && $c53_7!="1"
-			 && $c53_8!="1"
-			 && $c53_9!="1"
-			 && $c53_10!="1"
-			 && $c53_11!="1"
-			 && $c53_12!="1"
-			 && $c53_13!="1"
-			 && $c53_14!="1"
-			 && $c53_15!="1"
-			 && $c53_16!="1"
-			 && $c53_17!="1"
-			 && $c53_18!="1"
-			 && $c53_19!="1"
-			 && $c53_20!="1"
-			 && $c53_21!="1"
-			 && $c53_22!="1"
-			 && $c53_23!="1"
-			 && $c53_24!="1"
-			 && $c53_25!="1"
-			 && $c53_26!="1"
-			 && $c53_27!="1"
-			 && $c53_28!="1"
-			 && $c53_29!="1"
-			 && $c53_30!="1"
-			 && $c53_31!="1"
-			 && $c53_32!="1"
-			 && ($c54=="97" || $c54=="98")
-			 && ($c55=="97" || $c55=="98")
-			 && ($c56=="97" || $c56=="98")
-			 )//fin 53_x
-	    )
-	    {
-		$campos[$numero_campo]="98";
-	    }
-	    else if(
 	    	$valores_permitidos_para_condicion_actual
 			)
 	    {
@@ -7349,46 +5026,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7412,46 +5050,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7475,46 +5074,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7538,46 +5098,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7601,46 +5122,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7664,46 +5146,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7726,46 +5169,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7789,46 +5193,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7852,46 +5217,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7916,46 +5242,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -7979,46 +5266,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8042,46 +5290,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8104,46 +5313,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8166,46 +5336,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8229,46 +5360,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8292,46 +5384,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8355,46 +5408,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8418,46 +5432,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8481,46 +5456,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8544,46 +5480,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8606,46 +5503,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8668,46 +5526,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8731,46 +5550,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8794,46 +5574,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8857,46 +5598,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8920,46 +5622,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -8983,46 +5646,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9045,46 +5669,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9108,46 +5693,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9171,46 +5717,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9234,46 +5741,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9297,46 +5765,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_53=$campos[60];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53=="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
-			   && intval($campos[$numero_campo])!=2
-			   && intval($campos[$numero_campo])!=3
-			   && intval($campos[$numero_campo])!=98
-		    && $campo_ant_53!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(intval($campos[$numero_campo])!=1
 		    && intval($campos[$numero_campo])!=2
 		    && intval($campos[$numero_campo])!=3
 		    && intval($campos[$numero_campo])!=98
@@ -9396,41 +5825,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    //valor permitido
-		
-	    $campo_ant_45=$campos[44];    
-	    
-	    $campo_ant_53=$campos[60];
-	    
-	    if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_ant_53=="98"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_53!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
+		if((count($resultado)==0 || !is_array($resultado))
 	       && trim($campos[$numero_campo])!="97"
 	       && trim($campos[$numero_campo])!="98"
 	       )
@@ -9487,41 +5882,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    //valor permitido
-		
-	    $campo_ant_45=$campos[44];    
-	    
-	    $campo_ant_53=$campos[60];
-	    
-	    if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_ant_53=="98"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_53!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
+		if((count($resultado)==0 || !is_array($resultado))
 	       && trim($campos[$numero_campo])!="97"
 	       && trim($campos[$numero_campo])!="98"
 	       )
@@ -9578,41 +5939,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    //valor permitido
-		
-	    $campo_ant_45=$campos[44];    
-	    
-	    $campo_ant_53=$campos[60];
-	    
-	    if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_ant_53=="98"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && trim($campos[$numero_campo])!="97"
-	       && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_53!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
+		if((count($resultado)==0 || !is_array($resultado))
 	       && trim($campos[$numero_campo])!="97"
 	       && trim($campos[$numero_campo])!="98"
 	       )
@@ -9635,32 +5962,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-			    
 	    if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		    && trim($campos[$numero_campo])!="2"
 		    && trim($campos[$numero_campo])!="98"
 		    )
@@ -9682,13 +5984,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin if este campo no esta en blanco
 	    
-	    $campo_ant_45=$campos[44];
 	    
-	    
-	    $campo_ant_57=trim($campos[96]);
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
+	    //valor permitido
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
@@ -9702,15 +5999,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    {
 		$campos[$numero_campo]=$fecha_primer_dia_corte;
 	    }
-	    if($es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-		   //&& $campos[$numero_campo]!="1800-01-01"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
 	    else if($es_fecha_calendario>0
 		   && $campos[$numero_campo]!="1845-01-01"
 		   //&& $campos[$numero_campo]!="1800-01-01"
@@ -9734,28 +6022,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-	    
-	    $campo_n58=trim($campos[97]);
-	    	    
-	    $campo_n57=trim($campos[96]);
-	    
 	    if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if	    
-	    else if(trim($campos[$numero_campo])!="1"
 	    && trim($campos[$numero_campo])!="2"
 	    && trim($campos[$numero_campo])!="3"
 	    && trim($campos[$numero_campo])!="98")
@@ -9779,60 +6046,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_59=$campos[98];
-	    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="4"
-		&& trim($campos[$numero_campo])!="5"
-		&& trim($campos[$numero_campo])!="6"
-		&& trim($campos[$numero_campo])!="7"
-		&& trim($campos[$numero_campo])!="8"
-		&& trim($campos[$numero_campo])!="98"
-		&& ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_ant_59!="2"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		    && trim($campos[$numero_campo])!="2"
-		    && trim($campos[$numero_campo])!="3"
-		    && trim($campos[$numero_campo])!="4"
-		    && trim($campos[$numero_campo])!="5"
-		    && trim($campos[$numero_campo])!="6"
-		    && trim($campos[$numero_campo])!="7"
-		    && trim($campos[$numero_campo])!="8"
-		    && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_59=="2"
-		    )
-	    {
-		    $campos[$numero_campo]="8";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="4"
@@ -9852,6 +6066,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	}//if si existe campo
 	
 	$campo20_contra_2015=diferencia_dias_entre_fechas($campo_n20,"2015-01-01");	
+
 	//numero_orden_desde_cero 100 numero orden 101 numero campo 61 vvalorpermitido
 	$numero_campo=100;
 	if(isset($campos[$numero_campo]))
@@ -9864,10 +6079,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido
 
-	    $campo_n18=trim($campos[17]);
-		$campo18_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n18,"1900-12-31");
-		$campo18_contra_2015=diferencia_dias_entre_fechas($campo_n18,"2015-01-01");
-	    
 	    $valores_permitidos_para_condicion_actual=(
 	    	trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
@@ -9883,36 +6094,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		&& trim($campos[$numero_campo])!="98"
 		&& trim($campos[$numero_campo])!="99"
 	    	);
-
-	    $campo_ant_45=$campos[44];
-	    if(
-	    	$valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2") 
-	       )
-	    {
-			$campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45=="1")
-		    && ( ($campo18_es_fecha_calendario<0
-		    && $campo18_contra_2015>0) || $campo_n18=="1800-01-01" )
-		    )
-	    {
-			$campos[$numero_campo]="99";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-		    && ($campo_ant_45=="1")
-		    && ( $campo18_es_fecha_calendario<0
-		    && $campo18_contra_2015<=0 )
-		    )
-	    {
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if(
+		if(
 	    	$valores_permitidos_para_condicion_actual
 	    	)
 	    {
@@ -9936,13 +6118,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-10);
 	    }//fin if este campo no esta en blanco
 	    
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    
-	    $campo_n61=trim($campos[100]);
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
+	    //valor permititdo
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
@@ -9954,23 +6130,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    {
 		$campos[$numero_campo]=$fecha_primer_dia_corte;
 	    }
-	    if($es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
-	    else if($es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_n61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
 	    else if($es_fecha_calendario>0
 		   && $campos[$numero_campo]!="1845-01-01"
 	       )
@@ -9993,87 +6152,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_62=trim($campos[101]);
-	    $c62_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_62,"1900-12-31");	    
-	    
-	    
-	    $campo_ant_61=trim($campos[100]);
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="4"
-		&& trim($campos[$numero_campo])!="5"
-		&& trim($campos[$numero_campo])!="6"
-		&& trim($campos[$numero_campo])!="7"
-		&& trim($campos[$numero_campo])!="8"
-		&& trim($campos[$numero_campo])!="9"
-		&& trim($campos[$numero_campo])!="10"
-		&& trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="4"
-		&& trim($campos[$numero_campo])!="5"
-		&& trim($campos[$numero_campo])!="6"
-		&& trim($campos[$numero_campo])!="7"
-		&& trim($campos[$numero_campo])!="8"
-		&& trim($campos[$numero_campo])!="9"
-		&& trim($campos[$numero_campo])!="10"
-		&& trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="4"
-		&& trim($campos[$numero_campo])!="5"
-		&& trim($campos[$numero_campo])!="6"
-		&& trim($campos[$numero_campo])!="7"
-		&& trim($campos[$numero_campo])!="8"
-		&& trim($campos[$numero_campo])!="9"
-		&& trim($campos[$numero_campo])!="10"
-		&& trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61!="97"
-	       && $campo_ant_62=="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="4"
-		&& trim($campos[$numero_campo])!="5"
-		&& trim($campos[$numero_campo])!="6"
-		&& trim($campos[$numero_campo])!="7"
-		&& trim($campos[$numero_campo])!="8"
-		&& trim($campos[$numero_campo])!="9"
-		&& trim($campos[$numero_campo])!="10"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="98" && $campo_ant_45!="2")
-		    && $campo_ant_61!="97"
-		    && $c62_es_fecha_calendario<0
-		    )
-	    {
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="4"
@@ -10116,14 +6195,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_49=$campos[56];
-	    
-	    $campo_ant_62=trim($campos[101]);
-	    $c62_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_62,"1900-12-31");	    
-	    
-	    
-	    $campo_ant_61=trim($campos[100]);
 	    
 	    $consulta="";
 	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
@@ -10132,43 +6203,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    
 	    if((count($resultado)==0 || !is_array($resultado))
-	       && $campos[$numero_campo]!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && $campos[$numero_campo]!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && $campos[$numero_campo]!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61!="97"
-	       && $campo_ant_62=="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && $campos[$numero_campo]!="98"
-		    && ($campo_ant_45!="98" && $campo_ant_45!="2")
-		    && $campo_ant_61!="97"
-		    && $c62_es_fecha_calendario<0
-		    )
-	    {
-		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 	       && $campos[$numero_campo]!="98")
 	    {
 		    $campos[$numero_campo]="98";
@@ -10208,42 +6242,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $consulta.="SELECT * FROM gioss_cancer_ips_quimioterapia WHERE codigo_habilitacion='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_62=trim($campos[101]);
-	    $c62_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_62,"1900-12-31");	    
-	    
-	    
-	    $campo_ant_61=trim($campos[100]);
-	    
 	    if((count($resultado)==0 || !is_array($resultado))
-		&& $campos[$numero_campo]!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-		&& $campos[$numero_campo]!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-		&& $campos[$numero_campo]!="98"
-	       && ($campo_ant_45!="98" && $campo_ant_45!="2")
-	       && $campo_ant_61!="97"
-	       && $campo_ant_62=="1845-01-01"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 		&& $campos[$numero_campo]!="98")
 	    {
 		    $campos[$numero_campo]="98";
@@ -10266,45 +6265,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    
-	    $campo_n61=trim($campos[100]);
-	    
-	    $c66_1=trim($campos[106]);
-	    $c66_2=trim($campos[107]);
-	    $c66_3=trim($campos[108]);
-	    $c66_4=trim($campos[109]);
-	    $c66_5=trim($campos[110]);
-	    $c66_6=trim($campos[111]);
-	    $c66_7=trim($campos[112]);
-	    $c66_8=trim($campos[113]);
-	    $c66_9=trim($campos[114]);
-	    $c66_10=trim($campos[115]);
-	    $c66_11=trim($campos[116]);
-	    $c66_12=trim($campos[117]);
-	    $c66_13=trim($campos[118]);
-	    $c66_14=trim($campos[119]);
-	    $c66_15=trim($campos[120]);
-	    $c66_16=trim($campos[121]);
-	    $c66_17=trim($campos[122]);
-	    $c66_18=trim($campos[123]);
-	    $c66_19=trim($campos[124]);
-	    $c66_20=trim($campos[125]);
-	    $c66_21=trim($campos[126]);
-	    $c66_22=trim($campos[127]);
-	    $c66_23=trim($campos[128]);
-	    $c66_24=trim($campos[129]);
-	    $c66_25=trim($campos[130]);
-	    $c66_26=trim($campos[131]);
-	    $c66_27=trim($campos[132]);
-	    $c66_28=trim($campos[133]);
-	    $c66_29=trim($campos[134]);
-	    $c66_30=trim($campos[135]);
-	    $c66_31=trim($campos[136]);
-	    $c66_32=trim($campos[137]);
-	    $c67=trim($campos[138]);
-	    $c68=trim($campos[139]);
-	    $c69=trim($campos[140]);
 
 	    $valores_permitidos_para_condicion_actual=
 	    (
@@ -10410,115 +6370,6 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    if(
 	    	$valores_permitidos_para_condicion_actual
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-	    	//c1
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if($valores_permitidos_para_condicion_actual
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_n61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && $campo_ant_45=="1"
-		    && $campo_n61!="97"
-		    && ( $c66_1=="1"
-		    || $c66_2=="1"
-		    || $c66_3=="1"
-		    || $c66_4=="1"
-		    || $c66_5=="1"
-		    || $c66_6=="1"
-		    || $c66_7=="1"
-		    || $c66_8=="1"
-		    || $c66_9=="1"
-		    || $c66_10=="1"
-		    || $c66_11=="1"
-		    || $c66_12=="1"
-		    || $c66_13=="1"
-		    || $c66_14=="1"
-		    || $c66_15=="1"
-		    || $c66_16=="1"
-		    || $c66_17=="1"
-		    || $c66_18=="1"
-		    || $c66_19=="1"
-		    || $c66_20=="1"
-		    || $c66_21=="1"
-		    || $c66_22=="1"
-		    || $c66_23=="1"
-		    || $c66_24=="1"
-		    || $c66_25=="1"
-		    || $c66_26=="1"
-		    || $c66_27=="1"
-		    || $c66_28=="1"
-		    || $c66_29=="1"
-		    || $c66_30=="1"
-		    || $c66_31=="1"
-		    || $c66_32=="1"
-		    || ($c67!="97" && $c67!="98" )
-		    || ($c68!="97" && $c68!="98" )
-		    || ($c69!="97" && $c69!="98" )
-		    )//fin 66_x
-		    )
-	    {
-	    	//c2
-		    $campos[$numero_campo]="1";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
-		    && $campo_ant_45=="1"
-		    && $campo_n61!="97"
-		    && ( $c66_1!="1"
-				&& $c66_2!="1"
-				&& $c66_3!="1"
-				&& $c66_4!="1"
-				&& $c66_5!="1"
-				&& $c66_6!="1"
-				&& $c66_7!="1"
-				&& $c66_8!="1"
-				&& $c66_9!="1"
-				&& $c66_10!="1"
-				&& $c66_11!="1"
-				&& $c66_12!="1"
-				&& $c66_13!="1"
-				&& $c66_14!="1"
-				&& $c66_15!="1"
-				&& $c66_16!="1"
-				&& $c66_17!="1"
-				&& $c66_18!="1"
-				&& $c66_19!="1"
-				&& $c66_20!="1"
-				&& $c66_21!="1"
-				&& $c66_22!="1"
-				&& $c66_23!="1"
-				&& $c66_24!="1"
-				&& $c66_25!="1"
-				&& $c66_26!="1"
-				&& $c66_27!="1"
-				&& $c66_28!="1"
-				&& $c66_29!="1"
-				&& $c66_30!="1"
-				&& $c66_31!="1"
-				&& $c66_32!="1"
-				&& ($c67=="97" || $c67=="98" )
-				&& ($c68=="97" || $c68=="98" )
-				&& ($c69=="97" || $c69=="98" )
-		       )
-		    )
-	    {
-	    	//c3
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(
-	    	$valores_permitidos_para_condicion_actual
 	    	)
 	    {
 	    	//c4
@@ -10542,60 +6393,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -10619,60 +6417,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -10695,60 +6440,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -10771,60 +6463,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -10847,60 +6486,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -10923,60 +6509,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11000,60 +6533,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11076,60 +6556,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11152,60 +6579,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11228,60 +6602,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11305,60 +6626,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11382,60 +6650,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11458,60 +6673,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11534,60 +6696,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11610,60 +6719,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11686,60 +6742,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11763,60 +6766,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11839,60 +6789,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11915,60 +6812,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -11991,60 +6835,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12068,60 +6859,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12144,60 +6882,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12220,60 +6905,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12296,60 +6928,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12372,60 +6951,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12448,60 +6974,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12524,60 +6997,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12600,60 +7020,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12676,60 +7043,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12752,60 +7066,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12828,60 +7089,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -12904,60 +7112,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_61=$campos[100];
-	    $campo_ant_66=$campos[105];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
 	    if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98" 
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-	        && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_ant_61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66=="98"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-		&& trim($campos[$numero_campo])!="2"
-		&& trim($campos[$numero_campo])!="3"
-		&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_ant_61!="97"
-		    && $campo_ant_66!="98"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 		&& trim($campos[$numero_campo])!="2"
 		&& trim($campos[$numero_campo])!="3"
 		&& trim($campos[$numero_campo])!="98")
@@ -13012,49 +7167,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    
-	    $campo_ant_45=$campos[44];
-	    
-	    $campo_n66=trim($campos[105]);
-	    $campo_n61=trim($campos[100]);
-	    
 	    if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")		    
-		    && $campo_n61=="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n66=="98"
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		     && $campo_n66!="98"
-		     && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
 	       )
 	    {
@@ -13108,50 +7221,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    
-	    $campo_ant_45=$campos[44];
-	    
-	    $campo_n66=trim($campos[105]);
-	    $campo_n61=trim($campos[100]);
-	    
 	    if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    
-		    && $campo_n61=="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n66=="98"
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		     && $campo_n66!="98"
-		     && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
 	       )
 	    {
@@ -13204,50 +7274,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    	    
 	    
-	    $campo_ant_45=$campos[44];
-	    
-	    $campo_n66=trim($campos[105]);
-	    $campo_n61=trim($campos[100]);
-	    
 	    if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    
-		    && $campo_n61=="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n66=="98"
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
-	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		     && $campo_n66!="98"
-		     && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="97";
-		    
-	    }//fin if
-	    else if((count($resultado)==0 || !is_array($resultado))
 	       && (trim($campos[$numero_campo])!="97" && trim($campos[$numero_campo])!="98")
 	       )
 	    {
@@ -13268,45 +7295,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    
-	    $campo_ant_45=$campos[44];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-	    $campo_n61=trim($campos[100]);
-			    
 	    if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n61=="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if	
-	    else if(trim($campos[$numero_campo])!="1"
-			&& trim($campos[$numero_campo])!="2"
-			&& trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="2";
-		    
-	    }//fin if	
-	    else if(trim($campos[$numero_campo])!="1"
 			&& trim($campos[$numero_campo])!="2"
 			&& trim($campos[$numero_campo])!="98")
 	    {
@@ -13346,27 +7335,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	       && $excede_fecha_de_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_primer_dia_corte;
+			$campos[$numero_campo]=$fecha_primer_dia_corte;
 	    }
-	    if($es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-		   && $campos[$numero_campo]!="1800-01-01"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
-	    else if($es_fecha_calendario>0
-		   && $campos[$numero_campo]!="1845-01-01"
-		   && $campos[$numero_campo]!="1800-01-01"
-		&& ($campo_ant_45!="2" && $campo_ant_45!="98")
-		&& $campo_n61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="1845-01-01";
-		    
-	    }//fin if
 	    else if($es_fecha_calendario>0
 		   && $campos[$numero_campo]!="1845-01-01"
 		   && $campos[$numero_campo]!="1800-01-01"
@@ -13390,56 +7360,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    
-	    $campo_ant_45=$campos[44];
-	    
-		    
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    
-	    
-	    $campo_n71=trim($campos[142]);
-	    
-	    
-	    $campo_n70=trim($campos[141]);
-	    
-	    $campo_n73=trim($campos[144]);
-	    
-	    $campo_n61=trim($campos[100]);
-	    
 	    if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="2" || $campo_ant_45=="98")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")			   
-		    && $campo_n61=="97"
-		    )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="98"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="3";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 	    && trim($campos[$numero_campo])!="2"
 	    && trim($campos[$numero_campo])!="3"
 	    && trim($campos[$numero_campo])!="98")
@@ -13462,79 +7383,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    }
 	    
 	    //valor permitido
-	    $campo_ant_45=$campos[44];
-	    $campo_ant_72=$campos[143];
-	        
-	    $campo_ant_31=trim($campos[30]);
-	    $campo_ant_20=$campos[19];
-	    $campo_n61=trim($campos[100]);
-	    
 	    if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45=="98" || $campo_ant_45=="2")
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="98"
-	       && ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_n61=="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="98"
-	       && $campo_ant_72!="2"
-	       && ($campo_ant_45!="2" && $campo_ant_45!="98")
-	       && $campo_n61!="97"
-	       )
-	    {
-		    $campos[$numero_campo]="98";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
-	    && trim($campos[$numero_campo])!="2"
-	    && trim($campos[$numero_campo])!="3"
-	    && trim($campos[$numero_campo])!="4"
-	    && trim($campos[$numero_campo])!="5"
-	    && trim($campos[$numero_campo])!="6"
-	    && trim($campos[$numero_campo])!="7"
-	    && trim($campos[$numero_campo])!="8"
-	    && trim($campos[$numero_campo])!="98"
-		    && $campo_ant_72=="2"
-		    && ($campo_ant_45!="2" && $campo_ant_45!="98")
-		    && $campo_n61!="97"
-		    )
-	    {
-		    $campos[$numero_campo]="8";
-		    
-	    }//fin if
-	    else if(trim($campos[$numero_campo])!="1"
 	    && trim($campos[$numero_campo])!="2"
 	    && trim($campos[$numero_campo])!="3"
 	    && trim($campos[$numero_campo])!="4"
