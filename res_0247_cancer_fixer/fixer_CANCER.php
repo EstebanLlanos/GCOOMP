@@ -2065,6 +2065,85 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
 						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
 					}//fin if
+
+					//fix regimen si existe en otra tabla 
+					if(
+						(count($resultados_query_existe_afiliado_tablas_regimen)==0 || is_array($resultados_query_existe_afiliado_tablas_regimen)==false)
+						&& ($tipo_de_regimen_de_la_informacion_reportada!="C" && $tipo_de_regimen_de_la_informacion_reportada!="S" && $tipo_de_regimen_de_la_informacion_reportada!="E" && $tipo_de_regimen_de_la_informacion_reportada!="O" && $tipo_de_regimen_de_la_informacion_reportada!="P" && $tipo_de_regimen_de_la_informacion_reportada!="N" )
+					)//fin condicion
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rc";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+						if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+							&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+						{
+							$tipo_de_regimen_de_la_informacion_reportada="C";
+							$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+						}//fin if
+						else
+						{
+							$nombre_tabla_afiliado_hallado="gioss_afiliados_regimen_subsidiado";
+
+							$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+							$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+							if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+								&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+							{
+								$tipo_de_regimen_de_la_informacion_reportada="S";
+								$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+							}//fin if
+							else
+							{
+								$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_mp";
+
+								$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+								$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+								if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+								&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+								{
+									$tipo_de_regimen_de_la_informacion_reportada="E";
+									$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+								}//fin if
+								else
+								{
+									$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rp";
+
+									$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+									$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+									if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+									&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+									{
+										$tipo_de_regimen_de_la_informacion_reportada="P";
+										$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+									}//fin if
+									else
+									{
+										$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_nv";
+
+										$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+										$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+										if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+										&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+										{
+											$tipo_de_regimen_de_la_informacion_reportada="N";
+											$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+										}//fin if
+										else
+										{
+											//no lo encontro
+											$tipo_de_regimen_de_la_informacion_reportada="N";
+											$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+										}//fin else
+									}//fin else
+
+								}//fin else
+							}//fin else
+						}//fin else
+					}//fin if
+					//fin fix regimen si existe en otra tabla 
+					
 					//contador filas
 					$num_filas_resultado_existe_tablas_regimen=count($resultados_query_existe_afiliado_tablas_regimen);
 					//FIN PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
