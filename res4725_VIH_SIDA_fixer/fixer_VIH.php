@@ -14,7 +14,7 @@ require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
 //require_once 'reparadorVIH.php';
-require_once '../res4725_VIH_SIDA/reparadorVIH_v2017.php';
+//require_once '../res4725_VIH_SIDA/reparadorVIH_v2017.php';
 //require_once '../res4725_VIH_SIDA/reparadorVIH_v2018.php';
 
 require_once 'reparacion_campos_duplicados.php';
