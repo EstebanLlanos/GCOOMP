@@ -2326,19 +2326,19 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 										 $array_tipo_validacion,$array_grupo_validacion,
 										 $array_detalle_validacion,$nombre_archivo_registrado,
 										 $fecha_de_corte,$cod_prestador,$cod_eapb,$diccionario_identificacion,
-										 $diccionario_identificacion_lineas,$coneccionBD);
+										 $diccionario_identificacion_lineas,$coneccionBD,$array_numero_campo_bd);
 					
 						$array_fase_1_reparacion=reparador_formato_valor_permitido_CANCER($campos,$cont_linea_para_indexador,$consecutivo_errores,
 										 $array_tipo_validacion,$array_grupo_validacion,
 										 $array_detalle_validacion,$nombre_archivo_registrado,
 										 $fecha_de_corte,$cod_prestador,$cod_eapb,$diccionario_identificacion,
-										 $diccionario_identificacion_lineas,$coneccionBD);
+										 $diccionario_identificacion_lineas,$coneccionBD,$array_numero_campo_bd);
 					
 						$array_fase_2_reparacion=reparador_calidad_CANCER($campos,$cont_linea_para_indexador,$consecutivo_errores,
 										 $array_tipo_validacion,$array_grupo_validacion,
 										 $array_detalle_validacion,$nombre_archivo_registrado,
 										 $fecha_de_corte,$cod_prestador,$cod_eapb,$diccionario_identificacion,
-										 $diccionario_identificacion_lineas,$coneccionBD);
+										 $diccionario_identificacion_lineas,$coneccionBD,$array_numero_campo_bd);
 					
 					$array_pos_campos=$campos;
 

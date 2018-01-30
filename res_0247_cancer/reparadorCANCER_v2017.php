@@ -15,7 +15,7 @@ function reparador_campo_obligatorio_CANCER(&$campos,$cod_eapb,$nlinea,&$consecu
 						  $fecha_de_corte,$cod_prestador,
 						  $cod_eapb,&$diccionario_identificacion,
 						  &$diccionario_identificacion_lineas,
-						  &$coneccionBD)
+						  &$coneccionBD, $array_numero_campo_bd)
 {
 	$hubo_errores=false;
 	$errores_campos="";
@@ -25,7 +25,7 @@ function reparador_campo_obligatorio_CANCER(&$campos,$cod_eapb,$nlinea,&$consecu
 	$verificador=0;
 	
 	//$coneccionBD = new conexion();
-	
+	/*
 	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	$query_consulta_estructura_numero_campos="";
 	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
@@ -45,6 +45,7 @@ function reparador_campo_obligatorio_CANCER(&$campos,$cod_eapb,$nlinea,&$consecu
 		}
 	}
 	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+	*/
 	
 	
 	
@@ -8849,7 +8850,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 						  $fecha_de_corte,$cod_prestador,
 						  $cod_eapb,&$diccionario_identificacion,
 						  &$diccionario_identificacion_lineas,
-						  &$coneccionBD)
+						  &$coneccionBD, $array_numero_campo_bd)
 {
 	$hubo_errores=false;
 	$errores_campos="";
@@ -8859,7 +8860,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$verificador=0;
 	
 	//$coneccionBD = new conexion();
-	
+	/*
 	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	$query_consulta_estructura_numero_campos="";
 	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
@@ -8879,6 +8880,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 		}
 	}
 	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+	*/
 	
 	
 	
@@ -22818,7 +22820,7 @@ function reparador_calidad_CANCER(&$campos,$nlinea,
 				  $nombre_archivo_registrado,$fecha_de_corte,$cod_prestador,
 				  $cod_eapb,&$diccionario_identificacion,
 				  &$diccionario_identificacion_lineas,
-				  &$coneccionBD)
+				  &$coneccionBD, $array_numero_campo_bd)
 {
 	$hubo_errores=false;
 	$errores_campos="";
@@ -22831,7 +22833,7 @@ function reparador_calidad_CANCER(&$campos,$nlinea,
 	
 	$NOMBRE_ENTIDAD_PERSONALIZADA=get_entidad_personalizada();
 	
-	
+	/*
 	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	$query_consulta_estructura_numero_campos="";
 	$query_consulta_estructura_numero_campos.=" SELECT numero_de_orden,numero_de_campo FROM gioss_estructura_campos_por_norma_a_reportar ";
@@ -22851,6 +22853,7 @@ function reparador_calidad_CANCER(&$campos,$nlinea,
 		}
 	}
 	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
+	*/
 	
 			
 	//CAMPO 20 CONTRA FECHA DE CORTE
