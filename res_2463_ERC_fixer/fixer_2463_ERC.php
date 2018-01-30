@@ -15,7 +15,7 @@ require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
 //require_once 'reparador_2463_ERC.php';
 //require_once '../res_2463_ERC/reparador_2463_ERC_v2017.php';
-require_once '../res_2463_ERC/reparador_2463_ERC_v2018.php';
+//require_once '../res_2463_ERC/reparador_2463_ERC_v2018.php';
 
 require_once 'reparacion_campos_duplicados.php';
 
