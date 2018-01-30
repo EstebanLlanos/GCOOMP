@@ -3123,6 +3123,7 @@ function reparacion_formato_ERC(&$campos,
 	{
 				
 		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,0);
+
 	}//if si existe campo
 	
 	
@@ -4219,7 +4220,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);		
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4242,7 +4261,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4285,7 +4322,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4424,7 +4479,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4452,7 +4525,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4483,7 +4574,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4514,7 +4623,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0			
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4542,7 +4669,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4570,7 +4715,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4598,7 +4761,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4628,7 +4809,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4727,7 +4926,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4789,7 +5006,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4798,7 +5033,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -4974,7 +5227,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+			&& $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -4983,7 +5254,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+			&& $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5262,7 +5551,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5362,7 +5669,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5371,7 +5696,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5380,7 +5723,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -5389,7 +5750,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5398,7 +5777,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -5407,7 +5804,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5416,7 +5831,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5729,7 +6162,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  	
 	}//if si existe campo
 	
 	
@@ -5738,7 +6189,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);	
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
@@ -5883,7 +6352,25 @@ function reparacion_valor_permitido_ERC(&$campos,
 	{
 	   
 	    //aqui agrega el 1800-01-01
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1,801);	    
+	    //$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1,801);	  
+
+	    $es_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+		$excede_fecha_de_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
+		
+		//valor permitido
+		if($es_fecha_calendario<0
+		   && $excede_fecha_de_corte<0
+		   )
+		{
+		    $campos[$numero_campo]=$fecha_de_corte;
+		}
+		else if($es_fecha_calendario>0
+	       && $campos[$numero_campo]!="1800-01-01"
+	       && $campos[$numero_campo]!="1845-01-01"
+		    )
+	    {
+		    $campos[$numero_campo]="1845-01-01";
+	    }//campo no esta en blanco  
 	}//if si existe campo
 	
 	
