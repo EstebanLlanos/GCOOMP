@@ -353,15 +353,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 21 aka 21
 	$numero_campo=21;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    if(trim($campos[$numero_campo])=="" && $edad<1)
+	{		
+	    if($campos[$numero_campo]=="")
 	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $edad>=1)
-	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -369,92 +364,22 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=22;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio				    
-	    $campo_n21=trim($campos[21]);
-	    $campo_ant_20=$campos[20];
-	    if($campos[$numero_campo]==""
-	       && ($campo_ant_20=="1" || $campo_ant_20=="3" || $campo_ant_20=="4" )
-	       )
+	    if($campos[$numero_campo]=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
-	    else if($campos[$numero_campo]=="" && $campo_ant_20=="2")
-	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-		
 		
 	}//if si existe campo
 	
 	//campo 23 aka 23
 	$numero_campo=23;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
+	{	   
 	    
-	    
-	    $campo_ant_11=$campos[11];
-	    $campo_ant_21=$campos[21];
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_18=$campos[18];
-	    
-	    $c21r_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_21,"1900-12-31");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && ($campo_ant_21=="1799-01-01" || $campo_ant_21=="1800-01-01")
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="F"
-	       && $campo_ant_17!=0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_18!=0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $edad_meses<18
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="M"
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_18==0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
+			$campos[$numero_campo]="10";
+	    }	    
 		
 	}//if si existe campo
 	
@@ -462,15 +387,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=24;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -479,43 +398,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=25;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio queda en blanco
-	    
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_n22=trim($campos[22]);
-	    $c22_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n22,"1900-12-31");
-	    $c22_es_fecha_calendario_mayor_2010=diferencia_dias_entre_fechas($campo_n22,"2010-12-31");   
-	    
-	    $campo_n24=intval($campos[24]);	
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n22=="1799-01-01"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010>0
-		    )
-	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010<0
-		    && $campo_n24==1
-		    )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010<0
-		    && ($campo_n24==5 || $campo_n24==6)
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -524,18 +409,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=26;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-		
 		
 	}//if si existe campo
 	
@@ -544,30 +421,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=27;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_27_1=$campos[28];
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $edad>=13 && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="12";
-	    }	    
-	    else if(trim($campos[$numero_campo])=="" && $edad<13)
-	    {
-		$campos[$numero_campo]="11";
-	    }	    
-	    else  if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0" && $edad<13)
-	    {
-		$campos[$numero_campo]="11";
-	    }
-	    else  if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0" && $edad>=13)
-	    {
-		$campos[$numero_campo]="12";
+			$campos[$numero_campo]="12";
 	    }
 	}//if si existe campo
 	
@@ -575,64 +431,20 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=28;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_27=$campos[27];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="13";
-	    }
-	    else  if(trim($campos[$numero_campo])==""
-		     && $campo_ant_20=="0"
-		     && $edad<13
-		     )
-	    {
-		$campos[$numero_campo]="15";
-	    }
-	    else  if(trim($campos[$numero_campo])==""
-		     && $campo_ant_20=="0"
-		     && $edad>=13
-		     )
-	    {
-		$campos[$numero_campo]="14";
-	    }
-	    else  if(trim($campos[$numero_campo])==""
-		     && $campo_ant_20=="0"
-		     && $edad<13
-		     )
-	    {
-		$campos[$numero_campo]="15";
-	    }
-	    else  if(trim($campos[$numero_campo])==""
-		     && $campo_ant_20=="0"
-		     && $edad>=13
-		     )
-	    {
-		$campos[$numero_campo]="14";
-	    }
-		
+			$campos[$numero_campo]="13";
+	    }	    		
 	}//if si existe campo
 	
 	
 	//campo 29 aka 28
 	$numero_campo=29;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99005";
-	    }
-	    else if((trim($campos[$numero_campo])=="") && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="99004";
+			$campos[$numero_campo]="99005";
 	    }
 		
 	}//if si existe campo
@@ -641,18 +453,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 30 aka 29
 	$numero_campo=30;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99005";
-	    }
-	    else if((trim($campos[$numero_campo])=="") && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="99004";
+			$campos[$numero_campo]="99005";
 	    }
 	}//if si existe campo
 	
@@ -660,15 +464,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=31;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1800-01-01";
 	    }//fin if
 		
 	}//if si existe campo
@@ -678,34 +476,20 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=32;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99005";
-	    }
-	    else if((trim($campos[$numero_campo])=="") && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="99004";
-	    }
+			$campos[$numero_campo]="99005";
+	    }//fin if
 	}//if si existe campo
 	
 	
 	//campo 33 aka 32
 	$numero_campo=33;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99005";
-	    }
-	    else if((trim($campos[$numero_campo])=="") && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="99004";
+			$campos[$numero_campo]="99005";
 	    }
 	}//if si existe campo
 	
@@ -713,28 +497,11 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 34 aka 33
 	$numero_campo=34;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="5";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1788-01-01")
-	    {
-		$campos[$numero_campo]="5";
-	    }
+			$campos[$numero_campo]="9";
+	    }//fin if
 		
 	}//if si existe campo
 	
@@ -743,46 +510,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=35;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_n30=="1800-01-01"
-		    && $campo_ant_20!="0"
-		    )
-	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="7";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="6";
-	    }
+			$campos[$numero_campo]="10";
+	    }//fin if	    
 	}//if si existe campo
 	
 	
@@ -790,52 +521,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=36;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio		
-		
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1799-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
+			$campos[$numero_campo]="9";
+	    }//fin if
 		
 	}//if si existe campo
 	
@@ -844,45 +533,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=37;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio		
-	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -891,45 +544,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=38;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	       
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -938,98 +555,20 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=39;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
+	    if(trim($campos[$numero_campo])=="")
+	    {
+			$campos[$numero_campo]="9";
+	    }
 	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
 	}//if si existe campo
 	
 	//campo 40 aka 39
 	$numero_campo=40;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio	    
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_18=$campos[18];
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_18=="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1038,45 +577,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=41;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1085,45 +588,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=42;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1131,52 +598,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=43;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_18=$campos[18];
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_18!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1186,45 +610,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=44;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if((trim($campos[$numero_campo])=="")
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1234,18 +622,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=45;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1255,18 +634,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=46;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1276,18 +646,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=47;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1296,18 +657,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=48;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1315,18 +667,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=49;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1334,18 +677,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=50;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1353,18 +687,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=51;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1374,18 +699,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=52;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 		
@@ -1394,18 +710,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=53;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -1413,18 +720,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=54;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -1434,18 +732,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=55;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo	
@@ -1454,18 +743,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=56;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	   if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo	
 	
@@ -1473,18 +753,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=57;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 
@@ -1492,18 +763,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=58;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo	
 
@@ -1511,18 +773,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=59;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo	
 	
@@ -1530,31 +783,19 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=60;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo	
 	
 	//campo 61 aka 44.17
 	$numero_campo=61;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo	
@@ -1563,12 +804,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=62;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo	
@@ -1576,13 +814,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 63 aka 44.19
 	$numero_campo=63;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo	
@@ -1591,12 +826,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=64;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_n30=trim($campos[31]);
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo	
@@ -1605,37 +837,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=65;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2006_01_01=diferencia_dias_entre_fechas($campo_n30,"2006-01-01");
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2006_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2006_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo	
@@ -1644,36 +848,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=66;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="98";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo	
@@ -1682,36 +859,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=67;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="97";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="98";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="97";
 	    }
 	}//if si existe campo	
 	
@@ -1719,37 +869,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=68;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    $campo_n17=trim($campos[17]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_n17=="0"
-		    && $campo_ant_20=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_n17=="0"
-		    && $campo_ant_20!="0"
-		    )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -1758,23 +880,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=69;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n30=="1800-01-01")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -1783,47 +891,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=70;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n49=trim($campos[69]);
-			
-	    $c49_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n49,"1900-12-31");
-	    
-	    if(trim($campos[$numero_campo])=="" 
-	       && $campo_ant_20!="0"
-	      )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" 
-		    && $campo_ant_20=="0"
-	       && ( $campo_n49=="1799-01-01")
-	       )
-	    {
-		$campos[$numero_campo]="5";
-	    }
-	    else if(trim($campos[$numero_campo])=="" 
-		    && $campo_ant_20=="0"
-	       && ( $campo_n49=="1777-01-01")
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if(trim($campos[$numero_campo])=="" 
-		    && $campo_ant_20=="0"
-		    &&  $c49_es_fecha_calendario<0
-		    )
-	    {
-		$campos[$numero_campo]="6";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    
+			$campos[$numero_campo]="9";
+	    }	    	    
 		
 	}//if si existe campo
 	
@@ -1831,95 +902,31 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=71;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    $campo_n50=trim($campos[70]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && ($campo_n30=="1800-01-01")
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50=="2"
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50!="2"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }	
+			$campos[$numero_campo]="99";
+	    }//fin if
 	}//if si existe campo
 	
 	//campo 72 aka 52
 	$numero_campo=72;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    $campo_n50=trim($campos[70]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && ($campo_n30=="1800-01-01")
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99";
+			$campos[$numero_campo]="99";
 	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_n30!="1800-01-01")
-		    &&  ($campo_n50=="1"
-			 || $campo_n50=="2"
-			 || $campo_n50=="3"
-			 || $campo_n50=="6"
-			 )
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50=="4"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }		
+	    
 	}//if si existe campo
 	
 	//campo 73 aka 53.1
 	$numero_campo=73;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 		
 	}//if si existe campo
 	
@@ -1927,17 +934,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=74;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 		
 	}//if si existe campo
 	
@@ -1945,275 +945,161 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=75;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
-		
-		
-		
+
 	}//if si existe campo
 	
 	//campo 76 aka 53.4
 	$numero_campo=76;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 77 aka 53.5
 	$numero_campo=77;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 78 aka 53.6
 	$numero_campo=78;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 79 aka 53.7
 	$numero_campo=79;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 80 aka 53.8
 	$numero_campo=80;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if  
 	}//if si existe campo
 	
 	//campo 81 aka 53.9
 	$numero_campo=81;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 82 aka 53.10
 	$numero_campo=82;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 83 aka 53.11
 	$numero_campo=83;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 84 aka 53.12
 	$numero_campo=84;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 85 aka 53.13
 	$numero_campo=85;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 86 aka 53.14
 	$numero_campo=86;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
+			$campos[$numero_campo]="0";
+	    } 
 	}//if si existe campo
 	
 	//campo 87 aka 53.15
 	$numero_campo=87;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 88 aka 53.16
 	$numero_campo=88;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 89 aka 53.17
 	$numero_campo=89;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if  
 	}//if si existe campo
 	
 	//campo 90 aka 53.18
 	$numero_campo=90;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 		
 	}//if si existe campo
 	
@@ -2221,34 +1107,20 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=91;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
 	}//if si existe campo
 	
 	//campo 92 aka 53.20
 	$numero_campo=92;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		    $campos[$numero_campo]="0";
-	    }//fin if 
+			$campos[$numero_campo]="0";
+	    } 
 	}//if si existe campo
 	
 	//campo 93 aka 54
@@ -2280,6 +1152,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
 		}
 		
+		if(trim($campos[$numero_campo])=="")
+	    {
+			$campos[$numero_campo]="9";
+	    }
 	}//if si existe campo
 	
 	
@@ -2287,16 +1163,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=94;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }//fin if
 	}//if si existe campo
 	
@@ -2308,31 +1177,24 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	    //campo obligatorio
 	    if(trim($campos[$numero_campo])=="" && strlen($campo_n54)>=5)
 	    {
-		$consulta2="";
-		$consulta2.="SELECT * FROM gios_mpio WHERE cod_municipio='".substr($campo_n54,0,5)."'; ";
-		$resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-		if(count($resultado2)!=0)
-		{
-		    $campos[$numero_campo]=substr($campo_n54,0,5);
-		}//fin if
-	    }//fin if
-		
+			$consulta2="";
+			$consulta2.="SELECT * FROM gios_mpio WHERE cod_municipio='".substr($campo_n54,0,5)."'; ";
+			$resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+			if(count($resultado2)!=0)
+			{
+			    $campos[$numero_campo]=substr($campo_n54,0,5);
+			}//fin if
+	    }//fin if		
 		
 	}//if si existe campo
 	
 	//campo 96 aka 57
 	$numero_campo=96;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="6";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -2340,17 +1202,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 97 aka 58
 	$numero_campo=97;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -2358,17 +1213,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 98 aka 59
 	$numero_campo=98;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -2377,53 +1225,19 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=99;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    	    
-	    $campo_ant_59=$campos[98];
-	    //$campo_ant_50=$campos[70];
-	    $campo_ant_20=$campos[20];
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_59=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_59=="1"
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_59=="2"
-		    )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
 	//campo 100 aka 61
 	$numero_campo=100;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -2432,17 +1246,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 101 aka 62
 	$numero_campo=101;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	     else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="4";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -2450,15 +1257,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=102;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }	 
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	
 	}//if si existe campo
@@ -2467,15 +1268,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=103;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -2483,15 +1278,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=104;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -2499,15 +1288,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=105;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -2515,15 +1298,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=106;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }	  
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -2532,15 +1309,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=107;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -2548,15 +1319,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=108;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -2564,15 +1329,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=109;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -2581,15 +1340,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=110;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -2598,15 +1351,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=111;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -2615,15 +1362,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=112;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -2631,16 +1372,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 113 aka 74
 	$numero_campo=113;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	{	    
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="3";
 	    }
 		
 	}//if si existe campo
@@ -2649,15 +1384,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=114;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -2667,22 +1396,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    //campo obligatorio
-	    $campo_ant_62=$campos[101];
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_75=$campos[114];
-	    
-	    $campo_n20=trim($campos[20]);
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_n20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99999";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_n20=="0"
-		    && $campo_ant_75=="1800-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="88888";
+			$campos[$numero_campo]="99999";
 	    }
 	}//if si existe campo
 	
@@ -2690,15 +1406,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=116;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	    
 	}//if si existe campo
@@ -2707,19 +1417,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=117;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_77=$campos[116];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99999";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_77=="1800-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="88888";
+			$campos[$numero_campo]="99999";
 	    }
 	}//if si existe campo
 	
@@ -2727,15 +1427,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=118;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	    
 	}//if si existe campo
@@ -2744,35 +1438,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=119;
 	if(isset($campos[$numero_campo]))
 	{
-	    $campo_n79=$campos[118];	    
-	    $campo_n20=trim($campos[20]);
-	    $c79_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n79,"1900-12-31");
-	    
-	    
-	    if(trim($campos[$numero_campo])==""
-		&& $campo_n20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& ($campo_n79=="1799-01-01" || $campo_n79=="1800-01-01")
-		&& $campo_n20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $c79_es_fecha_calendario<0
-		    && $campo_n20=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="9";
-	    }
+			$campos[$numero_campo]="9";
+	    }	    
 	    
 	}//if si existe campo
 	
@@ -2780,20 +1449,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=120;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_n81=trim($campos[120]);
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -2802,40 +1460,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=121;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_n81=trim($campos[120]);
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="1"
-	       )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="2"
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 
 		
@@ -2845,39 +1472,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=122;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_20=$campos[20];
-	    
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $edad<10)
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="1"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_19!="1"
-		    && $edad>=10
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }	    
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="9";
-	    }
 		
 	}//if si existe campo
 	
@@ -2886,15 +1484,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=123;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="3";
 	    }
 		
 	}//if si existe campo
@@ -2904,15 +1496,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=124;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -2921,28 +1507,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=125;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }	
 		
 	}//if si existe campo
 	
@@ -2951,28 +1519,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=126;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+		if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }	
 		
 	}//if si existe campo
 	
@@ -2981,27 +1531,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=127;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="99";
 	    }
 	    
 	}//if si existe campo
@@ -3011,27 +1543,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=128;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -3041,15 +1555,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=129;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3058,21 +1566,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=130;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_89=trim($campos[129]);
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_20!="0"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_20=="0"
-		    && $campo_ant_89!="4" && $campo_ant_89!="9"
-		    )
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -3082,15 +1578,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=131;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3099,15 +1589,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=132;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3117,15 +1601,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=133;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3135,15 +1613,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=134;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3153,15 +1625,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=135;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3171,15 +1637,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=136;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3189,15 +1649,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=137;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3207,15 +1661,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=138;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3224,15 +1672,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=139;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3241,16 +1683,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=140;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
-	    } 
 		
 	}//if si existe campo
 	
@@ -3258,15 +1694,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=141;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3275,15 +1705,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=142;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3292,16 +1716,10 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=143;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
-	    } 
 		
 	}//if si existe campo
 	
@@ -3309,15 +1727,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=144;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3326,15 +1738,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=145;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3343,15 +1749,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=146;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])=="" && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3360,14 +1760,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=147;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3376,14 +1771,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=148;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3393,14 +1783,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=149;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3409,14 +1794,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=150;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_20!="0")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -3424,57 +1804,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=151;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_92_1=trim($campos[152]);
-	    $campo_92_2=trim($campos[153]);
-	    $campo_92_3=trim($campos[154]);
-	    $campo_92_4=trim($campos[155]);
-	    $campo_92_5=trim($campos[156]);
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="0"
-		    )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && (
-			$campo_92_1=="1"
-			|| $campo_92_2=="1"
-			|| $campo_92_3=="1"
-			|| $campo_92_4=="1"
-			|| $campo_92_5=="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_19=="1"
-		    && (
-			$campo_92_1!="1"
-			&& $campo_92_2!="1"
-			&& $campo_92_3!="1"
-			&& $campo_92_4!="1"
-			&& $campo_92_5!="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="2";
 	    }
 		
 	}//if si existe campo
@@ -3483,25 +1815,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=152;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }	    
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -3510,24 +1826,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=153;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -3536,24 +1837,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=154;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -3562,24 +1848,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=155;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -3588,24 +1859,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=156;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    if(trim($campos[$numero_campo])==""
-	       && $edad_meses>=18
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -3614,78 +1870,21 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=157;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
+	    if(trim($campos[$numero_campo])=="")
+	    {
+			$campos[$numero_campo]="9";
+	    }
 	    
-	    $campo_95_1=trim($campos[159]);
-	    $campo_95_2=trim($campos[160]);
-	    $campo_95_3=trim($campos[161]);
-	    $campo_95_4=trim($campos[162]);
-	    $campo_95_5=trim($campos[163]);
-	    $campo_95_6=trim($campos[164]);
-	    $campo_95_7=trim($campos[165]);
-	    $campo_95_8=trim($campos[166]);
-	    $campo_95_9=trim($campos[167]);
-
-	    
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_18=="1"
-		    && (
-			$campo_95_1=="1"
-			|| $campo_95_2=="1"
-			|| $campo_95_3=="1"
-			|| $campo_95_4=="1"
-			|| $campo_95_5=="1"
-			|| $campo_95_6=="1"
-			|| $campo_95_7=="1"
-			|| $campo_95_8=="1"
-			|| $campo_95_9=="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && $campo_ant_18=="1"
-		    && (
-			$campo_95_1=="0"
-			&& $campo_95_2=="0"
-			&& $campo_95_3=="0"
-			&& $campo_95_4=="0"
-			&& $campo_95_5=="0"
-			&& $campo_95_6=="0"
-			&& $campo_95_7=="0"
-			&& $campo_95_8=="0"
-			&& $campo_95_9=="0"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
 		
 	}//if si existe campo
 	
 	//campo 158 aka 94
 	$numero_campo=158;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];	    
-	    $campo_n93=trim($campos[157]);
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	{		
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_n93=="0" || $campo_n93=="1" || $campo_n93=="2")
-		    && $campo_ant_18=="1"
-		    )
-	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1800-01-01";
 	    }
 	}//if si existe campo
 	
@@ -3693,15 +1892,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=159;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	   if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	    
 	}//if si existe campo
@@ -3710,15 +1903,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=160;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3727,15 +1914,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=161;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3744,15 +1925,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=162;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3761,15 +1936,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=163;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3778,15 +1947,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=164;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3795,15 +1958,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=165;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3812,15 +1969,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=166;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3829,15 +1980,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=167;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 				
 	}//if si existe campo
@@ -3846,15 +1991,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=168;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3863,15 +2002,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=169;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3880,15 +2013,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=170;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3897,15 +2024,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=171;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3914,15 +2035,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=172;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    if(trim($campos[$numero_campo])=="" && $campo_ant_18!="1")
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -3931,27 +2046,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=173;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="M"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	}//if si existe campo
 	
@@ -3959,27 +2056,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=174;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="M"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -3989,27 +2068,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=175;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="M"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -4018,27 +2079,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=176;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
-	    if(trim($campos[$numero_campo])==""
-	       && $campo_ant_11=="M"
-	       )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -4047,34 +2090,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=177;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
-	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
-	    
-	    if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="M"
-		)
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -4083,34 +2101,9 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=178;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
-	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
-	    
-	    if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="M"
-		)
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -4118,50 +2111,20 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=179;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
+	    if(trim($campos[$numero_campo])=="")
+	    {
+			$campos[$numero_campo]="1799-01-01";
+	    }
 	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
-	    
-	    if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="M"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if(trim($campos[$numero_campo])==""
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
 	}//if si existe campo
 	
 	//campo 180 aka 103
 	$numero_campo=180;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    $campo_n106=trim($campos[183]);
-	    if(trim($campos[$numero_campo])==""  && $campo_n106=="1799-01-01" )
+	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if(trim($campos[$numero_campo])=="")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }//fin if
 	    
 		
@@ -4171,9 +2134,11 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	//campo 181 aka 104
 	$numero_campo=181;
 	if(isset($campos[$numero_campo]))
-	{
-		
-		//no aplica
+	{		
+		if(trim($campos[$numero_campo])=="")
+	    {
+			$campos[$numero_campo]="1799-01-01";
+	    }
 	}//if si existe campo
 	
 	//campo 182 aka 105
@@ -4183,7 +2148,7 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	    //campo obligatorio
 	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }//fin if
 		
 		
@@ -4196,7 +2161,7 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	    //campo obligatorio
 	    if(trim($campos[$numero_campo])=="")
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }//fin if
 	}//if si existe campo
 	
@@ -4207,13 +2172,7 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	{
 	    $fix_ultimo_campo=preg_replace("/[^A-Za-z0-9:.\-\s+]/", "", trim($campos[$numero_campo]) );
 	    
-	    //campo obligatorio
-	    $campo_ant_106=$campos[183];
-	    if(trim($fix_ultimo_campo)=="" && $campo_ant_106=="1799-01-01")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($fix_ultimo_campo)=="")
+	    if(trim($fix_ultimo_campo)=="")
 	    {
 		    $campos[$numero_campo]="0";
 	    }//fin if 
