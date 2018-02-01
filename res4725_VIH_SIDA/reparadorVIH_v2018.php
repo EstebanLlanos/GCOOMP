@@ -310,7 +310,7 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	{
 	    if(trim($campos[$numero_campo])=="")
 	    {
-			$campos[$numero_campo]="0";
+			$campos[$numero_campo]="3";
 	    }//fin if 
 		
 		
@@ -1127,30 +1127,7 @@ function reparacion_campo_en_blanco_formato_vih(&$campos,
 	$numero_campo=93;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if(trim($campos[$numero_campo])=="")
-		{
-		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
-		}//fin if 
-		else if(strlen($campos[$numero_campo])==11 &&
-	       (substr($campos[$numero_campo],0,1)=="5" || substr($campos[$numero_campo],0,1)=="8")
-	       )
-		{
-		    $campos[$numero_campo]="0".$campos[$numero_campo];
-		}
-		else if(strlen($campos[$numero_campo])==10)
-		{
-		    $campos[$numero_campo]=$campos[$numero_campo]."01";
-		}
 		
-		
-		$consulta="";
-		$consulta.="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='".$campos[$numero_campo]."'; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
-		if(intval($campos[$numero_campo])!=9 && count($resultado)==0)
-		{
-		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
-		}
 		
 		if(trim($campos[$numero_campo])=="")
 	    {
@@ -2297,21 +2274,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=0;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		//formato de campo
 		if(!ctype_alnum(str_replace(" ","",$campos[$numero_campo])))
 		{
@@ -2324,8 +2287,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	//campo 1 aka 1 EAPB-EPS
 	$numero_campo=1;
 	if(isset($campos[$numero_campo]))
-	{
-		
+	{		
 		
 		//formato de campo
 		if(!ctype_alnum(str_replace(" ","",$campos[$numero_campo])))
@@ -2339,21 +2301,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=2;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		//formato de campo
 		if(!ctype_alnum(str_replace(" ","",$campos[$numero_campo])))
 		{
@@ -2366,21 +2314,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=3;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		//formato de campo
 		if(!ctype_alnum(str_replace(" ","",$campos[$numero_campo])))
 		{
@@ -2393,21 +2327,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=4;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		//formato de campo
 		if(!ctype_alnum(str_replace(" ","",$campos[$numero_campo])))
 		{
@@ -2472,21 +2392,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=9;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		
 	}//if si existe campo
 	
@@ -2494,21 +2400,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=10;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		//correccion formato fecha al formato AAAA-MM-DD year-month-day fecha nacimiento
 		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,true);
 		
@@ -2537,25 +2429,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=12;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		
-	    if($campos[$numero_campo]!="1" && $campos[$numero_campo]!="2" && $campos[$numero_campo]!="4")
+	    if($campos[$numero_campo]!="1" 
+	    	&& $campos[$numero_campo]!="2" 
+	    	&& $campos[$numero_campo]!="4"
+	    	)
 	    {
-		$campos[$numero_campo]="4";
+			$campos[$numero_campo]="4";
 	    }
 	}//if si existe campo
 	
@@ -2563,21 +2443,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=13;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		
 		
 	}//if si existe campo
@@ -2591,7 +2456,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		
 	    if(strlen($campos[$numero_campo])>21)
 	    {
-		$campos[$numero_campo]=substr($campos[$numero_campo],0,21);
+			$campos[$numero_campo]=substr($campos[$numero_campo],0,21);
 	    }
 	}//if si existe campo
 	
@@ -2602,11 +2467,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    if(strlen($campos[$numero_campo])==4
 	       && (substr($campos[$numero_campo],0,1)=="5" || substr($campos[$numero_campo],0,1)=="8") )
 	    {
-		$campos[$numero_campo]="0".$campos[$numero_campo];
+			$campos[$numero_campo]="0".$campos[$numero_campo];
 	    }
 	    else if(strlen($campos[$numero_campo])>5)
 	    {
-		$campos[$numero_campo]=substr($campos[$numero_campo],0,5);
+			$campos[$numero_campo]=substr($campos[$numero_campo],0,5);
 	    }
 		
 		
@@ -2623,25 +2488,26 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    $excede_fecha_corte=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_de_corte);
 	    $es_campo_actual_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
 	    $es_inferior_a_1995_01_01=diferencia_dias_entre_fechas($campos[$numero_campo],"1995-01-01");
+	    
 	    if($es_campo_actual_fecha_calendario<0
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_inferior_a_1995_01_01>0)
 	    {
-		$campos[$numero_campo]="1995-01-01";
-		
-		$fecha_nacimiento=trim($campos[10]);
-		$es_campo_actual_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
-		$inferior_fecha_de_nacimiento=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_nacimiento);
-		if($inferior_fecha_de_nacimiento>0
-			   && $es_campo_actual_fecha_calendario<0
-			   )
-		{
-		    $campos[$numero_campo]=$fecha_nacimiento;
-		}//fin if
+			$campos[$numero_campo]="1995-01-01";
+			
+			$fecha_nacimiento=trim($campos[10]);
+			$es_campo_actual_fecha_calendario=diferencia_dias_entre_fechas($campos[$numero_campo],"1900-12-31");
+			$inferior_fecha_de_nacimiento=diferencia_dias_entre_fechas($campos[$numero_campo],$fecha_nacimiento);
+			if($inferior_fecha_de_nacimiento>0
+				   && $es_campo_actual_fecha_calendario<0
+				   )
+			{
+			    $campos[$numero_campo]=$fecha_nacimiento;
+			}//fin if
 	    }//fin else
 	    
 	    
@@ -2651,62 +2517,22 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=17;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
-	    $campo_n11=$campos[11];
-	    //campo obligatorio
+	    
 	    if(trim($campos[$numero_campo])!="0"
 	       && trim($campos[$numero_campo])!="1"
 	       && trim($campos[$numero_campo])!="2"
 	       && trim($campos[$numero_campo])!="3"
-	       && $campo_n11=="M")
+	       )
 	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="3";
 	    }//fin if
-	    else if(trim($campos[$numero_campo])!="0"
-	       && trim($campos[$numero_campo])!="1"
-	       && trim($campos[$numero_campo])!="2"
-	       && trim($campos[$numero_campo])!="3"
-		    && $campo_n11=="F")
-	    {
-		$campos[$numero_campo]="0";
-	    }//fin if 
 		
 	}//if si existe campo
 	
 	//campo 18 aka 18
 	$numero_campo=18;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-		
-	    //campo obligatorio
+	{	    
 	    if(trim($campos[$numero_campo])!="0"
 	       && trim($campos[$numero_campo])!="1"
 	       && trim($campos[$numero_campo])!="2"
@@ -2723,106 +2549,37 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=19;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
 		//campo obligatorio
 		if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $edad_meses>18)
-		{
-		    $campos[$numero_campo]="0";
-		}
-		else if($campos[$numero_campo]!="0"
 			&& $campos[$numero_campo]!="1"
 			)
 		{
 		    $campos[$numero_campo]="0";
 		}//fin if
 		
-		/*
-		if($edad_meses<18 && $campos[$numero_campo]!="0" && $campos[$numero_campo]!="1")
-		{
-		    $campos[$numero_campo]="1";
-		}
-		else if($edad_meses>=18 && $campos[$numero_campo]!="0" && $campos[$numero_campo]!="1")
-		{
-		    $campos[$numero_campo]="0";
-		}
-		*/
 	}//if si existe campo
 	
 	//campo 20 aka 20 
 	$numero_campo=20;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
+
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_n17=$campos[17];
-	    $campo_n18=$campos[18];
-	    $campo_n19=$campos[19];
-	    
-	    $campo_n22=trim($campos[22]);
-	    $c_22_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n22,"1900-12-31");
+
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
-	       && $c_22_es_fecha_calendario<0)
+	       )
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		&& ($campo_n17!="0" || $campo_n18!="0" || $campo_n19!="0")
-		&& $campo_n22=="1800-01-01"
-		)
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		&& ($campo_n17!="0" || $campo_n18!="0" || $campo_n19!="0")
-		&& $campo_n22=="1799-01-01"
-		)
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="0";
 	    }
 	    
 		
@@ -2834,8 +2591,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 		
 		
-	    //correccion formato fecha al formato AAAA-MM-DD year-month-day 
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+	    $array_fecha=explode("-",$campos[$numero_campo]);
+		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
+		{
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+		}
 	    
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
@@ -2845,27 +2606,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1811-01-01"
 		    && trim($campos[$numero_campo])!="1822-02-01"
-		    && $edad<1
 		    )
 	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1811-01-01"
-		    && trim($campos[$numero_campo])!="1822-02-01"
-		    && $edad>=1
-		    )
-	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -2873,38 +2623,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=22;
 	if(isset($campos[$numero_campo]))
 	{
-		
-		
-		$campo_n20=$campos[20];
+				
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n20=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if($campo_n20=="2")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
 		}
 		
-	    //campo obligatorio				    
-	    $campo_n21=trim($campos[21]);
-	    $campo_ant_20=$campos[20];
-	    
+
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -2912,23 +2639,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
-	       && ($campo_ant_20=="1" || $campo_ant_20=="3" || $campo_ant_20=="4" )
 	       )
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && $campo_ant_20=="2")
-	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
+
 		
 		
 	}//if si existe campo
@@ -2937,30 +2657,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=23;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_11=$campos[11];
-	    $campo_ant_21=$campos[21];
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_18=$campos[18];
-	    
-	    $c21r_es_fecha_calendario=diferencia_dias_entre_fechas($campo_ant_21,"1900-12-31");
-	    
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -2971,122 +2672,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="8"
 		   && $campos[$numero_campo]!="9"
 		   && $campos[$numero_campo]!="10"
-	       && ($campo_ant_21=="1799-01-01" || $campo_ant_21=="1800-01-01")
 	       )
 	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $campo_ant_11=="F"
-	       && $campo_ant_17!=0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $campo_ant_18!=0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $edad_meses<18
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $campo_ant_11=="M"
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $campo_ant_18==0
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $edad_meses>=18
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-	       && $c21r_es_fecha_calendario<0
-	       )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="10";
 	    }
 	    
 		
@@ -3098,8 +2686,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -3107,20 +2694,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="5"
 		   && $campos[$numero_campo]!="6"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -3133,16 +2709,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    $campos[$numero_campo]=trim(strtoupper($campos[$numero_campo]));
 	    
 	    
-	    //campo obligatorio queda en blanco
-	    
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_n22=trim($campos[22]);
-	    $c22_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n22,"1900-12-31");
-	    $c22_es_fecha_calendario_mayor_2010=diferencia_dias_entre_fechas($campo_n22,"2010-12-31");   
-	    
-	    $campo_n24=intval($campos[24]);
-	    
 	    $consulta="";
 	    $consulta.="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='".$campos[$numero_campo]."'; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
@@ -3151,42 +2717,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="8"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n22=="1799-01-01"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010>0
 		    )
 	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010<0
-		    && $campo_n24==1
-		    )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		    && $c22_es_fecha_calendario<0
-		    && $c22_es_fecha_calendario_mayor_2010<0
-		    && ($campo_n24==5 || $campo_n24==6)
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -3195,26 +2728,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=26;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -3225,23 +2743,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="8"
 		   && $campos[$numero_campo]!="9"
 		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -3253,27 +2757,8 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=27;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_27_1=$campos[28];
 	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
@@ -3287,80 +2772,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="10"
 		   && $campos[$numero_campo]!="11"
 		   && $campos[$numero_campo]!="12"
-		   && $campo_ant_20!="0"
 		   )
 	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $edad>=13 && $campo_ant_20=="0"
-		   )
-	    {
-		$campos[$numero_campo]="12";
-	    }	    
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $edad<13
-		   )
-	    {
-		$campos[$numero_campo]="11";
-	    }	    
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campo_ant_20=="0"
-		   && $edad<13
-		   )
-	    {
-		$campos[$numero_campo]="11";
-	    }
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campo_ant_20=="0"
-		   && $edad>=13
-		   )
-	    {
-		$campos[$numero_campo]="12";
+			$campos[$numero_campo]="12";
 	    }
 		
 	    
@@ -3370,29 +2784,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=28;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
+
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    
-		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_27=$campos[27];
-	    
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -3407,95 +2801,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="12"
 		   && $campos[$numero_campo]!="13"
 		   && $campos[$numero_campo]!="14"
-		   && $campos[$numero_campo]!="15"
-	       && $campo_ant_20!="0"
+		   && $campos[$numero_campo]!="15"		   
 	       )
 	    {
-		$campos[$numero_campo]="13";
-	    }
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="13"
-		   && $campos[$numero_campo]!="14"
-		   && $campos[$numero_campo]!="15"
-		     && $campo_ant_20=="0"
-		     && $edad<13
-		     )
-	    {
-		$campos[$numero_campo]="15";
-	    }
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="13"
-		   && $campos[$numero_campo]!="14"
-		   && $campos[$numero_campo]!="15"
-		     && $campo_ant_20=="0"
-		     && $edad>=13
-		     )
-	    {
-		$campos[$numero_campo]="14";
-	    }
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="13"
-		   && $campos[$numero_campo]!="14"
-		   && $campos[$numero_campo]!="15"
-		     && $campo_ant_20=="0"
-		     && $edad<13
-		     )
-	    {
-		$campos[$numero_campo]="15";
-	    }
-	    else  if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="13"
-		   && $campos[$numero_campo]!="14"
-		   && $campos[$numero_campo]!="15"
-		     && $campo_ant_20=="0"
-		     && $edad>=13
-		     )
-	    {
-		$campos[$numero_campo]="14";
+			$campos[$numero_campo]="13";
 	    }
 		
 	    
@@ -3507,48 +2816,23 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=29;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
+	    	    
 	    if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 	    {
-		$campos[$numero_campo]=intval($campos[$numero_campo]);
+			$campos[$numero_campo]=intval($campos[$numero_campo]);
 	    }
 	    
-	    //campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
-	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
+	    
+	    if(
+	    	(intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
 		   && intval($campos[$numero_campo])!=99001
 		   && intval($campos[$numero_campo])!=99002
 		   && intval($campos[$numero_campo])!=99003
 		   && intval($campos[$numero_campo])!=99004
 		   && intval($campos[$numero_campo])!=99005
-	       && $campo_ant_20!="0")
+	       )
 	    {
-		$campos[$numero_campo]="99005";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
-		   && intval($campos[$numero_campo])!=99001
-		   && intval($campos[$numero_campo])!=99002
-		   && intval($campos[$numero_campo])!=99003
-		   && intval($campos[$numero_campo])!=99004
-		   && intval($campos[$numero_campo])!=99005
-		    && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="99004";
+			$campos[$numero_campo]="99005";
 	    }
 	    
 		
@@ -3559,20 +2843,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=30;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
+		
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
@@ -3580,29 +2851,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		}
 		
 		
-		$campo_n20=$campos[20];
-		
 		if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50000)
 		   && intval($campos[$numero_campo])!=99001
 		   && intval($campos[$numero_campo])!=99002
 		   && intval($campos[$numero_campo])!=99003
 		   && intval($campos[$numero_campo])!=99004
 		   && intval($campos[$numero_campo])!=99005
-		   && $campo_ant_20!="0"
 		   )
 		{
 		    $campos[$numero_campo]="99005";
-		}
-		else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50000)
-		   && intval($campos[$numero_campo])!=99001
-		   && intval($campos[$numero_campo])!=99002
-		   && intval($campos[$numero_campo])!=99003
-		   && intval($campos[$numero_campo])!=99004
-		   && intval($campos[$numero_campo])!=99005
-		   && $campo_n20=="0"
-		   )
-		{
-		    $campos[$numero_campo]="99004";
 		}
 	}//if si existe campo
 	
@@ -3610,64 +2867,23 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=31;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
-	    $campo_n20=$campos[20];
 	    $array_fecha=explode("-",$campos[$numero_campo]);
 	    if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 	    {
-		if($campo_n20=="1")
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
+			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		else if($campo_n20=="0")
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1788-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-3);
-		}
-		else
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-	    }
-	    else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-	    {
-		//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-	    }
+	    }//fin if
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
-	    $campo_ant_20=$campos[20];
+	    
 	    //campo obligatorio
 	    if($es_fecha_calendario<0
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1788-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
@@ -3675,7 +2891,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		    && trim($campos[$numero_campo])!="1788-01-01"
 		    )
 	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1800-01-01";
 	    }//fin if
 		
 	}//if si existe campo
@@ -3685,27 +2901,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=32;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		$campo_n20=$campos[20];
 		
 		if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
 		   && intval($campos[$numero_campo])!=99001
@@ -3713,21 +2914,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && intval($campos[$numero_campo])!=99003
 		   && intval($campos[$numero_campo])!=99004
 		   && intval($campos[$numero_campo])!=99005
-		   && $campo_ant_20!="0"
 		   )
 		{
 		    $campos[$numero_campo]="99005";
-		}
-		else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
-		   && intval($campos[$numero_campo])!=99001
-		   && intval($campos[$numero_campo])!=99002
-		   && intval($campos[$numero_campo])!=99003
-		   && intval($campos[$numero_campo])!=99004
-		   && intval($campos[$numero_campo])!=99005
-		   && $campo_n20=="0"
-		   )
-		{
-		    $campos[$numero_campo]="99004";
 		}
 	}//if si existe campo
 	
@@ -3736,20 +2925,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=33;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
@@ -3757,7 +2932,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		}
 		
 		
-		$campo_n20=$campos[20];
 		
 		if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50000)
 		   && intval($campos[$numero_campo])!=99001
@@ -3765,21 +2939,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && intval($campos[$numero_campo])!=99003
 		   && intval($campos[$numero_campo])!=99004
 		   && intval($campos[$numero_campo])!=99005
-		   && $campo_ant_20!="0"
 		   )
 		{
 		    $campos[$numero_campo]="99005";
-		}
-		else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50000)
-		   && intval($campos[$numero_campo])!=99001
-		   && intval($campos[$numero_campo])!=99002
-		   && intval($campos[$numero_campo])!=99003
-		   && intval($campos[$numero_campo])!=99004
-		   && intval($campos[$numero_campo])!=99005
-		   && $campo_n20=="0"
-		   )
-		{
-		    $campos[$numero_campo]="99004";
 		}
 	}//if si existe campo
 	
@@ -3788,28 +2950,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=34;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_n30=trim($campos[31]);
+		
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -3820,51 +2965,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="8"
 		   && $campos[$numero_campo]!="9"
 		   && $campos[$numero_campo]!="0"
-	       && $campo_n30=="1800-01-01")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="0"
-		    && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="5";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="0"
-		    && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="0"
-		    && $campo_n30!="1788-01-01")
-	    {
-		$campos[$numero_campo]="5";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -3875,29 +2978,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=35;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
+	    	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -3909,78 +2992,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="9"
 		   && $campos[$numero_campo]!="10"
 		   && $campos[$numero_campo]!="0"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="0"
-		    && $campo_n30=="1800-01-01"
-		    && $campo_ant_20!="0"
 		    )
 	    {
-		$campos[$numero_campo]="10";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="0"
-		    && $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="7";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="0"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="8";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="0"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="6";
+			$campos[$numero_campo]="10";
 	    }
 	    
 	}//if si existe campo
@@ -3990,98 +3004,19 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=36;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio		
 		
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1799-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -4092,87 +3027,20 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=37;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio		
-	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
+			    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -4182,87 +3050,19 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=38;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	       
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
+			    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -4273,29 +3073,8 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=39;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
 	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
+	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
@@ -4303,57 +3082,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -4362,99 +3093,19 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=40;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
+	    	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio	    
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_18=$campos[18];
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
+
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_18=="0")
+			)
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -4464,87 +3115,19 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=41;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
+	    	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
+	   		    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -4553,29 +3136,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=42;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
@@ -4583,57 +3147,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -4642,105 +3158,20 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=43;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_18=$campos[18];
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
-	    if($campos[$numero_campo]!="0"
+		if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="5"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_18!="0")
+			)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="9"
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="9"
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -4752,29 +3183,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=44;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    	    
-	    $campo_n20=trim($campos[20]);
-	    $campo_n30=trim($campos[31]);
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");			
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
+	   
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
@@ -4782,57 +3195,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"	
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"	
-	       && $campo_n30=="1800-01-01"
-	       && $campo_ant_20=="0"
 	       )
 	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"	
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"	
-			&& $c30_es_fecha_calendario<0
-			&& $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"	
-			&& $campo_n30=="1788-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -4843,44 +3208,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=45;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    
 		
 	}//if si existe campo
 	
@@ -4889,41 +3228,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=46;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -4934,41 +3247,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=47;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+				
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -4978,41 +3265,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=48;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -5021,41 +3282,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=49;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+				
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -5064,41 +3299,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=50;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -5107,42 +3316,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=51;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -5153,41 +3336,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=52;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -5197,41 +3355,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=53;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+		
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -5240,41 +3374,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=54;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+		
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -5285,41 +3394,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=55;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+		
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -5330,41 +3415,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=56;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
+				
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+			    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -5374,41 +3433,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=57;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -5418,41 +3452,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=58;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
+		
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo	
@@ -5461,41 +3470,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=59;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -5505,41 +3488,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=60;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
 		//campo obligatorio
 	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo	
@@ -5548,22 +3507,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=61;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		$campo_n20=$campos[20];
 		$consulta_medicamento="";
 		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
@@ -5582,29 +3526,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=62;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		
-		$campo_n20=$campos[20];
 		$consulta_medicamento="";
 		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 		if( count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_n30=="1800-01-01"
 		   )
 		{
 		    $campos[$numero_campo]="0";
@@ -5616,28 +3543,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=63;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		$campo_n20=$campos[20];
 		$consulta_medicamento="";
 		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 		if( count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_n30=="1800-01-01"
 		   )
 		{
 		    $campos[$numero_campo]="0";
@@ -5649,28 +3560,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=64;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		$campo_n20=$campos[20];
 		$consulta_medicamento="";
 		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 		if( count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_n30=="1800-01-01"
 		   )
 		{
 		    $campos[$numero_campo]="0";
@@ -5682,76 +3577,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=65;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-		//campo obligatorio
-	    
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2006_01_01=diferencia_dias_entre_fechas($campo_n30,"2006-01-01");
-	    
+			    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_n30=="1800-01-01")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2006_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2006_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -5761,34 +3598,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=66;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
+
 	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
@@ -5805,70 +3622,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="98"
 		   && $campos[$numero_campo]!="99"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="98"
-		   && $campos[$numero_campo]!="99"
-		   && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="98";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="98"
-		   && $campos[$numero_campo]!="99"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="98"
-		   && $campos[$numero_campo]!="99"
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="1";
+			$campos[$numero_campo]="0";
 	    }
 		
 		
@@ -5878,70 +3634,22 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=67;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
+		
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
 	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
 	    
 	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50)
 		   && intval($campos[$numero_campo])!=97
 		   && intval($campos[$numero_campo])!=98
 		   && intval($campos[$numero_campo])!=99
-	       && $campo_n30=="1800-01-01")
+	       )
 	    {
-		$campos[$numero_campo]="97";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50)
-		   && intval($campos[$numero_campo])!=97
-		   && intval($campos[$numero_campo])!=98
-		   && intval($campos[$numero_campo])!=99
-		    && $campo_n30=="1788-01-01")
-	    {
-		$campos[$numero_campo]="98";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50)
-		   && intval($campos[$numero_campo])!=97
-		   && intval($campos[$numero_campo])!=98
-		   && intval($campos[$numero_campo])!=99
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01>0
-		    )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>50)
-		   && intval($campos[$numero_campo])!=97
-		   && intval($campos[$numero_campo])!=98
-		   && intval($campos[$numero_campo])!=99
-		    && $c30_es_fecha_calendario<0
-		    && $c30_vs_2000_01_01<=0
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="97";
 	    }
 		
 	}//if si existe campo	
@@ -5950,32 +3658,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=68;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    $campo_n30=trim($campos[31]);
-	    $campo_n17=trim($campos[17]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
@@ -5983,43 +3668,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_n30=="1800-01-01")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_n30!="1800-01-01")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_n17=="0"
-		    && $campo_ant_20=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_n17=="0"
-		    && $campo_ant_20!="0"
-		    )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -6029,49 +3680,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=69;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		$campo_n20=$campos[20];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n20=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		
-		//campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    
+		}//fin if
+
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -6079,7 +3695,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"		    
@@ -6087,21 +3703,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		    && trim($campos[$numero_campo])!="1822-02-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1788-01-01"
-		    && $campo_n30=="1800-01-01"
 		    )
 	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"		    
-		    && trim($campos[$numero_campo])!="1811-01-01"
-		    && trim($campos[$numero_campo])!="1822-02-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1788-01-01"
-		    && $campo_n30!="1800-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	    
 		
@@ -6111,88 +3715,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=70;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n49=trim($campos[69]);
-			
-	    $c49_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n49,"1900-12-31");
-	    
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0"
-	      )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9" 
-		    && $campo_ant_20=="0"
-	       && ( $campo_n49=="1799-01-01")
-	       )
-	    {
-		$campos[$numero_campo]="5";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9" 
-		    && $campo_ant_20=="0"
-	       && ( $campo_n49=="1777-01-01")
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_20=="0"
-		    &&  $c49_es_fecha_calendario<0
-		    )
-	    {
-		$campos[$numero_campo]="6";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -6201,7 +3728,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="6"
 		   && $campos[$numero_campo]!="9")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -6212,60 +3739,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=71;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    $campo_n50=trim($campos[70]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
-	    
+
 	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
 		   && intval($campos[$numero_campo])!=99
-	       && ($campo_n30=="1800-01-01")
 	       )
 	    {
-		$campos[$numero_campo]="99";
+			$campos[$numero_campo]="99";
 	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
-		   && intval($campos[$numero_campo])!=99
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50=="2"
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
-		   && intval($campos[$numero_campo])!=99
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50!="2"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }	
 	    
 	}//if si existe campo
 	
@@ -6273,63 +3758,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=72;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    	    
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_34=$campos[35];
-	    
-	    $campo_n30=trim($campos[31]);
-	    $campo_n50=trim($campos[70]);
-	    
-	    $c30_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n30,"1900-12-31");
-	    $c30_vs_2000_01_01=diferencia_dias_entre_fechas($campo_n30,"2000-01-01");
 	    
 	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
 		   && intval($campos[$numero_campo])!=99
-	       && ($campo_n30=="1800-01-01")
 	       )
 	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
-		   && intval($campos[$numero_campo])!=99
-		    && ($campo_n30!="1800-01-01")
-		    &&  ($campo_n50=="1"
-			 || $campo_n50=="2"
-			 || $campo_n50=="3"
-			 || $campo_n50=="6"
-			 )
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>20)
-		   && intval($campos[$numero_campo])!=99
-		    && ($campo_n30!="1800-01-01")
-		    &&  $campo_n50=="4"
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="99";
 	    }
 		
 	}//if si existe campo
@@ -6338,33 +3778,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=73;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6379,31 +3797,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=74;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6415,31 +3813,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=75;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
+	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6451,31 +3828,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=76;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6486,31 +3842,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=77;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6521,31 +3856,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=78;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6556,32 +3870,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=79;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6592,31 +3883,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=80;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6627,31 +3897,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=81;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6662,31 +3910,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=82;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6697,31 +3924,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=83;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6732,31 +3938,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=84;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6767,31 +3952,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=85;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6802,31 +3965,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=86;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6837,31 +3979,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=87;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6872,31 +3993,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=88;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6907,31 +4007,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=89;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6942,31 +4021,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=90;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -6978,31 +4037,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=91;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -7013,31 +4052,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=92;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
 		    $campos[$numero_campo]="0";
@@ -7048,8 +4067,30 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=93;
 	if(isset($campos[$numero_campo]))
 	{
-		//la correccion de valor permitido se hara en la de campo obligatorio
-		//debido a que el campo 56 depnde de este desde dicha fase
+		//campo obligatorio
+		if(trim($campos[$numero_campo])=="")
+		{
+		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
+		}//fin if 
+		else if(strlen($campos[$numero_campo])==11 &&
+	       (substr($campos[$numero_campo],0,1)=="5" || substr($campos[$numero_campo],0,1)=="8")
+	       )
+		{
+		    $campos[$numero_campo]="0".$campos[$numero_campo];
+		}
+		else if(strlen($campos[$numero_campo])==10)
+		{
+		    $campos[$numero_campo]=$campos[$numero_campo]."01";
+		}
+		
+		
+		$consulta="";
+		$consulta.="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='".$campos[$numero_campo]."'; ";
+		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+		if(intval($campos[$numero_campo])!=9 && count($resultado)==0)
+		{
+		    if($cod_prestador!="AGRUP_EAPB"){$campos[$numero_campo]=$cod_prestador;}
+		}
 		
 		
 	}//if si existe campo
@@ -7058,42 +4099,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	//campo 94 aka 55
 	$numero_campo=94;
 	if(isset($campos[$numero_campo]))
-	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_n20=$campos[20];
+	{	    
 	    $array_fecha=explode("-",$campos[$numero_campo]);
 	    if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 	    {
-		if($campo_n20=="1")
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		}
-		else
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-	    }
-	    else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-	    {
-		//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-	    }
+	    }//fin if
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
@@ -7106,20 +4118,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }	    
-	    else if($es_fecha_calendario>0  
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && $campo_ant_20!="0"
-		    )
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    )
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }//fin if
 	}//if si existe campo
 	
@@ -7144,13 +4149,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
 	    if(count($resultado)==0 && strlen($campo_n54)>=5)
 	    {
-		$consulta2="";
-		$consulta2.="SELECT * FROM gios_mpio WHERE cod_municipio='".substr($campo_n54,0,5)."'; ";
-		$resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-		if(count($resultado2)!=0)
-		{
-		    $campos[$numero_campo]=substr($campo_n54,0,5);
-		}//fin if
+			$consulta2="";
+			$consulta2.="SELECT * FROM gios_mpio WHERE cod_municipio='".substr($campo_n54,0,5)."'; ";
+			$resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+			if(count($resultado2)!=0)
+			{
+			    $campos[$numero_campo]=substr($campo_n54,0,5);
+			}//fin if
 		
 	    }//fin if
 		
@@ -7160,25 +4165,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=96;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
+	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -7186,20 +4176,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="5"
 		   && $campos[$numero_campo]!="6"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="6";
+			$campos[$numero_campo]="9";
 	    }
 	
 	}//if si existe campo
@@ -7208,47 +4187,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=97;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    
-	    //campo obligatorio
-	    
-	    $campo_ant_20=$campos[20];
+	    	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -7257,39 +4207,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=98;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	         
-	    $campo_ant_20=$campos[20];
+	    
 	    if($campos[$numero_campo]!="1"
 	       && $campos[$numero_campo]!="2"
 	       && $campos[$numero_campo]!="0"
 	       && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-	       && $campos[$numero_campo]!="2"
-	       && $campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -7298,29 +4224,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=99;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-	    //campo obligatorio
-	    	    
-	    $campo_ant_59=$campos[98];
-	    //$campo_ant_50=$campos[70];
-	    $campo_ant_20=$campos[20];
 	    
+	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
@@ -7328,48 +4234,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="5"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_20=="0"
-		    && $campo_ant_59=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_20=="0"
-		    && $campo_ant_59=="1"
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0"
-		    && $campo_ant_59=="2"
-		    )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -7378,42 +4245,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=100;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    
-	    //campo obligatorio
-		
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -7424,43 +4264,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=101;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    		
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 	       && $campos[$numero_campo]!="2"
 	       && $campos[$numero_campo]!="3"
 	       && $campos[$numero_campo]!="4"
 	       && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0")
+	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-	       && $campos[$numero_campo]!="2"
-	       && $campos[$numero_campo]!="3"
-	       && $campos[$numero_campo]!="4"
-	       && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="4";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	    
@@ -7470,36 +4284,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=102;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
+
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }	 
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -7507,35 +4299,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=103;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	    
 	    
@@ -7545,35 +4314,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=104;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="1"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 	       && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }
 	    //fin if
 	}//if si existe campo
@@ -7582,37 +4328,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=105;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }
-	    //fin if 
-		
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }
 	    //fin if
 		
@@ -7622,35 +4344,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=106;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="1"
-	       && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }	  
-	    else if($campos[$numero_campo]!="0"
 	       && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	    
 		
@@ -7660,35 +4359,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=107;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	    
 	}//if si existe campo
@@ -7697,35 +4373,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=108;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	    
 		
@@ -7735,36 +4388,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=109;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 		
@@ -7774,35 +4404,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=110;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
+		if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 		
@@ -7812,36 +4420,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=111;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 		
@@ -7851,32 +4436,11 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=112;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
+		if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   )
 	    {
@@ -7891,20 +4455,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=113;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
@@ -7915,17 +4465,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="3";
 	    }
 	    
 		
@@ -7935,77 +4477,30 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	//campo 114 aka 75
 	$numero_campo=114;
 	if(isset($campos[$numero_campo]))
-	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
-		
-		$campo_n20=$campos[20];
+	{		
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n20=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if($campo_n20=="2")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
 		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		
-		//campo obligatorio
 		
 		$es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
-	    
-	    
-	    $campo_ant_20=$campos[20];
 	    
 	    //campo obligatorio
 	    if($es_fecha_calendario<0
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }	    
 	    else if($es_fecha_calendario>0  
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && $campo_ant_20!="0")
+		    )
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0  
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -8014,48 +4509,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=115;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    $campo_ant_62=$campos[101];
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_75=$campos[114];
-	    
-	    $campo_n20=trim($campos[20]);
 	    
 	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
 		   && intval($campos[$numero_campo])!=88888
 		   && intval($campos[$numero_campo])!=99999
-		   && $campo_n20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="99999";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>10000)
-		   && intval($campos[$numero_campo])!=88888
-		   && intval($campos[$numero_campo])!=99999
-		    && $campo_n20=="0"
-		    && $campo_ant_75=="1800-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="88888";
+			$campos[$numero_campo]="99999";
 	    }
 	    
 	}//if si existe campo
@@ -8064,46 +4529,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=116;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-		
-		$campo_n20=$campos[20];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n20=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if($campo_n20=="2")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
+		}//fin if
 		
 		$es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
@@ -8116,21 +4547,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }	    
 	    else if($es_fecha_calendario>0  
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && $campo_ant_20!="0")
+		    )
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0  
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	    
 	}//if si existe campo
@@ -8139,44 +4563,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=117;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_ant_77=$campos[116];
 	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>5000)
 		   && intval($campos[$numero_campo])!=88888
 		   && intval($campos[$numero_campo])!=99999
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="99999";
-	    }
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>5000)
-		   && intval($campos[$numero_campo])!=88888
-		   && intval($campos[$numero_campo])!=99999
-		    && $campo_ant_20=="0"
-		    && $campo_ant_77=="1800-01-01"
-		    )
-	    {
-		$campos[$numero_campo]="88888";
+			$campos[$numero_campo]="99999";
 	    }
 	    
 	}//if si existe campo
@@ -8185,46 +4582,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=118;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
-	    $campo_n20=$campos[20];
 	    $array_fecha=explode("-",$campos[$numero_campo]);
 	    if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 	    {
-		if($campo_n20=="1")
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		}
-		else if($campo_n20=="2")
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		else
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-	    }
-	    else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-	    {
-		//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-	    }
+	    }//fin if
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
@@ -8236,14 +4600,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }	    
 	    else if($es_fecha_calendario>0  
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    )
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -8251,66 +4615,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=119;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    $campo_n79=$campos[118];	    
-	    $campo_n20=trim($campos[20]);
-	    $c79_es_fecha_calendario=diferencia_dias_entre_fechas($campo_n79,"1900-12-31");
 	    
 	    if($campos[$numero_campo]!="1"
 	       && $campos[$numero_campo]!="2"
 	       && $campos[$numero_campo]!="3"
 	       && $campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="9"
-		&& $campo_n20!="0"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-	       && $campos[$numero_campo]!="2"
-	       && $campos[$numero_campo]!="3"
-	       && $campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="9"
-		&& ($campo_n79=="1799-01-01" || $campo_n79=="1800-01-01")
-		&& $campo_n20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-	       && $campos[$numero_campo]!="2"
-	       && $campos[$numero_campo]!="3"
-	       && $campos[$numero_campo]!="0"
-	       && $campos[$numero_campo]!="9"
-		    && $c79_es_fecha_calendario<0
-		    && $campo_n20=="0"
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
-	       && $campos[$numero_campo]!="2"
-	       && $campos[$numero_campo]!="3"
-	       && $campos[$numero_campo]!="0"
 	       && $campos[$numero_campo]!="9")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -8320,43 +4633,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=120;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_n81=trim($campos[120]);
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0"
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0"
-	       )
-	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -8366,83 +4651,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=121;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-		
-		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
-	    $campo_n81=trim($campos[120]);
-	    
-	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="1"
-	       )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="2"
-	       )
-	    {
-		$campos[$numero_campo]="4";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20=="0"
-	       && $campo_n81=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
+		if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9")
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	    
@@ -8454,81 +4672,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=122;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_20=$campos[20];
-	    
-	    if($campos[$numero_campo]!="1"
+		if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_20!="0"
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $edad<10)
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_19=="1"
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_20=="0"
-		    && $campo_ant_19!="1"
-		    && $edad>=10
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }	    
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   )
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -8539,43 +4693,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=123;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
+		
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="3";
 	    }
 	    
 		
@@ -8587,21 +4716,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=124;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-
+		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
 		//campo obligatorio
@@ -8610,17 +4725,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -8630,59 +4737,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=125;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if($campos[$numero_campo]!="1"
+		if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $edad_meses>=18
-	       )
+		)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	    
@@ -8694,59 +4759,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=126;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if($campos[$numero_campo]!="1"
+		if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $edad_meses>=18
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -8757,29 +4781,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=127;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
 		
 		if(is_numeric($campos[$numero_campo]) && !ctype_digit($campos[$numero_campo]))
 		{
 		    $campos[$numero_campo]=intval($campos[$numero_campo]);
 		}
 		
-		//campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    if($campos[$numero_campo]!="1"
+		if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
@@ -8793,50 +4801,9 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		   && $campos[$numero_campo]!="12"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="99"
-	       && $edad_meses>=18
 	       )
 	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="99"
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="99";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="5"
-		   && $campos[$numero_campo]!="6"
-		   && $campos[$numero_campo]!="7"
-		   && $campos[$numero_campo]!="8"
-		   && $campos[$numero_campo]!="9"
-		   && $campos[$numero_campo]!="10"
-		   && $campos[$numero_campo]!="11"
-		   && $campos[$numero_campo]!="12"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="99"
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="99";
 	    }
 	    
 	}//if si existe campo
@@ -8846,54 +4813,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=128;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_19=$campos[19];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $edad_meses>=18
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_19=="0"
-	       && $edad_meses<18
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_19=="1"
-		    && $edad_meses<18
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -8903,44 +4832,19 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=129;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
+		
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-		//campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="4"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="4"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 		
@@ -8950,46 +4854,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=130;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
-		$campo_n20=$campos[20];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n20=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if($campo_n20=="2")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
+		
+		}//fin if
+
 		
 		//campo obligatorio
 	    $campo_ant_20=$campos[20];
@@ -9002,26 +4875,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		    && trim($campos[$numero_campo])!="1788-01-01"
-	       && $campo_ant_20!="0"
 	       )
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && trim($campos[$numero_campo])!="1788-01-01"
-		    && $campo_ant_20=="0"
-		    && $campo_ant_89!="4" && $campo_ant_89!="9"
-		    )
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -9031,38 +4893,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=131;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
 		
 		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 		
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -9072,38 +4911,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=132;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9113,39 +4929,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=133;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9155,38 +4948,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=134;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9196,38 +4966,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=135;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
+	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9237,39 +4986,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=136;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9279,39 +5005,17 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=137;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9321,38 +5025,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=138;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9361,38 +5043,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=139;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9401,38 +5060,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=140;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
+
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9441,38 +5078,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=141;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9481,39 +5094,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=142;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9522,39 +5111,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=143;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9563,39 +5128,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=144;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
+		$campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9604,39 +5145,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=145;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9645,39 +5163,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=146;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
 	    
-	    //campo obligatorio
-	    $campo_ant_20=$campos[20];
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20!="0")
+		)
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_20=="0")
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 		
 	}//if si existe campo
@@ -9686,37 +5180,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=147;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
-	    $campo_n20=$campos[20];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	    
 	    if(count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -9724,37 +5196,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=148;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-		
-	    $campo_n20=$campos[20];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	    
 	    if(count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -9764,37 +5214,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=149;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_n20=$campos[20];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	    
 	    if(count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -9803,37 +5231,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=150;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_n20=$campos[20];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	    
 	    if(count($resultado)==0
 		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_20!="0")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(count($resultado)==0
-		   && $campos[$numero_campo]!="0"
 		   )
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 	}//if si existe campo
 	
@@ -9841,85 +5247,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=151;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_20=$campos[20];
-	    
-	    $campo_92_1=trim($campos[152]);
-	    $campo_92_2=trim($campos[153]);
-	    $campo_92_3=trim($campos[154]);
-	    $campo_92_4=trim($campos[155]);
-	    $campo_92_5=trim($campos[156]);
 	    
 	    if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		    && $campo_ant_19=="0"
-		    )
-	    {
-		$campos[$numero_campo]="2";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		    && $campo_ant_19=="1"
-		    && (
-			$campo_92_1=="1"
-			|| $campo_92_2=="1"
-			|| $campo_92_3=="1"
-			|| $campo_92_4=="1"
-			|| $campo_92_5=="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="1";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		    && $campo_ant_19=="1"
-		    && (
-			$campo_92_1!="1"
-			&& $campo_92_2!="1"
-			&& $campo_92_3!="1"
-			&& $campo_92_4!="1"
-			&& $campo_92_5!="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2")
 	    {
-		$campos[$numero_campo]="2";
+			$campos[$numero_campo]="2";
 	    }
 	    
 	    
@@ -9931,48 +5265,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=152;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
+	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
-	    
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }	    
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2")
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 	    
 		
@@ -9983,49 +5284,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=153;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   )
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -10034,48 +5301,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=154;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   )
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -10084,48 +5315,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=155;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   )
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -10134,48 +5331,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=156;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if
-	    
 	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
 	    
-	    //campo obligatorio
-	    $campo_ant_19=$campos[19];
-	    $campo_ant_92=$campos[151];
 	    if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $edad_meses>=18
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-	       && $campo_ant_19=="0"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   )
 	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="0";
 	    }
 		
 	}//if si existe campo
@@ -10183,88 +5346,16 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	//campo 157 aka 93
 	$numero_campo=157;
 	if(isset($campos[$numero_campo]))
-	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
-		$campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-		//campo obligatorio
-	    $campo_ant_18=$campos[18];
-	    
-	    $campo_95_1=trim($campos[159]);
-	    $campo_95_2=trim($campos[160]);
-	    $campo_95_3=trim($campos[161]);
-	    $campo_95_4=trim($campos[162]);
-	    $campo_95_5=trim($campos[163]);
-	    $campo_95_6=trim($campos[164]);
-	    $campo_95_7=trim($campos[165]);
-	    $campo_95_8=trim($campos[166]);
-	    $campo_95_9=trim($campos[167]);
-
+	{		
 	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-		   && $campo_ant_18!="1")
+		   )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_18=="1"
-		    && (
-			$campo_95_1=="1"
-			|| $campo_95_2=="1"
-			|| $campo_95_3=="1"
-			|| $campo_95_4=="1"
-			|| $campo_95_5=="1"
-			|| $campo_95_6=="1"
-			|| $campo_95_7=="1"
-			|| $campo_95_8=="1"
-			|| $campo_95_9=="1"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && $campo_ant_18=="1"
-		    && (
-			$campo_95_1=="0"
-			&& $campo_95_2=="0"
-			&& $campo_95_3=="0"
-			&& $campo_95_4=="0"
-			&& $campo_95_5=="0"
-			&& $campo_95_6=="0"
-			&& $campo_95_7=="0"
-			&& $campo_95_8=="0"
-			&& $campo_95_9=="0"
-			)
-		    )
-	    {
-		$campos[$numero_campo]="0";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -10274,47 +5365,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=158;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
-		$campo_n18=$campos[18];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if($campo_n18=="1")
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if($campo_n18=="2")
-		    {
 			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
 		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		
+		}//fin if
+			
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -10324,23 +5381,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="1800-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		    && ($campo_n93=="0" || $campo_n93=="1" || $campo_n93=="2")
-		    && $campo_ant_18=="1"
 		    )
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1800-01-01";
 	    }
 	}//if si existe campo
 	
@@ -10348,35 +5396,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=159;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 		
@@ -10386,35 +5409,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=160;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10423,35 +5421,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=161;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10460,35 +5433,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=162;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10497,35 +5445,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=163;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10534,35 +5457,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=164;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10571,35 +5469,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=165;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10608,37 +5481,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=166;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10647,36 +5493,10 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=167;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    
-	    //campo obligatorio
-	    $campo_ant_18=$campos[18];
 	    if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 				
 	}//if si existe campo
@@ -10685,36 +5505,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=168;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_ant_18=$campos[18];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	       
 	    if( count($resultado)==0
-	       && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if( count($resultado)==0
 	       && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10723,36 +5521,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=169;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_ant_18=$campos[18];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	       
 	    if( count($resultado)==0
-	       && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if( count($resultado)==0
 	       && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10761,36 +5537,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=170;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_ant_18=$campos[18];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	       
 	    if( count($resultado)==0
-	       && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if( count($resultado)==0
 	       && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10799,36 +5553,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=171;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_ant_18=$campos[18];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	       
 	    if( count($resultado)==0
-	       && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if( count($resultado)==0
 	       && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10837,36 +5569,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=172;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
-	    $campo_ant_18=$campos[18];
 	    $consulta_medicamento="";
 	    $consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' OR codigo_cum_con_guion='".$campos[$numero_campo]."' OR cod_atc='".$campos[$numero_campo]."' ; ";
 	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
 	       
 	    if( count($resultado)==0
-	       && $campos[$numero_campo]!="0"
-		   && $campo_ant_18!="1")
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if( count($resultado)==0
 	       && $campos[$numero_campo]!="0")
 	    {
-		$campos[$numero_campo]="0";   
+			$campos[$numero_campo]="0";   
 	    }//fin if
 		
 	}//if si existe campo
@@ -10875,56 +5586,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=173;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_11=="M"
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	    
 	}//if si existe campo
@@ -10933,59 +5602,15 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=174;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_11=="M"
 	       )
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
-	    }
-	    
-	    
 		
 	}//if si existe campo
 	
@@ -10994,56 +5619,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=175;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-		
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_11=="M"
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -11053,56 +5636,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=176;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campos[$numero_campo]="".intval($campos[$numero_campo]);
-	    
-	    //campo obligatorio
-	    $campo_ant_17=$campos[17];
-	    $campo_ant_11=$campos[11];
-	    
 	    if($campos[$numero_campo]!="1"
 		   && $campos[$numero_campo]!="2"
 		   && $campos[$numero_campo]!="3"
 		   && $campos[$numero_campo]!="0"
 		   && $campos[$numero_campo]!="9"
-	       && $campo_ant_11=="M"
 	       )
 	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-	       && ($campo_ant_17=="0")
-	       )
-	    {
-		$campos[$numero_campo]="9";
-	    }
-	    else if($campos[$numero_campo]!="1"
-		   && $campos[$numero_campo]!="2"
-		   && $campos[$numero_campo]!="3"
-		   && $campos[$numero_campo]!="0"
-		   && $campos[$numero_campo]!="9"
-		    && ($campo_ant_17=="1" || $campo_ant_17=="2")
-		    )
-	    {
-		$campos[$numero_campo]="3";
+			$campos[$numero_campo]="9";
 	    }
 	    
 		
@@ -11113,56 +5654,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=177;
 	if(isset($campos[$numero_campo]))
 	{
-	    //campo obligatorio
-	    if($campos[$numero_campo]=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
-	    
-	    $campo_n17=$campos[17];
-	    $array_fecha=explode("-",$campos[$numero_campo]);
-	    if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-	    {
-		if(($campo_n17=="0" || $campo_n17=="3"))
+		$array_fecha=explode("-",$campos[$numero_campo]);
+		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
 		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		}
-		else if(($campo_n17!="0" && $campo_n17!="3"))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-		else
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
-	    }
-	    else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-	    {
-		//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-	    }
-	    
-	    
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
-	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
+			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+		}//fin if
+		
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -11170,33 +5668,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="M"
 		)
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 		
 	}//if si existe campo
@@ -11205,55 +5684,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=178;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-
-		$campo_n17=$campos[17];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if(($campo_n17=="0" || $campo_n17=="3"))
-		    {
 			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if(($campo_n17!="0" && $campo_n17!="3"))
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
+		}//fin if
 		
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
-	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -11261,33 +5698,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="M"
 		)
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -11295,55 +5713,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=179;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
-		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if
-
-		$campo_n17=$campos[17];
 		$array_fecha=explode("-",$campos[$numero_campo]);
 		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-		    if(($campo_n17=="0" || $campo_n17=="3"))
-		    {
 			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1799-01-01
 			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
-		    }
-		    else if(($campo_n17!="0" && $campo_n17!="3"))
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		    else
-		    {
-			//correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		    }
-		}
-		else if(checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
-		{
-		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 1800-01-01
-		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-1);
-		}
+		}//fin if
 		
-	    //campo obligatorio
-	    $campo_n96=intval($campos[173]);
-	    $campo_n97=intval($campos[174]);
-	    $campo_n98=intval($campos[175]);
-	    $campo_n99=intval($campos[176]);
-	    
-	    $campo_n17=trim($campos[17]);
-	    $campo_n11=trim($campos[11]);
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
 	    //campo obligatorio
@@ -11351,33 +5727,14 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1800-01-01"
 		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="M"
 		)
 	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& $campo_n17=="0"
-		)
-	    {
-		$campos[$numero_campo]="1799-01-01";
-	    }
-	    else if($es_fecha_calendario>0
-		    && trim($campos[$numero_campo])!="1800-01-01"
-		    && trim($campos[$numero_campo])!="1799-01-01"
-		&& $campo_n11=="F"
-		&& ($campo_n17=="1" || $campo_n17=="2")
-		)
-	    {
-		$campos[$numero_campo]="1800-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -11391,28 +5748,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 		    $campos[$numero_campo]="0";
 		}
 		
-	    //campo obligatorio
-	    $campo_n106=trim($campos[183]);
-	    if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>16)
-	       && $campo_n106=="1799-01-01"
-	       )
-	    {
-		$campos[$numero_campo]="0";
-	    }	
-	    else if((intval($campos[$numero_campo])<0 || intval($campos[$numero_campo])>16))
-	    {
-		$campos[$numero_campo]="0";
-	    }//fin if
-		
 	}//if si existe campo
 	
 	//campo 181 aka 104
 	$numero_campo=181;
 	if(isset($campos[$numero_campo]))
 	{
-		
-	    //correccion formato fecha al formato AAAA-MM-DD year-month-day 
-	    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+		$array_fecha=explode("-",$campos[$numero_campo]);
+		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
+		{
+		    //correccion formato fecha al formato AAAA-MM-DD year-month-day 
+		    $campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+		}//fin if
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
@@ -11421,13 +5768,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		)
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	    
 	}//if si existe campo
@@ -11449,7 +5796,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $campos[$numero_campo]!="0"
 	       )
 	    {
-		$campos[$numero_campo]="9";
+			$campos[$numero_campo]="9";
 	    }//fin if
 		
 	}//if si existe campo
@@ -11458,23 +5805,12 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	$numero_campo=183;
 	if(isset($campos[$numero_campo]))
 	{
-		//campo obligatorio
-		if($campos[$numero_campo]=="")
+		$array_fecha=explode("-",$campos[$numero_campo]);
+		if(count($array_fecha)!=3 || !checkdate(intval($array_fecha[1]),intval($array_fecha[2]),intval($array_fecha[0])))
 		{
-			if($errores_campos!="")
-			{
-				$errores_campos.="|";
-			}		
-			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$campos[$numero_campo]." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-			$consecutivo_errores++;
-			
-			$hubo_errores=true;
-		}//fin if 
-		
-		//correccion formato fecha al formato AAAA-MM-DD year-month-day 
-		$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+			//correccion formato fecha al formato AAAA-MM-DD year-month-day 
+			$campos[$numero_campo]=corrector_formato_fecha($campos[$numero_campo],$fecha_de_corte,false,-2);
+		}//fin if
 	    
 	    $es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
 	    $excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
@@ -11483,13 +5819,13 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	       && $excede_fecha_corte<0
 	       )
 	    {
-		$campos[$numero_campo]=$fecha_de_corte;
+			$campos[$numero_campo]=$fecha_de_corte;
 	    }
 	    else if($es_fecha_calendario>0
 		    && trim($campos[$numero_campo])!="1799-01-01"
 		)
 	    {
-		$campos[$numero_campo]="1799-01-01";
+			$campos[$numero_campo]="1799-01-01";
 	    }
 	}//if si existe campo
 	
@@ -11500,33 +5836,8 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 	    $fix_ultimo_campo=preg_replace("/[^A-Za-z0-9:.\-\s+]/", "", trim($campos[$numero_campo]) );
 	    
-	    //campo obligatorio
-	    if($fix_ultimo_campo=="")
-	    {
-		    if($errores_campos!="")
-		    {
-			    $errores_campos.="|";
-		    }		
-		    //consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
-		    $cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion["0104001"])[1];
-		    $errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",0104001,$cadena_descripcion_inconsistencia ...".$fix_ultimo_campo." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
-		    $consecutivo_errores++;
-		    
-		    $hubo_errores=true;
-	    }//fin if 
 	    
-	    //campo obligatorio
-	    $campo_ant_106=$campos[183];
 	    if(trim($fix_ultimo_campo)!="1"
-		   && trim($fix_ultimo_campo)!="2"
-		   && trim($fix_ultimo_campo)!="3"
-		   &&trim($fix_ultimo_campo)!="0"
-		   && $campo_ant_106=="1799-01-01"
-		   )
-	    {
-		$campos[$numero_campo]="0";
-	    }
-	    else if(trim($fix_ultimo_campo)!="1"
 		   && trim($fix_ultimo_campo)!="2"
 		   && trim($fix_ultimo_campo)!="3"
 		   &&trim($fix_ultimo_campo)!="0"
