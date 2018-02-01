@@ -25,6 +25,8 @@ function reparador_campo_obligatorio_CANCER(&$campos,$cod_eapb,$nlinea,&$consecu
 	$verificador=0;
 	
 	//$coneccionBD = new conexion();
+
+	$NOMBRE_ENTIDAD_PERSONALIZADA=get_entidad_personalizada();
 	/*
 	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	$query_consulta_estructura_numero_campos="";
@@ -2766,6 +2768,9 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$verificador=0;
 	
 	//$coneccionBD = new conexion();
+
+	$NOMBRE_ENTIDAD_PERSONALIZADA=get_entidad_personalizada();
+
 	/*
 	//PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 	$query_consulta_estructura_numero_campos="";
@@ -5793,7 +5798,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5804,6 +5810,7 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    	if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 		
 	    }//fin if
@@ -5811,20 +5818,60 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    //valor permitido
 		if((count($resultado)==0 || !is_array($resultado))
@@ -5852,7 +5899,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5862,26 +5910,67 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 	    }//fin if
 	    //FIN NORMALIZA
 	    
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    //valor permitido
 		if((count($resultado)==0 || !is_array($resultado))
@@ -5909,7 +5998,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5919,26 +6009,67 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 	    }//fin if
 	    //FIN NORMALIZA
 	    
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    //valor permitido
 		if((count($resultado)==0 || !is_array($resultado))
@@ -7139,7 +7270,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -7149,24 +7281,66 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 	    }//fin if
 	    //FIN NORMALIZA
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    
 	    if((count($resultado)==0 || !is_array($resultado))
@@ -7193,7 +7367,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -7203,24 +7378,66 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 	    }//fin if
 	    //FIN NORMALIZA
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    
 	    if((count($resultado)==0 || !is_array($resultado))
@@ -7246,7 +7463,8 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    //valor permitido
 	    $campo_ant_45=$campos[44];
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -7256,24 +7474,66 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 			if($resultado1[0]["codigo_cum"]!="")
 	    	{
 	    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+	    		$bool_normalizo=true;
 	    	}//fin if
 	    }//fin if
 	    //FIN NORMALIZA
 	    
 	    //CORRECCION CUM HOMOLOGADO
-	    $consulta2="";
-	    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
-	    if( count($resultado2)>0 && is_array($resultado2))
+	    //si es fundacion
+	    if($bool_normalizo==false 
+	    	&& $NOMBRE_ENTIDAD_PERSONALIZADA=="Fundacion_Valle_Del_Lili"
+	    )//fin condicion
 	    {
-		$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
-	    }//fin if
+		    $consulta2="";
+		    $consulta2.="SELECT * FROM gioss_homologos_cum_cfvl WHERE trim(codigo_cfvl)='".trim($campos[$numero_campo])."' ; ";
+		    $resultado2=$coneccionBD->consultar2_no_crea_cierra($consulta2);
+		    if( count($resultado2)>0 && is_array($resultado2))
+		    {
+				//echo "<script>alert('alert ".$campos[$numero_campo]." ".$resultado2[0]["codigo_cum_homologo"]."');</script>";
+				$campos[$numero_campo]=trim($resultado2[0]["codigo_cum_homologo"]);
+
+
+				//NORMALIZA despues de buscar homologado
+				$cum_res_hom_array=explode("-", $campos[$numero_campo]);
+				$cum_res_hom_parte_antes_guion=$cum_res_hom_array[0];
+				
+			    $consulta1="";
+			    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".$cum_res_hom_parte_antes_guion."' ";
+			    $consulta1.=" OR trim(codigo_cum_con_guion)='".$cum_res_hom_parte_antes_guion."' OR trim(cod_atc)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_2)='".$cum_res_hom_parte_antes_guion."' OR trim(codigo_cum_3)='".$cum_res_hom_parte_antes_guion."' ; ";
+
+			    $resultado1=array();
+			    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
+
+			    if( count($resultado1)>0 
+			    	&& is_array($resultado1)==true )
+			    {
+					//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			    	if($resultado1[0]["codigo_cum"]!="")
+			    	{
+			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
+			    	}//fin if
+				
+			    }//fin if
+			    //FIN NORMALIZA despues de buscar homologado
+		    }//fin if
+		}//fin if
 	    //FIN CORRECCION CUM HOMOLOGADO
 	    
-	    $consulta="";
-	    $consulta.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
-	    $consulta.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
-	    $resultado=$coneccionBD->consultar2_no_crea_cierra($consulta);
+	    //VERIFICACION POSTERIOR
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
+		//FIN VERIFICACION POSTERIOR
 	    	    
 	    
 	    if((count($resultado)==0 || !is_array($resultado))
@@ -7436,14 +7696,16 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUPS NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_cups WHERE trim(codigo_procedimiento)='".trim($campos[$numero_campo])."' ; ";
 	    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
 	    if( count($resultado1)>0 && is_array($resultado1) && $campos[$numero_campo]!="98" )
 	    {
-		//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
 			$campos[$numero_campo]=$resultado1[0]["codigo_procedimiento"];
+			$bool_normalizo=true;
 	    }//fin if
 	    //FIN NORMALIZA
 	    
@@ -7722,14 +7984,16 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	    
 	    //valor permitido
 	    
-	    //NORMALIZA
+	    $bool_normalizo=false;
+	    //CUPS NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_cups WHERE trim(codigo_procedimiento)='".trim($campos[$numero_campo])."' ; ";
 	    $resultado1=$coneccionBD->consultar2_no_crea_cierra($consulta1);
 	    if( count($resultado1)>0 && is_array($resultado1) && $campos[$numero_campo]!="98" )
 	    {
-		//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
-		$campos[$numero_campo]=$resultado1[0]["codigo_procedimiento"];
+			//si es asi le asigna al campo el mismo codigo pero tal y como se escribe en la base de datos
+			$campos[$numero_campo]=$resultado1[0]["codigo_procedimiento"];
+			$bool_normalizo=true;
 	    }//fin if
 	    //FIN NORMALIZA
 	    
