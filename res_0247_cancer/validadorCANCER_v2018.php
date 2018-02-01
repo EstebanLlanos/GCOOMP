@@ -1568,56 +1568,11 @@ function validar_CANCER($campos,
 			}//fin if
 			
 			//valor permitido		
-			$array_campo_fecha=explode("-",$campos[$numero_campo]);
-			$fecha_campo_temp=$campos[$numero_campo];
-			
-			$verificar_fecha_para_date_diff=true;
-			
-			if(count($array_campo_fecha)==3 && strlen($campos[$numero_campo])==10)
-			{
-				if(!ctype_digit($array_campo_fecha[0])
-				   || !ctype_digit($array_campo_fecha[1]) || !ctype_digit($array_campo_fecha[2])
-				   || !checkdate(intval($array_campo_fecha[1]),intval($array_campo_fecha[2]),intval($array_campo_fecha[0])) )
-				{
-					//$fecha_campo_temp="0000-00-00";
-					$verificar_fecha_para_date_diff=false;
-				}
-			}
-			else
-			{
-				$verificar_fecha_para_date_diff=false;
-			}
-			
-			$array_ver_fecha_corte=explode("-",$fecha_de_corte);
-			if(count($array_ver_fecha_corte)!=3 || !ctype_digit($array_ver_fecha_corte[0])
-			   || !ctype_digit($array_ver_fecha_corte[1]) || !ctype_digit($array_ver_fecha_corte[2])
-			   || !checkdate(intval($array_ver_fecha_corte[1]),intval($array_ver_fecha_corte[2]),intval($array_ver_fecha_corte[0])) )
-			{
-				//$fecha_campo_temp="0000-00-00";
-				$verificar_fecha_para_date_diff=false;
-			}
-			
-			$verificador=0;
-			if($verificar_fecha_para_date_diff==true && strlen($campos[$numero_campo])==10)
-			{
-				$date_campo=date($fecha_campo_temp);
-				$date_corte=date($fecha_de_corte);
-				$fecha_campo_format=new DateTime($date_campo);
-				$fecha_corte_format=new DateTime($fecha_de_corte);		
-				try
-				{
-				$interval = date_diff($fecha_campo_format,$fecha_corte_format);
-				$verificador= (float)$interval->format("%r%a");
-				}
-				catch(Exception $e)
-				{}
-			}//fin if funcion date diff
-			else
-			{
-				$verificador=-1;
-			}			
-			$array_campo_fecha=explode("-",$campos[$numero_campo]);
-			if(  $verificador<0)
+			$es_fecha_calendario=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),"1900-12-31");
+			$excede_fecha_corte=diferencia_dias_entre_fechas(trim($campos[$numero_campo]),$fecha_de_corte);
+			if( $es_fecha_calendario<0 
+				&& $excede_fecha_corte<0
+				)
 			{
 				if($errores_campos!="")
 				{
