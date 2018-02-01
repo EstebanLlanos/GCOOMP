@@ -3510,7 +3510,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 		$bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -3563,7 +3563,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -3573,9 +3572,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 
 		if( count($resultado)==0
@@ -3594,7 +3602,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 		
 		$bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -3647,7 +3655,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -3657,9 +3664,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 
 		if( count($resultado)==0
@@ -3677,7 +3693,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 		
 		$bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -3730,7 +3746,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -3740,9 +3755,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR		
 
 		if( count($resultado)==0
@@ -3760,7 +3784,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 		
 		$bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -3813,7 +3837,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -3823,9 +3846,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 
 		if( count($resultado)==0
@@ -5445,7 +5477,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5498,7 +5530,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -5508,9 +5539,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	    
 	    if(count($resultado)==0
@@ -5526,7 +5566,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5579,7 +5619,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -5589,9 +5628,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	    
 	    if(count($resultado)==0
@@ -5609,7 +5657,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5662,7 +5710,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -5672,9 +5719,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	    
 	    if(count($resultado)==0
@@ -5691,7 +5747,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -5744,7 +5800,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -5754,9 +5809,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	    
 	    if(count($resultado)==0
@@ -6030,7 +6094,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -6083,7 +6147,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -6093,9 +6156,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	       
 	    if( count($resultado)==0
@@ -6111,7 +6183,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -6164,7 +6236,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -6174,9 +6245,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	       
 	    if( count($resultado)==0
@@ -6192,7 +6272,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -6245,7 +6325,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -6255,9 +6334,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	       
 	    if( count($resultado)==0
@@ -6273,7 +6361,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	if(isset($campos[$numero_campo]))
 	{
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -6326,7 +6414,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -6336,9 +6423,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	       
 	    if( count($resultado)==0
@@ -6355,7 +6451,7 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	{
 	    
 	    $bool_normalizo=false;
-		//NORMALIZA
+		//CUM NORMALIZA
 	    $consulta1="";
 	    $consulta1.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
 	    $consulta1.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
@@ -6408,7 +6504,6 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 			    	if($resultado1[0]["codigo_cum"]!="")
 			    	{
 			    		$campos[$numero_campo]=$resultado1[0]["codigo_cum"];
-			    		$bool_normalizo=true;
 			    	}//fin if
 				
 			    }//fin if
@@ -6418,9 +6513,18 @@ function reparacion_valor_permitido_formato_vih(&$campos,
 	    //FIN CORRECCION CUM HOMOLOGADO
 
 		//VERIFICACION POSTERIOR
-		$consulta_medicamento="";
-		$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE codigo_cum='".$campos[$numero_campo]."' ; ";
-		$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		$resultado=array();
+		if($bool_normalizo==false)
+		{
+			$consulta_medicamento="";
+			$consulta_medicamento.="SELECT * FROM gioss_codigo_medicamentos WHERE trim(codigo_cum)='".trim($campos[$numero_campo])."' ";
+		    $consulta_medicamento.=" OR trim(codigo_cum_con_guion)='".trim($campos[$numero_campo])."' OR trim(cod_atc)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_2)='".trim($campos[$numero_campo])."' OR trim(codigo_cum_3)='".trim($campos[$numero_campo])."' ; ";
+			$resultado=$coneccionBD->consultar2_no_crea_cierra($consulta_medicamento);
+		}//fin if
+		else
+		{
+			$resultado=$resultado1;
+		}
 		//FIN VERIFICACION POSTERIOR
 	       
 	    if( count($resultado)==0
