@@ -3086,19 +3086,16 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	if(isset($campos[$numero_campo]))
 	{
 		
-		
-		if(true)
+		if(strlen($campos[$numero_campo])!=1)
 		{
-			//valor permitido
-			if( intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>6)
-			{
-				$campos[$numero_campo]="6";
-			}//fin if
-			else if(strlen($campos[$numero_campo])!=1)
-			{
-				$campos[$numero_campo]=intval($campos[$numero_campo]);
-			}
-		}//fin if no esta en blanco
+			$campos[$numero_campo]=intval($campos[$numero_campo]);
+		}
+		
+		//valor permitido
+		if( intval($campos[$numero_campo])<1 || intval($campos[$numero_campo])>6)
+		{
+			$campos[$numero_campo]="6";
+		}//fin if
 		
 	}//if si existe campo
 	
