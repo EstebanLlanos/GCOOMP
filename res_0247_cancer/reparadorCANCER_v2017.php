@@ -9233,15 +9233,13 @@ function reparador_formato_valor_permitido_CANCER(&$campos,$nlinea,&$consecutivo
 	$numero_campo=13;
 	if(isset($campos[$numero_campo]))
 	{
-	    if(strlen($campos[$numero_campo])==4 &&
-	   (substr($campos[$numero_campo],0,1)=="5" || substr($campos[$numero_campo],0,1)=="8")
-	   )
+	    if( strlen($campos[$numero_campo])==4 )
 	    {
-		$campos[$numero_campo]="0".$campos[$numero_campo];
+			$campos[$numero_campo]="0".$campos[$numero_campo];
 	    }
 	    else if(strlen($campos[$numero_campo])>5)
 	    {
-		$campos[$numero_campo]=substr($campos[$numero_campo],0,5);
+			$campos[$numero_campo]=substr($campos[$numero_campo],0,5);
 	    }
 		
 	}//if si existe campo
