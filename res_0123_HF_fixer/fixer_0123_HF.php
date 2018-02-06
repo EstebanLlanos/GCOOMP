@@ -13,7 +13,7 @@ include ("../librerias_externas/PHPMailer/class.smtp.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel.php");
 require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
-require_once 'reparador_0123_HF.php';
+//require_once '../res_0123_HF/reparador_0123_HF_v2018.php';
 
 require_once 'reparacion_campos_duplicados.php';
 
@@ -906,6 +906,587 @@ function custom_replace_str($needle,$replace,$haystack,$replace_all=true,$qty_to
 
     return $result_string;
 }//fin function remplazar cadena cuantificado
+// FUNCIONES MIGRADAS DESDE EL REPARADOR DE HEMOFILIA
+
+function edad_years_months_days($dob, $now = false)
+{
+    if (!$now) $now = date('d-m-Y');
+    $dob = explode('-', $dob);
+    $now = explode('-', $now);
+    $mnt = array(1 => 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if (($now[2]%400 == 0) or ($now[2]%4==0 and $now[2]%100!=0)) $mnt[2]=29;
+    if($now[0] < $dob[0]){
+	    $now[0] += $mnt[intval($now[1])];
+	    $now[1]--;
+    }
+    if($now[1] < $dob[1]){
+	    $now[1] += 12;
+	    $now[2]--;
+    }
+    if($now[2] < $dob[2]) return false;
+    return  array('y' => $now[2] - $dob[2], 'm' => $now[1] - $dob[1], 'd' => $now[0] - $dob[0]);
+}
+
+
+function diferencia_dias_entre_fechas($fecha_1,$fecha_2)
+{
+    //las fechas deben ser cadenas de 10 caracteres en el siguiente formato AAAA-MM-DD, ejemplo: 1989-03-03
+    //si la fecha 1 es inferior a la fecha 2, obtendra un valor mayor a 0
+    //si la fecha uno excede o es igual a la fecha 2, tendra un valor resultado menor o igual a 0
+    date_default_timezone_set("America/Bogota");
+    
+    $array_fecha_1=explode("-",$fecha_1);
+    
+    $verificar_fecha_para_date_diff=true;
+    
+    if(count($array_fecha_1)==3)
+    {
+	    if(!ctype_digit($array_fecha_1[0])
+	       || !ctype_digit($array_fecha_1[1]) || !ctype_digit($array_fecha_1[2])
+	       || !checkdate(intval($array_fecha_1[1]),intval($array_fecha_1[2]),intval($array_fecha_1[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;	
+    }
+    
+    $array_fecha_2=explode("-",$fecha_2);			
+    if(count($array_fecha_2)==3)
+    {
+	    if(!ctype_digit($array_fecha_2[0])
+	       || !ctype_digit($array_fecha_2[1]) || !ctype_digit($array_fecha_2[2])
+	       || !checkdate(intval($array_fecha_2[1]),intval($array_fecha_2[2]),intval($array_fecha_2[0])) )
+	    {
+		    $verificar_fecha_para_date_diff=false;
+	    }
+    }
+    else
+    {
+	    $verificar_fecha_para_date_diff=false;
+    }
+
+    if($verificar_fecha_para_date_diff==true)
+    {
+	    $year1=intval($array_fecha_1[0])."";
+	    $mes1=intval($array_fecha_1[1])."";
+	    $dia1=intval($array_fecha_1[2])."";
+
+	    $year2=intval($array_fecha_2[0])."";
+	    $mes2=intval($array_fecha_2[1])."";
+	    $dia2=intval($array_fecha_2[2])."";
+
+	    if(strlen($dia1)==1)
+	    {
+	    	$dia1="0".$dia1;
+	    }//fin if
+
+	    if(strlen($mes1)==1)
+	    {
+	    	$mes1="0".$mes1;
+	    }//fin if
+
+	    if(strlen($dia2)==1)
+	    {
+	    	$dia2="0".$dia2;
+	    }//fin if
+
+	    if(strlen($mes2)==1)
+	    {
+	    	$mes2="0".$mes2;
+	    }//fin if
+
+	    $fecha_1=$year1."-".$mes1."-".$dia1;
+
+	    $fecha_2=$year2."-".$mes2."-".$dia2;
+	}//fin if
+    
+    $diferencia_dias_entre_fechas=0;
+    if($verificar_fecha_para_date_diff==true)
+    {
+	    $date_fecha_1=date($fecha_1);
+	    $date_fecha_2=date($fecha_2);
+	    $fecha_1_format=new DateTime($date_fecha_1);
+	    $fecha_2_format=new DateTime($date_fecha_2);		
+	    try
+	    {
+	    $interval = date_diff($fecha_1_format,$fecha_2_format);
+	    $diferencia_dias_entre_fechas= (float)$interval->format("%r%a");
+	    }
+	    catch(Exception $e)
+	    {}
+    }//fin if funcion date diff
+    else
+    {
+	    $diferencia_dias_entre_fechas=false;
+    }
+    
+    return $diferencia_dias_entre_fechas;
+    
+}//fin calculo diferencia entre fechas
+
+function convert_to_standard_notation($floatAsString)
+{
+    $norm = strval(floatval($floatAsString));
+
+    if (($e = strrchr($norm, 'E')) === false) {
+        return $norm;
+    }
+
+    return number_format($norm, -intval(substr($e, 1)));
+}
+
+function corrige_longitud_fecha_rep($array_fecha_corregida,$fecha_corte,$fase=0)
+{
+    if(is_array($array_fecha_corregida) && is_array($fecha_corte))
+    {    
+        if(count($array_fecha_corregida)==3)
+        {
+            //PARTE YEAR
+	    //accede a corregir year si la longitud de dia y mes son iguales o menores a dos	    
+	    if(ctype_digit($array_fecha_corregida[0])
+		&& strlen($array_fecha_corregida[0])<4
+		&& strlen($array_fecha_corregida[1])<=2
+		&& strlen($array_fecha_corregida[2])<=2
+	       )
+	    {
+		//accede a corregir year si la longitud de dia y mes son iguales o menores a dos para cuando el year es menor de 4 caracteres
+		if(intval($array_fecha_corregida[0])>200)
+		{
+		    $longitud_year_corte=strlen($fecha_corte[0]);
+		    $ultimo_digito_year_corte=substr($fecha_corte[0],($longitud_year_corte-1),$longitud_year_corte);
+		    $array_fecha_corregida[0]=$array_fecha_corregida[0].$ultimo_digito_year_corte;
+		}//fin if
+		else if(intval($array_fecha_corregida[0])>190)
+		{
+		    $array_fecha_corregida[0]=$array_fecha_corregida[0]."0";
+		}//fin else
+		
+	    }//fin if
+	    else if(ctype_digit($array_fecha_corregida[0])
+	       && strlen($array_fecha_corregida[0])>4
+	       && strlen($array_fecha_corregida[0])>strlen($array_fecha_corregida[1])
+		&& strlen($array_fecha_corregida[0])>strlen($array_fecha_corregida[2])
+	       )
+	    {
+		$array_fecha_corregida[0]=intval($array_fecha_corregida[0]);
+		if(strlen($array_fecha_corregida[0])>4)
+		{
+		    $array_fecha_corregida[0]=substr($array_fecha_corregida[0],0,4);
+		}
+		else if(strlen($array_fecha_corregida[0])<4)
+		{
+		    if(intval($array_fecha_corregida[0])>200)
+		    {
+			$longitud_year_corte=strlen($fecha_corte[0]);
+			$ultimo_digito_year_corte=substr($fecha_corte[0],($longitud_year_corte-1),$longitud_year_corte);
+			$array_fecha_corregida[0]=$array_fecha_corregida[0].$ultimo_digito_year_corte;
+		    }//fin if
+		    else if(strlen($array_fecha_corregida[0])==3
+			    && intval($array_fecha_corregida[0])>190
+			    )
+		    {
+			$array_fecha_corregida[0]=$array_fecha_corregida[0]."0";
+		    }//fin else
+		}//fin else
+	    }//fin else if
+	    else if(ctype_digit($array_fecha_corregida[0])
+		    && ctype_digit($array_fecha_corregida[1])
+		    && ctype_digit($array_fecha_corregida[2])
+		    && strlen($array_fecha_corregida[0])==strlen($array_fecha_corregida[1])
+		    && strlen($array_fecha_corregida[0])==strlen($array_fecha_corregida[2])
+		    )
+	    {
+		$array_fecha_corregida[0]="".intval($array_fecha_corregida[0]);
+		$array_fecha_corregida[1]="".intval($array_fecha_corregida[1]);
+		$array_fecha_corregida[2]="".intval($array_fecha_corregida[2]);
+		if(ctype_digit($array_fecha_corregida[0])
+		    && ctype_digit($array_fecha_corregida[1])
+		    && ctype_digit($array_fecha_corregida[2])
+		    && strlen($array_fecha_corregida[0])==strlen($array_fecha_corregida[1])
+		    && strlen($array_fecha_corregida[0])==strlen($array_fecha_corregida[2])
+		    )
+		{
+		    $diferencia_0=0;
+		    $diferencia_0=intval($fecha_corte[0])-intval($array_fecha_corregida[0]);
+		    $diferencia_1=0;
+		    $diferencia_1=intval($fecha_corte[0])-intval($array_fecha_corregida[1]);
+		    $diferencia_2=0;
+		    $diferencia_2=intval($fecha_corte[0])-intval($array_fecha_corregida[2]);
+		    
+		    
+		    if(intval($array_fecha_corregida[0])<(intval($fecha_corte[0])-5) || intval($array_fecha_corregida[0])>intval($fecha_corte[0]))
+		    {
+			//caso en el que el valor del campo 0 no esta remotamente cercano a el year de la fecha de corte en 5 years o es superior
+			if($diferencia_1>=0 && $diferencia_2>=0)
+			{
+			    $temp=$array_fecha_corregida[0];
+			    if($diferencia_1<$diferencia_2)
+			    {				
+				$array_fecha_corregida[0]=$array_fecha_corregida[1];
+				$array_fecha_corregida[1]=$temp;
+				
+			    }//fin if
+			    else if($diferencia_2<$diferencia_1)
+			    {
+				$array_fecha_corregida[0]=$array_fecha_corregida[2];
+				$array_fecha_corregida[2]=$temp;
+			    }//fin else if
+			}//fin if
+			
+		    }//fin if
+		    else
+		    {
+			$diferencia_seleccionada="none";
+			if($diferencia_1>=0 && $diferencia_2>=0)
+			{
+			    if($diferencia_1<$diferencia_2)
+			    {				
+				$diferencia_seleccionada="dif_1";
+				
+			    }//fin if
+			    else if($diferencia_2<$diferencia_1)
+			    {
+				$diferencia_seleccionada="dif_2";
+			    }//fin else if
+			}//fin if
+			
+			if($diferencia_seleccionada=="dif_1")
+			{
+			    $temp=$array_fecha_corregida[0];
+			    if($diferencia_1<$diferencia_0)
+			    {				
+				$array_fecha_corregida[0]=$array_fecha_corregida[1];
+				$array_fecha_corregida[1]=$temp;
+				
+			    }//fin if
+			}//fin if
+			else if($diferencia_seleccionada=="dif_2")
+			{
+			    $temp=$array_fecha_corregida[0];
+			    if($diferencia_2<$diferencia_0)
+			    {				
+				$array_fecha_corregida[0]=$array_fecha_corregida[2];
+				$array_fecha_corregida[2]=$temp;
+				
+			    }//fin if
+			}//fin else
+		    }//fin else
+		}//fin if
+		
+	    }//fin else if
+	    //FIN PARTE YEAR
+            
+            //PARTE MES
+            if(ctype_digit($array_fecha_corregida[1])
+               && strlen($array_fecha_corregida[1])==1
+               )
+            {
+                $array_fecha_corregida[1]="0".$array_fecha_corregida[1];
+            }//fin if
+            else if(ctype_digit($array_fecha_corregida[1])
+               && strlen($array_fecha_corregida[1])>2
+               && strlen($array_fecha_corregida[1])<4
+               )
+            {
+                $array_fecha_corregida[1]=substr($array_fecha_corregida[1],0,2);
+            }//fin else if
+	    //FIN PARTE MES
+            
+            //PARTE DIA
+            if(ctype_digit($array_fecha_corregida[2])
+               && strlen($array_fecha_corregida[2])==1
+               )
+            {
+                $array_fecha_corregida[2]="0".$array_fecha_corregida[2];
+            }//fin if
+            else if(ctype_digit($array_fecha_corregida[2])
+               && strlen($array_fecha_corregida[2])>2
+               && strlen($array_fecha_corregida[2])<4
+               )
+            {
+                $array_fecha_corregida[2]=substr($array_fecha_corregida[2],0,2);
+            }//fin else if
+	    //FIN PARTE DIA
+            
+            $fecha_corregida="";
+            $fecha_corregida=$array_fecha_corregida[0]."-".$array_fecha_corregida[1]."-".$array_fecha_corregida[2];
+            return $fecha_corregida;
+        }//fin if
+        else 
+        {
+            echo 'Alguno de los parametros no es un arreglo. ';
+            return false;
+        }
+    }//fin if son array los parametros
+}//fin funcion corrige_longitud_fecha
+
+function corrector_formato_fecha_rep($campo_fecha,$fecha_corte_param,$es_fecha_nacimiento=false,$campo_especial=-1,$campo_debug=0)
+{
+    date_default_timezone_set ("America/Bogota");
+    
+    $fecha_corte=explode("-",$fecha_corte_param);
+    $date_de_corte="";
+    $date_de_corte=date($fecha_corte[0]."-".$fecha_corte[1]."-".$fecha_corte[2]);
+    
+    //echo "<script>alert($date_de_corte $campo_fecha);</script>";
+    
+    $fecha_corregida="";
+    $fecha_corregida=trim($campo_fecha);
+    //$fecha_corregida=substr($fecha_corregida,0,10);
+    $fecha_corregida=str_replace("/","-",$fecha_corregida);
+    $array_fecha_corregida=explode("-",$fecha_corregida);
+    
+    //echo 'fecha antes de corregir ',$campo_fecha," ";
+    
+    if(is_array($array_fecha_corregida)
+       && count($array_fecha_corregida)==3
+       )
+    {
+	$fecha_corregida=corrige_longitud_fecha($array_fecha_corregida,$fecha_corte);
+    }    
+    
+    $fecha_corregida=substr($fecha_corregida,0,10);
+    $array_fecha_corregida=explode("-",$fecha_corregida);
+    
+    
+    $caso_al_que_entro="";
+    
+    if(count($array_fecha_corregida)==3)
+    {
+	if(ctype_digit($array_fecha_corregida[0]) && ctype_digit($array_fecha_corregida[1]) && ctype_digit($array_fecha_corregida[2]))
+	{
+	    //checkdate mm-dd-aaaa -> aaaa-mm-dd ?
+	    if(checkdate($array_fecha_corregida[1],$array_fecha_corregida[2],$array_fecha_corregida[0])
+	       && intval($array_fecha_corregida[0])>=32)
+	    {
+		//no se cambia
+		$caso_al_que_entro="no cambia, caso 0 aaaa-mm-dd";
+	    }
+	    else
+	    {
+		
+		if(intval($array_fecha_corregida[1])>12 && intval($array_fecha_corregida[1])<=31)
+		{
+		    //checkdate mm-dd-aaaa -> aaaa-dd-mm ?
+		    if(checkdate($array_fecha_corregida[2],$array_fecha_corregida[1],$array_fecha_corregida[0]))
+		    {
+			$fecha_corregida=$array_fecha_corregida[0]."-".$array_fecha_corregida[2]."-".$array_fecha_corregida[1];
+			$caso_al_que_entro="cambia, caso 1 aaaa-dd-mm";
+		    }
+		    else if(intval($array_fecha_corregida[2])>=32)
+		    {
+			//checkdate mm-dd-aaaa -> mm-dd-aaaa ?
+			if(checkdate($array_fecha_corregida[0],$array_fecha_corregida[1],$array_fecha_corregida[2]))
+			{
+			    $fecha_corregida=$array_fecha_corregida[2]."-".$array_fecha_corregida[0]."-".$array_fecha_corregida[1];
+			    $caso_al_que_entro="cambia, caso 1 mm-dd-aaaa";
+			}//fin if
+			else
+			{
+			   if($es_fecha_nacimiento==false)
+			   {
+				if($campo_especial==-1)
+				{
+					$fecha_corregida="1800-01-01";
+				}
+				else if($campo_especial==-2)
+				{
+					$fecha_corregida="1845-01-01";
+				}
+				else if($campo_especial==-3)
+				{
+					$fecha_corregida="1788-01-01";
+				}
+			   }
+			   else
+			   {
+			    $fecha_corregida=$date_de_corte;
+			   }
+			}//fin else
+		    }//fin else if
+		    else
+		    {
+			if($es_fecha_nacimiento==false)
+			{
+				if($campo_especial==-1)
+				{
+					$fecha_corregida="1800-01-01";
+				}
+				else if($campo_especial==-2)
+				{
+					$fecha_corregida="1845-01-01";
+				}
+				else if($campo_especial==-3)
+				{
+					$fecha_corregida="1788-01-01";
+				}
+			}
+			else
+			{
+				$fecha_corregida=$date_de_corte;
+			}
+		    }
+		}//fin if			
+		else if(intval($array_fecha_corregida[2])>=32)
+		{
+		    //checkdate mm-dd-aaaa -> dd-mm-aaaa ?
+		    if(checkdate($array_fecha_corregida[1],$array_fecha_corregida[0],$array_fecha_corregida[2]))
+		    {
+			$fecha_corregida=$array_fecha_corregida[2]."-".$array_fecha_corregida[1]."-".$array_fecha_corregida[0];
+			$caso_al_que_entro="cambia, caso 1 dd-mm-aaaa";
+		    }//fin if
+		    else
+		    {
+			if($es_fecha_nacimiento==false)
+			{
+				if($campo_especial==-1)
+				{
+					$fecha_corregida="1800-01-01";
+				}
+				else if($campo_especial==-2)
+				{
+					$fecha_corregida="1845-01-01";
+				}
+				else if($campo_especial==-3)
+				{
+					$fecha_corregida="1788-01-01";
+				}
+			}
+			else
+			{
+				$fecha_corregida=$date_de_corte;
+			}
+		    }//fin else
+		}//fin else if
+		else
+		{
+		    if($es_fecha_nacimiento==false)
+		    {
+			if($campo_especial==-1)
+			{
+				$fecha_corregida="1800-01-01";
+			}
+			else if($campo_especial==-2)
+			{
+				$fecha_corregida="1845-01-01";
+			}
+			else if($campo_especial==-3)
+			{
+				$fecha_corregida="1788-01-01";
+			}
+		    }
+		    else
+		    {
+			$fecha_corregida=$date_de_corte;
+		    }
+		}//fin else
+		
+	    }//fin else
+	    
+	}//fin if
+	else
+	{
+	    if($es_fecha_nacimiento==false)
+	    {
+		if($campo_especial==-1)
+		{
+			$fecha_corregida="1800-01-01";
+		}
+		else if($campo_especial==-2)
+		{
+			$fecha_corregida="1845-01-01";
+		}
+		else if($campo_especial==-3)
+		{
+			$fecha_corregida="1788-01-01";
+		}
+	    }
+	    else
+	    {
+		$fecha_corregida=$date_de_corte;
+	    }
+	}//fin else
+    }
+    else
+    {
+	if($es_fecha_nacimiento==false)
+	{
+	    if($campo_especial==-1)
+	    {
+		    $fecha_corregida="1800-01-01";
+	    }
+	    else if($campo_especial==-2)
+	    {
+		    $fecha_corregida="1845-01-01";
+	    }
+	    else if($campo_especial==-3)
+	    {
+		    $fecha_corregida="1788-01-01";
+	    }
+	}
+	else
+	{
+	    $fecha_corregida=$date_de_corte;
+	}
+    }//fin else
+    
+    $nuevo_array_fecha_corregida=explode("-",$fecha_corregida);
+    if(is_array($nuevo_array_fecha_corregida)
+       && count($nuevo_array_fecha_corregida)==3
+       )
+    {
+	$fecha_corregida=corrige_longitud_fecha($nuevo_array_fecha_corregida,$fecha_corte,1);
+    }
+    
+    //echo 'fecha corregida ',$fecha_corregida,'<br>';
+    
+    if($es_fecha_nacimiento==false && $campo_especial!=0)
+    {	    
+	$date_de_corte_12_meses_menos=date('Y-m-d',strtotime($fecha_corte[0]."-".$fecha_corte[1]."-".$fecha_corte[2] . ' -12 months'));
+	$date_de_corte_posterior_10_meses=date('Y-m-d',strtotime($fecha_corte[0]."-".$fecha_corte[1]."-".$fecha_corte[2] . ' +10 months'));
+	$diferencia_de_1900=-1;
+	$interval = date_diff(new DateTime($fecha_corregida),new DateTime("1900-01-01"));
+	$diferencia_de_1900 =(float)($interval->format("%r%a"));
+	if($diferencia_de_1900<0)//si excede 1900 entonces no es codigo
+	{
+	  $interval = date_diff(new DateTime($fecha_corregida),new DateTime($date_de_corte));
+	  $verificacion_fecha_corte =(float)($interval->format("%r%a"));
+	  $interval = date_diff(new DateTime($fecha_corregida),new DateTime($date_de_corte_12_meses_menos));
+	  $verificacion_fecha_corte_12_meses_menos=(float)($interval->format("%r%a"));
+	  $interval = date_diff(new DateTime($fecha_corregida),new DateTime($date_de_corte_posterior_10_meses));
+	  $verificacion_fecha_corte_pos_10_meses =(float)($interval->format("%r%a"));
+	  
+	  
+	  if($verificacion_fecha_corte<0 && ($campo_especial==-1 || $campo_especial==-2))//excede la fecha de corete, diferencia de dias es inferior
+	  {
+	    $fecha_corregida=$date_de_corte;
+	  }
+	  /*
+	  else if($verificacion_fecha_corte_12_meses_menos>0)//es inferior, por eso la diferencia de dias es mayor de cero
+	  {
+	   $fecha_corregida="1800-01-01";
+	  }
+	  */
+	  
+	}//fin si excede 1900 entonces no es codigo
+    }//fin if si no es fecha de nacimiento
+    
+    if($es_fecha_nacimiento==true)
+    {	    
+      //echo "<script>alert('pre $campo_fecha pos $fecha_corregida $caso_al_que_entro');</script>";
+    }
+    
+    if( $campo_debug==801 && trim($campo_fecha)!="99")
+    {
+	//echo "<script>alert('entro 801 funcion  $campo_fecha pos $fecha_corregida');</script>";
+    }
+    
+    
+    return $fecha_corregida;
+}//fin funcion
 
 //consultar el tipo de entidad
 $sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
@@ -1168,7 +1749,100 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	{		
 		$cod_prestador=$_POST["prestador"];
 	}
+
+	//parte verifica si es mayor de 03-31 del mismo year
+	$year_corte_inferior=trim($_POST["year_de_corte"]);
+	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-03-31";
+	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
+	if($diferencia_dias_con_mitad_year<0)
+	{
+		$year_corte_para_buscar="".(intval(trim($_POST["year_de_corte"]))+1);
+	}//fin if
+	else
+	{
+		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
+	}
+	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
+	//fin parte verifica si es mayor de 03-31 del mismo year
+
+	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
+	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
+	$fecha_inferior_pv="";
+	$fecha_inferior_pv=$year_corte_inferior."-04-01";
+	$fecha_de_corte=$year_corte_para_buscar."-03-31";
+	//no tabla variados que contiene algunos rangos de years
+	//revisar esto en ERC	
+	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 	
+
+	//SELECTOR VERSION	
+	$nombre_base_version="reparador_0123_HF_v";
+	$array_fecha_corte=explode("-", $fecha_de_corte);
+	$year_corte_para_version_validacion=trim($array_fecha_corte[0]);
+	$directorio_validacion_per_year='../res_0123_HF/';
+	$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_corte_para_version_validacion.'.php';
+	if(file_exists($ruta_validacion_version)==true)
+	{
+		require_once $ruta_validacion_version;
+	}//fin if
+	else
+	{
+		$version_minima=0;
+		$version_maxima=0;
+		$array_versiones_scripts=array();
+		if ($filesVersiones = opendir($directorio_validacion_per_year)) 
+		{
+			while (false !== ($script_actual = readdir($filesVersiones))) 
+			{
+				$script_actual_temp=str_replace(".php", "", $script_actual);
+				$script_actual_temp=str_replace($nombre_base_version, "", $script_actual_temp);
+				$array_versiones_scripts[]=intval($script_actual_temp);
+
+
+
+			}//fin while
+			$selecciono_version=false;
+			$version_minima=min($array_versiones_scripts);
+			$version_maxima=max($array_versiones_scripts);
+			if($version_minima>$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_minima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			if($version_maxima<$year_corte_para_version_validacion)
+			{
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$version_maxima.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin if
+
+			$year_retroceso_version=intval($year_corte_para_version_validacion);
+			while($selecciono_version==false)
+			{				
+				$year_retroceso_version--;
+				$ruta_validacion_version=$directorio_validacion_per_year.$nombre_base_version.$year_retroceso_version.'.php';
+				if(file_exists($ruta_validacion_version)==true)
+				{
+					require_once $ruta_validacion_version;
+					$selecciono_version=true;
+				}//fin if
+			}//fin while
+
+
+
+
+		}//fin if
+	}//fin else
+	//FIN SELECTOR VERSION
 		
 	$error_mostrar_bd="";
 	
@@ -1954,6 +2628,83 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
 						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
 					}//fin if
+					//fix regimen si existe en otra tabla 
+					if(
+						(count($resultados_query_existe_afiliado_tablas_regimen)==0 || is_array($resultados_query_existe_afiliado_tablas_regimen)==false)
+						&& ($tipo_de_regimen_de_la_informacion_reportada!="C" && $tipo_de_regimen_de_la_informacion_reportada!="S" && $tipo_de_regimen_de_la_informacion_reportada!="E" && $tipo_de_regimen_de_la_informacion_reportada!="O" && $tipo_de_regimen_de_la_informacion_reportada!="P" && $tipo_de_regimen_de_la_informacion_reportada!="N" )
+					)//fin condicion
+					{
+						$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rc";
+
+						$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+						$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+						if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+							&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+						{
+							$tipo_de_regimen_de_la_informacion_reportada="C";
+							$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+						}//fin if
+						else
+						{
+							$nombre_tabla_afiliado_hallado="gioss_afiliados_regimen_subsidiado";
+
+							$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+							$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+							if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+								&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+							{
+								$tipo_de_regimen_de_la_informacion_reportada="S";
+								$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+							}//fin if
+							else
+							{
+								$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_mp";
+
+								$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+								$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+								if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+								&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+								{
+									$tipo_de_regimen_de_la_informacion_reportada="E";
+									$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+								}//fin if
+								else
+								{
+									$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_rp";
+
+									$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+									$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+									if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+									&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+									{
+										$tipo_de_regimen_de_la_informacion_reportada="P";
+										$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+									}//fin if
+									else
+									{
+										$nombre_tabla_afiliado_hallado="gioss_afiliados_eapb_nv";
+
+										$query_bd_existe_afiliado_en_tabla_regimen="SELECT * FROM ".$nombre_tabla_afiliado_hallado." WHERE id_afiliado = '".$campo_n6_ni."' AND tipo_id_afiliado = '".$campo_n5_ti."' AND codigo_eapb='".$cod_eapb_global."' ;";
+										$resultados_query_existe_afiliado_tablas_regimen=$coneccionBD->consultar2_no_crea_cierra($query_bd_existe_afiliado_en_tabla_regimen);
+										if(is_array($resultados_query_existe_afiliado_tablas_regimen) 
+										&& count($resultados_query_existe_afiliado_tablas_regimen)>0 )
+										{
+											$tipo_de_regimen_de_la_informacion_reportada="N";
+											$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+										}//fin if
+										else
+										{
+											//no lo encontro
+											$tipo_de_regimen_de_la_informacion_reportada="N";
+											$campos[9]=$tipo_de_regimen_de_la_informacion_reportada;
+										}//fin else
+									}//fin else
+
+								}//fin else
+							}//fin else
+						}//fin else
+					}//fin if
+					//fin fix regimen si existe en otra tabla 
 					//contador filas
 					$num_filas_resultado_existe_tablas_regimen=count($resultados_query_existe_afiliado_tablas_regimen);
 					//FIN PARTE CONSULTA VERIFICA EXISTENCIA AFILIADOS
@@ -2232,7 +2983,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_resultados_validacion=reparacion_formato_HF($campos,
 											 $cont_linea_para_indexador,
@@ -2246,7 +2997,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_resultados_validacion=reparacion_valor_permitido_HF($campos,
 											 $cont_linea_para_indexador,
@@ -2260,7 +3011,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_resultados_validacion_2=reparacion_criterios_de_calidad_HF($campos,
 											 $cont_linea_para_indexador,
@@ -2274,7 +3025,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 							
 					
 						$array_pos_campos=$campos;
@@ -3224,7 +3975,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_formato_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3238,7 +3989,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_valor_permitido_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3252,7 +4003,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_criterios_de_calidad_HF($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3266,7 +4017,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 								
 						//fin pasar corrector aca
 

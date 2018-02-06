@@ -3080,7 +3080,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_formato_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3094,7 +3094,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_valor_permitido_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3108,7 +3108,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparacion_criterios_de_calidad_ERC($array_campos_procesados_de_los_duplicados_del_duplicado,
 											 $numero_registro_para_procesado,
@@ -3122,7 +3122,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["2463
 											 $cod_eapb,
 											 $diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 								
 						//fin pasar corrector aca
 						

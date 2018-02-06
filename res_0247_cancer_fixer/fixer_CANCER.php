@@ -3273,21 +3273,21 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0247
 													      $cod_eapb,
 													      $diccionario_identificacion,
 													      $diccionario_identificacion_lineas,
-													      $coneccionBD);
+													      $coneccionBD, $array_numero_campo_bd);
 		
 						$array_errores=reparador_formato_valor_permitido_CANCER($array_campos_procesados_de_los_duplicados_del_duplicado,$numero_registro_para_procesado,$consecutivo_errores,
 											 $array_tipo_validacion,$array_grupo_validacion,
 											 $array_detalle_validacion,$nombre_archivo_registrado,
 											 $fecha_de_corte,$cod_prestador,$cod_eapb,$diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						
 						$array_errores=reparador_calidad_CANCER($array_campos_procesados_de_los_duplicados_del_duplicado,$numero_registro_para_procesado,$consecutivo_errores,
 											 $array_tipo_validacion,$array_grupo_validacion,
 											 $array_detalle_validacion,$nombre_archivo_registrado,
 											 $fecha_de_corte,$cod_prestador,$cod_eapb,$diccionario_identificacion,
 											 $diccionario_identificacion_lineas,
-											 $coneccionBD);
+											 $coneccionBD, $array_numero_campo_bd);
 						//fin pasar corrector aca
 						
 						$array_pos_campos=$array_campos_procesados_de_los_duplicados_del_duplicado;
