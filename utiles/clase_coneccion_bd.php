@@ -550,6 +550,22 @@ class conexion
 	    }
 	}
 
+	public function crearConexionCustom($host,$port,$dbname,$user,$pass)
+	{	
+	    if(connection_aborted()==false)
+	    {
+		//echo "<script>alert(\" antes de crear la conexion \");</script>";
+	    }
+	    $this->gestor_de_errores = set_error_handler(array($this,"miGestorDeErrores"));
+	    
+	    $cadena_de_coneccion="host=".$host." port=".$port." dbname=".$dbname." user=".$user." password=".$pass;	    
+	    $this->conexion = pg_connect($cadena_de_coneccion,PGSQL_CONNECT_FORCE_NEW) or die("Fallo la conexion a la Base de datos!" . pg_last_error());
+	    if(connection_aborted()==false)
+	    {
+		//echo "<script>alert(\" Se creo la conexion \");</script>";
+	    }
+	}//fin public
+
 	public function cerrar_conexion()
 	{	
 		pg_close($this->conexion);
