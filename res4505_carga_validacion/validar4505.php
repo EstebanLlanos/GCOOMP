@@ -1468,6 +1468,267 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 		
 		if($PERMITIR_VALIDAR_ESTA_REGISTRADO_EN_AFILIADOS==true)
 		{
+			//VERIFICA IDENTIFICACION DUPLICADA EN EL DOCUMENTO Y EL NUMERO DE LAS LINEAS QUE SE REPITE
+			if(true)
+			{
+				$numero_campo_actual=4;
+				//estas variables se reinician aqui $personas_insertadas_hasta_el_momento
+				//y $personas_con_duplicados_hasta_el_momento pero deberian tener
+				//una global que les reasigne su valor 
+				$personas_insertadas_hasta_el_momento=0;
+				$personas_con_duplicados_hasta_el_momento=0;
+				
+				$tipo_id_provisional="no_idea_ti";
+				$identificacion_provisional="no_idea_id";
+				$acumulador_para_contar_duplicados=0;
+				
+				$cod_prestador_de_acuerdo_tipo_entidad="";
+				$cod_eapb_de_acuerdo_tipo_entidad="";
+				$cont_linea=0;
+				$cont_linea=$numLinea;
+				$mensajes_error_duplicados_val="";
+				if($this->tipo_entidad_que_efectua_el_cargue=="individual_ips"
+					|| $this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips"
+		       		|| $this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120"
+				   || $this->tipo_entidad_que_efectua_el_cargue=="ent_territoriales"
+				   )
+				{
+				    $cod_prestador_de_acuerdo_tipo_entidad=$this->cod_registro_especial_pss;
+				    
+				    if($this->tipo_entidad_que_efectua_el_cargue=="individual_ips"				    	
+					|| $this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips"
+		       		|| $this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120"
+				    	)
+				    {
+					$cod_eapb_de_acuerdo_tipo_entidad=$this->cod_eapb_global;
+				    }
+				    else if($this->tipo_entidad_que_efectua_el_cargue=="ent_territoriales")
+				    {
+					$cod_eapb_de_acuerdo_tipo_entidad=$this->cod_registro_especial_pss;
+				    }
+				}
+				else if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_eapb")
+				{
+				    $cod_prestador_de_acuerdo_tipo_entidad="AGRUP_EAPB";
+				    $cod_eapb_de_acuerdo_tipo_entidad=$this->cod_eapb_global;
+				}
+				
+				//INDEXADOR DE DUPLICADOS
+				$nombre_tabla_indexador_duplicados="gioss_indexador_duplicados_del_validador_4505";
+				if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+				{
+					//susa una tabla de indexador distinta pero para duplicados teniendo en cuenta el campo extra 120 con codigo eapb
+					$nombre_tabla_indexador_duplicados="gioss_indexador_dupl_del_validador_4505_agrup_ips";
+				}//fin if
+
+				$compiladoPrimerApellidoNombreFechaNac="";
+				$compiladoPrimerApellidoNombreFechaNac.=str_replace(" ","",strtoupper( trim($array_fields[5]) ) );
+				$compiladoPrimerApellidoNombreFechaNac.="|".str_replace(" ","",strtoupper( trim($array_fields[6]) ) );
+				$compiladoPrimerApellidoNombreFechaNac.="|".trim($array_fields[9]);
+
+				//FASE 1 consulta por el campo 3 y 4 (tipo id y numero id afiliado) si existe duplicado
+				$existe_afiliado=false;
+				$lista_lineas_duplicados="".$cont_linea;
+				$query_consultar_en_indexador="";
+				$query_consultar_en_indexador.=" SELECT lista_lineas_donde_hay_duplicados FROM  ";
+				$query_consultar_en_indexador.=" $nombre_tabla_indexador_duplicados ";
+				$query_consultar_en_indexador.=" WHERE  ";
+				$query_consultar_en_indexador.="tipo_id_usuario='".$tipo_id_provisional."'";				
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="id_usuario='".$identificacion_provisional."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="nick_usuario='".$this->nick_user."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="fecha_corte_reporte='".$this->cadena_fecha_corte."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="fecha_de_generacion='".$this->fecha_actual_global."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="hora_generacion='".$this->tiempo_actual_global."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb_de_acuerdo_tipo_entidad."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="codigo_entidad_prestadora='".$cod_prestador_de_acuerdo_tipo_entidad."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="nombre_archivo_pyp='".$this->nombre_archivo_4505."'";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.=" (campo_3_tipo_id='".trim($array_fields[3])."' )";
+				$query_consultar_en_indexador.=" AND ";
+				$query_consultar_en_indexador.="campo_4_numero_id='".trim($array_fields[4])."'";
+				if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+				{
+					$query_consultar_en_indexador.=" AND ";
+					$query_consultar_en_indexador.="campo_extra_120_eapb_regis='".trim($array_fields[119])."'";
+				}
+				$query_consultar_en_indexador.=" ; ";
+				$error_bd_seq="";		
+				$resultado_esta_afiliado_en_indexador=$conexion_bd_validar_campos->consultar_no_warning_get_error_no_crea_cierra($query_consultar_en_indexador, $error_bd_seq);
+				if($error_bd_seq!="")
+				{
+				    $mensajes_error_duplicados_val.=" ERROR Al consultar en la tabla $nombre_tabla_indexador_duplicados ".$this->procesar_mensaje($error_bd_seq).".<br>";			    			    
+					
+				}//fin if
+				if(is_array($resultado_esta_afiliado_en_indexador) && count($resultado_esta_afiliado_en_indexador)>0)
+				{
+				    $existe_afiliado=true;
+				    if(ctype_digit($resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"]))
+				    {
+					$acumulador_para_contar_duplicados+=1;
+				    }
+				    $lista_lineas_duplicados=$resultado_esta_afiliado_en_indexador[0]["lista_lineas_donde_hay_duplicados"].";;".$cont_linea;
+				    //si haya duplicaco, suma 1
+				    $acumulador_para_contar_duplicados+=1;
+				}
+				else
+				{
+				    //si no haya duplicado, suma cero
+				    $acumulador_para_contar_duplicados+=0;
+				}
+				//FIN FASE 1
+				
+				
+				//FASE 2 inserta en indexador de duplicado si no habia
+				if($existe_afiliado==false)
+				{
+				    $query_insert_updt_en_indexador="";
+				    $query_insert_updt_en_indexador.=" INSERT INTO ";
+				    $query_insert_updt_en_indexador.=" $nombre_tabla_indexador_duplicados ";				
+				    $query_insert_updt_en_indexador.=" ( ";	
+				    $query_insert_updt_en_indexador.=" tipo_id_usuario, ";
+				    $query_insert_updt_en_indexador.=" id_usuario, ";
+				    $query_insert_updt_en_indexador.=" nick_usuario, ";
+				    $query_insert_updt_en_indexador.=" fecha_corte_reporte, ";
+				    $query_insert_updt_en_indexador.=" fecha_de_generacion, ";
+				    $query_insert_updt_en_indexador.=" hora_generacion, ";
+				    $query_insert_updt_en_indexador.=" codigo_entidad_eapb_generadora, ";
+				    $query_insert_updt_en_indexador.=" codigo_entidad_prestadora, ";
+				    $query_insert_updt_en_indexador.=" nombre_archivo_pyp, ";
+				    $query_insert_updt_en_indexador.=" campo_3_tipo_id, ";
+				    $query_insert_updt_en_indexador.=" campo_4_numero_id, ";
+				    if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+					{
+						$query_insert_updt_en_indexador.="campo_extra_120_eapb_regis, ";
+					}
+				    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados ";
+				    $query_insert_updt_en_indexador.=" ) ";
+				    $query_insert_updt_en_indexador.=" VALUES ";
+				    $query_insert_updt_en_indexador.=" ( ";
+				    $query_insert_updt_en_indexador.="'".$tipo_id_provisional."',";
+				    $query_insert_updt_en_indexador.="'".$identificacion_provisional."',";
+				    $query_insert_updt_en_indexador.="'".$this->nick_user."',";							
+				    $query_insert_updt_en_indexador.="'".$this->cadena_fecha_corte."',";
+				    $query_insert_updt_en_indexador.="'".$this->fecha_actual_global."',";
+				    $query_insert_updt_en_indexador.="'".$this->tiempo_actual_global."',";
+				    $query_insert_updt_en_indexador.="'".$cod_eapb_de_acuerdo_tipo_entidad."',";
+				    $query_insert_updt_en_indexador.="'".$cod_prestador_de_acuerdo_tipo_entidad."',";
+				    $query_insert_updt_en_indexador.="'".$this->nombre_archivo_4505."',";
+				    $query_insert_updt_en_indexador.="'".trim($array_fields[3])."',";
+				    $query_insert_updt_en_indexador.="'".trim($array_fields[4])."',";
+				    if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+					{
+						$query_insert_updt_en_indexador.="'".trim($array_fields[119])."',";
+					}
+				    $query_insert_updt_en_indexador.="'".$cont_linea."'";
+				    $query_insert_updt_en_indexador.=" ) ";
+				    $query_insert_updt_en_indexador.=" ; ";
+				    $error_bd_seq="";		
+				    $bool_hubo_error_query=$conexion_bd_validar_campos->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
+				    if($error_bd_seq!="")
+				    {
+					$mensajes_error_duplicados_val.=" ERROR Al subir en la tabla $nombre_tabla_indexador_duplicados ".$this->procesar_mensaje($error_bd_seq).".<br>";
+					
+				    }
+				    else
+				    {
+					$personas_insertadas_hasta_el_momento+=1;
+				    }
+				}//fin if
+				//o actualiza si ya habia concatenando a la lista de numero de filas
+				else if($existe_afiliado==true)
+				{
+				    $query_insert_updt_en_indexador="";
+				    $query_insert_updt_en_indexador.=" UPDATE  ";
+				    $query_insert_updt_en_indexador.=" $nombre_tabla_indexador_duplicados ";				
+				    $query_insert_updt_en_indexador.=" SET ";	
+				    $query_insert_updt_en_indexador.=" lista_lineas_donde_hay_duplicados='".$lista_lineas_duplicados."' ";
+				    $query_insert_updt_en_indexador.=" WHERE  ";
+				    $query_insert_updt_en_indexador.="tipo_id_usuario='".$tipo_id_provisional."'";				
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="id_usuario='".$identificacion_provisional."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="nick_usuario='".$this->nick_user."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="fecha_corte_reporte='".$this->cadena_fecha_corte."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="fecha_de_generacion='".$this->fecha_actual_global."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="hora_generacion='".$this->tiempo_actual_global."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="codigo_entidad_eapb_generadora='".$cod_eapb_de_acuerdo_tipo_entidad."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="codigo_entidad_prestadora='".$cod_prestador_de_acuerdo_tipo_entidad."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="nombre_archivo_pyp='".$this->nombre_archivo_4505."'";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.=" (campo_3_tipo_id='".trim($array_fields[3])."' )";
+				    $query_insert_updt_en_indexador.=" AND ";
+				    $query_insert_updt_en_indexador.="campo_4_numero_id='".trim($array_fields[4])."'";
+				    if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+					{
+						$query_insert_updt_en_indexador.=" AND ";
+						$query_insert_updt_en_indexador.="campo_extra_120_eapb_regis='".trim($array_fields[119])."'";
+					}
+				    $query_insert_updt_en_indexador.=" ; ";
+				    $error_bd_seq="";		
+				    $bool_hubo_error_query=$conexion_bd_validar_campos->insertar_no_warning_get_error_no_crea_cierra($query_insert_updt_en_indexador, $error_bd_seq);
+				    if($error_bd_seq!="")
+				    {
+					$mensajes_error_duplicados_val.=" ERROR Al actualizar en la tabla $nombre_tabla_indexador_duplicados ".$this->procesar_mensaje($error_bd_seq).".<br>";
+					
+				    }
+				    else
+				    {
+					$personas_con_duplicados_hasta_el_momento+=1;
+					
+					$lista_lineas_duplicados_para_csv=str_replace(";;","-",$lista_lineas_duplicados);
+					
+					//se pasan los duplicados al interior del documento de inconsistencias
+					$validador_boolean=false;//se comenta temporalmente para que pasen los duplicados
+					if($mensajes_error_campos!=""){$mensajes_error_campos.="|";}
+					//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+					$var_numero_codigo="0105500";
+					$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_inconsistencia[$var_numero_codigo])[1];
+
+					if($this->tipo_entidad_que_efectua_el_cargue=="agrupado_ips120")
+					{
+						$mensajes_error_campos.=$consecutivo_errores.",".$nombre_archivo4505.",01,".$array_tipo_inconsistencia["01"].",0105,".$array_grupo_inconsistencia["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".trim($array_fields[3])."_".trim($array_fields[4])." y EAPB c119 ".trim($array_fields[119])." Registros Coincidentes: $lista_lineas_duplicados_para_csv ,".$numLinea.",".$numero_campo_actual.",".$this->codigo_habilitacion_para_inconsistencias.",".$array_fields[3].",".$array_fields[4];
+					}
+					else
+					{
+						$mensajes_error_campos.=$consecutivo_errores.",".$nombre_archivo4505.",01,".$array_tipo_inconsistencia["01"].",0105,".$array_grupo_inconsistencia["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".trim($array_fields[3])."_".trim($array_fields[4])." Registros Coincidentes: $lista_lineas_duplicados_para_csv ,".$numLinea.",".$numero_campo_actual.",".$this->codigo_habilitacion_para_inconsistencias.",".$array_fields[3].",".$array_fields[4];
+					}//fin else
+
+					$consecutivo_errores++;
+				    }
+				}//fin if actualizar
+				//FIN FASE 2
+				//FIN INDEXADOR DE DUPLICADOS
+				
+			}//fin if solo entra a verificar duplicados cuando escribe los errores
+			else
+			{
+				if($this->diccionario_identificacion_para_bool[$array_fields[3]."_".$array_fields[4]]==null)
+				{
+					$this->diccionario_identificacion_para_bool[$array_fields[3]."_".$array_fields[4]]=1;
+				}//fin if cuando no es nulo
+				else
+				{
+					//pasa a falso porque encontro duplicado
+					$validador_boolean=false;
+					$this->diccionario_identificacion_para_bool[$array_fields[3]."_".$array_fields[4]]++;
+				}//fin else cuando es nulo
+			}//fin else cuando esta verificando
+			//FIN PARTE DUPLICADOS
+
 			$this->criterios_validacion($array_fields, $numLinea, $boolean_or_string, $date_fin_reporte, $array_tipo_inconsistencia, $array_grupo_inconsistencia, $array_detalle_inconsistencia, $nombre_archivo4505, $year_corte, $consecutivo_errores, $validador_boolean, $mensajes_error_campos, $conexion_bd_validar_campos);	
 		
 		
