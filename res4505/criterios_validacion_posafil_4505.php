@@ -590,6 +590,8 @@ class criterios_validacion_posafil_4505
 
 
 			}//fin else verifica existencia usuarios en bd y datos de sexo y fecha de nacimeinto consitentes con bd
+
+			//la verificacion de duplicados 0105500 se paso a validar4505.php
 			
 		}//fin else no esta en blanco
 		//fin campo 4
