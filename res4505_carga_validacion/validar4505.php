@@ -6308,13 +6308,16 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 			$arrayZipsArchivosSoporteAdmnistrativoNoActividad=array();
 			$ruta_zip_archivos_soporte_administrativo="";
 			$ruta_zip_archivos_soporte_administrativo=$this->globalRutaTemporalesEscribirArchivos."archivosSoporteAdministrativo.zip";
-			foreach ($this->GlobalArraySoporteAdministrativoNoActividad as $key => $rutaSANA) 
+			if(is_array($this->GlobalArraySoporteAdministrativoNoActividad)==true)
 			{
-				//echo $rutaSANA."<br>";
-				$arrayZipsArchivosSoporteAdmnistrativoNoActividad[]=$rutaSANA;
-				
-			}//fin foreach
-			$resZipActualSANA=create_zip($arrayZipsArchivosSoporteAdmnistrativoNoActividad,$ruta_zip_archivos_soporte_administrativo);			
+				foreach ($this->GlobalArraySoporteAdministrativoNoActividad as $key => $rutaSANA) 
+				{
+					//echo $rutaSANA."<br>";
+					$arrayZipsArchivosSoporteAdmnistrativoNoActividad[]=$rutaSANA;
+					
+				}//fin foreach
+				$resZipActualSANA=create_zip($arrayZipsArchivosSoporteAdmnistrativoNoActividad,$ruta_zip_archivos_soporte_administrativo);	
+			}//fin if es array		
 			//fin crea zip unico de los archivos de soporte administrativo no actividad
 		    
 		    $rutaZipFiltradosEapbCampo120="";
