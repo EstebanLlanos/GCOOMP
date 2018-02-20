@@ -1729,6 +1729,18 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 			}//fin else cuando esta verificando
 			//FIN PARTE DUPLICADOS
 
+			$numero_campo_actual=1;
+			if($array_fields[$numero_campo_actual]!=$numLinea)
+			{
+				$validador_boolean=false;
+				if($mensajes_error_campos!=""){$mensajes_error_campos.="|";}
+				//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+				$var_numero_codigo="0105501";
+				$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_inconsistencia[$var_numero_codigo])[1];
+				$mensajes_error_campos.=$consecutivo_errores.",".$nombre_archivo4505.",01,".$array_tipo_inconsistencia["01"].",0105,".$array_grupo_inconsistencia["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$array_fields[$numero_campo_actual]." ,".$numLinea.",".$numero_campo_actual.",".$this->codigo_habilitacion_para_inconsistencias.",".$array_fields[3].",".$array_fields[4];
+				$consecutivo_errores++;
+			}//fin if se saco validacion consecutivo
+
 			$this->criterios_validacion($array_fields, $numLinea, $boolean_or_string, $date_fin_reporte, $array_tipo_inconsistencia, $array_grupo_inconsistencia, $array_detalle_inconsistencia, $nombre_archivo4505, $year_corte, $consecutivo_errores, $validador_boolean, $mensajes_error_campos, $conexion_bd_validar_campos);	
 		
 		
