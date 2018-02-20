@@ -359,6 +359,7 @@ class criterios_validacion_posafil_4505
 			}
 			else
 			{
+				/*
 				if($array_fields[1]!=$numLinea)
 				{
 					$validador_boolean=false;
@@ -369,6 +370,7 @@ class criterios_validacion_posafil_4505
 					$mensajes_error_campos.=$consecutivo_errores.",".$nombre_archivo4505.",01,".$array_tipo_inconsistencia["01"].",0105,".$array_grupo_inconsistencia["0105"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...VR:".$array_fields[$numero_campo_actual]." ,".$numLinea.",".$numero_campo_actual.",".$this->codigo_habilitacion_para_inconsistencias.",".$array_fields[3].",".$array_fields[4];
 					$consecutivo_errores++;
 				}
+				*/
 			}//calidad
 		}//fin else no esta en blanco
 		//fin campo numero	1
