@@ -3073,7 +3073,7 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 					    //echo $cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
 
 					    if($array_booleano_primer_error_por_linea[intval($numero_campo_temp)]==true
-						&& $cod_tipo_inconsistencia_temp=="01"
+						&& ($cod_tipo_inconsistencia_temp=="01" || $cod_tipo_inconsistencia_temp=="03" )
 						)
 				    	{
 				    		//echo "ENTRO ".$cod_tipo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
@@ -3105,7 +3105,7 @@ class LecturaArchivo extends criterios_validacion_posafil_4505
 				    		$array_contador_total_inconsistencias_campo_0102[intval($numero_campo_temp)]++;
 				    	}//fin if
 
-				    	if($cod_grupo_inconsistencia_temp=="0101")
+				    	if($cod_grupo_inconsistencia_temp=="0101" || $cod_grupo_inconsistencia_temp=="0301")
 				    	{
 				    		//echo "ENTRO ".$cod_grupo_inconsistencia_temp." nc: ".$numero_campo_temp."<br>";
 				    		$array_contador_total_inconsistencias_campo_0101[intval($numero_campo_temp)]++;
