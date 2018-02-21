@@ -11288,7 +11288,7 @@ class criterios_validacion_posafil_4505
 				    $c82_es_mayor_a_1900_12_31=$this->diferencia_dias_entre_fechas(trim($array_fields[82]),"1900-12-31");
 				    if($es_mayor_a_1900_12_31<0
 				    && $c82_es_mayor_a_1900_12_31<0
-				    && $es_menor_al_campo82>=0
+				    && $es_menor_al_campo82>=0//o igual
 				    && $es_menor_al_campo82!==false
 				    )
 				    {
