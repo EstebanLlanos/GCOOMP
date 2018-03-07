@@ -412,4 +412,14 @@ text-align:center;
     background-color: yellow;
 }
 
+.pasar_mouse_tiene_sub_menus
+{
+    background-color: #80ffff;
+}
+
+.pasar_mouse_tiene_sub_menus:hover
+{
+    background-color: #66a3ff;
+}
+
 span.nobr { white-space: nowrap; }

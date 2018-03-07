@@ -245,11 +245,12 @@ function consultar_interfaces()
     var perfil_id=document.getElementById('selector_perfiles').value;
     if (perfil_id!="none")
     {
-	ConsultaAJAX_Async("perfil_id="+perfil_id,"consultar_interfaces.php","div_lista_de_interfaces");
+      //alert(perfil_id);
+	    ConsultaAJAX_Async("perfil_id="+perfil_id,"consultar_interfaces.php","div_lista_de_interfaces");
     }
     else
     {
-	document.getElementById("div_lista_de_interfaces").innerHTML="Seleccione un perfil.";
+	     document.getElementById("div_lista_de_interfaces").innerHTML="Seleccione un perfil.";
     }
 }
 
