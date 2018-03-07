@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-02-15 15:05:24
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-05 14:33:04
          compiled from "audsoporclinicos_HF.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18031643995a7b08ffe1efc8-93844277%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '442a5329b8857eae1c7981a14a6195865d8c934c' => 
     array (
       0 => 'audsoporclinicos_HF.html.tpl',
-      1 => 1518725034,
+      1 => 1520278380,
       2 => 'file',
     ),
   ),
@@ -106,6 +106,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 									<div id='nombre_archivo' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;font-size: large !important;">No Se Ha Subido Un Archivo</div>
 								</td>
 						    </tr>
+
+						    <tr>
+								<td style="text-align:left;vertical-align: middle;">
+									<input type="hidden" value="no"  id="ver_subio_archivo" name="ver_subio_archivo" >
+									<input type="button" value="Subir Archivo" onclick="subirArchivo();" style="width:220px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+								</td>
+							</tr>
+							
 					    </table>
 						
 						<tr>

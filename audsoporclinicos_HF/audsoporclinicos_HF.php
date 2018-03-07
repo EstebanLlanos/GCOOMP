@@ -143,13 +143,54 @@ $smarty->assign("menu", $menu, true);
 $smarty->display('audsoporclinicos_HF.html.tpl');
 
 /*
-INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('230','171','Auditoria HF','',FALSE,'..|audsoporclinicos_HF|audsoporclinicos_HF.php','33.02');
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('230','171','Auditoria','',FALSE,'..|audsoporclinicos_HF|audsoporclinicos_HF.php','50.01');
+
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('231','13','Auditoria','',FALSE,'..|audsoporclinicos_CANCER|audsoporclinicos_CANCER.php','50.01');
+
+
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('232','186','Auditoria','',FALSE,'..|audsoporclinicos_AR|audsoporclinicos_AR.php','50.01');
+
+
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('233','12','Auditoria','',FALSE,'..|audsoporclinicos_VIH|audsoporclinicos_VIH.php','50.01');
+
+
+INSERT INTO gios_menus_opciones_sistema(id_principal,id_padre,nombre_opcion,descripcion_ayuda,tiene_submenus,ruta_interfaz,prioridad_jerarquica) VALUES ('234','131','Auditoria','',FALSE,'..|audsoporclinicos_ERC|audsoporclinicos_ERC.php','50.01');
 
 INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','5'); --admin sistema
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','4'); --admin eapb
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','3'); --usuario normal eapb
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','2'); --admin ips
-INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','1'); --usuario normal ips
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('231','5'); --admin sistema
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('232','5'); --admin sistema
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('233','5'); --admin sistema
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('234','5'); --admin sistema
+--parte perfil auditoria
+INSERT INTO gios_perfiles_sistema VALUES (14, 'Auditoria', 'NO');
+
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('69','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('68','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('109','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('171','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('13','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('186','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('12','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('131','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('230','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('231','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('232','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('233','14'); --auditor
+INSERT INTO gios_menus_perfiles(id_menu,id_perfil) VALUES ('234','14'); --auditor
+
+--cambio restriccion primary key para permitir un usuario con tipo y numero identificacion y entidad tener varios login con diferentes perfiles
+
+alter table gioss_entidad_nicklogueo_perfil_estado_persona drop constraint gioss_entidad_nicklogueo_perfil_estado_persona_pkey;
+alter table gioss_entidad_nicklogueo_perfil_estado_persona add constraint gioss_entidad_nicklogueo_perfil_estado_persona_pkey PRIMARY KEY (entidad, tipo_id, identificacion_usuario,perfil_asociado);
+
+--nuevo usuario
+
+INSERT INTO gioss_entidad_nicklogueo_perfil_estado_persona VALUES ('EMP028', 'Auditor_1', 'CC', '1024488857', 14, 1, 'jdmejia2009@gmail.com', '2018-01-05', '2019-01-05', '2018-01-11', 'omega002', '12:00:49');
+
 */
 
 
@@ -174,7 +215,16 @@ $coneccionAlternaBD->crearConexionCustom($host,$port,$dbname,$user,$pass);
 
 if(isset($_FILES["archivo_a_subir"])==true)
 {
+	$fecha_para_archivo= date('YmdHis');
+	$carpetaOrig4505="ORIGAUDHF".$fecha_para_archivo;
+    if(!file_exists($rutaTemporal.$carpetaOrig4505))
+    {
+	    mkdir($rutaTemporal.$carpetaOrig4505, 0777, true);
+    }//fin if
+    
 	$nombre_archivo=explode(".",$_FILES["archivo_a_subir"]["name"])[0];
+
+	
 }//fin if
 
 

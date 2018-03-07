@@ -77,6 +77,14 @@
 									<div id='nombre_archivo' style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;font-size: large !important;">No Se Ha Subido Un Archivo</div>
 								</td>
 						    </tr>
+
+						    <tr>
+								<td style="text-align:left;vertical-align: middle;">
+									<input type="hidden" value="no"  id="ver_subio_archivo" name="ver_subio_archivo" >
+									<input type="button" value="Subir Archivo" onclick="subirArchivo();" style="width:220px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+								</td>
+							</tr>
+							
 					    </table>
 						
 						<tr>
