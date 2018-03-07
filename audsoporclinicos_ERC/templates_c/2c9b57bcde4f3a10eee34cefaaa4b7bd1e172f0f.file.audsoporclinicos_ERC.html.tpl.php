@@ -1,15 +1,44 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-07 11:35:26
+         compiled from "audsoporclinicos_ERC.html.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:18602157675aa014ce4ab644-50997146%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '2c9b57bcde4f3a10eee34cefaaa4b7bd1e172f0f' => 
+    array (
+      0 => 'audsoporclinicos_ERC.html.tpl',
+      1 => 1520440494,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '18602157675aa014ce4ab644-50997146',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'menu' => 1,
+    'nombre' => 1,
+    'info_entidad' => 1,
+    'selector_cohorte' => 1,
+    'mensaje_proceso' => 1,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.17',
+  'unifunc' => 'content_5aa014ce4c4bd7_95832726',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5aa014ce4c4bd7_95832726')) {function content_5aa014ce4c4bd7_95832726($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="audsoporclinicos_HF.js?v=1.12"></script>
+        <script type="text/javascript" src="audsoporclinicos_ERC.js?v=1.12"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="audsoporclinicos_HF.css?=1.1" rel="stylesheet" />
+        <link type="text/css" href="audsoporclinicos_ERC.css?=1.1" rel="stylesheet" />
        <title>Auditoria Hemofilia Contra Soportes Clinicos</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>
@@ -27,10 +56,12 @@
 							</div>
 							</td>
 							<td>
-							<div id='menu_div'>{$menu}</div>
+							<div id='menu_div'><?php echo $_smarty_tpl->tpl_vars['menu']->value;?>
+</div>
 							</td>
 							<td id='nombre'>
-							{$nombre}
+							<?php echo $_smarty_tpl->tpl_vars['nombre']->value;?>
+
 							</td>
 							<td>
 							<div id="clockbox"></div>
@@ -69,7 +100,8 @@
 
 							<tr>
 							<td style="text-align:left;">
-							{$info_entidad}							
+							<?php echo $_smarty_tpl->tpl_vars['info_entidad']->value;?>
+							
 							</td>
 							</tr>
 
@@ -116,7 +148,8 @@
 
 							<tr>
 							<td style="text-align:left;">
-							{$selector_cohorte}							
+							<?php echo $_smarty_tpl->tpl_vars['selector_cohorte']->value;?>
+							
 							</td>
 							</tr>
 
@@ -136,7 +169,8 @@
 						<tr>
 						<td style="text-align:center;" colspan='100'>
 							<div  id="mensaje">
-								{$mensaje_proceso}
+								<?php echo $_smarty_tpl->tpl_vars['mensaje_proceso']->value;?>
+
 							</div>
 							
 							<div id='mensaje_div' style='text-align:center;'></div>
@@ -205,4 +239,4 @@
 			</div>
 		</div> 		
     </body>
-</html>
+</html><?php }} ?>

@@ -232,7 +232,7 @@ $smarty->assign("mensaje_proceso", $mensaje, true);
 $smarty->assign("mostrarResultado", $mostrarResultado, true);
 $smarty->assign("nombre", $nombre, true);
 $smarty->assign("menu", $menu, true);
-$smarty->display('audsoporclinicos_HF.html.tpl');
+$smarty->display('audsoporclinicos_VIH.html.tpl');
 
 $html_script_expandir="
 <script>
