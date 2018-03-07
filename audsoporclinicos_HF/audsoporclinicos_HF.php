@@ -140,8 +140,14 @@ $resultado_query_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query
 $tipo_entidad=$resultado_query_tipo_entidad[0]["cod_tipo_entidad"];
 //fin consultar el tipo de entidad
 
+//descripcion tipo entidad
+$sql_query_descripcion_tipo_entidad_asociada="SELECT * FROM gioss_tipo_entidad WHERE codigo_tipo_entidad='$tipo_entidad'; ";
+$resultado_query_descripcion_tipo_entidad=$coneccionBD->consultar2_no_crea_cierra($sql_query_descripcion_tipo_entidad_asociada);
+$descripcion_tipo_entidad=$resultado_query_descripcion_tipo_entidad[0]["descripcion"];
+//fin descripcion tipo entidad
+
 $info="";
-$info.="<div id='div_eapb'>";
+$info.="<div id='div_info'>";
 //$info.="<select id='eapb' name='eapb' class='campo_azul' onchange='consultar_prestador();' >";
 
 
@@ -188,6 +194,15 @@ $info.="
 </td>
 <td style='text-align:left;'>
 <input type='text' id='nit_entidad' name='nit_entidad' value='$nit_entidad' class='campo_azul' readonly='true'>
+</td>
+</tr>
+
+<tr>
+<td style='text-align:left;width:250px;'>
+<input type='text' value='Tipo Entidad' class='campo_azul' readonly='true'>
+</td>
+<td style='text-align:left;'>
+<input type='text' id='tipo_entidad' name='tipo_entidad' value='$descripcion_tipo_entidad' class='campo_azul' readonly='true'>
 </td>
 </tr>
 
@@ -239,6 +254,7 @@ $html_script_expandir="
 Expand(document.getElementById('desc_entidad'));
 Expand(document.getElementById('cod_entidad'));
 Expand(document.getElementById('nit_entidad'));
+Expand(document.getElementById('tipo_entidad'));
 </script>";
 
 echo $html_script_expandir;
