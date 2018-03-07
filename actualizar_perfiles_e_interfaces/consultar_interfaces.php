@@ -69,11 +69,11 @@ function recorrer_arbol_y_dibujar_gestion(array $arbol_menu,$raiz,$perfil_id,&$c
 		$html.="</td>";
 		
 		$html.="<td style='text-align:left;'>";	
-		$html.="<table><tr><td>";
-		$html.="<div id='botones_prioridad'><table><tr><td><input type='button' value='&#x25B2;'/></td></tr><tr><td><input type='button' value='&#x25BC;'/></td></tr></table></div>";		
+		$html.="<table style='text-align:left;'><tr style='vertical-align:middle;'><td>";
+		$html.="<div id='botones_prioridad'><table><tr><td><input type='button' onclick=\"cambiar_valor('valor_prio_".$menu_actual["id_principal"]."','0.01','suma')\" id='subir_prio_".$menu_actual["id_principal"]."' name='subir_prio_".$menu_actual["id_principal"]."' value='&#x25B2;'/></td></tr><tr><td><input type='button' onclick=\"cambiar_valor('valor_prio_".$menu_actual["id_principal"]."','0.01','resta')\" id='bajar_prio_".$menu_actual["id_principal"]."' name='bajar_prio_".$menu_actual["id_principal"]."' value='&#x25BC;'/></td></tr></table></div>";		
 		$html.="</td><td>";	
-		$html.="<b><div id='prioridad_jerarquica_".$menu_actual["id_principal"]."'>".$menu_actual["prioridad_jerarquica"]."</div></b>";
-		$html.="</td></tr></table>";	
+		$html.="<b><div id='div_prio".$menu_actual["id_principal"]."'><input type='text' style='width:30px;' class='campo_azul' id='valor_prio_".$menu_actual["id_principal"]."' name='valor_prio_".$menu_actual["id_principal"]."' value='".$menu_actual["prioridad_jerarquica"]."' onkeypress='return isNumberKey(event)' /></div><div id='res_prio".$menu_actual["id_principal"]."'></div></b>";
+		$html.="</td><td><input type='button' class='btn btn-success color_boton' id='cambiar_prioridad".$menu_actual["id_principal"]."' name='cambiar_prioridad".$menu_actual["id_principal"]."' value='OK' onclick=\"cambiar_prioridad_bd('".$menu_actual["id_principal"]."');\" ></td></tr></table>";	
 		$prioridad_hijo=$menu_actual["prioridad_jerarquica"];
 		$html.="</td>";
 		

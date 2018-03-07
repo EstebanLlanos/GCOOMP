@@ -310,3 +310,57 @@ function crear_perfil()
 	alert("Digite un nombre para el nuevo perfil.");
     }
 }
+
+
+function cambiar_valor(id_input, incremento,operacion)
+{
+  if(document.getElementById(id_input) )
+  {
+    var valor_actual=new BigNumber(document.getElementById(id_input).value);
+    var incremento_float=new BigNumber(incremento);
+    var resultado=0;
+
+    resultado=valor_actual;
+    if(operacion=='suma')
+    {
+      resultado=valor_actual.plus(incremento_float);
+    }//fin if
+    else if(operacion=='resta')
+    {
+      resultado=valor_actual.minus(incremento_float);
+      if(parseFloat(resultado)<0)
+      {
+        resultado=0;
+      }//fin if
+    }//fin else
+    
+    document.getElementById(id_input).value=resultado;
+
+  }//fin if
+  else
+  {
+    alert('Elemento '+id_input+' no existe ');
+  }
+}//fin function
+
+
+function cambiar_prioridad_bd(id_principal)
+{
+  if(document.getElementById('valor_prio_'+id_principal) )
+  {
+    var valor_actual=document.getElementById('valor_prio_'+id_principal).value;
+
+    ConsultaAJAX_Async("valor_actual="+valor_actual+"&id_principal="+id_principal,"prioridad_opcion.php","res_prio"+id_principal);
+  }//fin if
+}//fin function
+
+
+function isNumberKey(evt) 
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+    && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}

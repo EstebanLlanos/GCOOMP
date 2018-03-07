@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2015-08-26 09:55:18
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-07 15:58:19
          compiled from "act_perfil_interfaz.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1341555ca2c0ab0cd71-81739626%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e342793c7a7e63c4ba80581b588af45b7046b56e' => 
     array (
       0 => 'act_perfil_interfaz.html.tpl',
-      1 => 1440434272,
+      1 => 1520456170,
       2 => 'file',
     ),
   ),
@@ -33,11 +33,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_perfil_interfaz.js"></script>
+        <script type="text/javascript" src="act_perfil_interfaz.js?v=1.17"></script>
+        <script type="text/javascript" src="bignumber.js?v=1.0"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
-        <link type="text/css" href="act_perfil_interfaz.css" rel="stylesheet" />
+        <link type="text/css" href="act_perfil_interfaz.css?v=1.1" rel="stylesheet" />
        <title>Actualizar Permisos a interfaces</title>
        <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
     </head>
