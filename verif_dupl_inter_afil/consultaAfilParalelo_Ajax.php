@@ -28,6 +28,9 @@ $cantidad_registros_bloque_afil=$arrayRequest['block'];
 $numero_filas_afil=$arrayRequest['totalrows'];
 //inicio lee archivo director proceso
 
+$archivoAfiliadosActual=fopen($pathArchivoAfiliadosActual, "w");
+fclose($archivoAfiliadosActual);
+
 
 $consecutivo_orden_bd=$ultima_posicion_afil;
 

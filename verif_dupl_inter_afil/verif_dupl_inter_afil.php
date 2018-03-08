@@ -358,6 +358,53 @@ function edad_years_months_days($dob, $now = false)
 	return  array('y' => $now[2] - $dob[2], 'm' => $now[1] - $dob[1], 'd' => $now[0] - $dob[0]);
 }//fin function calculo edad
 
+/**
+ * Copyright © 2011 Erin Millard
+ */
+/**
+ * Returns the number of available CPU cores
+ * 
+ *  Should work for Linux, Windows, Mac & BSD
+ * 
+ * @return integer 
+ */
+function num_cpus()
+{
+  $numCpus = 1;
+  if (is_file('/proc/cpuinfo'))
+  {
+    $cpuinfo = file_get_contents('/proc/cpuinfo');
+    preg_match_all('/^processor/m', $cpuinfo, $matches);
+    $numCpus = count($matches[0]);
+  }
+  else if ('WIN' == strtoupper(substr(PHP_OS, 0, 3)))
+  {
+    $process = @popen('wmic cpu get NumberOfCores', 'rb');
+    if (false !== $process)
+    {
+      fgets($process);
+      $numCpus = intval(fgets($process));
+      pclose($process);
+    }
+  }
+  else
+  {
+    $process = @popen('sysctl -a', 'rb');
+    if (false !== $process)
+    {
+      $output = stream_get_contents($process);
+      preg_match('/hw.ncpu: (\d+)/', $output, $matches);
+      if ($matches)
+      {
+        $numCpus = intval($matches[1][0]);
+      }
+      pclose($process);
+    }
+  }
+  
+  return $numCpus;
+}
+
 $menu= $_SESSION['menu_logueo_html'];
 $nombre= $_SESSION['nombre_completo'];
 
@@ -391,6 +438,12 @@ if(isset($_REQUEST['ruta_leer'])==true
 
 $cantidad_procesos_consulta=4;
 $cantidad_procesos_verificacion=4;
+
+if(num_cpus()>0)
+{
+	$cantidad_procesos_consulta=num_cpus();
+	$cantidad_procesos_verificacion=num_cpus();
+}
 
 $html_div_procesos="";
 
@@ -541,6 +594,13 @@ if( isset($_REQUEST['iniciar'])
 		$arrayRutasArchivosResultadosProcesos[]=$archivoProcesoActual;		
 
 		echo "<script>llamarConsultaAfil('$pathArchivoDirector','$archivoProcesoActual','$ultima_posicion_afil','$cantidad_registros_bloque_afil','$numero_filas_afil');</script>";
+		/*
+		while(file_exists($archivoProcesoActual)==false)
+		{
+			sleep(1);
+			echo "<script>llamarConsultaAfil('$pathArchivoDirector','$archivoProcesoActual','$ultima_posicion_afil','$cantidad_registros_bloque_afil','$numero_filas_afil');</script>";
+		}//fin while
+		*/
 		$mensaje_inicio_particion.="Inicia en $ultima_posicion_afil <br>";
 		$ultima_posicion_afil=$ultima_posicion_afil+$cantidad_registros_bloque_afil;
 		$contProcesos++;
@@ -653,6 +713,13 @@ if( isset($_REQUEST['iniciar'])
 		$arrayRutasArchivosResultadosProcesosVerificacion[]=$pathDefinitivosActual;		
 
 		echo "<script>llamarVerificacionAfil('$pathdirectorverificacion','$pathArchivoLeerActual','$pathDefinitivosActual','$pathLogProcesoActual','$pathTempProgresoActual');</script>";
+		/*
+		while(file_exists($pathDefinitivosActual)==false)
+		{
+			sleep(1);
+			echo "<script>llamarVerificacionAfil('$pathdirectorverificacion','$pathArchivoLeerActual','$pathDefinitivosActual','$pathLogProcesoActual','$pathTempProgresoActual');</script>";
+		}//fin while
+		*/
 		$contProcesos++;
 	}//fin while
 
@@ -738,6 +805,11 @@ if( isset($_REQUEST['iniciar'])
 			}//fin if
 
 		}//fin if
+	}//fin while
+
+	while(file_exists($pathdefinitivosFinal)==false)
+	{
+		sleep(5);
 	}//fin while
 
 	if(file_exists($pathdefinitivosFinal)==true)

@@ -270,6 +270,9 @@ $arrayRequest=$_REQUEST;
  	$pathlogproceso=trim($_REQUEST['pathlogproceso']);
  	$pathtempprogreso=trim($_REQUEST['pathtempprogreso']);
 
+ 	$archivoDefinitivos=fopen($pathdefinitivos, "w");
+ 	fclose($archivoDefinitivos);
+
  	date_default_timezone_set('America/Bogota');
 	$fecha_actual=date('Y-m-d');
 	$tiempo_actual=date('H:i:s');
