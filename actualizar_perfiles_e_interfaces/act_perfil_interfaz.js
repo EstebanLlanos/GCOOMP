@@ -344,13 +344,13 @@ function cambiar_valor(id_input, incremento,operacion)
 }//fin function
 
 
-function cambiar_prioridad_bd(id_principal)
+function cambiar_prioridad_bd(id_principal,id_padre)
 {
   if(document.getElementById('valor_prio_'+id_principal) )
   {
     var valor_actual=document.getElementById('valor_prio_'+id_principal).value;
 
-    ConsultaAJAX_Async("valor_actual="+valor_actual+"&id_principal="+id_principal,"prioridad_opcion.php","res_prio"+id_principal);
+    ConsultaAJAX_Async("valor_actual="+valor_actual+"&id_principal="+id_principal+"&id_padre="+id_padre,"prioridad_opcion.php","res_prio"+id_principal);
   }//fin if
 }//fin function
 
@@ -363,4 +363,9 @@ function isNumberKey(evt)
         return false;
 
     return true;
+}
+
+function reset_div(id_div)
+{
+  document.getElementById(id_div).innerHTML='';
 }

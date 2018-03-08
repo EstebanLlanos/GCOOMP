@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-03-07 15:58:19
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-08 10:00:37
          compiled from "act_perfil_interfaz.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1341555ca2c0ab0cd71-81739626%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e342793c7a7e63c4ba80581b588af45b7046b56e' => 
     array (
       0 => 'act_perfil_interfaz.html.tpl',
-      1 => 1520456170,
+      1 => 1520521211,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">	
         <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-1.10.2.js"> </script> 
 		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
-        <script type="text/javascript" src="act_perfil_interfaz.js?v=1.17"></script>
+        <script type="text/javascript" src="act_perfil_interfaz.js?v=1.19"></script>
         <script type="text/javascript" src="bignumber.js?v=1.0"></script>
         <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap.css" rel="stylesheet" />
