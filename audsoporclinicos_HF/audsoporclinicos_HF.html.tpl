@@ -73,31 +73,6 @@
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-								<table style='text-align:left;'>
-								<tr>
-									<td style='text-align:left;width:250px;max-width:250px;'>
-										<input type='text' value='NOMBRE ARCHIVO' class='campo_azul' readonly='true'>
-									</td>
-									<td style='text-align:left;'>
-										<table>
-											<tr>
-												<td style='text-align:left;width:250px;'>
-													<input id='nombre_archivo_mostrar' name='nombre_archivo_mostrar'  class='campo_azul' placeholder='SELECCIONE UN ARCHIVO'  type='text' readonly> 
-												</td>
-												<td style='text-align:left;'>
-													<div class="upload" style="position:relative;text-align: center;margin:0;padding: 0;">
-													    <input type="file" id='archivo_a_subir' name='archivo_a_subir' style="cursor:pointer;" onchange="actualizarNombreFile(this.value);" onclick="actualizarNombreFile(this.value);" />
-													</div>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								</table>
-							</td>
-							</tr>
 
 							<tr>
 							<td style="text-align:left;">
@@ -114,19 +89,14 @@
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-							{$selector_cohorte}							
-							</td>
-							</tr>
 
 							
 
 						    <tr>
 								<td style="text-align:left;vertical-align: middle;">
 									<div style="position: relative; width: 55%; text-align:right;">
-										<input type="hidden" value="no"  id="ver_subio_archivo" name="ver_subio_archivo" >
-										<input type="button" value="Cargar Archivo" onclick="cargarArchivo();" style="width:220px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+										<input type="hidden" value="no"  id="desplegar_formulario" name="desplegar_formulario" >
+										<input type="button" value="Desplegar Formulario" onclick="cargarArchivo();" style="width:250px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
 									</div>
 								</td>
 							</tr>

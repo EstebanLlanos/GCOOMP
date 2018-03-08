@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-03-07 11:29:17
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-07 14:17:15
          compiled from "audsoporclinicos_HF.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18031643995a7b08ffe1efc8-93844277%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '442a5329b8857eae1c7981a14a6195865d8c934c' => 
     array (
       0 => 'audsoporclinicos_HF.html.tpl',
-      1 => 1520440104,
+      1 => 1520450223,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'menu' => 1,
     'nombre' => 1,
     'info_entidad' => 1,
-    'selector_cohorte' => 1,
     'mensaje_proceso' => 1,
   ),
   'has_nocache_code' => false,
@@ -105,31 +104,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-								<table style='text-align:left;'>
-								<tr>
-									<td style='text-align:left;width:250px;max-width:250px;'>
-										<input type='text' value='NOMBRE ARCHIVO' class='campo_azul' readonly='true'>
-									</td>
-									<td style='text-align:left;'>
-										<table>
-											<tr>
-												<td style='text-align:left;width:250px;'>
-													<input id='nombre_archivo_mostrar' name='nombre_archivo_mostrar'  class='campo_azul' placeholder='SELECCIONE UN ARCHIVO'  type='text' readonly> 
-												</td>
-												<td style='text-align:left;'>
-													<div class="upload" style="position:relative;text-align: center;margin:0;padding: 0;">
-													    <input type="file" id='archivo_a_subir' name='archivo_a_subir' style="cursor:pointer;" onchange="actualizarNombreFile(this.value);" onclick="actualizarNombreFile(this.value);" />
-													</div>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								</table>
-							</td>
-							</tr>
 
 							<tr>
 							<td style="text-align:left;">
@@ -146,20 +120,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-							<?php echo $_smarty_tpl->tpl_vars['selector_cohorte']->value;?>
-							
-							</td>
-							</tr>
 
 							
 
 						    <tr>
 								<td style="text-align:left;vertical-align: middle;">
 									<div style="position: relative; width: 55%; text-align:right;">
-										<input type="hidden" value="no"  id="ver_subio_archivo" name="ver_subio_archivo" >
-										<input type="button" value="Cargar Archivo" onclick="cargarArchivo();" style="width:220px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+										<input type="hidden" value="no"  id="desplegar_formulario" name="desplegar_formulario" >
+										<input type="button" value="Desplegar Formulario" onclick="cargarArchivo();" style="width:250px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
 									</div>
 								</td>
 							</tr>

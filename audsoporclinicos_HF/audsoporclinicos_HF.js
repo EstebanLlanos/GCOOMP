@@ -297,7 +297,7 @@ function isNumberKey(evt)
 
 function cargarArchivo()
 {
-  alert('inicia carga archivo');
+  alert('Despliega Formulario');
 }//fin function
 
 /*
