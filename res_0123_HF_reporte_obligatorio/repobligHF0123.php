@@ -11,7 +11,7 @@ require_once '../utiles/queries_utiles_bd.php';
 
 require_once '../utiles/crear_zip.php';
 
-require_once 'reparacion_campos_duplicados.php';
+require_once '../res_0123_HF/reparacion_campos_duplicados_v2018.php';
 
 include ("../librerias_externas/PHPMailer/class.phpmailer.php");
 include ("../librerias_externas/PHPMailer/class.smtp.php");
@@ -184,6 +184,8 @@ $smarty->display('repobligHF0123.html.tpl');
 
 if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="none" && $_POST["year_de_corte"]!="" && ctype_digit($_POST["year_de_corte"]) )
 {
+	$inicializa_numero_orden_campos=0;
+	$limite_numero_campos_norma=96;
 
 	$fecha_de_corte=$_POST['year_de_corte']."-".$_POST['fechas_corte'];
 	$periodo=$_POST['periodo'];
@@ -565,6 +567,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 		$contador_offset=0;
 		$limite=0;
 		$regimen_almacenado="";
+
+		
 		
 		
 		//SUBIDA A TABLA CONSULTA ERC Y ESCRIBIENDO EN EL ARCHIVO
@@ -738,8 +742,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 						$sql_insert_duplicados_rep_oblig_hf.=" INSERT INTO ";
 						$sql_insert_duplicados_rep_oblig_hf.=" gioss_consulta_reporte_obligatorio_hf0123_exitoso_duplicado ";				
 						$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<=118)
+						$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+						while($cont_orden_campo_hf<$limite_numero_campos_norma)
 						{
 							$sql_insert_duplicados_rep_oblig_hf.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 							$cont_orden_campo_hf++;
@@ -756,8 +760,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 						$sql_insert_duplicados_rep_oblig_hf.=" ) ";
 						$sql_insert_duplicados_rep_oblig_hf.=" VALUES ";
 						$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<=118)
+						$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+						while($cont_orden_campo_hf<$limite_numero_campos_norma)
 						{
 							$sql_insert_duplicados_rep_oblig_hf.="'".alphanumericAndSpace($linea_consulta["campo_hf_de_numero_orden_".$cont_orden_campo_hf])."',";
 							$cont_orden_campo_hf++;
@@ -824,8 +828,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 						$sql_insert_duplicados_rep_oblig_hf.=" INSERT INTO ";
 						$sql_insert_duplicados_rep_oblig_hf.=" gioss_consulta_reporte_obligatorio_hf0123_exitoso_duplicado ";				
 						$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<=118)
+						$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+						while($cont_orden_campo_hf<$limite_numero_campos_norma)
 						{
 							$sql_insert_duplicados_rep_oblig_hf.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 							$cont_orden_campo_hf++;
@@ -842,8 +846,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 						$sql_insert_duplicados_rep_oblig_hf.=" ) ";
 						$sql_insert_duplicados_rep_oblig_hf.=" VALUES ";
 						$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<=118)
+						$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+						while($cont_orden_campo_hf<$limite_numero_campos_norma)
 						{
 							$sql_insert_duplicados_rep_oblig_hf.="'".alphanumericAndSpace($linea_consulta["campo_hf_de_numero_orden_".$cont_orden_campo_hf])."',";
 							$cont_orden_campo_hf++;
@@ -872,8 +876,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 							$sql_insert_duplicados_rep_oblig_hf.=" INSERT INTO ";
 							$sql_insert_duplicados_rep_oblig_hf.=" gioss_consulta_reporte_obligatorio_hf0123_exitoso_duplicado ";				
 							$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-							$cont_orden_campo_hf=0;
-							while($cont_orden_campo_hf<=118)
+							$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+							while($cont_orden_campo_hf<$limite_numero_campos_norma)
 							{
 								$sql_insert_duplicados_rep_oblig_hf.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 								$cont_orden_campo_hf++;
@@ -890,8 +894,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 							$sql_insert_duplicados_rep_oblig_hf.=" ) ";
 							$sql_insert_duplicados_rep_oblig_hf.=" VALUES ";
 							$sql_insert_duplicados_rep_oblig_hf.=" ( ";				
-							$cont_orden_campo_hf=0;
-							while($cont_orden_campo_hf<=118)
+							$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+							while($cont_orden_campo_hf<$limite_numero_campos_norma)
 							{
 								$sql_insert_duplicados_rep_oblig_hf.="'".alphanumericAndSpace($ultimo_registro["campo_hf_de_numero_orden_".$cont_orden_campo_hf])."',";
 								$cont_orden_campo_hf++;
@@ -959,8 +963,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 						$sql_insert_consulta_reporte_obligatorio.=" gioss_consulta_reporte_obligatorio_hf0123_rechazado ";
 					}
 					$sql_insert_consulta_reporte_obligatorio.=" ( ";
-					$cont_orden_campo_hf=0;
-					while($cont_orden_campo_hf<=118)
+					$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+					while($cont_orden_campo_hf<$limite_numero_campos_norma)
 					{
 						$sql_insert_consulta_reporte_obligatorio.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 						$cont_orden_campo_hf++;
@@ -977,8 +981,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 					$sql_insert_consulta_reporte_obligatorio.=" ) ";
 					$sql_insert_consulta_reporte_obligatorio.=" VALUES ";
 					$sql_insert_consulta_reporte_obligatorio.=" ( ";
-					$cont_orden_campo_hf=0;
-					while($cont_orden_campo_hf<=118)
+					$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+					while($cont_orden_campo_hf<$limite_numero_campos_norma)
 					{
 						$sql_insert_consulta_reporte_obligatorio.="'".alphanumericAndSpace($linea_consulta["campo_hf_de_numero_orden_".$cont_orden_campo_hf])."',";
 						$cont_orden_campo_hf++;
@@ -1261,8 +1265,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 									$sql_insert_procesado_en_reporte_obligatorio.=" INSERT INTO ";
 									$sql_insert_procesado_en_reporte_obligatorio.=" gioss_consulta_reporte_obligatorio_hf0123_exitoso ";
 									$sql_insert_procesado_en_reporte_obligatorio.=" ( ";				
-									$cont_orden_campo_hf=0;
-									while($cont_orden_campo_hf<=118)
+									$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+									while($cont_orden_campo_hf<$limite_numero_campos_norma)
 									{
 										$sql_insert_procesado_en_reporte_obligatorio.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 										$cont_orden_campo_hf++;
@@ -1279,8 +1283,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 									$sql_insert_procesado_en_reporte_obligatorio.=" ) ";
 									$sql_insert_procesado_en_reporte_obligatorio.=" VALUES ";
 									$sql_insert_procesado_en_reporte_obligatorio.=" ( ";				
-									$cont_orden_campo_hf=0;
-									while($cont_orden_campo_hf<=118)
+									$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+									while($cont_orden_campo_hf<$limite_numero_campos_norma)
 									{
 										$sql_insert_procesado_en_reporte_obligatorio.="'".alphanumericAndSpace($array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_hf])."',";
 										$cont_orden_campo_hf++;
@@ -1528,8 +1532,8 @@ if(isset($_POST["year_de_corte"]) && isset($_POST['eapb']) && $_POST['eapb']!="n
 					//FIN PARTE VERIFICA SI FUE CANCELADA LA EJECUCION DEL SCRIPT
 					
 					$cadena_escribir_linea="";
-					$cont_orden_campo_hf=0;
-					while($cont_orden_campo_hf<=118)
+					$cont_orden_campo_hf=$inicializa_numero_orden_campos;
+					while($cont_orden_campo_hf<$limite_numero_campos_norma)
 					{
 						if($cadena_escribir_linea!="")
 						{

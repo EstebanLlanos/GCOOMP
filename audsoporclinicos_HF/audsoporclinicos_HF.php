@@ -122,8 +122,6 @@ $entidad_salud_usuario_actual= $_SESSION['entidad_asociada_al_nick'];
 $tipo_id=$_SESSION['tipo_id'];
 $identificacion=$_SESSION['identificacion'];
 
-
-
 $nick_user=$_SESSION['usuario'];
 
 $correo_electronico=$_SESSION['correo'];
@@ -132,7 +130,6 @@ $perfil_usuario_actual= $_SESSION['tipo_perfil'];
 $entidad_salud_usuario_actual= $_SESSION['entidad_asociada_al_nick'];
 
 session_write_close();
-
 
 //consultar el tipo de entidad
 $sql_query_tipo_entidad_asociada="SELECT * FROM gioss_entidades_sector_salud WHERE codigo_entidad='$entidad_salud_usuario_actual'; ";
@@ -149,7 +146,6 @@ $descripcion_tipo_entidad=$resultado_query_descripcion_tipo_entidad[0]["descripc
 $info="";
 $info.="<div id='div_info'>";
 //$info.="<select id='eapb' name='eapb' class='campo_azul' onchange='consultar_prestador();' >";
-
 
 $nombre_entidad="";
 $codigo_entidad="";
@@ -170,9 +166,9 @@ $info.="
 <table style='text-align:left;'>
 
 <tr>
-<td style='text-align:left;width:250px;'>
+<td style='text-align:left;width:150px;'>
 <input type='hidden' id='eapb' name='eapb'  value='".$info_entidad['codigo_entidad']."'  />
-<input type='text' value='Nombre Entidad' class='campo_azul' readonly='true'>
+<input type='text' value='Nombre Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <input type='text' id='desc_entidad' name='desc_entidad' value='$nombre_entidad' class='campo_azul' style='width:200px !important;' readonly='true'>
@@ -180,29 +176,29 @@ $info.="
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Codigo Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Codigo Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
-<input type='text' id='cod_entidad' name='cod_entidad' value='$codigo_entidad' class='campo_azul' readonly='true'>
+<input type='text' id='cod_entidad' name='cod_entidad' value='$codigo_entidad' class='campo_azul' style='width:200px !important;' readonly='true'>
 </td>
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Nit Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Nit Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
-<input type='text' id='nit_entidad' name='nit_entidad' value='$nit_entidad' class='campo_azul' readonly='true'>
+<input type='text' id='nit_entidad' name='nit_entidad' value='$nit_entidad' class='campo_azul' style='width:200px !important;' readonly='true'>
 </td>
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Tipo Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Tipo Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
-<input type='text' id='tipo_entidad' name='tipo_entidad' value='$descripcion_tipo_entidad' class='campo_azul' readonly='true'>
+<input type='text' id='tipo_entidad' name='tipo_entidad' value='$descripcion_tipo_entidad' class='campo_azul' style='width:200px !important;' readonly='true'>
 </td>
 </tr>
 
@@ -219,8 +215,8 @@ $resultado_query_tipo_cohorte=$coneccionBD->consultar2_no_crea_cierra($query_tip
 $selector_cohorte="";
 $selector_cohorte.="<table style='text-align:left;'>
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='COHORTE' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:200px;'>
+<input type='text' value='COHORTE' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <select id='tipo_cohorte' name='tipo_cohorte' class='campo_azul' style='width:350px;' >";

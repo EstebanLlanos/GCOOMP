@@ -1,0 +1,238 @@
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-12 08:34:17
+         compiled from "formulario_auditoria_HF.html.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:154425aa2ad0676e605-92829984%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7' => 
+    array (
+      0 => 'formulario_auditoria_HF.html.tpl',
+      1 => 1520861652,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '154425aa2ad0676e605-92829984',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.17',
+  'unifunc' => 'content_5aa2ad067844c4_98537183',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5aa2ad067844c4_98537183')) {function content_5aa2ad067844c4_98537183($_smarty_tpl) {?><!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+        <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">
+        <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-3.3.1.js"> </script> 
+		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
+        <script type="text/javascript" src="formulario_auditoria_HF.js.js?v=1.12"></script>
+        <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap_4.0/bootstrap.js"></script>
+        <script type="text/javascript" src="../librerias_externas/fontawesome-all.js"></script>
+        <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap_4.0/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+        <link type="text/css" href="audsoporclinicos_HF.css?=1.1" rel="stylesheet" />
+
+        <link rel="stylesheet" href="../librerias_externas/Simple-Flexible-jQuery-Tree-Grid-Plugin-TreeGrid/css/jquery.treegrid.css">
+        <script type="text/javascript" src="../librerias_externas/Simple-Flexible-jQuery-Tree-Grid-Plugin-TreeGrid/js/jquery.treegrid.js"></script>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('.tree').treegrid();
+          });
+        </script>
+
+       <title>Auditoria Hemofilia Contra Soportes Clinicos</title>
+       <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
+    </head>
+    <body>
+
+        <div id="encabezado">
+            
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; width: 100%; z-index: 50 !important; -webkit-box-shadow: 0px 8px 60px -16px rgba(0,0,0,1);-moz-box-shadow: 0px 8px 60px -16px rgba(0,0,0,1); box-shadow: 0px 8px 60px -16px rgba(0,0,0,1);">
+              
+              <span class="navbar-brand" href="#"><i class="fas fa-search"></i> PANEL DE AUDITORÍA</span>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent"">
+                <ul class="navbar-nav mr-auto">
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selección de Cohorte
+                        <i class="far fa-list-alt" style="vertical-align: middle; font-size: 3vh"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">
+                      
+                      <a class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Hemofilia Nuevos</a>
+                      <a class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Hemofilia Anterior</a>
+                      <div class="dropdown-divider"></div>
+                      
+                      <a class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Otras Coagulopatias Nuevos</a>
+                      <a class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Otras Coagulopatias Anterior</a>
+                      
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Cambio de Diagnóstico o Severidad</a>
+                    
+                    </div>
+
+                  </li>
+
+                </ul>
+              </div>
+              
+              
+              <span class="navbar-text" style="padding-right: 10px">
+                  <i class="far fa-edit" style="vertical-align: middle; font-size: 3vh"></i>
+                  Cohorte Abierta Actualmente
+              </span>
+              <a class="btn btn-sm btn-outline-secondary" href="audsoporclinicos_HF.php" role="button">Salir del Panel de Auditoría <i class="fas fa-external-link-alt"></i></a>
+
+            </nav>
+
+        </div>
+
+        <div id="panel_auditoria" class="container-fluid">
+            
+            <div id="contenedor_archivos" class="row" style="height: 65vh">
+                
+
+                <div id="visor_archivos" class="col-md-9" style="background-color: #cce0ff; border-right: 2px solid #000000;">
+
+                    <iframe src = "../librerias_externas/ViewerJS/#../../assets/pdf_files/manual.pdf" width='101.2%' height='100%' allowfullscreen webkitallowfullscreen>
+                        
+                    </iframe>
+
+                </div>
+
+                <div id="selector_archivos" class="col-md-3" style="background-color: #ffffff; overflow:scroll; margin-top: 3%"><br>
+
+                    <table class="tree table table-striped table-hover">
+                        <tr class="treegrid-1">
+                            <td><i class="fas fa-folder-open"></i> CC1118258478</td><td>Carpeta de Usuario</td>
+                        </tr>
+                        
+                        <tr class="treegrid-2 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado01</td>
+                            
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#myModal"> Auditar Archivo </button>
+
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> EVALUACIÓN DE DOCUMENTOS SOPORTE </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">Consolidado01</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Nombre de Carpeta</span>
+                                            </div>
+                                            <input type="text" class="form-control" disabled="true">
+                                        </div>
+
+                                        <br><hr style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="">Nombre de Archivo</span>
+                                            </div>
+                                            <input type="text" class="form-control" disabled="true">
+                                        </div>
+
+                                        <br><hr style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">
+
+                                        <div class="input-group mb-3" style="width: 70%; padding-left: 30%; ">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputGroupSelect01">Calificación</label>
+                                            </div>
+                                            <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                <option value="1">Valor de Auditoría 1</option>
+                                                <option value="2">Valor de Auditoría 2</option>
+                                                <option value="3">Valor de Auditoría 3</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Descripción de la Calificación</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- <button type="button" class="btn btn-info" style="width: 100%" disabled> Descripción de la Calificación </button>
+                                        <textarea class="form-control" rows="5" id="comment"></textarea> -->
+
+                                      </div>
+                                      <div class="modal-footer" style="text-align: center; margin:auto">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar Auditoría</button>
+                                        <button type="button" class="btn btn-primary">Guardar Auditoría</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr class="treegrid-3 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado02</td>
+
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm"> Auditar Archivo </button>
+                            </td>
+                        </tr>
+                        
+                        <tr class="treegrid-4 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado03</td>
+                            <td>
+                                <button class="btn btn btn-outline-success btn-sm" disabled> Archivo Auditado </button>
+                            </td>
+                        </tr>
+
+                        <tr class="treegrid-5 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado04</td>
+
+                            <td>
+                                <button class="btn btn btn-outline-success btn-sm" disabled> Archivo Auditado </button>
+                            </td>
+                        </tr>
+
+                        <tr class="treegrid-6 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado05</td>
+
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm"> Auditar Archivo </button>
+                            </td>
+                        </tr>
+
+                        <tr class="treegrid-8 treegrid-parent-1" style="font-size: 13px">
+                            <td><i class="far fa-file-pdf"></i> Consolidado06</td>
+
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm"> Auditoría en Proceso </button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div id="contenedor_formulario" class="row" style="height: 25vh; background-color: #e6ffff; border-top: 2px solid #000000;">
+                
+                <div class="col-md-12">
+
+                </div>
+
+            </div>
+
+        </div>
+        
+    </body>
+</html><?php }} ?>

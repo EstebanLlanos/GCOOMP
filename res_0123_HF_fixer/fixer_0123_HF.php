@@ -15,7 +15,8 @@ require_once ("../librerias_externas/PHPExcel/PHPExcel/Writer/Excel2007.php");
 
 //require_once '../res_0123_HF/reparador_0123_HF_v2018.php';
 
-require_once 'reparacion_campos_duplicados.php';
+//require_once 'reparacion_campos_duplicados.php';
+require_once '../res_0123_HF/reparacion_campos_duplicados_v2018.php';
 
 require_once '../utiles/queries_utiles_bd.php';
 
@@ -1713,6 +1714,11 @@ $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se c
 
 if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HEMOFILIA_file"]) && $_FILES["0123_HEMOFILIA_file"]["error"]==0)
 {
+
+	$inicializa_numero_orden=0;
+	$inicializa_numero_orden_bd=0;
+	$numero_campos_norma=96;
+
 	if(connection_aborted()==false)
 	{
 		$html_advertencia="";
@@ -1750,10 +1756,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		$cod_prestador=$_POST["prestador"];
 	}
 
-	//parte verifica si es mayor de 03-31 del mismo year
+	//parte verifica si es mayor de 01-31 del mismo year
 	$year_corte_inferior=trim($_POST["year_de_corte"]);
 	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
-	$mitad_year_ver=trim($_POST["year_de_corte"])."-03-31";
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-01-31";
 	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
 	if($diferencia_dias_con_mitad_year<0)
 	{
@@ -1764,13 +1770,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
 	}
 	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
-	//fin parte verifica si es mayor de 03-31 del mismo year
+	//fin parte verifica si es mayor de 01-31 del mismo year
 
 	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
 	$fecha_inferior_pv="";
-	$fecha_inferior_pv=$year_corte_inferior."-04-01";
-	$fecha_de_corte=$year_corte_para_buscar."-03-31";
+	$fecha_inferior_pv=$year_corte_inferior."-02-01";
+	$fecha_de_corte=$year_corte_para_buscar."-01-31";
 	//no tabla variados que contiene algunos rangos de years
 	//revisar esto en ERC	
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
@@ -1873,10 +1879,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	}
 	//FIN DIRECTORIO DE LOS ARCHIVOS
 
-	//parte verifica si es mayor de 03-31 del mismo year
+	//parte verifica si es mayor de 01-31 del mismo year
 	$year_corte_inferior=trim($_POST["year_de_corte"]);
 	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
-	$mitad_year_ver=trim($_POST["year_de_corte"])."-03-31";
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-01-31";
 	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
 	if($diferencia_dias_con_mitad_year<0)
 	{
@@ -1887,13 +1893,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
 	}
 	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
-	//fin parte verifica si es mayor de 03-31 del mismo year
+	//fin parte verifica si es mayor de 01-31 del mismo year
 
 	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
 	$fecha_inferior_pv="";
 	$fecha_inferior_pv=$year_corte_inferior."-04-01";
-	$fecha_de_corte=$year_corte_para_buscar."-03-31";
+	$fecha_de_corte=$year_corte_para_buscar."-01-31";
 	//no tabla variados que contiene algunos rangos de years
 	//revisar esto en ERC	
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
@@ -2441,7 +2447,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de registros duplicados:</td><td style=text-align:left>".$acumulador_para_contar_duplicados.".</tr>";
 				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero registros unicos:</td><td style=text-align:left>".$personas_insertadas_hasta_el_momento."</td></tr>";
 				$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de personas con registros duplicados:</td><td style=text-align:left>".$personas_con_duplicados_hasta_el_momento."</td></tr>";
-				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 95):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
+				$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de $numero_campos_norma):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
 				$mensaje_estado_registros.="</table><br>";
 				
 				$mensaje_perm_estado=$mensaje_estado_registros;
@@ -2536,10 +2542,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				
 								
 				//pasa a validar los campos
-				if(count($campos)==95)
+				if(count($campos)==$numero_campos_norma)
 				{
-					$cont_pre_fix_campos=0;
-					while($cont_pre_fix_campos<95)
+					$cont_pre_fix_campos=$inicializa_numero_orden;
+					while($cont_pre_fix_campos<$numero_campos_norma)
 					{
 						$campos[$cont_pre_fix_campos] = str_replace("á","a",$campos[$cont_pre_fix_campos]);
 						$campos[$cont_pre_fix_campos] = str_replace("é","e",$campos[$cont_pre_fix_campos]);
@@ -2562,8 +2568,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					//parte para evitar caracteres extraños en el ultimo campo antes del salto de linea
 					$campos[count($campos)-1]=procesar_mensaje3($campos[count($campos)-1]);
 						
-					$cont_campos_ver_vacios=0;
-					while($cont_campos_ver_vacios<95)
+					$cont_campos_ver_vacios=$inicializa_numero_orden;
+					while($cont_campos_ver_vacios<$numero_campos_norma)
 					{
 						
 						if(trim($campos[$cont_campos_ver_vacios])!="")
@@ -3056,7 +3062,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						//proceso de indexacion de duplicados y subida a las tablas de sin duplicados (para registros unicos detectados previamente)
 						//y a la tabla de corregidos con duplicados con motivos de log
 					
-						if(count($campos)==95)
+						if(count($campos)==$numero_campos_norma)
 						{
 							//INDEXADOR DE DUPLICADOS
 							//FASE 1 consulta por el campo 4 y 5 (tipo id,  numero id afiliado) si existe duplicado
@@ -3184,8 +3190,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							    $query_subir_registro_corregido.=" INSERT INTO ";
 							    $query_subir_registro_corregido.=" corregidos_sin_duplicados_hf0123 ";				
 							    $query_subir_registro_corregido.=" ( ";				
-							    $numero_actual_campo_registro_corregido=0;
-							    while($numero_actual_campo_registro_corregido<95)
+							    $numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+							    while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 							    {
 								    $query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 								    $numero_actual_campo_registro_corregido++;
@@ -3203,8 +3209,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							    $query_subir_registro_corregido.=" ) ";
 							    $query_subir_registro_corregido.=" VALUES ";
 							    $query_subir_registro_corregido.=" ( ";				
-							    $numero_actual_campo_registro_corregido=0;
-							    while($numero_actual_campo_registro_corregido<95)
+							    $numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+							    while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 							    {
 								    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
 								    $numero_actual_campo_registro_corregido++;
@@ -3328,8 +3334,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$query_subir_registro_corregido.=" INSERT INTO ";
 							$query_subir_registro_corregido.=" corregidos_con_duplicados_hf0123 ";				
 							$query_subir_registro_corregido.=" ( ";				
-							$numero_actual_campo_registro_corregido=0;
-							while($numero_actual_campo_registro_corregido<95)
+							$numero_actual_campo_registro_corregido=$inicializa_numero_orden;
+							while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 							{
 								$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 								$numero_actual_campo_registro_corregido++;
@@ -3347,8 +3353,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$query_subir_registro_corregido.=" ) ";
 							$query_subir_registro_corregido.=" VALUES ";
 							$query_subir_registro_corregido.=" ( ";				
-							$numero_actual_campo_registro_corregido=0;
-							while($numero_actual_campo_registro_corregido<95)
+							$numero_actual_campo_registro_corregido=$inicializa_numero_orden;
+							while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 							{						
 							    $query_subir_registro_corregido.="'".$campos[$numero_actual_campo_registro_corregido]."',";
 							    $numero_actual_campo_registro_corregido++;
@@ -3378,8 +3384,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					
 						//ESCRIBE LINEA REPARADA	
 						$linea_reparada="";
-						$cont_campo_reparado=0;
-						while($cont_campo_reparado<95)
+						$cont_campo_reparado=$inicializa_numero_orden;
+						while($cont_campo_reparado<$numero_campos_norma)
 						{
 							if($linea_reparada!=""){$linea_reparada.="\t";}
 							$linea_reparada.=$campos[$cont_campo_reparado];
@@ -3505,7 +3511,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 			$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de registros duplicados:</td><td style=text-align:left>".$acumulador_para_contar_duplicados.".</tr>";
 			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero registros unicos:</td><td style=text-align:left>".$personas_insertadas_hasta_el_momento."</td></tr>";
 			$mensaje_estado_registros.="<tr style=background-color:#80bfff><td style=text-align:left;width:60%>Numero de personas con registros duplicados:</td><td style=text-align:left>".$personas_con_duplicados_hasta_el_momento."</td></tr>";
-			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de 95):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
+			$mensaje_estado_registros.="<tr><td style=text-align:left;width:60%>Numero de registros con numero de campos invalidos (menor o mayor de $numero_campos_norma):</td><td style=text-align:left>".$numero_lineas_campos_incorrectos."</td></tr>";
 			$mensaje_estado_registros.="</table><br>";
 			
 			$mensaje_perm_estado=$mensaje_estado_registros;
@@ -3519,6 +3525,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		//FIN PARTE CORRIGE ARCHIVO, IDENTIFICA E INDEXA DUPLICADOS
 		
 		//ARREGLO DE DUPLICADOS EN UNO SOLO
+		$contador_duplicado_para_excluidos=0;
 		$nombre_vista_index_duplicados="indxd0123".$nombre_archivo_registrado.$nick_user.$fecha_y_hora_para_view;
 		
 		$sql_vista_duplicados_reporte_obligatorio ="";
@@ -3699,8 +3706,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					fclose($file_cambios_duplicados_registro);
 					//FIN PARTE ESCRIBE LOG REPARACION DE DUPLICADOS PARTE 1
 					
-					//if mira que la linea contega los 95 campos
-					if(count($array_campos_del_duplicado_del_afiliado)==95)
+					//if mira que la linea contega los $numero_campos_norma campos
+					if(count($array_campos_del_duplicado_del_afiliado)==$numero_campos_norma)
 					{
 						//echo "<script>alert('entro ".count($array_filas_correspondientes_al_duplicado_actual)."');</script>";
 					    //if en caso de que solo haya un elemento en la lista de filas de duplicados
@@ -3719,8 +3726,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_subir_registro_corregido.=" INSERT INTO ";
 						$query_subir_registro_corregido.=" gioss_temp_dupl_afiliado_actual_reparador_hf0123 ";				
 						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<95)
+						$numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+						while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 						{
 							$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 							$numero_actual_campo_registro_corregido++;
@@ -3738,8 +3745,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_subir_registro_corregido.=" ) ";
 						$query_subir_registro_corregido.=" VALUES ";
 						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<95)
+						$numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+						while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 						{
 						    if($numero_actual_campo_registro_corregido!=4 &&  $numero_actual_campo_registro_corregido!=5 )
 						    {
@@ -3798,8 +3805,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_subir_registro_corregido.=" INSERT INTO ";
 						$query_subir_registro_corregido.=" corregidos_solo_duplicados_hf0123 ";				
 						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<95)
+						$numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+						while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 						{
 							$query_subir_registro_corregido.=" campo_hf_de_numero_orden_".$numero_actual_campo_registro_corregido." , ";
 							$numero_actual_campo_registro_corregido++;
@@ -3817,8 +3824,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_subir_registro_corregido.=" ) ";
 						$query_subir_registro_corregido.=" VALUES ";
 						$query_subir_registro_corregido.=" ( ";				
-						$numero_actual_campo_registro_corregido=0;
-						while($numero_actual_campo_registro_corregido<95)
+						$numero_actual_campo_registro_corregido=$inicializa_numero_orden_bd;
+						while($numero_actual_campo_registro_corregido<$numero_campos_norma)
 						{
 							$query_subir_registro_corregido.="'".trim(procesar_mensaje3($array_campos_del_duplicado_del_afiliado[$numero_actual_campo_registro_corregido]))."',";
 							$numero_actual_campo_registro_corregido++;
@@ -3847,7 +3854,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						
 						
 					    }//fin else if si habian varias filas en la lista por ende tiene duplicados el afiliado 
-					}//fin if si la linea posee 95 campos
+					}//fin if si la linea posee $numero_campos_norma campos
 					
 				    }//fin foreach							
 				    //FIN LEE EL ARCHIVO CORREGIDO PARA CADA LINEA Y LO SUBE A BD
@@ -3916,27 +3923,30 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					//en la funcion se hara falso si no se proceso los duplicados al haber campos vacios
 					$bool_fueron_procesados_duplicados_en_un_registro=true;
 					
-					$array_campos_procesados_de_los_duplicados_del_duplicado=array();					
+					
+					$numero_secuencia_para_procesado="-1";
 					$array_campos_procesados_de_los_duplicados_del_duplicado=reparacion_campos_duplicados($tipo_id_duplicado_actual,
-															$numero_id_duplicado_actual,
-															$fecha_actual,
-															$tiempo_actual,
-															$nick_user,
-															$identificacion,
-															$tipo_id,
-															$numero_personas_de_duplicado,
-															$nombre_vista_con_los_duplicados_del_afiliado_actual,
-															$numero_registro_para_procesado,
-															$cod_prestador_para_procesado,
-															$bool_fueron_procesados_duplicados_en_un_registro,
-															$contador_offset_personas,
-															$mensajes_error_bd,
-															$coneccionBD);
+																		      $numero_id_duplicado_actual,
+																		      $fecha_actual,
+																		      $tiempo_actual,
+																		      $nick_user,
+																		      $identificacion,
+																		      $tipo_id,
+																		      $numero_personas_de_duplicado,
+																		      $nombre_vista_con_los_duplicados_del_afiliado_actual,
+																		      $numero_secuencia_para_procesado,//numero_secuencia_para_procesado se coloca -1
+																		      $numero_registro_para_procesado,
+																		      $cod_prestador_para_procesado,
+																		      $bool_fueron_procesados_duplicados_en_un_registro,
+																		      $contador_offset_personas,
+																		      $contador_duplicado_para_excluidos,
+																		      $mensajes_error_bd,
+																		      $coneccionBD);
 		    
 					//insertando registro procesado
 					if($bool_fueron_procesados_duplicados_en_un_registro==true)
 					{						
-						if(count($array_campos_procesados_de_los_duplicados_del_duplicado)!=95)
+						if(count($array_campos_procesados_de_los_duplicados_del_duplicado)!=$numero_campos_norma)
 						{
 							echo "<script>alert(' el numero de campos es incorrecto en el arreglo');</script>";
 						}
@@ -3944,8 +3954,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						//CONVERSION CAMPOS A LINEA A RESULTANTE UNICO DE DUPLICADOS POS CORRECCION CRITERIOS
 						$string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion="";
 							    
-						$cont_orden_campo_a_string=0;									
-						while($cont_orden_campo_a_string<95)
+						$cont_orden_campo_a_string=$inicializa_numero_orden;									
+						while($cont_orden_campo_a_string<$numero_campos_norma)
 						{
 						    if($string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion!=""){$string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion.="\t";}
 						    $string_campos_procesados_de_los_duplicados_del_duplicado_pre_correccion.=$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_a_string];
@@ -4051,8 +4061,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						//conversion campos a linea a resultante unico de duplicados pos correccion criterios
 						$linea_duplicado_resultante_pos_reparacion="";
 							    
-						$cont_orden_campo_a_string=0;									
-						while($cont_orden_campo_a_string<95)
+						$cont_orden_campo_a_string=$inicializa_numero_orden;									
+						while($cont_orden_campo_a_string<$numero_campos_norma)
 						{
 						    if($linea_duplicado_resultante_pos_reparacion!=""){$linea_duplicado_resultante_pos_reparacion.="\t";}
 						    $linea_duplicado_resultante_pos_reparacion.=$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_a_string];
@@ -4128,8 +4138,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$sql_insert_procesado_en_reporte_obligatorio.=" INSERT INTO ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" corregidos_sin_duplicados_hf0123 ";									    
 						$sql_insert_procesado_en_reporte_obligatorio.=" ( ";				
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<95)
+						$cont_orden_campo_hf=$inicializa_numero_orden_bd;
+						while($cont_orden_campo_hf<$numero_campos_norma)
 						{
 							$sql_insert_procesado_en_reporte_obligatorio.=" campo_hf_de_numero_orden_".$cont_orden_campo_hf." , ";
 							$cont_orden_campo_hf++;
@@ -4148,8 +4158,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$sql_insert_procesado_en_reporte_obligatorio.=" VALUES ";
 						$sql_insert_procesado_en_reporte_obligatorio.=" ( ";
 						//aqui si viene desde cero porque es el campo procesado
-						$cont_orden_campo_hf=0;
-						while($cont_orden_campo_hf<95)
+						$cont_orden_campo_hf=$inicializa_numero_orden_bd;
+						while($cont_orden_campo_hf<$numero_campos_norma)
 						{
 							$sql_insert_procesado_en_reporte_obligatorio.="'".$array_campos_procesados_de_los_duplicados_del_duplicado[$cont_orden_campo_hf]."',";
 							$cont_orden_campo_hf++;
@@ -4407,8 +4417,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				foreach($resultado_query_reporte_obligatoria as $resultado)
 				{
 					$cadena_escribir_linea="";
-					$cont_orden_campo_hf=0;
-					while($cont_orden_campo_hf<95)
+					$cont_orden_campo_hf=$inicializa_numero_orden;
+					while($cont_orden_campo_hf<$numero_campos_norma)
 					{
 						if($cadena_escribir_linea!="")
 						{

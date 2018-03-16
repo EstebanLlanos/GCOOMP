@@ -1182,7 +1182,9 @@ $mensaje_advertencia_tiempo .="Si la validaci&oacuten es exitosa, los datos se c
 
 if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123_HEMOFILIA_file"]) && $_FILES["0123_HEMOFILIA_file"]["error"]==0)
 {	
-	
+	$inicializa_numero_orden=0;
+	$inicializa_numero_orden_bd=0;
+	$numero_campos_norma=96;
 
 	
 
@@ -1237,10 +1239,10 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $rutaTemporal=$nueva_carpeta."/";
     //FIN DIRECTORIO DE LOS ARCHIVOS
 
-    //parte verifica si es mayor de 03-31 del mismo year
+    //parte verifica si es mayor de 01-31 del mismo year
 	$year_corte_inferior=trim($_POST["year_de_corte"]);
 	$year_corte_para_buscar=trim($_POST["year_de_corte"]);
-	$mitad_year_ver=trim($_POST["year_de_corte"])."-03-31";
+	$mitad_year_ver=trim($_POST["year_de_corte"])."-01-31";
 	$diferencia_dias_con_mitad_year=diferencia_dias_entre_fechas($fecha_de_corte,$mitad_year_ver);
 	if($diferencia_dias_con_mitad_year<0)
 	{
@@ -1251,13 +1253,13 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 		$year_corte_inferior="".(intval(trim($_POST["year_de_corte"]))-1);
 	}
 	//echo "year_corte_inferior $year_corte_inferior year_corte_para_buscar $year_corte_para_buscar<br>";
-	//fin parte verifica si es mayor de 03-31 del mismo year
+	//fin parte verifica si es mayor de 01-31 del mismo year
 
 	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
 	$fecha_inferior_pv="";
-	$fecha_inferior_pv=$year_corte_inferior."-04-01";
-	$fecha_de_corte=$year_corte_para_buscar."-03-31";
+	$fecha_inferior_pv=$year_corte_inferior."-02-01";
+	$fecha_de_corte=$year_corte_para_buscar."-01-31";
 	//no tabla variados que contiene algunos rangos de years
 	//revisar esto en ERC	
 	//FIN PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
@@ -1505,10 +1507,20 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	}
 	//FIN PARTE LLENADO ARRAY PARA EL NUMERO DE CAMPO REAL INDEXADO POR EL NUMERO DE ORDEN(NUMERO CAMPO SISTEMATICO)
 
+	//fix temporal hasta que se inserte en bd
+	if(isset($array_numero_campo_bd[95])==false)
+	{
+		//INSERT INTO gioss_estructura_campos_por_norma_a_reportar(codigo_tipo_norma_obligatoria,codigo_tipo_archivo,numero_de_orden,numero_de_campo,descripcion_nombre_campo,descripcion_nombre_campo2,longitud_del_campo) VALUES('07','0701','95','65','Codigo BBUVA','CodigoBBUVA','320');
+		$array_numero_campo_bd[95]="65";
+		$array_descripcion_nombre_campo_bd[95]="Codigo BBUVA";
+		$array_numero_orden[95]=95;
+	}//fin ifset
+	//fin fix temporal
+
 	//INICIALIZACION ARRAYS PARA CONTADOR ERRORES POR CAMPO INDIVIDUAL
 	$array_contador_total_errores_obligatorios_campo=array();
-	$cont_llenado=0;
-    while($cont_llenado<95)
+	$cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_errores_obligatorios_campo[$numero_campo_actual]=0;
@@ -1517,8 +1529,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $array_contador_total_errores_obligatorios_campo[999]=0;
 
     $array_contador_total_inconsistencias_campo_0105=array();
-    $cont_llenado=0;
-    while($cont_llenado<95)
+    $cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_inconsistencias_campo_0105[$numero_campo_actual]=0;
@@ -1527,8 +1539,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $array_contador_total_inconsistencias_campo_0105[999]=0;
 
     $array_contador_total_inconsistencias_campo_0104=array();
-    $cont_llenado=0;
-    while($cont_llenado<95)
+    $cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_inconsistencias_campo_0104[$numero_campo_actual]=0;
@@ -1537,8 +1549,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $array_contador_total_inconsistencias_campo_0104[999]=0;
 
     $array_contador_total_inconsistencias_campo_0103=array();
-    $cont_llenado=0;
-    while($cont_llenado<95)
+    $cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_inconsistencias_campo_0103[$numero_campo_actual]=0;
@@ -1547,8 +1559,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $array_contador_total_inconsistencias_campo_0103[999]=0;
 
     $array_contador_total_inconsistencias_campo_0102=array();
-    $cont_llenado=0;
-    while($cont_llenado<95)
+    $cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_inconsistencias_campo_0102[$numero_campo_actual]=0;
@@ -1557,8 +1569,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
     $array_contador_total_inconsistencias_campo_0102[999]=0;
 
     $array_contador_total_inconsistencias_campo_0101=array();
-    $cont_llenado=0;
-    while($cont_llenado<95)
+    $cont_llenado=$inicializa_numero_orden;
+    while($cont_llenado<$numero_campos_norma)
     {
     	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
     	$array_contador_total_inconsistencias_campo_0101[$numero_campo_actual]=0;
@@ -1996,7 +2008,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 				$campos[count($campos)-1]=procesar_mensaje($campos[count($campos)-1]);
 				
 				//pasa a validar los campos
-				if(count($campos)==95)
+				if(count($campos)==$numero_campos_norma)
 				{
 					$cont_linea=$nlinea;//solo validacion esta parte
 					//porcentaje
@@ -2633,8 +2645,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$sql_insertar_en_tabla_analisis_coherencia.="fecha_de_corte,";					
 							$sql_insertar_en_tabla_analisis_coherencia.="fecha_y_hora_validacion,";					
 							$sql_insertar_en_tabla_analisis_coherencia.="nombre_archivo,";
-							$cont_campo_ins=0;
-							while($cont_campo_ins<95)
+							$cont_campo_ins=$inicializa_numero_orden_bd;
+							while($cont_campo_ins<$numero_campos_norma)
 							{
 								
 								$sql_insertar_en_tabla_analisis_coherencia.="campo_hf_de_numero_orden_".$cont_campo_ins.",";
@@ -2665,8 +2677,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_de_corte."',";					
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$fecha_actual." ".$tiempo_actual."',";							
 							$sql_insertar_en_tabla_analisis_coherencia.="'".$nombre_archivo_registrado."',";							
-							$cont_campo_ins=0;
-							while($cont_campo_ins<95)
+							$cont_campo_ins=$inicializa_numero_orden_bd;
+							while($cont_campo_ins<$numero_campos_norma)
 							{
 								$sql_insertar_en_tabla_analisis_coherencia.="'".procesar_mensaje($campos[$cont_campo_ins-1])."',";
 								$cont_campo_ins++;
@@ -2709,8 +2721,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					$query_insertar_campos_a_bd="";
 					$query_insertar_campos_a_bd.="INSERT INTO gioss_tabla_registros_no_cargados_rechazados_r0123_hf ";
 					$query_insertar_campos_a_bd.="(";				
-					$cont_campo_ins=0;
-					while($cont_campo_ins<95)
+					$cont_campo_ins=$inicializa_numero_orden_bd;
+					while($cont_campo_ins<$numero_campos_norma)
 					{
 						$query_insertar_campos_a_bd.="campo_hf_de_numero_orden_".$cont_campo_ins.",";
 						$cont_campo_ins++;
@@ -2728,8 +2740,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					$query_insertar_campos_a_bd.=" VALUES ";
 					$query_insertar_campos_a_bd.="(";
 					
-					$cont_campo_ins=0;
-					while($cont_campo_ins<95)
+					$cont_campo_ins=$inicializa_numero_orden_bd;
+					while($cont_campo_ins<$numero_campos_norma)
 					{
 						$query_insertar_campos_a_bd.="'".procesar_mensaje($campos[$cont_campo_ins])."',";
 						$cont_campo_ins++;
@@ -2752,8 +2764,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 
 					//PARTE LLENA ARRAY BOOLEANOS PARA QUE SOLO TENGA EN CUENTA LA PRIMERA INCONSISTENCIA DEL CAMPO
 				    $array_booleano_primer_error_por_linea=array();
-				    $cont_llenado=0;
-				    while($cont_llenado<95)
+				    $cont_llenado=$inicializa_numero_orden;
+				    while($cont_llenado<$numero_campos_norma)
 				    {
 				    	$numero_campo_actual=trim($array_numero_campo_bd[$cont_llenado]);
 				    	$array_booleano_primer_error_por_linea[$numero_campo_actual]=true;
@@ -2895,7 +2907,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					//fin escribe los errores
 
 					//PARTE CARGA EN TABLA INDEXADORA IPS POR ARCHIVO
-					if(count($campos)>=95)
+					if(count($campos)>=$numero_campos_norma)
 				    {
 					    try
 					    {
@@ -3279,14 +3291,14 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					$campos[count($campos)-1]=procesar_mensaje($campos[count($campos)-1]);
 					
 					//pasa a validar los campos
-					if(count($campos)==95)
+					if(count($campos)==$numero_campos_norma)
 					{
 						$query_insertar_campos_a_bd="";
 						$query_insertar_campos_a_bd.="INSERT INTO gioss_tabla_registros_cargados_exito_r0123_hf ";
 						$query_insertar_campos_a_bd.="(";
 						
-						$cont_campo_ins=0;
-						while($cont_campo_ins<95)
+						$cont_campo_ins=$inicializa_numero_orden_bd;
+						while($cont_campo_ins<$numero_campos_norma)
 						{
 							$query_insertar_campos_a_bd.="campo_hf_de_numero_orden_".$cont_campo_ins.",";
 							$cont_campo_ins++;
@@ -3304,8 +3316,8 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 						$query_insertar_campos_a_bd.=" VALUES ";
 						$query_insertar_campos_a_bd.="(";
 						
-						$cont_campo_ins=0;
-						while($cont_campo_ins<95)
+						$cont_campo_ins=$inicializa_numero_orden_bd;
+						while($cont_campo_ins<$numero_campos_norma)
 						{
 							$query_insertar_campos_a_bd.="'".procesar_mensaje($campos[$cont_campo_ins])."',";
 							$cont_campo_ins++;

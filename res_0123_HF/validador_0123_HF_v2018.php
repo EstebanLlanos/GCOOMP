@@ -11830,8 +11830,30 @@ function validar_HF($campos,
 
 		    }//fin if
 			
-		}
+		}//fin campo fix no es vacio
 		
+	}//if si existe campo
+
+	//numero_orden 95  numero campo 65
+	$numero_campo=95;
+	if(isset($campos[$numero_campo]))
+	{		
+		$campo_fix=preg_replace("/[^A-Za-z0-9:,.\/\_\|\-\s+]/", "", trim($campos[$numero_campo]) );
+		//campo obligatorio
+		if($campo_fix=="")
+		{
+			if($errores_campos!="")
+			{
+				$errores_campos.="|";
+			}		
+			//consecutivo|nombre|codigo_tipo_inconsistencia|desc_tipo_inconsistencia|codigo_grupo_inconsistencia|desc_tipo_inconsistencia|codigo_detalle_inconsistencia|desc_detalle|linea|campo
+				$var_numero_codigo="0104001";
+			$cadena_descripcion_inconsistencia=explode(";;",$array_detalle_validacion[$var_numero_codigo])[1];
+			$errores_campos.=$consecutivo_errores.",".$nombre_archivo_registrado.",01,".$array_tipo_validacion["01"].",0104,".$array_grupo_validacion["0104"].",$var_numero_codigo,$cadena_descripcion_inconsistencia ...".$campo_fix." ,".($nlinea+1).",".$array_numero_campo_bd[$numero_campo];
+			$consecutivo_errores++;
+			
+			$hubo_errores=true;
+		}//fin if 
 	}//if si existe campo
 	
 	return array("error"=>$hubo_errores,"mensaje"=>$errores_campos);

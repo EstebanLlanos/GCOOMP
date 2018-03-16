@@ -1,0 +1,24 @@
+[09-Mar-2018 10:19:01 America/Bogota] PHP Warning:  pg_query(): Query failed: ERROR:  la sintaxis de entrada no es válida para integer: «»
+LINE 1: ...ECT * FROM gioss_tipo_entidad WHERE codigo_tipo_entidad=''; 
+                                                                   ^ in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 252
+[09-Mar-2018 10:19:01 America/Bogota] PHP Warning:  pg_fetch_all() expects parameter 1 to be resource, boolean given in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 254
+[09-Mar-2018 10:19:01 America/Bogota] PHP Warning:  pg_free_result() expects parameter 1 to be resource, boolean given in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 263
+[09-Mar-2018 10:19:01 America/Bogota] PHP Notice:  Undefined variable: info_entidad in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\audsoporclinicos_HF\audsoporclinicos_HF.php on line 170
+[09-Mar-2018 10:32:48 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\442a5329b8857eae1c7981a14a6195865d8c934c.file.audsoporclinicos_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
+[09-Mar-2018 10:33:03 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\442a5329b8857eae1c7981a14a6195865d8c934c.file.audsoporclinicos_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
+[09-Mar-2018 10:48:59 America/Bogota] PHP Warning:  pg_query(): Query failed: ERROR:  la sintaxis de entrada no es válida para integer: «»
+LINE 1: ...ECT * FROM gioss_tipo_entidad WHERE codigo_tipo_entidad=''; 
+                                                                   ^ in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 252
+[09-Mar-2018 10:48:59 America/Bogota] PHP Warning:  pg_fetch_all() expects parameter 1 to be resource, boolean given in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 254
+[09-Mar-2018 10:48:59 America/Bogota] PHP Warning:  pg_free_result() expects parameter 1 to be resource, boolean given in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\utiles\clase_coneccion_bd.php on line 263
+[09-Mar-2018 10:48:59 America/Bogota] PHP Notice:  Undefined variable: info_entidad in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\audsoporclinicos_HF\audsoporclinicos_HF.php on line 170
+[09-Mar-2018 11:11:31 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty Compiler: Syntax error in template "formulario_auditoria_HF.html.tpl"  on line 33 "<li><a data-toggle="tab" href="#menu1" onclick="clean_tab()" style="font-family: 'Poiret One', cursive; font-size: 20px;"><b>Listado de Usuarios</b> <img id="loading_table_img" style="display: none" src="{{asset("images/preloader.gif")}}"></a></li>" unknown function "asset" <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_templatecompilerbase.php on line 33
+[12-Mar-2018 08:34:17 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7.file.formulario_auditoria_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
+[13-Mar-2018 15:36:39 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7.file.formulario_auditoria_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
+[16-Mar-2018 16:54:19 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7.file.formulario_auditoria_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74

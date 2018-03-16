@@ -170,9 +170,9 @@ $info.="
 <table style='text-align:left;'>
 
 <tr>
-<td style='text-align:left;width:250px;'>
+<td style='text-align:left;width:150px;'>
 <input type='hidden' id='eapb' name='eapb'  value='".$info_entidad['codigo_entidad']."'  />
-<input type='text' value='Nombre Entidad' class='campo_azul' readonly='true'>
+<input type='text' value='Nombre Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <input type='text' id='desc_entidad' name='desc_entidad' value='$nombre_entidad' class='campo_azul' style='width:200px !important;' readonly='true'>
@@ -180,8 +180,8 @@ $info.="
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Codigo Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Codigo Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <input type='text' id='cod_entidad' name='cod_entidad' value='$codigo_entidad' class='campo_azul' readonly='true'>
@@ -189,8 +189,8 @@ $info.="
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Nit Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Nit Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <input type='text' id='nit_entidad' name='nit_entidad' value='$nit_entidad' class='campo_azul' readonly='true'>
@@ -198,8 +198,8 @@ $info.="
 </tr>
 
 <tr>
-<td style='text-align:left;width:250px;'>
-<input type='text' value='Tipo Entidad' class='campo_azul' readonly='true'>
+<td style='text-align:left;width:150px;'>
+<input type='text' value='Tipo Entidad' class='campo_azul' readonly='true' style='width:105px'>
 </td>
 <td style='text-align:left;'>
 <input type='text' id='tipo_entidad' name='tipo_entidad' value='$descripcion_tipo_entidad' class='campo_azul' readonly='true'>

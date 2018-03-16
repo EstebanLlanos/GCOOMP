@@ -1,0 +1,895 @@
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-13 15:36:39
+         compiled from "formulario_auditoria_HF.html.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:154425aa2ad0676e605-92829984%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7' => 
+    array (
+      0 => 'formulario_auditoria_HF.html.tpl',
+      1 => 1520973367,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '154425aa2ad0676e605-92829984',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.17',
+  'unifunc' => 'content_5aa2ad067844c4_98537183',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5aa2ad067844c4_98537183')) {function content_5aa2ad067844c4_98537183($_smarty_tpl) {?><!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">       
+        <link rel="stylesheet" href="../librerias_externas/jquery_min/themes/flick/jquery-ui.css">
+        <script type="text/javascript" src="../librerias_externas/jquery_min/jquery-3.3.1.js"> </script> 
+		<script src="../librerias_externas/jquery_min/jquery-ui.js"></script>     
+        <script type="text/javascript" src="formulario_auditoria_HF.js?v=1.2"></script>
+        <script type="text/javascript" src="../librerias_externas/bootstrap/js/bootstrap_4.0/bootstrap.js"></script>
+        <script type="text/javascript" src="../librerias_externas/fontawesome-all.js"></script>
+        <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap_4.0/bootstrap.css" rel="stylesheet" />
+        <link type="text/css" href="../librerias_externas/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+        <link type="text/css" href="formulario_auditoria_HF.css?=1.4" rel="stylesheet" />
+
+        <link rel="stylesheet" href="../librerias_externas/Simple-Flexible-jQuery-Tree-Grid-Plugin-TreeGrid/css/jquery.treegrid.css">
+        <script type="text/javascript" src="../librerias_externas/Simple-Flexible-jQuery-Tree-Grid-Plugin-TreeGrid/js/jquery.treegrid.js"></script>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('.tree').treegrid();
+          });
+        </script>
+
+       <title>Auditoria Hemofilia Contra Soportes Clinicos</title>
+       <link rel="icon" href="../assets/imagenes/logo_gioss_fav.ico" />
+    </head>
+    <body>
+
+        <div id="encabezado">
+            
+            <nav id="barra_de_navegacion" class="navbar navbar-expand-lg navbar-dark bg-dark">
+              
+              <span class="navbar-brand" href="#" style="padding-top: 2px"><i class="fas fa-search"></i> PANEL DE AUDITORÍA</span>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent"">
+                <ul class="navbar-nav mr-auto">
+                  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selección de Cohorte
+                        <i class="far fa-list-alt" style="vertical-align: middle; font-size: 3vh"></i>
+                    </a>
+                    <div id="menu_cohortes" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      
+                      <a id="hemofilia_nuevo" class="dropdown-item" href="#" data-toggle="modal" data-target="#modal_hemofilia_nuevos"><i class="fas fa-angle-double-right"></i> Hemofilia Nuevos</a>
+
+                      <a id="hemofilia_anterior" class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Hemofilia Anterior</a>
+                      
+                      <div class="dropdown-divider"></div>
+                      
+                      <a id="coagulo_nuevo" class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Otras Coagulopatias Nuevos</a>
+                      <a id="coagulo_anterior" class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Otras Coagulopatias Anterior</a>
+                      
+                      <div class="dropdown-divider"></div>
+
+                      <a id="diagnostico_severidad" class="dropdown-item" href="#"><i class="fas fa-angle-double-right"></i> Cambio de Diagnóstico o Severidad</a>
+                    
+                    </div>
+
+                  </li>
+
+                </ul>
+              </div>
+
+              <span id="cohorte_actual" class="navbar-text" style="padding-right: 10px">
+                  
+              </span>
+              <a class="btn btn-sm btn-outline-secondary" href="audsoporclinicos_HF.php" role="button">Salir del Panel de Auditoría <i class="fas fa-external-link-alt"></i></a>
+
+            </nav>
+
+        </div>
+
+        <div class="modal fade" id="modal_cohorte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="text-align: center">SELECTOR DE COHORTE</h5>
+              </div>
+              <div class="modal-body">
+                
+                <div class="card" style="width: 100%;">
+                  <div class="card-header">
+                    Seleccione a Continuación la Cohorte a Auditar
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <button id="inicio_hemo_nuevos" class="btn btn-outline-info btn-sm"> Hemofilia Nuevos </button>
+                    <button id="inicio_hemo_anteriores" class="btn btn-outline-info btn-sm"> Hemofilia Anteriores </button>
+                    <button id="inicio_coagu_nuevos" class="btn btn-outline-info btn-sm"> Otras Coagulopatias Nuevos </button>
+                    <button id="inicio_coagu_anteriores" class="btn btn-outline-info btn-sm"> Otras Coagulopatias Anterior </button>
+                    <button id="inicio_diagnostico_severidad" class="btn btn-outline-info btn-sm"> Cambio de Diagnóstico o Severidad </button>
+                  </ul>
+                </div>
+
+              </div>
+              <div class="modal-footer" style="text-align: right;">
+                <a class="btn btn-dark btn-sm" href="audsoporclinicos_HF.php"> Salir del Panel de Auditoría </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="modal_hemofilia_nuevos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-right: 12%; text-align: center;">
+          <div class="modal-dialog modal-lg" role="document" style="display: inline-block; vertical-align: middle">
+            <div class="modal-content" style="resize:both; overflow:auto; width: 1000px">
+              <div class="modal-header" style="text-align: center">
+                <h5 class="modal-title" id="exampleModalLabel"> PACIENTES HEMOFILIA NUEVO </h5>
+              </div>
+              <div class="modal-body" style="margin: auto">
+
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nombres</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Tipo de Identificación</th>
+                      <th scope="col">Número de Identificación</th>
+                      <th scope="col">Estado de Auditoría</th>
+                      <th scope="col">  </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Esteban Antonio</td>
+                      <td>Llanos Millán</td>
+                      <td>CC</td>
+                      <td>1118258478</td>
+                      <td> <span class="badge badge-danger">Sin Auditar</span> </td>
+                      <td> <button id="iniciar_auditoria" class="btn btn-outline-danger btn-sm"> Auditar Paciente </button> </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Juan Carlos</td>
+                      <td>Martinez Gonzales</td>
+                      <td>CC</td>
+                      <td>12345678</td>
+                      <td><span class="badge badge-success">Auditado</span></td>
+                      <td>  </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Juan David</td>
+                      <td>Mejía Mena</td>
+                      <td>CC</td>
+                      <td>12345678</td>
+                      <td> <span class="badge badge-primary">Auditoría en Proceso</span> </td>
+                      <td> <button id="continuar_auditoria" class="btn btn-outline-primary btn-sm"> Continuar Auditoría </button> </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel_auditoria" class="container-fluid">
+            
+            <div id="contenedor_archivos" class="row" style="height: 65vh">
+                
+
+                <div id="visor_archivos" class="col-md-8">
+
+                    <iframe src = "../librerias_externas/ViewerJS/#../../assets/pdf_files/manual.pdf" width='101.2%' height='100%' allowfullscreen webkitallowfullscreen>
+                        
+                    </iframe>
+
+                </div>
+
+                <div id="selector_archivos" class="col-md-4"><br>
+
+                    <div id="contenedor_interno_archivos" class="text-center">
+                        <table class="tree table table-striped table-hover">
+                            <tr class="treegrid-1">
+                                <td><i class="fas fa-folder-open"></i> CC1118258478</td><td></td>
+                            </tr>
+                            
+                            <tr class="treegrid-2 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado01 </td>
+                                
+                                <td>
+                                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal_nuevo"> Auditar Archivo </button>
+
+                                    <div class="modal fade" id="modal_nuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"> EVALUACIÓN DE DOCUMENTOS SOPORTE </h5>
+                                            <span aria-hidden="true" class="close">Consolidado01</span>
+                                          </div>
+                                          <div class="modal-body">
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="">Nombre de Carpeta</span>
+                                                </div>
+                                                <input type="text" class="form-control" disabled="true" placeholder="CC1118258478">
+                                            </div>
+
+                                            <br><hr>
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="">Nombre de Archivo</span>
+                                                </div>
+                                                <input type="text" class="form-control" disabled="true" placeholder="Consolidado01">
+                                            </div>
+
+                                            <br><hr>
+
+                                            <div class="input-group mb-3" style="width: 70%; padding-left: 30%; ">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Calificación</label>
+                                                </div>
+                                                <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                    <option value="1">Valor de Auditoría 1</option>
+                                                    <option value="2">Valor de Auditoría 2</option>
+                                                    <option value="3">Valor de Auditoría 3</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 150%">
+                                                    Descripción de la Calificación
+                                                </div>
+                                                <div class="card-body">
+                                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- <button type="button" class="btn btn-info" style="width: 100%" disabled> Descripción de la Calificación </button>
+                                            <textarea class="form-control" rows="5" id="comment"></textarea> -->
+
+                                          </div>
+                                          <div class="modal-footer" style="text-align: center; margin:auto">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar Auditoría</button>
+                                            <button type="button" class="btn btn-primary">Guardar Auditoría</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr class="treegrid-3 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado02</td>
+
+                                <td>
+                                    <button class="btn btn-outline-danger btn-sm"> Auditar Archivo </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="treegrid-4 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado03</td>
+                                <td>
+                                    <button class="btn btn btn-outline-success btn-sm" disabled> Archivo Auditado </button>
+                                </td>
+                            </tr>
+
+                            <tr class="treegrid-5 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado04</td>
+
+                                <td>
+                                    <button class="btn btn btn-outline-success btn-sm" disabled> Archivo Auditado </button>
+                                </td>
+                            </tr>
+
+                            <tr class="treegrid-6 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado05</td>
+
+                                <td>
+                                    <button class="btn btn-outline-danger btn-sm"> Auditar Archivo </button>
+                                </td>
+                            </tr>
+
+                            <tr class="treegrid-8 treegrid-parent-1" style="font-size: 13px">
+                                <td><i class="far fa-file-pdf"></i> Consolidado06</td>
+
+                                <td>
+                                    <button class="btn btn-outline-primary btn-sm" data-toggle="modal"  data-target="#modal_en_proceso"> Auditoría en Proceso </button>
+
+                                    <div class="modal fade" id="modal_en_proceso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"> EVALUACIÓN DE DOCUMENTOS SOPORTE </h5>
+                                            <span aria-hidden="true" class="close">Consolidado06</span>
+                                          </div>
+                                          <div class="modal-body">
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="">Nombre de Carpeta</span>
+                                                </div>
+                                                <input type="text" class="form-control" disabled="true" placeholder="CC1118258478"> 
+                                            </div>
+
+                                            <br><hr>
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="">Nombre de Archivo</span>
+                                                </div>
+                                                <input type="text" class="form-control" disabled="true" placeholder="Consolidado06">
+                                            </div>
+
+                                            <br><hr>
+
+                                            <div class="input-group mb-3" style="width: 70%; padding-left: 30%; ">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Calificación</label>
+                                                </div>
+                                                <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                    <option value="1">Valor de Auditoría 1</option>
+                                                    <option value="2">Valor de Auditoría 2</option>
+                                                    <option value="3">Valor de Auditoría 3</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 150%">
+                                                    Descripción de la Calificación
+                                                </div>
+                                                <div class="card-body">
+                                                    <textarea class="form-control" rows="5" id="comment"> Este archivo tiene su proceso de auditoría en proceso. </textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- <button type="button" class="btn btn-info" style="width: 100%" disabled> Descripción de la Calificación </button>
+                                            <textarea class="form-control" rows="5" id="comment"></textarea> -->
+
+                                          </div>
+                                          <div class="modal-footer" style="text-align: center; margin:auto">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar Auditoría</button>
+                                            <button type="button" class="btn btn-primary">Guardar Auditoría</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="contenedor_formulario" class="row text-center">
+
+                <div id="contenedor_info_paciente" class="card text-center">
+                    <div class="card-header text-center align-middle font-weight-light font-italic bg-secondary" style="font-size: 120%; color: #ffffff">
+                        INFORMACIÓN DEL PACIENTE 
+                    </div>
+                    <div class="card-body align-middle">
+
+                        <table class="table table-inverse">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tipo de Identificación</th>
+                                    <th>Número de Identificación</th>
+                                    <th>Número de Identificación BDUA</th>
+                                    <th>Primer Nombre</th>
+                                    <th>Segundo Nombre</th>
+                                    <th>Primer Apellido</th>
+                                    <th>Segundo Apellido</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="table-primary">
+                                    <th scope="row">1</th>
+                                    <td>CC</td>
+                                    <td>1.118.258.478</td>
+                                    <td>........</td>
+                                    <td>Esteban</td>
+                                    <td>Antonio</td>
+                                    <td>Llanos</td>
+                                    <td>Millán</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="acordeon_campos_auditoria">
+                    <div id="card_campos_auditoria" class="card text-center">
+                        <div class="card-header btn-outline-info" id="headingOne" style="max-height: 10%;">
+                            <button id="campos_auditar_btn" class="btn btn-outline-info collapsed font-weight-light font-italic" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="width: 100%; font-size: 120%;">
+                                CAMPOS PARA AUDITAR
+                            </button>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#acordeon_campos_auditoria">
+                            <div class="card-body" style="background-image: url('resources/turquoise-1540436_960_720.png'); background-size: cover;">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <div class="list-group" id="list-tab" role="tablist">
+                                            <a class="list-group-item list-group-item-action active btn-outline-info" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Campo 1</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Campo 2</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Campo 3</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Campo 4</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="campo_5_list" data-toggle="list" href="#campo_5" role="tab" aria-controls="home">Campo 5</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="campo_6_list" data-toggle="list" href="#campo_6" role="tab" aria-controls="profile">Campo 6</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="campo_7_list" data-toggle="list" href="#campo_7" role="tab" aria-controls="messages">Campo 7</a>
+                                            <a class="list-group-item list-group-item-action btn-outline-info" id="campo_8_list" data-toggle="list" href="#campo_8" role="tab" aria-controls="settings">Campo 8</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-10"">
+                                        <div class="tab-content" id="nav-tabContent">
+                                            
+                                            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+
+                                                <div class="row">
+                                                    <div class="col-md-4" style="color: #42f1f4; max-width: 27%">
+                                                        
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Nombre de Carpeta</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="CC1118258478">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group mb-3 field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text" for="inputGroupSelect01"><strong>Nombre Archivo</strong></label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                                <option value="1">Consolidado01</option>
+                                                                <option value="2">Consolidado02</option>
+                                                                <option value="3">Consolidado03</option>
+                                                                <option value="1">Consolidado04</option>
+                                                                <option value="2">Consolidado05</option>
+                                                                <option value="3">Consolidado06</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Página</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Campo</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="1">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Registrado</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" >
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Documento PDF</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Sugerido</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="container-fluid col-md-8">
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Descripción de Motivo de Dato No Conforme
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%;">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Aquí va escrita la descripción del motivo por el cuál el dato es no conforme. </textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Observaciones Generales
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Campo separado para Observaciones sobre el campo. </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="col-md-2 offset-md-5">
+                                                    <button type="button" class="btn btn-success" style="height: 50%; -webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">Guardar Información</button>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+
+                                                <div class="row">
+                                                    <div class="col-md-4" style="color: #42f1f4; max-width: 27%">
+                                                        
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Nombre de Carpeta</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="CC1118258478">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group mb-3 field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text" for="inputGroupSelect01"><strong>Nombre Archivo</strong></label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                                <option value="1">Consolidado01</option>
+                                                                <option value="2">Consolidado02</option>
+                                                                <option value="3">Consolidado03</option>
+                                                                <option value="1">Consolidado04</option>
+                                                                <option value="2">Consolidado05</option>
+                                                                <option value="3">Consolidado06</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Página</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Campo</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="2">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Registrado</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" >
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Documento PDF</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Sugerido</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="container-fluid col-md-8">
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Descripción de Motivo de Dato No Conforme
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Aquí va escrita la descripción del motivo por el cuál el dato es no conforme. </textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Observaciones Generales
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Campo separado para Observaciones sobre el campo. </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="col-md-2 offset-md-5">
+                                                    <button type="button" class="btn btn-success" style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">Guardar Información</button>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                                            
+                                                <div class="row">
+                                                    <div class="col-md-4" style="color: #42f1f4; max-width: 27%">
+                                                        
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Nombre de Carpeta</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="CC1118258478">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group mb-3 field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text" for="inputGroupSelect01"><strong>Nombre Archivo</strong></label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                                <option value="1">Consolidado01</option>
+                                                                <option value="2">Consolidado02</option>
+                                                                <option value="3">Consolidado03</option>
+                                                                <option value="1">Consolidado04</option>
+                                                                <option value="2">Consolidado05</option>
+                                                                <option value="3">Consolidado06</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Página</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Campo</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="3">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Registrado</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" >
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Documento PDF</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Sugerido</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="container-fluid col-md-8">
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Descripción de Motivo de Dato No Conforme
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Aquí va escrita la descripción del motivo por el cuál el dato es no conforme. </textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Observaciones Generales
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Campo separado para Observaciones sobre el campo. </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="col-md-2 offset-md-5">
+                                                    <button type="button" class="btn btn-success" style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">Guardar Información</button>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+
+                                                <div class="row">
+                                                    <div class="col-md-4" style="color: #42f1f4; max-width: 27%">
+                                                        
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Nombre de Carpeta</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="CC1118258478">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group mb-3 field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text" for="inputGroupSelect01"><strong>Nombre Archivo</strong></label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01" placeholder="Seleccione una opción...">
+                                                                <option value="1">Consolidado01</option>
+                                                                <option value="2">Consolidado02</option>
+                                                                <option value="3">Consolidado03</option>
+                                                                <option value="1">Consolidado04</option>
+                                                                <option value="2">Consolidado05</option>
+                                                                <option value="3">Consolidado06</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Página</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Numero de Campo</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" disabled="true" placeholder="4">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Registrado</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control" >
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Documento PDF</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <div class="input-group field-shader">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id=""><strong>Valor Sugerido</strong></span>
+                                                            </div>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="container-fluid col-md-8">
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Descripción de Motivo de Dato No Conforme
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Aquí va escrita la descripción del motivo por el cuál el dato es no conforme. </textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <br>
+
+                                                        <div class="card contenedor_detalles_auditoria">
+                                                            <div class="card-header bg-dark mb-3" style="color: #42f1f4; font-size: 120%">
+                                                                Observaciones Generales
+                                                            </div>
+                                                            <div class="card-body" style="height: 70%">
+                                                                <textarea class="form-control" rows="5" id="comment" style="height: 100%"> Campo separado para Observaciones sobre el campo. </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="col-md-2 offset-md-5">
+                                                    <button type="button" class="btn btn-success" style="-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); -moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48); box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);">Guardar Información</button>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane fade" id="campo_5" role="tabpanel" aria-labelledby="campo_5_list">
+                                                .......
+                                            </div>
+
+                                            <div class="tab-pane fade" id="campo_6" role="tabpanel" aria-labelledby="campo_6_list">
+                                                .......
+                                            </div>
+
+                                            <div class="tab-pane fade" id="campo_7" role="tabpanel" aria-labelledby="campo_7_list">
+                                                .......
+                                            </div>
+
+                                            <div class="tab-pane fade" id="campo_8" role="tabpanel" aria-labelledby="campo_8_list">
+                                                .......
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        
+    </body>
+</html><?php }} ?>

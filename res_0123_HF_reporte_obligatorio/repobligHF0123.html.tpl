@@ -55,11 +55,15 @@
 					<table>
 					
 					<tr>
-					<td style="text-align:left;"><h5>Generaci&oacuten del reporte obligatorio HF 0123:</h5></h5></td>
+						<td style="text-align:left;">
+							<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Generaci&oacuten del reporte obligatorio HF 0123:</h4>
+						</td>
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">Estado de la informaci&oacuten:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Estado de la informaci&oacuten:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;">
@@ -72,14 +76,18 @@
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">A&ntildeo de corte:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">A&ntildeo de corte:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;"><input type='text' id='year_de_corte' name='year_de_corte' class='campo_azul' placeholder='AAAA' onchange='escribiendo_year_corte();' onkeyup='escribiendo_year_corte();' onkeypress="return isNumberKey(event)"/> {$campo_fechas_corte}</td>
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">Periodo:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Periodo:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;position:relative;">{$campo_periodo}<div id='fecha_corte_periodo_actual' name='fecha_corte_periodo_actual' style="position:absolute;left:25%;top:5%"></div></td>
@@ -88,7 +96,9 @@
 					
 					
 					<tr>
-					<td style="text-align:left;">Nombre EAPB:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Nombre EAPB:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;">{$campo_eapb}</td>

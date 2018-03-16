@@ -43,7 +43,7 @@
 		 <tr>
 		 <td> 
          <div id="modPrincipal">
-			<table>
+			<table >
 				<tr>
 					<td style="text-align:center;vertical-align:text-top;width:20%;">
 					<div id="logo">
@@ -51,7 +51,7 @@
 					</div>
 					</td> 
 					<td>
-					<form name="formulario" id="formulario" action="" method="post" enctype= "multipart/form-data">
+					<form name="formulario" id="formulario" action="formulario_auditoria_HF.php" method="post" enctype= "multipart/form-data">
 						<table>
 						<tr>
 						<td style="text-align:left;">
@@ -64,43 +64,40 @@
 							<tr>
 							<td style="text-align:left;">
 							<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">MODULO ACCESO PARA SELECCI&Oacute;N ARCHIVOS DE AUDITORIA DE INFORMACI&Oacute;N</h4>
+							<br>
 							</td>
 							</tr>
 
 							<tr>
-							<td style="text-align:left;">
-							{$info_entidad}							
-							</td>
+								<td style="text-align:left;">
+								{$info_entidad}
+								</td>
 							</tr>
-
 
 							<tr>
 							<td style="text-align:left;">
 								<table style='text-align:left;'>
 								<tr>
-								<td style='text-align:left;width:250px;'>
-								<input type='text' value='PERIODO' class='campo_azul' readonly='true'>
+								<td style='text-align:left;width:150px;'>
+								<input type='text' value='PERIODO' class='campo_azul' readonly='true' style='width:105px'>
 								</td>
 								<td style='text-align:left;'>
-								<input id='anio_auditoria' name='anio_auditoria'  class='campo_azul' placeholder='AAAA' maxlength='4' onkeypress='return isNumberKey(event)' type='text'> 
+								<input id='anio_auditoria' name='anio_auditoria'  class='campo_azul' placeholder='AAAA' maxlength='4' onkeypress='return isNumberKey(event)' style='width:40px !important;' type='text'> 
 								</td>
 								</tr>
 								</table>
 							</td>
 							</tr>
 
-
-							
-
 						    <tr>
 								<td style="text-align:left;vertical-align: middle;">
-									<div style="position: relative; width: 55%; text-align:right;">
+									<br>
+									<div style="position: relative; width: 55%; text-align:left;">
 										<input type="hidden" value="no"  id="desplegar_formulario" name="desplegar_formulario" >
-										<input type="button" value="Desplegar Formulario" onclick="cargarArchivo();" style="width:250px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+										<input type="submit" value="Desplegar Formulario" style="width:180px;height: 40px;font-size: 15px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
 									</div>
 								</td>
 							</tr>
-							
 					    </table>
 						
 						<tr>
@@ -154,10 +151,9 @@
 		 </tr>   
 		<tr>		 
         <td colspan='100' style="text-align:right;">    
-                <div id="footer">
-                    <h6>Sistema de informaci&oacuten Gios</h6>
-                </div>                
-            
+        	<!-- <div id="footer">
+        		<h6>Sistema de informaci&oacuten Gios</h6>
+        	</div> -->
          </td>
 		 </tr>  
 		</table>

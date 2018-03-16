@@ -51,7 +51,7 @@
 					</div>
 					</td> 
 					<td>
-					<form name="formulario" id="formulario" action="" method="post" enctype= "multipart/form-data">
+					<form name="formulario" id="formulario" action="formulario_auditoria_VIH.php" method="post" enctype= "multipart/form-data">
 						<table>
 						<tr>
 						<td style="text-align:left;">
@@ -64,6 +64,7 @@
 							<tr>
 							<td style="text-align:left;">
 							<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">MODULO ACCESO PARA SELECCI&Oacute;N ARCHIVOS DE AUDITORIA DE INFORMACI&Oacute;N</h4>
+							<br>
 							</td>
 							</tr>
 
@@ -73,60 +74,31 @@
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-								<table style='text-align:left;'>
-								<tr>
-									<td style='text-align:left;width:250px;max-width:250px;'>
-										<input type='text' value='NOMBRE ARCHIVO' class='campo_azul' readonly='true'>
-									</td>
-									<td style='text-align:left;'>
-										<table>
-											<tr>
-												<td style='text-align:left;width:250px;'>
-													<input id='nombre_archivo_mostrar' name='nombre_archivo_mostrar'  class='campo_azul' placeholder='SELECCIONE UN ARCHIVO'  type='text' readonly> 
-												</td>
-												<td style='text-align:left;'>
-													<div class="upload" style="position:relative;text-align: center;margin:0;padding: 0;">
-													    <input type="file" id='archivo_a_subir' name='archivo_a_subir' style="cursor:pointer;" onchange="actualizarNombreFile(this.value);" onclick="actualizarNombreFile(this.value);" />
-													</div>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								</table>
-							</td>
-							</tr>
 
 							<tr>
 							<td style="text-align:left;">
 								<table style='text-align:left;'>
 								<tr>
-								<td style='text-align:left;width:250px;'>
-								<input type='text' value='PERIODO' class='campo_azul' readonly='true'>
+								<td style='text-align:left;width:150px;'>
+								<input type='text' value='PERIODO' class='campo_azul' readonly='true' style='width:105px'>
 								</td>
 								<td style='text-align:left;'>
-								<input id='anio_auditoria' name='anio_auditoria'  class='campo_azul' placeholder='AAAA' maxlength='4' onkeypress='return isNumberKey(event)' type='text'> 
+								<input id='anio_auditoria' name='anio_auditoria'  class='campo_azul' placeholder='AAAA' maxlength='4' onkeypress='return isNumberKey(event)' style='width:40px !important;' type='text'> 
 								</td>
 								</tr>
 								</table>
 							</td>
 							</tr>
 
-							<tr>
-							<td style="text-align:left;">
-							{$selector_cohorte}							
-							</td>
-							</tr>
 
 							
 
 						    <tr>
 								<td style="text-align:left;vertical-align: middle;">
-									<div style="position: relative; width: 55%; text-align:right;">
-										<input type="hidden" value="no"  id="ver_subio_archivo" name="ver_subio_archivo" >
-										<input type="button" value="Cargar Archivo" onclick="cargarArchivo();" style="width:220px;height: 60px;font-size: 22px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
+									<br>
+									<div style="position: relative; width: 55%; text-align:left;">
+										<input type="hidden" value="no"  id="desplegar_formulario" name="desplegar_formulario" >
+										<input type="submit" value="Desplegar Formulario" style="width:180px;height: 40px;font-size: 15px;border-style: solid; border-width: 5px;border-color:#c2c2a3;" class="btn btn-success color_boton label_espacio">
 									</div>
 								</td>
 							</tr>
@@ -184,9 +156,9 @@
 		 </tr>   
 		<tr>		 
         <td colspan='100' style="text-align:right;">    
-                <div id="footer">
+        	<!-- <div id="footer">
                     <h6>Sistema de informaci&oacuten Gios</h6>
-                </div>                
+        	</div> -->
             
          </td>
 		 </tr>  

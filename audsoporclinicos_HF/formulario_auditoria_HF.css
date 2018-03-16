@@ -1,0 +1,435 @@
+/*FUENTES*/
+
+/* playfair-display-regular - latin */
+/* playfair-display-italic - latin */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.eot'); /* IE9 Compat Modes */
+  src: local('Playfair Display Italic'), local('PlayfairDisplay-Italic'),
+       url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Playfair/playfair-display-v13-latin-italic.svg#PlayfairDisplay') format('svg'); /* Legacy iOS */
+}
+
+/* cagliostro-regular - latin */
+@font-face {
+  font-family: 'Cagliostro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Cagliostro Regular'), local('Cagliostro-Regular'),
+       url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Cagliostro/cagliostro-v6-latin-regular.svg#Cagliostro') format('svg'); /* Legacy iOS */
+}
+
+/* cormorant-garamond-regular - latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Cormorant Garamond Regular'), local('CormorantGaramond-Regular'),
+       url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Cormorant_Garamond/cormorant-garamond-v5-latin-regular.svg#CormorantGaramond') format('svg'); /* Legacy iOS */
+}
+
+/* sarpanch-regular - latin */
+@font-face {
+  font-family: 'Sarpanch';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Sarpanch Regular'), local('Sarpanch-Regular'),
+       url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Sarpanch/sarpanch-v3-latin-regular.svg#Sarpanch') format('svg'); /* Legacy iOS */
+}
+
+/* cormorant-sc-regular - latin */
+@font-face {
+  font-family: 'Cormorant SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Cormorant SC Regular'), local('CormorantSC-Regular'),
+       url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Cormorant_SC/cormorant-sc-v5-latin-regular.svg#CormorantSC') format('svg'); /* Legacy iOS */
+}
+
+/* bungee-hairline-regular - latin */
+@font-face {
+  font-family: 'Bungee Hairline';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Bungee Hairline'), local('BungeeHairline-Regular'),
+       url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Bungee_Hairline/bungee-hairline-v3-latin-regular.svg#BungeeHairline') format('svg'); /* Legacy iOS */
+}
+
+/* bungee-inline-regular - latin */
+@font-face {
+  font-family: 'Bungee Inline';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Bungee Inline'), local('BungeeInline-Regular'),
+       url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Bungee_Inline/bungee-inline-v3-latin-regular.svg#BungeeInline') format('svg'); /* Legacy iOS */
+}
+
+/* quintessential-regular - latin */
+@font-face {
+  font-family: 'Quintessential';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Quintessential'), local('Quintessential-Regular'),
+       url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Quintessential/quintessential-v5-latin-regular.svg#Quintessential') format('svg'); /* Legacy iOS */
+}
+
+/* dancing-script-regular - latin */
+@font-face {
+  font-family: 'Dancing Script';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Dancing Script Regular'), local('DancingScript-Regular'),
+       url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Dancing_Script/dancing-script-v9-latin-regular.svg#DancingScript') format('svg'); /* Legacy iOS */
+}
+
+/* limelight-regular - latin */
+@font-face {
+  font-family: 'Limelight';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Limelight'),
+       url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Limelight/limelight-v8-latin-regular.svg#Limelight') format('svg'); /* Legacy iOS */
+}
+
+/* rajdhani-regular - latin */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Rajdhani Regular'), local('Rajdhani-Regular'),
+       url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Rajdhani/rajdhani-v7-latin-regular.svg#Rajdhani') format('svg'); /* Legacy iOS */
+}
+
+/* amita-regular - latin */
+@font-face {
+  font-family: 'Amita';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Amita Regular'), local('Amita-Regular'),
+       url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Amita/amita-v3-latin-regular.svg#Amita') format('svg'); /* Legacy iOS */
+}
+
+/* philosopher-regular - latin */
+@font-face {
+  font-family: 'Philosopher';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Philosopher Regular'), local('Philosopher-Regular'),
+       url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Philosopher/philosopher-v9-latin-regular.svg#Philosopher') format('svg'); /* Legacy iOS */
+}
+
+/* lobster-two-regular - latin */
+@font-face {
+  font-family: 'Lobster Two';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Lobster Two'), local('LobsterTwo'),
+       url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../librerias_externas/Fonts/Lobster_Two/lobster-two-v10-latin-regular.svg#LobsterTwo') format('svg'); /* Legacy iOS */
+}
+
+/*FIN FUENTES*/
+
+#barra_de_navegacion {
+	position: fixed-top;
+	width: 100%;
+	z-index: 50 !important;
+	-webkit-box-shadow: 0px 8px 60px -16px rgba(0,0,0,1);
+	-moz-box-shadow: 0px 8px 60px -16px rgba(0,0,0,1);
+	box-shadow: 0px 8px 60px -16px rgba(0,0,0,1);
+}
+
+.alert_group {
+	z-index: 100 !important;
+	margin: auto;
+	text-align: center;
+	position: fixed; 
+	right: 0;
+}
+
+#menu_cohortes {
+	-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	-moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+}
+
+#selector_archivos {
+	background-color: #ffffff;
+	overflow:scroll;
+}
+
+#visor_archivos {
+	background-color: #cce0ff;
+	border-right: 2px solid #000000;
+}
+
+#contenedor_interno_archivos {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+#contenedor_formulario {
+	height: 35vh;
+	border-top: 2px solid #000000;
+	text-align: center;
+}
+
+#contenedor_info_paciente {
+	width: 98%;
+	height: 70%;
+	display: none;
+	margin: auto;
+	margin-left: 1.5%;
+}
+
+#contenedor_campos_auditoria {
+	width: 98%;
+	height: 100%;
+	display: none;
+	margin: auto;
+	margin-left: 1.5%;
+}
+
+.sombra_texto {
+  text-shadow: 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);
+}
+
+#card_campos_auditoria {
+	-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	-moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+}
+
+.contenedor_detalles_auditoria {
+	height: 40%;
+	-webkit-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	-moz-box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+	box-shadow: 10px 10px 80px 0px rgba(0,0,0,0.48);
+}
+
+.field-shader {
+	-webkit-box-shadow: 3px 12px 24px -7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 12px 24px -7px rgba(0,0,0,0.75);
+	box-shadow: 3px 12px 24px -7px rgba(0,0,0,0.75);
+}
+
+.guardar-auditoria-btn {
+	height: 50%;
+	width: 100%;
+	-webkit-box-shadow: 3px 12px 60px 14px rgba(39,94,26,1);
+	-moz-box-shadow: 3px 12px 60px 14px rgba(39,94,26,1);
+	box-shadow: 3px 12px 60px 14px rgba(39,94,26,1);
+}
+
+.lista-campos {
+	-webkit-box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+	-moz-box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+	box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+}
+
+.dropdown-alt {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  width: 132px;
+}
+
+.dropdown-text-alt {
+  cursor: pointer;
+  position: absolute;
+  text-indent: 10px;
+  line-height: 32px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255,255,255, .9) inset, 0 1px 3px rgba(0,0,0, .1);
+  width: 100%;
+}
+
+.dropdown-text-alt:after {
+  color: #333;
+  position: absolute;
+  right: 6px;
+  top: 15px;
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #555 transparent transparent transparent;
+}
+
+.dropdown-text-alt,
+.dropdown-content-alt a {
+  color: #333;
+  text-shadow: 0 1px #fff;
+}
+
+.dropdown-toggle-alt {
+  color: #333;
+  font-size: 0;
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 1px;
+  background: transparent;
+  text-indent: -10px;
+  height: 34px;
+  width: 100%;
+}
+
+.dropdown-toggle-alt:focus {
+  outline: 0;
+}
+
+.dropdown-content-alt {
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+  list-style-type: none;
+  position: absolute;
+  top: 32px;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  visibility:hidden;
+  border-radius: 3px;
+  text-indent: 10px;
+  line-height: 32px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  width: 140px;
+}
+
+.dropdown-content-alt a {
+  display: block;
+}
+
+.dropdown-content-alt a:hover {
+  background: #e8e8e8;
+}
+
+.dropdown-toggle-alt:hover ~ .dropdown-text-alt,
+.dropdown-toggle-alt:focus ~ .dropdown-text-alt {
+  background-color: #e8e8e8;
+}
+
+.dropdown-toggle-alt:focus ~ .dropdown-text-alt {
+  box-shadow: 0 1px 3px rgba(0,0,0, .2) inset, 0 1px 0 rgba(255,255,255, 0.8);
+  z-index: 2;
+}
+
+.dropdown-toggle-alt:focus ~ .dropdown-text-alt:after {
+  border-width: 0 4px 5px 4px;
+  border-color: transparent transparent #555 transparent;
+}
+
+.dropdown-toggle-alt:focus ~ .dropdown-content-alt {
+  opacity: 1;
+  visibility:visible;
+  top: 42px;
+}
+
+table {
+    border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px;
+    border-color: #00cc99;
+    -moz-border-radius:6px;
+    -webkit-box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+    -moz-box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+    box-shadow: 7px 14px 45px 7px rgba(152,201,140,1);
+}
+
+td, th {
+    border-left:solid black 1px;
+    border-top:solid black 1px;
+    border-color: #00cc99;
+}
+
+th {
+    border-top: none;
+}
+
+td:first-child, th:first-child{
+     border-left: none;
+}
+
+tr {
+  font-size: 15px;
+}

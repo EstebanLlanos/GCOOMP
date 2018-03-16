@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2017-12-27 12:16:22
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-13 14:29:24
          compiled from "repobligHF0123.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12955811205a43d5662ba841-00729647%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '72fc926f451dfd7200f43d25d23963a0098c2d04' => 
     array (
       0 => 'repobligHF0123.html.tpl',
-      1 => 1514394963,
+      1 => 1520969355,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.17',
+  'unifunc' => 'content_5a43d5662cdb45_02564725',
   'variables' => 
   array (
     'menu' => 1,
@@ -27,8 +29,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'resultado_definitivo' => 1,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.17',
-  'unifunc' => 'content_5a43d5662cdb45_02564725',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a43d5662cdb45_02564725')) {function content_5a43d5662cdb45_02564725($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -89,11 +89,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<table>
 					
 					<tr>
-					<td style="text-align:left;"><h5>Generaci&oacuten del reporte obligatorio HF 0123:</h5></h5></td>
+						<td style="text-align:left;">
+							<h4 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Generaci&oacuten del reporte obligatorio HF 0123:</h4>
+						</td>
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">Estado de la informaci&oacuten:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Estado de la informaci&oacuten:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;">
@@ -106,7 +110,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">A&ntildeo de corte:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">A&ntildeo de corte:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;"><input type='text' id='year_de_corte' name='year_de_corte' class='campo_azul' placeholder='AAAA' onchange='escribiendo_year_corte();' onkeyup='escribiendo_year_corte();' onkeypress="return isNumberKey(event)"/> <?php echo $_smarty_tpl->tpl_vars['campo_fechas_corte']->value;?>
@@ -114,7 +120,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</tr>
 					
 					<tr>
-					<td style="text-align:left;">Periodo:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Periodo:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;position:relative;"><?php echo $_smarty_tpl->tpl_vars['campo_periodo']->value;?>
@@ -124,7 +132,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					
 					
 					<tr>
-					<td style="text-align:left;">Nombre EAPB:</td>
+						<td style="text-align:left;">
+							<h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">Nombre EAPB:</h5>
+						</td>
 					</tr>
 					<tr>
 					<td style="text-align:left;"><?php echo $_smarty_tpl->tpl_vars['campo_eapb']->value;?>
