@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.17, created on 2018-01-22 09:33:30
+<?php /* Smarty version Smarty-3.1.17, created on 2018-03-20 10:59:43
          compiled from "carga_val_0123_HF.html.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18287739305a32b39e660ff5-08825243%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '08518bd92496cd78f463cbc450452f1c4bf98e51' => 
     array (
       0 => 'carga_val_0123_HF.html.tpl',
-      1 => 1516629385,
+      1 => 1521561517,
       2 => 'file',
     ),
   ),
@@ -164,7 +164,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								</tr>	
 								
 								<tr>
-								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -03-31 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5></td>
+								<td style="text-align:left;color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;"><h5>Fecha/Periodo de corte:(Nota: la fecha de corte usada en los calculos sera la del -01-31 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5></td>
 								</tr>
 								<tr>
 								<td style="text-align:left;">

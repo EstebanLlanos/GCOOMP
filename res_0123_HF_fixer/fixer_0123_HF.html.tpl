@@ -121,7 +121,7 @@
 								
 								<tr>
 								<td style="text-align:left;">
-								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">A&ntildeo de corte:(Nota: la fecha de corte usada en los calculos sera la del -03-31 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5>
+								    <h5 style="color:#0000FF;text-shadow: 2px 2px 5px #A8A8FF;">A&ntildeo de corte:(Nota: la fecha de corte usada en los calculos sera la del -01-31 del a&ntilde;o siguiente de la fecha limite indicada en el archivo)</h5>
 								</td>
 								</tr>
 								<tr>

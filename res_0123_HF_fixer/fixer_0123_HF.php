@@ -1898,7 +1898,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 	//PARTE FECHA INFERIOR Y NUEVA FECHA DE CORTE
 	$fecha_corte_anterior_registrada_nombre=$fecha_de_corte;
 	$fecha_inferior_pv="";
-	$fecha_inferior_pv=$year_corte_inferior."-04-01";
+	$fecha_inferior_pv=$year_corte_inferior."-02-01";
 	$fecha_de_corte=$year_corte_para_buscar."-01-31";
 	//no tabla variados que contiene algunos rangos de years
 	//revisar esto en ERC	
@@ -3925,6 +3925,7 @@ if(isset($_POST["accion"]) && $_POST["accion"]=="validar" && isset($_FILES["0123
 					
 					
 					$numero_secuencia_para_procesado="-1";
+					$array_campos_procesados_de_los_duplicados_del_duplicado=array();
 					$array_campos_procesados_de_los_duplicados_del_duplicado=reparacion_campos_duplicados($tipo_id_duplicado_actual,
 																		      $numero_id_duplicado_actual,
 																		      $fecha_actual,

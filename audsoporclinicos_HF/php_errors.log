@@ -22,3 +22,5 @@ LINE 1: ...ECT * FROM gioss_tipo_entidad WHERE codigo_tipo_entidad='';
   thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
 [16-Mar-2018 16:54:19 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7.file.formulario_auditoria_HF.html.tpl.php <-- 
   thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74
+[20-Mar-2018 09:17:22 America/Bogota] PHP Fatal error:  Uncaught  --> Smarty: unable to write file .\templates_c\1a63fa4882fa8be33cb49f53d4a9ac6d0f1bdea7.file.formulario_auditoria_HF.html.tpl.php <-- 
+  thrown in C:\Bitnami\wappstack-5.6.30-2\apache2\htdocs\GCOOMP\librerias_externas\Smarty-3.1.17\libs\sysplugins\smarty_internal_write_file.php on line 74

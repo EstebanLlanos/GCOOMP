@@ -247,32 +247,7 @@ function ConsultaAJAX_Async(parametros,filePHP,divContent)
     xmlhttp.send();
 
   }
-}//fin funcion consulta ajax
-
-/*function Expand(obj)
-{
-  //alert('reacomoda');
-  if (!obj.savesize) obj.savesize=obj.size;
-  //alert('obj.savesize '+obj.savesize);
-  obj.size=Math.max(obj.savesize,obj.value.length);
-  //alert('obj.size '+obj.size);
-  //alert('A obj.style.width '+obj.style.width);
-  var new_width=(obj.size*8);
-  //alert('new_width '+new_width);
-  obj.style.width=new_width+'px';
-  //alert('D obj.style.width '+obj.style.width);
-}//fin function
-
-
-function isNumberKey(evt) 
-{
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode != 46 && charCode > 31
-    && (charCode < 48 || charCode > 57))
-        return false;
-
-    return true;
-}*/
+}
 
 $(document).ready(function() {
   
@@ -377,44 +352,19 @@ $(document).ready(function() {
 
     // SELECCIÓN DE ARCHIVO DE SOPORTE DE AUDITORÍA
 
-  $( "#selector_archivo" ).click(function() {
-    $("#elementos_archivos").css("visibility", "visible");
+  $("#selector_archivo a").click(function(){
+      var archivo_sel = $(this).text()
+      $("#btn_selector_archivo").text(archivo_sel);
   });
 
-  $( "#archivo_1" ).click(function() {
-    archivo_seleccionado = $("#archivo_1").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
+  $("#modifica_dato a").click(function(){
+      var mod_dato = $(this).text()
+      $("#btn_modifica_dato").text(mod_dato);
   });
 
-  $( "#archivo_2" ).click(function() {
-    archivo_seleccionado = $("#archivo_2").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
-  });
-
-  $( "#archivo_3" ).click(function() {
-    archivo_seleccionado = $("#archivo_3").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
-  });
-
-  $( "#archivo_4" ).click(function() {
-    archivo_seleccionado = $("#archivo_4").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
-  });
-
-  $( "#archivo_5" ).click(function() {
-    archivo_seleccionado = $("#archivo_5").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
-  });
-
-  $( "#archivo_6" ).click(function() {
-    archivo_seleccionado = $("#archivo_6").text();
-    $("#archivo_seleccionado").text(archivo_seleccionado);
-    $("#elementos_calificacion").css("visibility", "hidden");
+  $("#modifica_archivo_original a").click(function(){
+      var archivo_mod = $(this).text()
+      $("#btn_modifica_archivo_original").text(archivo_mod);
   });
 
   // INICIO DE INTERFAZ DE AUDITORIA AL SELECCIONAR UN PACIENTE
